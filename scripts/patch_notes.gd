@@ -4,6 +4,11 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.252", "items": [
+		"THE CLICK SWEEP (qa-click-sweep-2): a test routine now presses everything clickable in the game, every menu, setting, campaign hub, war map, skirmish option, a match of each faction (every unit and building, every button of its card, the keys, the minimap, the match menu, save and load), the editor, the world war, tournaments, the online pages and the replays, in English, Portuguese and Spanish, on a computer and a phone, and reports errors, dead buttons, buttons something lies over, cut or overlapping text, untranslated text and slow pages (tools/qa/click_sweep.sh, docs/qa_click_sweep.md).",
+		"Fixed from its first run: after the selection changes without a click (a unit dying, a group recalled by the game) the command card follows at once (the old card stayed drawn and clickable for up to a quarter of a second); PATCH NOTES opens at once with the newest 15 versions and OLDER VERSIONS for the rest (it built all ~700 and froze for seconds).",
+		"Portuguese and Spanish: the card lines of the cannon, the mortar, the horse and the Dragoon (half of each stayed English), the order hints on a computer (Click where to move and the others), the command names on the HOTKEYS page, the map editor's check line (1 PROBLEM, warnings) and its decoration kinds, Connecting..., the building card's chips (Soil, Saltpetre, Brass, Haulers); text that didn't fit: the war map's title shrinks to its room, a tournament map card's line on a phone, the world war's gold line (… and a tooltip), the Spanish GRID hotkeys button.",
+	]},
 	{"v": "0.38.251", "items": [
 		"Field Cannons, Mortars and Powder Wagons no longer stand stuck for good at a gate in a diagonal palisade, in a one-cell lane between buildings or by a staircase cliff edge: stuck there, the horse team draws in toward the gun so it can turn, and lets out again when there is room (ai-fixes-b).",
 		"The Crown computer goes down to defend its own Town Hall below its high ground when its army at home is worth as much as the force there (it waited for a clear edge before and could watch the hall burn), and it gathers first and goes in together instead of man by man (ai-fixes-b).",

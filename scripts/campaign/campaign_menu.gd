@@ -1090,11 +1090,22 @@ static func war_map(main: Node) -> void:
 	# (the act's dates live in the ledger and the cartouche: the heading keeps "Act 2" so the views' buttons fit)
 	var act_short := Loc.t(act_t).split(":")[0]
 	var ttxt := Loc.t(WarMapData.skin_title(map_skin)) + "  ·  " + act_short
-	var t := UiStyle.heading(ttxt, (30 if ttxt.length() <= 22 else 24) if pc else (22 if ttxt.length() <= 22 else 18), UiStyle.TRIM)
+	# (longer titles a step smaller: pt/es "A CARTA DOS ESPÉCIMES  ·  Ato 1" was cut, qa-click-sweep-2)
+	var tn := ttxt.length()
+	var tfs := (30 if tn <= 22 else (24 if tn <= 28 else (20 if tn <= 33 else 18))) if pc else (22 if tn <= 22 else (18 if tn <= 28 else (16 if tn <= 33 else 15)))
+	var t := UiStyle.heading(ttxt, tfs, UiStyle.TRIM)
 	t.tooltip_text = Loc.t(act_t)
 	t.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	t.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	t.clip_text = true
+	# (laid out, still too wide for its room: a point smaller until it fits, 14 at least; es "LA CARTA DE LOS ESPECÍMENES")
+	t.resized.connect(func() -> void:
+		var f: Font = t.get_theme_font("font")
+		var fs := t.get_theme_font_size("font_size")
+		while fs > 14 and t.size.x > 1.0 and f.get_string_size(t.text, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x > t.size.x:
+			fs -= 1
+		if fs != t.get_theme_font_size("font_size"):
+			t.add_theme_font_size_override("font_size", fs))
 	top.add_child(t)
 	var holder := Control.new()
 	holder.name = "WarMapHolder"

@@ -155,7 +155,9 @@ static func _pattern(s: String) -> String:
 	# a text of several pieces ("Haulers 0/0 · Soil: 96% (8620 gold) · ...") taken by a bare key such as "%s: %s" is cut at
 	# its first colon, which leaves half of it English; "VIEW: Free · all vision" is right that way. Both ways are tried
 	# and the one leaving fewer English words wins (QA 2026-11-08)
-	var pieces := s.contains(" · ") or s.contains("\n")
+	# (a double space joins pieces too: "Limbered: the horse tows it. UNLIMBER to fire.  Powder 8/8" was taken whole by
+	# "%s: %s" and stayed English, qa-click-sweep-2)
+	var pieces := s.contains(" · ") or s.contains("\n") or s.contains("  ")
 	var bare_r := ""
 	for group in [cands, _pats_any]:
 		for e in group:

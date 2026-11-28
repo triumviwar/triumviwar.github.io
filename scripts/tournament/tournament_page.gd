@@ -692,7 +692,10 @@ func _pool_card(id: String, f: Dictionary, ts: int) -> Control:
 	var info := "%d %s · %dx%d · %s" % [MapGen.max_players(id), Loc.t("players"), sz.x, sz.y, Loc.t(src)]
 	if not ok:
 		info = Loc.t("online: your maps can't be sent") if Tournament.map_holds(id, ts) else Loc.t("holds %d players") % MapGen.max_players(id)
-	var il := UiStyle.text(info, _fs(12), UiStyle.MUTED, HORIZONTAL_ALIGNMENT_LEFT)
+	# (a smaller size when the line is long: on a phone "4 jogadores · 110x80 · clássico" was cut, qa-click-sweep-2;
+	# about 0.37 of the font size a character)
+	var ifs := clampi(int((w - 20.0) / (0.37 * maxf(1.0, info.length()))), 10, _fs(12))
+	var il := UiStyle.text(info, ifs, UiStyle.MUTED, HORIZONTAL_ALIGNMENT_LEFT)
 	il.clip_text = true
 	il.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	il.mouse_filter = Control.MOUSE_FILTER_IGNORE

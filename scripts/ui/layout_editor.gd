@@ -166,7 +166,9 @@ func _build_keys() -> void:
 			name = Defs.BUILDINGS[iid]["name"]
 			col = UiStyle.accent(Defs.BUILDINGS[iid]["faction"]).lightened(0.4)
 		else:
-			name = iid.capitalize()
+			# (a command: its button name is in the tables in capitals, "ROUND SHOT"; Loc.title finds it for "Round Shot",
+			# qa-click-sweep-2: pt/es showed Canister, Limber, Drop Here... in English)
+			name = Loc.title(iid.capitalize())
 		var l := UiStyle.text(name, 15, col, HORIZONTAL_ALIGNMENT_RIGHT)
 		l.custom_minimum_size.x = 150
 		grid.add_child(l)

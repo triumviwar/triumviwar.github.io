@@ -1,0 +1,156 @@
+# qa-click-sweep-2 (docs/qa_click_sweep.md): new texts and texts the sweep found untranslated
+> OLDER VERSIONS
+pt VERSÕES ANTERIORES
+es VERSIONES ANTERIORES
+
+# the map editor's checks, whole phrases (map_editor.gd)
+> 1 PROBLEM
+pt 1 PROBLEMA
+es 1 PROBLEMA
+
+> %d PROBLEMS
+pt %d PROBLEMAS
+es %d PROBLEMAS
+
+> 1 WARNING
+pt 1 AVISO
+es 1 AVISO
+
+> %d WARNINGS
+pt %d AVISOS
+es %d AVISOS
+
+> and 1 warning
+pt e 1 aviso
+es y 1 aviso
+
+> and %d warnings
+pt e %d avisos
+es y %d avisos
+
+# the map editor's decoration kinds and sizes
+> PLANTS
+pt PLANTAS
+es PLANTAS
+
+> RUINS
+pt RUÍNAS
+es RUINAS
+
+> CAMP
+pt ACAMPAMENTO
+es CAMPAMENTO
+
+> STORES
+pt DEPÓSITOS
+es ALMACENES
+
+> FORGE
+pt FORJA
+es FORJA
+
+> VILLAGE
+pt ALDEIA
+es ALDEA
+
+> WRECK
+pt DESTROÇOS
+es RESTOS
+
+> huge
+pt enorme
+es enorme
+
+# the order hints on a computer (the phone's "Tap ..." ones were translated, the computer's "Click ..." not)
+> Click where to move
+pt Clique onde mover
+es Haz clic dónde mover
+
+> Click a target or place to attack-move
+pt Clique num alvo ou lugar para atacar-mover
+es Haz clic en un objetivo o lugar para atacar avanzando
+
+> Click the rally point
+pt Clique no ponto de reunião
+es Haz clic en el punto de reunión
+
+> Click the enemy to lash with the tongue
+pt Clique no inimigo para chicotear com a língua
+es Haz clic en el enemigo para azotarlo con la lengua
+
+> Click where to cast the %s
+pt Clique onde lançar %s
+es Haz clic dónde lanzar %s
+
+> Click where new soldiers gather
+pt Clique onde os novos soldados se reúnem
+es Haz clic dónde se reúnen los nuevos soldados
+
+> Click where new workers go to work
+pt Clique onde os novos trabalhadores vão trabalhar
+es Haz clic donde irán a trabajar los nuevos trabajadores
+
+> Click where to SCATTER COGS (enemies on the ground in the litter are slowed)
+pt Clique onde ESPALHAR ENGRENAGENS (os inimigos em terra no entulho ficam mais lentos)
+es Haz clic dónde ESPARCIR ENGRANAJES (los enemigos en tierra entre la chatarra se frenan)
+
+> Tap where to cast the storm (it stuns your own units too)
+pt Toque onde lançar a tempestade (ela atordoa também as suas unidades)
+es Toca dónde lanzar la tormenta (aturde también a tus unidades)
+
+> Click where to cast the storm (it stuns your own units too)
+pt Clique onde lançar a tempestade (ela atordoa também as suas unidades)
+es Haz clic dónde lanzar la tormenta (aturde también a tus unidades)
+
+> Click where to cast the fog (shots from or into it miss half the time, yours too)
+pt Clique onde lançar a neblina (tiros vindos de ou para dentro dela erram metade das vezes, os seus também)
+es Haz clic dónde lanzar la niebla (los disparos desde o hacia ella fallan la mitad de las veces, también los tuyos)
+
+> Tap where to cast the fog (shots from or into it miss half the time, yours too)
+pt Toque onde lançar a neblina (tiros vindos de ou para dentro dela erram metade das vezes, os seus também)
+es Toca dónde lanzar la niebla (los disparos desde o hacia ella fallan la mitad de las veces, también los tuyos)
+
+# the online rooms
+> Connecting...
+pt Conectando...
+es Conectando...
+
+# a stat line (unit_stats.gd)
+> BITE
+pt MORDIDA
+es MORDISCO
+
+# the building card's chips (card_tips.gd: their titles in small letters)
+> Soil
+pt Solo
+es Suelo
+
+> Saltpetre
+pt Salitre
+es Salitre
+
+> Brass
+pt Latão
+es Latón
+
+> Haulers
+pt Carregadores
+es Porteadores
+
+# the words put into the unit card's lines (hud.gd: "Set up: %s loaded...", the Dragoon's "reload %s")
+> canister
+pt metralha
+es metralla
+
+> ready
+pt pronta
+es lista
+
+# a gun or wagon whose horse is gone (hud.gd)
+> NO HORSE: it can't move (HARNESS one). It still supplies.
+pt SEM CAVALO: não pode se mover (ATRELAR um). Ainda abastece.
+es SIN CABALLO: no puede moverse (UNCIR uno). Sigue abasteciendo.
+
+> NO HORSE: it can't move (HARNESS one). Fires from where it stands.
+pt SEM CAVALO: não pode se mover (ATRELAR um). Atira de onde está.
+es SIN CABALLO: no puede moverse (UNCIR uno). Dispara desde donde está.

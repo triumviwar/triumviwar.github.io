@@ -1,0 +1,134 @@
+#!/usr/bin/env python3
+"""Sum up a click sweep run (tools/qa/click_sweep.sh): the numbers per language/size/part and every flag, grouped.
+
+    python3 tools/qa/click_sweep_report.py [/tmp/qa_click_sweep]   (the logs' folder, the wrapper's $OUT)
+
+Prints a Markdown table of screens / presses / flags by kind for each run, then the flags grouped by kind and by
+(part, screen, button, detail) with the runs (language_size) each was seen in. EN flags are grouped by text only.
+"""
+import collections
+import glob
+import json
+import os
+import re
+import sys
+
+out = sys.argv[1] if len(sys.argv) > 1 else "/tmp/qa_click_sweep"
+SUM = re.compile(r"^SWEEP-SUMMARY (\S+) screens (\d+) presses (\d+) (\{.*\})")
+FLAG = re.compile(r"^SWEEP ([A-Z]+) (\S+) \| (.*?) \| (.*?) \| (.*)$")
+
+# English on purpose (the same rules as click_sweep.gd's _english, for logs of older runs): the animation viewer, the
+# match log, the music's titles
+BY_DESIGN = re.compile(r"frames at [0-9.]+ fps|NEEDS ART|scale [0-9.]+|RESULT at |\(seed [0-9]+|^'?\s*Map\s*'?$|Now playing: |Tocando agora: |Reproduciendo: ")
+here = os.path.dirname(os.path.abspath(__file__))
+titles = set()
+try:
+    with open(os.path.join(here, "..", "..", "scripts", "music_tracks.gd")) as f:
+        for m in re.finditer(r'": "(.*)",', f.read()):
+            titles.add(m.group(1).lower())
+except OSError:
+    pass
+
+
+def by_design(detail):
+    t = detail.strip().strip("'").strip()
+    return BY_DESIGN.search(t) is not None or t.lower() in titles
+
+
+# the same "reads as English" test as click_sweep.gd's _english (logs of older runs had a looser one)
+WORD = re.compile(r"[A-Za-zÀ-ÿ]{3,}")
+ENTRY = re.compile(r'^\t"((?:[^"\\]|\\.)*)": "((?:[^"\\]|\\.)*)",$')
+tables = {}
+
+
+def table(lang):
+    if lang not in tables:
+        en, tr, vals = set(), set(), set()
+        try:
+            with open(os.path.join(here, "..", "..", "scripts", "lang", "lang_%s.gd" % lang), encoding="utf-8") as f:
+                for line in f:
+                    m = ENTRY.match(line.rstrip("\n"))
+                    if not m:
+                        continue
+                    k = m.group(1).replace("\\n", "\n")
+                    v = m.group(2).replace("\\n", "\n")
+                    vals.add(v.strip())
+                    en.update(w.lower() for w in WORD.findall(k))
+                    tr.update(w.lower() for w in WORD.findall(v))
+        except OSError:
+            pass
+        tables[lang] = (en, tr, vals)
+    return tables[lang]
+
+
+def english(detail, lang):
+    t = detail.strip()
+    if t.startswith("'") and t.endswith("'"):
+        t = t[1:-1]
+    t = t.replace("\\n", "\n").strip()
+    en_w, tr_w, vals = table(lang)
+    if not t or t in vals or "://" in t:
+        return False
+    if re.match(r"^[a-z0-9_ !]+$", t) and ("_" in t or " " not in t):
+        return False
+    n_en = n_tr = 0
+    for w in WORD.findall(t):
+        w = w.lower()
+        if w in en_w and w not in tr_w:
+            n_en += 1
+        elif w in tr_w and w not in en_w:
+            n_tr += 1
+    return n_en > 0 and n_en > n_tr
+
+
+runs = []
+flags = collections.OrderedDict()
+crashed = []
+for log in sorted(glob.glob(os.path.join(out, "*.log"))):
+    name = os.path.basename(log)[:-4]
+    lang, size, part = name.split("_", 2)
+    summary = None
+    with open(log, errors="replace") as f:
+        for line in f:
+            line = line.rstrip("\n")
+            m = SUM.match(line)
+            if m:
+                summary = (int(m.group(2)), int(m.group(3)), json.loads(m.group(4)))
+                continue
+            m = FLAG.match(line)
+            if m:
+                kind, prt, screen, button, detail = m.groups()
+                if kind == "EN" and (by_design(detail) or not english(detail, lang)):
+                    continue
+                key = (kind, detail) if kind == "EN" else (kind, prt, screen, button, detail)
+                flags.setdefault(key, set()).add(lang + "_" + size)
+    if summary is None:
+        crashed.append(name)
+        continue
+    runs.append((lang, size, part) + summary)
+
+kinds = sorted({k for r in runs for k in r[5]})
+print("| run | part | screens | presses | " + " | ".join(kinds) + " |")
+print("|---|---|---:|---:|" + "---:|" * len(kinds))
+tot = collections.Counter()
+for lang, size, part, sc, pr, c in runs:
+    print("| %s %s | %s | %d | %d | %s |" % (lang, size, part, sc, pr, " | ".join(str(c.get(k, "")) for k in kinds)))
+    tot["screens"] += sc
+    tot["presses"] += pr
+    for k in kinds:
+        tot[k] += c.get(k, 0)
+print("| **all** | | **%d** | **%d** | %s |" % (tot["screens"], tot["presses"], " | ".join("**%d**" % tot[k] for k in kinds)))
+if crashed:
+    print("\nNo summary (crashed or timed out): " + ", ".join(crashed))
+print()
+by_kind = collections.defaultdict(list)
+for key, where in flags.items():
+    by_kind[key[0]].append((key, sorted(where)))
+for kind in sorted(by_kind):
+    print("### %s (%d distinct)" % (kind, len(by_kind[kind])))
+    for key, where in by_kind[kind]:
+        if kind == "EN":
+            print("- %s  [%s]" % (key[1], ", ".join(where)))
+        else:
+            print("- %s | %s | %s | %s  [%s]" % (key[1], key[2], key[3], key[4][:160], ", ".join(where)))
+    print()

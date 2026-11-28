@@ -1695,14 +1695,31 @@ func show_patch_notes(from_menu := false) -> void:
 	for n in PatchNotes.NOTES:
 		if n != cur:
 			entries.append(n)
-	for e in entries:
-		var head := Loc.t("VERSION %s%s") % [e["v"], Loc.t("  (THIS VERSION)") if e == cur else ""]
-		list.add_child(UiStyle.text(head, 22, UiStyle.TRIM, HORIZONTAL_ALIGNMENT_LEFT))
-		for it in PatchNotes.items(e):
-			var t := UiStyle.text("•  " + it, 17, UiStyle.TEXT if e == cur else UiStyle.MUTED, HORIZONTAL_ALIGNMENT_LEFT, true)
-			t.custom_minimum_size.x = 560
-			t.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART   # (one line each ran far off the screen)
-			list.add_child(t)
+	# (qa-click-sweep-2: all ~700 versions as labels took 6-7 s to open; the newest come first and OLDER VERSIONS adds
+	# the rest a batch at a time)
+	var shown := [0]
+	var more: Array = [Callable()]
+	var older: Button = _button("OLDER VERSIONS", func() -> void: more[0].call())
+	older.custom_minimum_size = Vector2(0, 44)
+	var add_batch := func(n: int) -> void:
+		var stop := mini(entries.size(), shown[0] + n)
+		for i in range(shown[0], stop):
+			var e: Dictionary = entries[i]
+			var head := Loc.t("VERSION %s%s") % [e["v"], Loc.t("  (THIS VERSION)") if e == cur else ""]
+			list.add_child(UiStyle.text(head, 22, UiStyle.TRIM, HORIZONTAL_ALIGNMENT_LEFT))
+			for it in PatchNotes.items(e):
+				var t := UiStyle.text("•  " + it, 17, UiStyle.TEXT if e == cur else UiStyle.MUTED, HORIZONTAL_ALIGNMENT_LEFT, true)
+				t.custom_minimum_size.x = 560
+				t.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART   # (one line each ran far off the screen)
+				list.add_child(t)
+		shown[0] = stop
+		if older.get_parent() == list:
+			list.move_child(older, -1)
+		else:
+			list.add_child(older)
+		older.visible = shown[0] < entries.size()
+	more[0] = func() -> void: add_batch.call(40)
+	add_batch.call(15)
 	# DOWNLOAD THE GAME (the owner, 2026-11-21 21:29): the site always serves the newest version
 	v.add_child(UiStyle.text(Loc.t("DOWNLOAD THE GAME (the newest version)"), 17, UiStyle.MUTED, HORIZONTAL_ALIGNMENT_CENTER))
 	var dl := HBoxContainer.new()
