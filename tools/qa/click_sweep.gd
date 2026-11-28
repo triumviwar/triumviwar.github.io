@@ -249,16 +249,33 @@ func _top_controls() -> Array:
 		for i in range(kids.size() - 1, -1, -1):
 			stack.push_front(kids[i])
 	var vp := root.get_visible_rect()
-	var start := 0
+	var blockers: Array = []       # [index, rect]
 	for i in all.size():
 		var c: Control = all[i]
 		if c.mouse_filter != Control.MOUSE_FILTER_STOP or c is BaseButton or c is ScrollContainer:
 			continue
 		var r := c.get_global_rect().intersection(vp)
-		if r.get_area() >= 0.6 * vp.get_area() and c.get_child_count() > 0 or (r.get_area() >= 0.6 * vp.get_area() and (c is ColorRect or c is Panel)):
-			# (a page root is the first such; an overlay comes after the page's own texts)
-			start = i
-	return all.slice(start)
+		if r.get_area() >= 0.6 * vp.get_area() and (c.get_child_count() > 0 or c is ColorRect or c is Panel):
+			blockers.append([i, r])
+	# (a control is hidden when a later blocker, not its own ancestor, lies over most of it)
+	var out_c: Array = []
+	for i in all.size():
+		var c: Control = all[i]
+		var cr := c.get_global_rect()
+		var hidden := false
+		for bl in blockers:
+			if bl[0] <= i:
+				continue
+			var bc: Control = all[bl[0]]
+			if bc.is_ancestor_of(c):
+				continue
+			var x := cr.intersection(bl[1])
+			if cr.get_area() > 0.0 and x.get_area() > 0.5 * cr.get_area():
+				hidden = true
+				break
+		if not hidden:
+			out_c.append(c)
+	return out_c
 
 
 ## Every visible, enabled button on top of the page, in tree order.
