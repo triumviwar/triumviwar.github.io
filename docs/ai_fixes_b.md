@@ -181,7 +181,8 @@ acts (the doctrine is cut there); its column moves with the wheels fix only.
 - Gun, horse, gate and defence tests: test_limber_gate, test_gun_mass, test_horse_gate, test_cliff_horse,
   test_stuck_gap, test_wall_stuck, test_haulers, test_cav_gate, test_crown_gate, test_gun_crew_fetch,
   test_crown_hold, test_crown_defence: all pass.
-- The AI tests (tools/test_ai_*.gd, 23): AI_TESTS_RESULT
+- The AI tests (tools/test_ai_*.gd, 23) on the new code: 21 pass; the 2 known failures fail as on main (test_ai_rush_followup's
+  rider checks; test_ai_wall_vs_rush: "Barracks and Powder Mill by 75 s", 100 s), both listed as known in CLAUDE.md.
 
 ## Claude's choices
 
