@@ -3023,11 +3023,14 @@ const LEVEL_GRUBS := [20, 38]
 ## Crown and Clockwork train slowly. MEASURING SWITCH `easypace:off`.
 static var easy_pace_on := not OS.get_cmdline_user_args().has("easypace:off")
 var _easy_skip := false
-## (ai-fixes-a, docs/ai_fixes_a.md) NORMAL PACE: the Brood computer was a level stronger than the Crown and the Clockwork at
-## every level (docs/ai_opponent_review.md: the benchmark players won or led 3 of its 27 games); Easy got EASY PACE above, Normal
-## kept the full pace. Normal now skips one warrior think in NORMAL_PACE (3: a warrior on two thinks in three; not while a
-## big attack is at the Mother), as the Normal Crown and Clockwork train slower than their Hard. Skirmish and the tutorial
-## only (_level_fix). MEASURING SWITCH `normalpace:off` (as before); `normalpace:<n>` skips one in n (2 = half, as Easy).
+## (ai-fixes-a, docs/ai_fixes_a.md) NORMAL PACE, OFF: the opponent review (0.38.107) found the Brood computer a level stronger
+## than the Crown and the Clockwork at every level; Easy got EASY PACE above. Normal can now skip one warrior think in n
+## (not while a big attack is at the Mother), skirmish and the tutorial only (_level_fix). MEASURED on 0.38.230 against the
+## review's benchmark players (18 games an arm, the review's tags): the Normal Brood is no longer a level above (the
+## benchmark's mean result against it -0.78, against the Normal Clockwork -0.72, the Normal Crown -0.50), and the pace
+## moved nothing beyond the noise (one think in three: -0.67, its army at 8:00 1,385 against 1,583; one in two: -1.11 and
+## 1,616: at Normal the Brood is held by its food, not its thinks, and the food it saves is laid a moment later). So OFF by
+## default; MEASURING SWITCH `normalpace:on` (one in three) or `normalpace:<n>` (one in n).
 const NORMAL_PACE := 3
 static var normal_pace_every := _normal_pace_arg()
 var _normal_n := 0
@@ -3037,8 +3040,8 @@ static func _normal_pace_arg() -> int:
 	for a in OS.get_cmdline_user_args():
 		if a.begins_with("normalpace:"):
 			var v := a.substr(11)
-			return 0 if v == "off" else maxi(0, int(v))
-	return NORMAL_PACE
+			return NORMAL_PACE if v == "on" else (0 if v == "off" else maxi(0, int(v)))
+	return 0
 
 
 ## The level fixes above are for skirmish and the tutorial's practice games; a story mission's Brood computer (the rival
