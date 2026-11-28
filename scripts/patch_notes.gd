@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"WORLD WAR: a way out of a battle you can't win. The battle question shows your odds and now offers, attacking, CALL IT OFF (your army turns back and stays where it was, nothing lost, its march this season spent) and, defending, RETREAT (your army falls back to the safest region of yours next door, losing a tenth of its men, and the region is given up). A capital is never given up, and with no free region of yours next door there is NO WAY OUT. A march into a region with no army in it now asks first when you would probably lose, and in a hot-seat war the attacker may call it off. The computers retreat and call off too when it is hopeless (in new wars).",
+	]},
 	{"v": "0.38.240", "items": [
 		"THE MUSIC IS MIXED AGAIN (music-mix-pass), no note changed: every generated piece breathes more, the quiet parts quieter and the climaxes standing out (a loudness range of 8 to 10 LU, about 7 before), the deep bass of the battle pieces cut back to what phones and laptops can play, and every piece as loud as the others (about -12.8 LUFS). The old mastering squashed the pieces with a saturator and a compressor; the new one rides the faders instead.",
 		"GOD SAVE THE KING: when the Crown wins a match, the marching band (pipes, fifes and drums) plays God Save the King, its drum roll under the herald's \"Victory! God save the King!\".",

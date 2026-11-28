@@ -527,10 +527,171 @@ func move(aid: String, to: String) -> Dictionary:
 	var b := {"att": aid, "region": to, "from": from, "sea": sea, "att_f": f,
 		"def_f": String(foes[0]["f"]) if not foes.is_empty() else own,
 		"defs": foes.map(func(x) -> String: return String(x["id"]))}
-	if not foes.is_empty() and fight_offered(b):
+	# THE COMPUTERS' WAY OUT (docs/ww_call_off.md): a hopeless attack is called off, a hopeless defence retreats
+	if rule_on("CALL_OFF_AI"):
+		if not is_human(f) and odds(b) < int(numf("AI_CALLOFF_AT", who(f), null, -1)):
+			var co := call_off(b)
+			co["battle"] = b
+			return co
+		var dfx := String(b["def_f"])
+		if not foes.is_empty() and dfx != "" and not is_human(dfx) and retreat_problem(b) == "" \
+				and 100 - odds(b) < int(numf("AI_RETREAT_AT", who(dfx), null, -1)) and _ai_may_retreat(b):
+			var rt := retreat(b)
+			rt["battle"] = b
+			return rt
+	if ask_offered(b):
 		return {"kind": "battle", "battle": b, "text": ""}
 	var res := resolve(b)
 	return {"kind": "fought", "result": res, "text": String(res.get("text", "")), "battle": b}
+
+
+## A computer gives a region up only for an army worth keeping (AI_RETREAT_MIN), and a key region only if
+## AI_RETREAT_KEYS.
+func _ai_may_retreat(b: Dictionary) -> bool:
+	var worth := 0
+	for did in b.get("defs", []):
+		var da := army(String(did))
+		if not da.is_empty():
+			worth += army_value(da)
+	if worth < int(numf("AI_RETREAT_MIN")):
+		return false
+	return rule_on("AI_RETREAT_KEYS") or not WWRules.is_key(String(b["region"]))
+
+
+## The battle question is put to a player: a player's army against an army (FIGHT IT when the other side is a
+## computer's; in a hot-seat war the attacker may still CALL IT OFF), or a player's march into a region with no army in
+## it that it wins fewer than ASK_BELOW times in 100 (CALL IT OFF or AUTO-RESOLVE).
+func ask_offered(b: Dictionary) -> bool:
+	var af := String(b["att_f"])
+	var df := String(b["def_f"])
+	if not (b.get("defs", []) as Array).is_empty():
+		return is_human(af) or (df != "" and is_human(df))
+	return is_human(af) and odds(b) < int(numf("ASK_BELOW"))
+
+
+## The attacker's chance in 100 to win the battle if it is decided at once (the battle question's line and the
+## computers' choices; its own dice, not the war's, so asking never changes what happens).
+func odds(b: Dictionary) -> int:
+	var s := strengths(b)
+	return chance(float(s["att"]), float(s["def"]))
+
+
+static func chance(A: float, D: float) -> int:
+	var r := RandomNumberGenerator.new()
+	r.seed = 7
+	var won := 0
+	for i in 400:
+		if A * (1.0 + r.randf_range(-WWRules.LUCK, WWRules.LUCK)) > D * (1.0 + r.randf_range(-WWRules.LUCK, WWRules.LUCK)):
+			won += 1
+	return int(round(won / 4.0))
+
+
+## CALL IT OFF: the attacker turns back before the battle; its army stays where it was, nothing lost (its march this
+## season is spent; what the sea took on the way stays lost).
+func call_off(b: Dictionary) -> Dictionary:
+	var att := army(String(b.get("att", "")))
+	var txt := ["%s calls off the attack on %s.", fname(String(b["att_f"])), rname(String(b["region"]))]
+	if not att.is_empty():
+		att["at"] = String(b["from"])
+		att["moved"] = true
+	log_line(txt)
+	_count_way_out(String(b["att_f"]), "call_off")
+	return {"kind": "called_off", "text": WWWar.line_text(txt)}
+
+
+## How often each side took a way out (kept in the war's file: d.ways_out = {side: {"call_off": n, "retreat": n}}).
+func _count_way_out(f: String, kind: String) -> void:
+	var wo: Dictionary = d.get("ways_out", {})
+	var fo: Dictionary = wo.get(f, {})
+	fo[kind] = int(fo.get(kind, 0)) + 1
+	wo[f] = fo
+	d["ways_out"] = wo
+
+
+## Why the defender may not RETREAT from this battle ("" = it may): no army to take away, a capital (never given up),
+## or NO WAY OUT (no region of its side next door free of the enemy).
+func retreat_problem(b: Dictionary) -> String:
+	var df := String(b.get("def_f", ""))
+	var defs: Array = (b.get("defs", []) as Array).filter(func(x) -> bool: return not army(String(x)).is_empty())
+	if df == "" or defs.is_empty():
+		return "There is no army here to take away."
+	if capital(df) == String(b["region"]):
+		return "A capital is never given up: its army must stand and fight."
+	if retreat_to(b) == "":
+		return "NO WAY OUT: no region of your side next door is free of the enemy. Your army must fight."
+	return ""
+
+
+## Where a retreat goes: a land neighbour the defender holds with no other side's army in it (not the attacker's
+## starting place); the safest first (the least enemy strength next to it), then the best defended, then the nearest to
+## its capital. "" when there is none.
+func retreat_to(b: Dictionary) -> String:
+	var df := String(b.get("def_f", ""))
+	var to := String(b["region"])
+	var attacker := String(b.get("att", ""))
+	var hp := hops(df)
+	var best := ""
+	var best_key: Array = []
+	for n in WWRules.land_nb(to):
+		if owner(n) != df or not armies_at(n).all(func(x) -> bool: return String(x["f"]) == df):
+			continue
+		var danger := 0.0
+		for m in WWRules.neighbours(n):
+			for x in armies_at(m):
+				if String(x["f"]) != df and String(x["id"]) != attacker:
+					danger += army_value(x)
+		var held := float(WWRules.worth(n) * numf("GUARD"))
+		for x in armies_at(n, df):
+			held += army_value(x)
+		var key := [danger, -held, int(hp.get(n, 99)), n]
+		if best == "" or _key_less(key, best_key):
+			best = n
+			best_key = key
+	return best
+
+
+static func _key_less(a: Array, b: Array) -> bool:
+	for i in a.size():
+		if a[i] != b[i]:
+			return a[i] < b[i]
+	return false
+
+
+## RETREAT: the defender's armies fall back to retreat_to (RETREAT_LOSS of their men left behind as the rear guard;
+## half with Lord Fairleigh), joining an army there when there is room; the attacker takes the region without a
+## battle (its building pulled down). Returns {"kind": "retreated", "text", "to"}.
+func retreat(b: Dictionary) -> Dictionary:
+	var df := String(b["def_f"])
+	var af := String(b["att_f"])
+	var to := String(b["region"])
+	var dest := retreat_to(b)
+	if retreat_problem(b) != "":
+		return {"kind": "refused", "text": retreat_problem(b)}
+	for did in b.get("defs", []):
+		var da := army(String(did))
+		if da.is_empty():
+			continue
+		lose(da, numf("RETREAT_LOSS") * (0.5 if has_hero(String(did), "fairleigh") else 1.0))
+		if not d["armies"].has(String(did)):
+			continue
+		da["at"] = dest
+		da["moved"] = true
+		for m in armies_at(dest, df):
+			if String(m["id"]) != String(did) and WWRules.units_count(m["units"]) + WWRules.units_count(da["units"]) <= numf("ARMY_CAP"):
+				add_units(m, da["units"])
+				m["vet"] = maxi(int(m["vet"]), int(da["vet"]))
+				for hid in heroes_with(String(did)):
+					d["heroes"][hid]["army"] = String(m["id"])
+				d["armies"].erase(String(did))
+				break
+	var txt := ["%s's army retreats from %s to %s; %s takes %s.", fname(df), rname(to), rname(dest), fname(af), rname(to)]
+	log_line(txt)
+	_count_way_out(df, "retreat")
+	var att := army(String(b.get("att", "")))
+	if not att.is_empty():
+		att["at"] = to
+		_take(to, af)
+	return {"kind": "retreated", "text": WWWar.line_text(txt), "to": dest}
 
 
 ## A battle the player may fight on the field: there is an army on both sides and exactly one side is a player's.
