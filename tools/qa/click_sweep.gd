@@ -815,19 +815,29 @@ func _hand_click(b: BaseButton) -> Array:
 		sigs.append("item_selected")
 	for s in sigs:
 		b.connect(s, cb)
-	var wp: Vector2 = root.get_final_transform() * c
-	var mm := InputEventMouseMotion.new()
-	mm.position = wp
-	mm.global_position = wp
-	Input.parse_input_event(mm)
-	Input.flush_buffered_events()
-	await _frames(2)
-	var hov: Control = root.gui_get_hovered_control()
+	# the middle first; where something else lies there, four more points of the button (a hand clicks where it can)
+	var wp := Vector2.ZERO
 	var under := ""
-	if hov != null and hov != b and not b.is_ancestor_of(hov):
-		under = "%s (%s)" % [_path(hov), hov.get_class()]
-		if _rect(hov).get_area() > 0.6 * vp.get_area() and not hov is BaseButton:
-			under = "box"          # (a box over the whole page, a banner or a question: the page waits for it, by design)
+	for f in [Vector2(0.5, 0.5), Vector2(0.25, 0.25), Vector2(0.75, 0.25), Vector2(0.25, 0.75), Vector2(0.75, 0.75)]:
+		var pt: Vector2 = r.position + r.size * f
+		if not vp.has_point(pt):
+			continue
+		wp = root.get_final_transform() * pt
+		var mm := InputEventMouseMotion.new()
+		mm.position = wp
+		mm.global_position = wp
+		Input.parse_input_event(mm)
+		Input.flush_buffered_events()
+		await _frames(2)
+		var hov: Control = root.gui_get_hovered_control()
+		if hov == null or hov == b or b.is_ancestor_of(hov):
+			under = ""
+			break
+		if under == "":
+			under = "%s (%s)" % [_path(hov), hov.get_class()]
+			if _rect(hov).get_area() > 0.6 * vp.get_area() and not hov is BaseButton:
+				under = "box"          # (a box over the whole page, a banner or a question: the page waits for it, by design)
+				break
 	for down in [true, false]:
 		var e := InputEventMouseButton.new()
 		e.position = wp
@@ -945,7 +955,7 @@ func _press_menu_button(prefix: String, pid: String, seed_name: String, seed: Ca
 			_flag("OFFSCREEN", pid, "'%s' %s: its middle is outside the window" % [key, _path(b)])
 		elif hc[1] != "gone" and hc[1] != "box":
 			fl.append("COVERED")
-			_flag("COVERED", pid, "'%s' %s: a click at its middle lands on %s" % [key, _path(b), hc[1]])
+			_flag("COVERED", pid, "'%s' %s: a click anywhere on it lands on %s" % [key, _path(b), hc[1]])
 		if is_instance_valid(b) and b.is_visible_in_tree() and not b.disabled:
 			_emit(b)          # (pressed the way the code does, to go on)
 	await _frames(4)

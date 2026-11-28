@@ -31,6 +31,7 @@ RANK = {k: i for i, (k, _, _) in enumerate(SEVERITY)}
 def norm(detail):
     # the same problem in several runs: numbers and rects folded
     d = re.sub(r"\(\d+(\.\d+)?, \d+(\.\d+)?\)", "(..)", detail)
+    d = re.sub(r"@\w+@\d+", "@", d)      # (Godot's made-up node names differ in every run)
     d = re.sub(r"\b\d+ ms\b", "N ms", d)
     d = re.sub(r"text \d+ > (box|room) \d+", r"text > \1", d)
     d = re.sub(r"word \d+ > box \d+", "word > box", d)
