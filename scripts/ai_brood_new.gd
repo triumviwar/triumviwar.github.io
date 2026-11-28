@@ -2976,6 +2976,10 @@ func _nb_lay(q: Unit) -> void:
 		_easy_skip = not _easy_skip
 		if _easy_skip:
 			return          # (ai-opponent-review: the Easy Brood lays its warriors at half the pace, EASY PACE below)
+	if normal_pace_every > 1 and difficulty == 1 and k != "grub" and _level_fix() and not _nb_threat_big(q):
+		_normal_n = (_normal_n + 1) % normal_pace_every
+		if _normal_n == 0:
+			return          # (ai-fixes-a: the Normal Brood skips one warrior think in NORMAL_PACE, NORMAL PACE below)
 	if bench != null and ((k == "grub" and bench_flags.get("no_workers", false)) or (k != "grub" and bench_flags.get("no_produce", false))):
 		return          # (ai-opponent-review: the benchmark player forgot the grubs, or the warriors, this look)
 	if BroodNew.lay(game, q, k) == "" and soft:
@@ -3019,6 +3023,22 @@ const LEVEL_GRUBS := [20, 38]
 ## Crown and Clockwork train slowly. MEASURING SWITCH `easypace:off`.
 static var easy_pace_on := not OS.get_cmdline_user_args().has("easypace:off")
 var _easy_skip := false
+## (ai-fixes-a, docs/ai_fixes_a.md) NORMAL PACE: the Brood computer was a level stronger than the Crown and the Clockwork at
+## every level (docs/ai_opponent_review.md: the benchmark players won or led 3 of its 27 games); Easy got EASY PACE above, Normal
+## kept the full pace. Normal now skips one warrior think in NORMAL_PACE (3: a warrior on two thinks in three; not while a
+## big attack is at the Mother), as the Normal Crown and Clockwork train slower than their Hard. Skirmish and the tutorial
+## only (_level_fix). MEASURING SWITCH `normalpace:off` (as before); `normalpace:<n>` skips one in n (2 = half, as Easy).
+const NORMAL_PACE := 3
+static var normal_pace_every := _normal_pace_arg()
+var _normal_n := 0
+
+
+static func _normal_pace_arg() -> int:
+	for a in OS.get_cmdline_user_args():
+		if a.begins_with("normalpace:"):
+			var v := a.substr(11)
+			return 0 if v == "off" else maxi(0, int(v))
+	return NORMAL_PACE
 
 
 ## The level fixes above are for skirmish and the tutorial's practice games; a story mission's Brood computer (the rival

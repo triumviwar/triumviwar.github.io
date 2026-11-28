@@ -48,6 +48,16 @@ const TOKEN_MIN := 150.0        # the army, kept between these (a Raptor is 25, 
 const TOKEN_MAX := 300.0        # rest stays on its gears; anything more and the whole army defends the base
 const STAY_DEFEND := 15.0       # s the whole army stays at a raid that has shrunk to a token one (then a group finishes it)
 var _big_t := -99.0
+## (ai-fixes-a, docs/ai_fixes_a.md) THE WHOLE ARMY FOR A SMALL RAID: a raid worth more than the token (150-300) turned the
+## whole army round: "the whole army defends the base (12 units, 1,160) against a raid worth 150" (the opponent review: 31
+## of 166 such answers were more than five times the raid). Now a raid (all its spots together) worth less than SIZED_SHARE
+## of the army at home is met by a group worth SIZED_K times it (the nearest, at least GROUP_MIN), the rest stays where it
+## was, and the push may still go out without the group (ai_cw_push: the defenders are not taken). Bigger raids, and one
+## the whole army already went to (STAY_DEFEND), as before. MEASURING SWITCH `cwraidsize:off` (as before).
+const SIZED_SHARE := 0.3
+const SIZED_K := 2.0
+static var raid_size_on := not OS.get_cmdline_user_args().has("cwraidsize:off")
+var _sized_said := -99.0
 const MASS_SINCE := 0.0         # (the opening's steady production: AIClockwork._bo_mass)
 ## The enemy army a Hard computer of that faction has at that age (value; [clock s, value]), from the coached games
 ## (docs/clockwork_army.md): the Brood's is the Crown's crown-v-brood table, raised before 7:00 (its Rootmaws and Mound
@@ -850,6 +860,12 @@ func _defend(home: Array, g: Vector2) -> bool:
 			total += float(a["value"])
 		var c0 := _centre(home) if not home.is_empty() else g
 		var token := total < clampf(mine * TOKEN_SHARE, TOKEN_MIN, TOKEN_MAX) and total < mine * WHOLE_SHARE
+		if raid_size_on and not token and total < mine * SIZED_SHARE and not (phase == "defend" and game.clock - _big_t < STAY_DEFEND):
+			# (ai-fixes-a) A SMALL RAID GETS A DEFENCE ITS SIZE: a group worth SIZED_K times it (below), the rest stays
+			token = true
+			if game.clock - _sized_said > 10.0:
+				_sized_said = game.clock
+				stats["sized"] = int(stats.get("sized", 0)) + 1
 		if not token:
 			_big_t = game.clock
 		whole = not token or (phase == "defend" and game.clock - _big_t < STAY_DEFEND)
@@ -941,7 +957,7 @@ func _defend(home: Array, g: Vector2) -> bool:
 		var spot: Vector2 = a["spot"]
 		var sent: Array = defenders.keys().filter(func(u: Unit) -> bool: return (defenders[u]["spot"] as Vector2).distance_to(spot) < 350.0)
 		var got := _value(sent)
-		var need := float(a["value"]) * DEF_MARGIN
+		var need := float(a["value"]) * (SIZED_K if raid_size_on else DEF_MARGIN)
 		if got >= need and sent.size() >= mini(GROUP_MIN, home.size()):
 			continue
 		var pool: Array = free.filter(func(u: Unit) -> bool: return not (a["air_only"] and not ai._hits_air(u)))

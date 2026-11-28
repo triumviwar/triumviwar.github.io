@@ -163,6 +163,8 @@ func _home_army() -> Array:
 			continue
 		if ai._on_errand(u) and not joining.has(u):
 			continue          # (clockwork-army: the Clock Soldier rush's and the Owl raids' units too, not only the Springer raid's)
+		if ai.get("army_g") != null and ai.army_g.raid_size_on and ai.army_g.defenders.has(u) and not joining.has(u):
+			continue          # (ai-fixes-a: the group meeting a small raid stays at it)
 		out.append(u)
 	return out
 
@@ -1038,6 +1040,8 @@ func _brood_raid_home() -> bool:
 			guard += ai._unit_value(u)
 	if guard >= v:
 		return false
+	if raid_part_on and v < _value(units) * PART_SHARE:
+		return _send_part_home(th, v, guard)
 	# (round 2, Dune Sea 23, 11:02: called home with _retreat, the push of 3,050 walked home on plain moves for a minute
 	# through a raid of 2,120 and was lost to the last soldier, 84 units by 12:04. Now it turns round FIGHTING: an
 	# attack-move at the raid, and the army's whole-army defence takes it over at once (ai_cw_army._defend). A recall is
@@ -1054,6 +1058,44 @@ func _brood_raid_home() -> bool:
 	piece = null
 	_phase("")
 	return true
+
+
+## (ai-fixes-a, docs/ai_fixes_a.md) A PART OF THE PUSH GOES HOME: the rule above turned the WHOLE push round for any raid of
+## RAID_HOME or more the guard at home did not match (a raid of 320 sent a push of 2,400 home). Now a raid worth less than
+## PART_SHARE of the push sends home only the push's units nearest home worth PART_K times the raid less the guard (at least
+## 3); the rest pushes on. A bigger raid turns the whole push round as before. Once every PART_GAP s at most. MEASURING
+## SWITCH `cwraidpart:off` (as before).
+const PART_SHARE := 0.3
+const PART_K := 2.0
+const PART_GAP := 25.0
+static var raid_part_on := not OS.get_cmdline_user_args().has("cwraidpart:off")
+var _part_t := -99.0
+
+
+func _send_part_home(th: Vector2, v: float, guard: float) -> bool:
+	if game.clock - _part_t < PART_GAP:
+		return false
+	_part_t = game.clock
+	var need := v * PART_K - guard
+	var pool: Array = units.filter(func(u: Unit) -> bool: return is_instance_valid(u) and not u.dead and u.kind != Defs.GREAT_WINDER_KIND and ai._armed(u))
+	pool.sort_custom(func(a: Unit, b: Unit) -> bool: return a.position.distance_to(th) < b.position.distance_to(th))
+	var sent: Array = []
+	var got := 0.0
+	for u in pool:
+		if got >= need and sent.size() >= 3:
+			break
+		sent.append(u)
+		got += ai._unit_value(u)
+	for u in sent:
+		units.erase(u)
+		_orders.erase(u)
+		_guards.erase(u)
+		u.cmd_move(th, true)
+	value_in = maxf(0.0, value_in - got)
+	value0 = maxf(0.0, value0 - got)
+	stats["raid_part"] = int(stats.get("raid_part", 0)) + 1
+	say("sends %d units (%d) home fighting for Brood raiders in the base (%d value at %s, %d at home); the push of %d goes on" % [sent.size(), int(got), int(v), _where(th), int(guard), int(_value(units))])
+	return false
 
 
 ## (clockwork-v-brood-coach, docs/clockwork-v-brood-coach.md, round 5) FALLING BACK FIGHTING: against the Brood a push
