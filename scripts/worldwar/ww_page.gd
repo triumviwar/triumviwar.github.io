@@ -239,6 +239,8 @@ func _build() -> void:
 	top_gold.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	top_gold.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	top_gold.clip_text = true
+	top_gold.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS      # (cut in pt on a computer: "…" and the tooltip, qa-click-sweep-2)
+	top_gold.mouse_filter = Control.MOUSE_FILTER_PASS
 	bar.add_child(top_gold)
 	var bh := 40 if pc else 50
 	for it in [["-", func() -> void: map.zoom_by(1.0 / 1.4)], ["+", func() -> void: map.zoom_by(1.4)],
@@ -325,6 +327,7 @@ func refresh() -> void:
 	top_side.add_theme_color_override("font_color", WWRules.COLOUR[f].lightened(0.4))
 	var inc := war.income(f)
 	top_gold.text = Loc.t("Gold %d  ·  income %d, upkeep %d a season  ·  lands %d, key regions %d") % [war.gold(f), int(inc[1]), war.upkeep(f), war.regions_of(f).size(), war.key_count(f)]
+	top_gold.tooltip_text = top_gold.text
 	end_btn.disabled = busy or not war.is_human(f) or String(war.d["winner"]) != ""
 	_update_hint()
 	map.queue_redraw()
