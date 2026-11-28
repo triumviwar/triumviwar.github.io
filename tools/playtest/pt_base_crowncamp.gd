@@ -189,6 +189,7 @@ func by_name(nm: String) -> Control:
 
 ## The first visible Button whose text (raw or translated) equals / contains t.
 func by_text(t: String, exact := true) -> Control:
+	preload("res://tools/playtest/menu_reveal.gd").reveal(root, t)      # (menu-groups)
 	for x in all_nodes():
 		if visible_ctl(x) and x is BaseButton and "text" in x:
 			var s := String(x.text)

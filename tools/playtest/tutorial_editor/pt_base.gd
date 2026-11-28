@@ -149,6 +149,7 @@ func buttons(from: Node = null) -> Array:
 
 ## A visible button by node name (exact) or by its text (case-insensitive, the shown text). null none.
 func button(what: String, from: Node = null) -> BaseButton:
+	preload("res://tools/playtest/menu_reveal.gd").reveal(root, what)      # (menu-groups)
 	var bs := buttons(from)
 	for b in bs:
 		if String(b.name) == what:

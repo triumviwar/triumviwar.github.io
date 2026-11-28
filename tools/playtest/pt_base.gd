@@ -163,6 +163,7 @@ func screen_rect(c: Control) -> Rect2:
 ## A visible, enabled button whose shown text is `t` (exact, ignoring case), else one that contains it; English
 ## keys work in every language (the button's own text, before translation, is compared too).
 func find_button(t: String, exact_only := false) -> BaseButton:
+	preload("res://tools/playtest/menu_reveal.gd").reveal(root, t)      # (menu-groups)
 	var bs := buttons()
 	var lt := t.to_lower()
 	for b in bs:

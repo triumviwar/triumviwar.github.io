@@ -288,6 +288,7 @@ func btn_text(b: BaseButton) -> String:
 
 ## The visible button whose text matches (exactly, ignoring case and the dropdown arrow; else starting with it).
 func find_button(text: String, exact := false) -> BaseButton:
+	preload("res://tools/playtest/menu_reveal.gd").reveal(tree.root, text)      # (menu-groups)
 	var want := text.to_upper()
 	var starts: BaseButton = null
 	for b in buttons():

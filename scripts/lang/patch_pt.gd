@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.999": ["O menu principal tem menos botões e já não esconde a cruz da pintura. OFFLINE abre o tutorial, a campanha, a escaramuça e a guerra mundial; ONLINE abre as salas online e os torneios; REPLAYS, EDITOR, CONFIGURAÇÕES, SAIR e CONTINUAR ficam no primeiro nível. VOLTAR, Esc, o voltar do celular e o voltar do navegador sobem um nível, e uma página aberta de um grupo volta para ele. Em qualquer formato de tela os botões contornam a cruz."],
 	"0.38.230": ["Os Filhotes da Ninhada agora são uma pequena serpe: verde-oliva, asas de morcego e uma fileira de espinhos vermelhos, voando e mordendo em todas as direções."],
 	"0.38.229": ["Uma larva carregando, embrulhando ou guardando um casulo mantém a mesma pele oliva escura de quando anda (antes ficava amarelada)."],
 	"0.38.228": ["Os cavalos pastam virados para onde estão (antes todos pastavam para baixo à direita), também no cercado; a Mãe da Ninhada no segundo estágio caminha de frente para você; os novos quadros de pistola do Couraceiro aceitam todas as pelagens."],

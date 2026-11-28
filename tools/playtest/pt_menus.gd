@@ -32,7 +32,7 @@ func back() -> void:
 
 
 func menu_shown() -> bool:
-	return main.menu_buttons.has("settings") and is_instance_valid(main.menu_buttons["settings"]) and (main.menu_buttons["settings"] as Control).is_visible_in_tree()
+	return main.on_menu()      # (any level: menu-groups)
 
 
 func to_menu(where: String) -> void:
@@ -45,10 +45,10 @@ func to_menu(where: String) -> void:
 
 
 func menu_press(id: String) -> bool:
-	if not main.menu_buttons.has(id):
+	var b: Control = main.menu_open(id)       # (its group opened first: menu-groups)
+	if b == null:
 		find("BUG", "menu", "no %s button on the main menu" % id)
 		return false
-	var b: Control = main.menu_buttons[id]
 	print("PT PRESS menu %s" % id)
 	await tap(b)
 	await wait(0.5)
@@ -441,9 +441,9 @@ func walk_music() -> void:
 
 func fast() -> void:
 	for id in ["tutorial", "campaign", "skirmish", "replays", "editor", "settings", "online"]:
-		if not main.menu_buttons.has(id):
+		var b: Control = main.menu_open(id)       # (its group opened first: menu-groups)
+		if b == null:
 			continue
-		var b: Control = main.menu_buttons[id]
 		await double_click(b)                    # a double click on the menu button
 		await frames(2)
 		await look("fast_" + id, 0.15)

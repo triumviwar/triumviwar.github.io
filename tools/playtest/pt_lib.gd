@@ -189,6 +189,7 @@ func button_names() -> Array:
 
 ## A visible button by its node name (exact), else by its text (contains, case-blind).
 func find(pat: String, enabled_only := true) -> BaseButton:
+	preload("res://tools/playtest/menu_reveal.gd").reveal(tree.root, pat)      # (menu-groups)
 	var bs := buttons()
 	for b in bs:
 		if String(b.name) == pat and (not enabled_only or not b.disabled):

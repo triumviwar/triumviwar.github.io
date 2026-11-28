@@ -389,7 +389,7 @@ func _fight_it() -> void:
 func _menu() -> void:
 	main.show_menu()
 	await process_frame
-	main.menu_buttons["worldwar"].pressed.emit()
+	main.menu_open("worldwar").pressed.emit()
 	await process_frame
 	var start: Button = main.ui_layer.find_child("WW_Start", true, false)
 	check("WORLD WAR opens the setup page with START THE WAR", start != null, "")

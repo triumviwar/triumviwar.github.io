@@ -85,11 +85,12 @@ func _run() -> void:
 	await create_timer(1.0).timeout
 	main.show_menu()
 	await _snap("01_menu")
-	if not main.menu_buttons.has("tournament"):
+	var tmb: Button = main.menu_open("tournament")      # (under ONLINE since menu-groups)
+	if tmb == null:
 		print("FAIL no TOURNAMENTS on the main menu")
 		fails += 1
 	else:
-		(main.menu_buttons["tournament"] as Button).pressed.emit()
+		tmb.pressed.emit()
 	await _snap("02_home")
 	_press("Tour_Make")
 	await _snap("03_make")

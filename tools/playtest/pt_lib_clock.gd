@@ -272,6 +272,7 @@ func ctrl(pattern: String, type := "Control") -> Control:
 
 ## A visible Button showing this English text (in the game's language now).
 func button_text(english: String) -> Button:
+	preload("res://tools/playtest/menu_reveal.gd").reveal(root, english)      # (menu-groups)
 	var want := Loc.t(english)
 	for b in root.find_children("*", "Button", true, false):
 		if not (b as Button).is_visible_in_tree():

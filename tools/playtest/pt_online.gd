@@ -79,7 +79,7 @@ func lobby() -> NetLobby:
 
 
 func to_online() -> void:
-	await tap(main.menu_buttons["online"])
+	await tap(main.menu_open("online"))
 	await wait(0.5)
 	await look("online_entry")
 	# the relay address: tapped, all of it selected, the local relay typed in (as a tester would)
@@ -483,8 +483,8 @@ func wrong_code() -> void:
 
 
 func to_online_again() -> void:
-	if main.menu_buttons.has("online") and is_instance_valid(main.menu_buttons["online"]) and (main.menu_buttons["online"] as Control).is_visible_in_tree():
-		await tap(main.menu_buttons["online"])
+	if main.on_menu():
+		await tap(main.menu_open("online"))
 		await wait(0.5)
 
 
@@ -492,7 +492,7 @@ func to_online_again() -> void:
 
 func set_relay_in_settings() -> void:
 	# the relay is typed in Settings > GAMEPLAY > ONLINE RELAY ADDRESS (the campaign's room uses the saved one)
-	await tap(main.menu_buttons["settings"])
+	await tap(main.menu_open("settings"))
 	await wait(0.4)
 	var re: LineEdit = null
 	for c in all_controls("LineEdit"):
@@ -502,14 +502,14 @@ func set_relay_in_settings() -> void:
 	await type_text(relay)
 	await key_tap(KEY_ESCAPE)
 	await wait(0.4)
-	if not (main.menu_buttons.has("campaign") and is_instance_valid(main.menu_buttons["campaign"]) and (main.menu_buttons["campaign"] as Control).is_visible_in_tree()):
+	if not main.on_menu():
 		await key_tap(KEY_ESCAPE)
 		await wait(0.4)
 
 
 func campaign_host() -> void:
 	await set_relay_in_settings()
-	await tap(main.menu_buttons["campaign"])
+	await tap(main.menu_open("campaign"))
 	await wait(0.8)
 	if not await press("WAR TABLE"):
 		return

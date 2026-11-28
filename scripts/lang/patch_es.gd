@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.999": ["El menú principal tiene menos botones y ya no tapa la cruz de la pintura. SIN CONEXIÓN abre el tutorial, la campaña, la escaramuza y la guerra mundial; ONLINE abre las salas en línea y los torneos; REPETICIONES, EDITOR, AJUSTES, SALIR y CONTINUAR quedan en el primer nivel. VOLVER, Esc, el atrás del móvil y el atrás del navegador suben un nivel, y una página abierta desde un grupo vuelve a él. En cualquier forma de pantalla los botones rodean la cruz."],
 	"0.38.230": ["Las Crías de la Nidada ahora son un pequeño guiverno: verde oliva, alas de murciélago y una hilera de púas rojas, volando y mordiendo en todas las direcciones."],
 	"0.38.229": ["Una larva que carga, envuelve o guarda un capullo mantiene la misma piel oliva oscura que cuando camina (antes se volvía amarillenta)."],
 	"0.38.228": ["Los caballos pastan mirando hacia donde están (antes todos pastaban hacia abajo a la derecha), también en el corral; la Madre de la Camada en su segunda etapa camina de frente hacia ti; los nuevos fotogramas de pistola del Coracero aceptan todos los pelajes."],

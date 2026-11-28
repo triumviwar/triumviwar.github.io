@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"The main menu has fewer buttons and no longer hides the cross in the painting. OFFLINE opens the tutorial, the campaign, skirmish and the world war; ONLINE opens the online rooms and tournaments; REPLAYS, EDITOR, SETTINGS, EXIT and CONTINUE stay on the first level. BACK, Esc, the phone's back and the browser's back go up a level, and a page opened from a group comes back to it. On every screen shape the buttons flow round the cross.",
+	]},
 	{"v": "0.38.230", "items": [
 		"The Brood's Hatchlings are now a small wyvern: olive green, bat wings and a row of red spines, flying and biting in every direction.",
 	]},
