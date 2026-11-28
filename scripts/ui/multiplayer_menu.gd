@@ -341,6 +341,7 @@ func _draw_room() -> void:
 		l.dispose()
 		main.net_lobby = null
 		_draw())
+	main._set_back(back)        # (qa-click-sweep: Esc and the phone's back leave the room; the phone asked "Quit the game?")
 	back.custom_minimum_size = Vector2(200, 60)
 	row.add_child(back)
 	var problem := l.problem() if host else ""
@@ -638,6 +639,7 @@ func _draw_campaign_room(l: NetLobby) -> void:
 		l.dispose()
 		main.net_lobby = null
 		_draw())
+	main._set_back(back)        # (qa-click-sweep: Esc and the phone's back leave the room; the phone asked "Quit the game?")
 	back.custom_minimum_size = Vector2(200, 60)
 	row2.add_child(back)
 	var problem := l.problem() if host else ""
