@@ -3890,7 +3890,8 @@ func _draw_panel(font: Font) -> void:
 				else:
 					info += "  Fully seasoned. Heals by itself."
 			elif Defs.HARNESSED.has(uu.kind) and not uu.harnessed:
-				info = "NO HORSE: it can't move (HARNESS one). " + ("Fires from where it stands." if uu.kind != "powder_wagon" else "It still supplies.")
+				# (each sentence translated by itself: the whole line was cut at its colon and stayed English; qa-click-sweep)
+				info = Loc.t("NO HORSE: it can't move (HARNESS one).") + " " + Loc.t("Fires from where it stands." if uu.kind != "powder_wagon" else "It still supplies.")
 			elif uu.kind == "dragoon":
 				info = "Rides fast; dismounts to fire. Powder %d/%d · reload %s (waits while he rides)" % [int(uu.powder), int(uu._pmax),
 					"ready" if uu.cooldown <= 0.0 else "%.1f s left" % uu.cooldown]
@@ -4065,7 +4066,8 @@ func _draw_panel(font: Font) -> void:
 			elif bb.kind == "horse_breeder" and bb.built and (e.team == game.human or game.demo):
 				info = "%s  ·  " % game.horses_text(bb.team) + info
 			elif (bb.kind == "barracks" or bb.kind == "foundry") and bb.built and (e.team == game.human or game.demo):
-				info = "Horses here: %d (Horsemen, Dragoons, cannons, mortars and wagons need one each)  ·  " % game.horses_at(bb) + info
+				# (translated before the number goes in: the whole line's Loc.t below split it at ":" and missed it; qa-click-sweep)
+				info = Loc.t("Horses here: %d (Horsemen, Dragoons, cannons, mortars and wagons need one each)") % game.horses_at(bb) + "  ·  " + info
 			elif bb.kind == "powder_mill":
 				var sl := bb.lode_left()
 				info = "+%.1f powder/s%s" % [game.lode_pay(bb, Defs.MILL_RATE * bb.working_crew()), (" · saltpetre spent: it grinds at %d%%; expand to a new Town Hall" % int(round(CrownPowder.powder_floor() * 100.0))) if sl <= 0.0 else (" · saltpetre running low" if sl < Defs.SOIL_LOW else "")]
