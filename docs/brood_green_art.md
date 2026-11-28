@@ -10,7 +10,7 @@ red is the team-colour key the game repaints in the player's colour.
 - `tools/art/brood_green.py` + masks `tools/art/brood_green_masks.json`. Per picture a list of regions, each drawn by hand
   round ONE creature's red parts: a polygon (`poly`), or a thick stroke along a ridge of spines (`line` + `width`), with
   optional `exclude` polygons (an eye left as painted). Inside a region (feathered) only pixels whose hue is near red and
-  that are saturated enough change: hue turned to green (`hue` 72, the Brood's yellow-green family, sampled against the
+  that are saturated enough change: hue turned to green (`hue` 53 since 2026-11-28, was 72, the Brood's yellow-green family, sampled against the
   green-spined Brood Mother and creatures already in the menu painting), saturation scaled, brightness kept from the
   original's luma, so brush strokes and shading stay. Never a global red -> green swap: per picture and per region the red
   hue centre, window and saturation floor are tuned so mud, skin, nets, fire and sky inside a region stay as they were.
@@ -88,8 +88,9 @@ the container, not this change.
 
 ## Claude's choices (for the owner to confirm)
 
-1. The green: hue 72 (a yellow-green), saturation a little under the red's, brightness kept: it matches the green-spined
-   Brood in the menu painting and still reads against the olive skin. A deeper emerald was tried and looked painted on.
+1. The green: hue 53, saturation 0.8, the painting's own brightness (HSV value) kept (`keep_v`). OWNER 2026-11-28: "two
+   different green hues, the new green isnt the correct one" (hue 72 with the luma match came out bluer and darker than
+   the menu painting's own Brood green, measured hue ~53, sat ~0.66); now matched to it in every painting.
 2. The creatures' portrait's open mouth and the bloody ground stay red (mouths and blood are not markings).
 3. The parchment drawings of creatures (a07_03, b01_03's wall chart) are recoloured too: they show Brood creatures.
 4. Fire-lit and sunset-lit spines are left rather than smeared (a03_05, d06_04): a bad recolour is worse than red.

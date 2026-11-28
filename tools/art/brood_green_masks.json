@@ -5,10 +5,11 @@
   "hue_width": 23,
   "sat_min": 0.26,
   "val_min": 0.06,
-  "hue": 72,
-  "sat": 0.75,
+  "hue": 53,
+  "sat": 0.8,
   "luma": 0.92,
-  "feather": 3
+  "feather": 3,
+  "keep_v": true
  },
  "images": {
   "campaign/stills/a03_03.jpg": {
@@ -209,7 +210,12 @@
       ]
      ]
     }
-   ]
+   ],
+   "params": {
+    "hue": 53,
+    "sat": 0.8,
+    "keep_v": true
+   }
   },
   "assets/menu/battle.jpg": {
    "regions": [
@@ -255,10 +261,11 @@
     "red_hue": 6,
     "hue_width": 15,
     "sat_min": 0.45,
-    "hue": 58,
-    "sat": 0.95,
+    "hue": 53,
+    "sat": 0.8,
     "luma": 0.92,
-    "feather": 2
+    "feather": 2,
+    "keep_v": true
    }
   },
   "campaign/stills/a05_02.jpg": {
@@ -328,7 +335,10 @@
    "params": {
     "red_hue": 8,
     "hue_width": 18,
-    "sat_min": 0.5
+    "sat_min": 0.5,
+    "hue": 53,
+    "sat": 0.8,
+    "keep_v": true
    }
   },
   "campaign/stills/a05_03.jpg": {
@@ -505,7 +515,10 @@
    "params": {
     "red_hue": 6,
     "hue_width": 17,
-    "sat_min": 0.4
+    "sat_min": 0.4,
+    "hue": 53,
+    "sat": 0.8,
+    "keep_v": true
    }
   },
   "campaign/stills/a05_04.jpg": {
@@ -563,7 +576,10 @@
    "params": {
     "red_hue": 5,
     "hue_width": 14,
-    "sat_min": 0.55
+    "sat_min": 0.55,
+    "hue": 53,
+    "sat": 0.8,
+    "keep_v": true
    }
   },
   "campaign/stills/a05_05.jpg": {
@@ -691,7 +707,10 @@
    "params": {
     "red_hue": 6,
     "hue_width": 19,
-    "sat_min": 0.5
+    "sat_min": 0.5,
+    "hue": 53,
+    "sat": 0.8,
+    "keep_v": true
    }
   },
   "campaign/stills/a07_03.jpg": {
@@ -760,9 +779,11 @@
    ],
    "params": {
     "sat_min": 0.4,
-    "sat": 0.6,
+    "sat": 0.8,
     "red_hue": 5,
-    "hue_width": 17
+    "hue_width": 17,
+    "hue": 53,
+    "keep_v": true
    }
   },
   "campaign/stills/a07_07.jpg": {
@@ -852,7 +873,10 @@
    "params": {
     "red_hue": 4,
     "hue_width": 17,
-    "sat_min": 0.36
+    "sat_min": 0.36,
+    "hue": 53,
+    "sat": 0.8,
+    "keep_v": true
    }
   },
   "campaign/stills/b01_03.jpg": {
@@ -1030,7 +1054,10 @@
    "params": {
     "red_hue": 5,
     "hue_width": 15,
-    "sat_min": 0.5
+    "sat_min": 0.5,
+    "hue": 53,
+    "sat": 0.8,
+    "keep_v": true
    }
   },
   "campaign/stills/b01_04.jpg": {
@@ -1180,8 +1207,10 @@
     "red_hue": 6,
     "hue_width": 24,
     "sat_min": 0.28,
-    "sat": 1.15,
-    "luma": 1.05
+    "sat": 0.8,
+    "luma": 1.05,
+    "hue": 53,
+    "keep_v": true
    }
   },
   "campaign/stills/b01_05.jpg": {
@@ -1375,7 +1404,10 @@
    "params": {
     "red_hue": 2,
     "hue_width": 17,
-    "sat_min": 0.45
+    "sat_min": 0.45,
+    "hue": 53,
+    "sat": 0.8,
+    "keep_v": true
    }
   },
   "campaign/stills/d03_02.jpg": {
@@ -1563,7 +1595,10 @@
    "params": {
     "red_hue": 4,
     "hue_width": 17,
-    "sat_min": 0.4
+    "sat_min": 0.4,
+    "hue": 53,
+    "sat": 0.8,
+    "keep_v": true
    }
   },
   "campaign/stills/d03_04.jpg": {
@@ -1733,7 +1768,9 @@
     "red_hue": 11,
     "hue_width": 14,
     "sat_min": 0.38,
-    "sat": 0.85
+    "sat": 0.8,
+    "hue": 53,
+    "keep_v": true
    }
   },
   "campaign/stills/d05_03.jpg": {
@@ -1971,7 +2008,9 @@
     "red_hue": 8,
     "hue_width": 14,
     "sat_min": 0.5,
-    "sat": 0.9
+    "sat": 0.8,
+    "hue": 53,
+    "keep_v": true
    }
   },
   "campaign/stills/d06_02.jpg": {
@@ -2209,7 +2248,10 @@
     "red_hue": 4,
     "hue_width": 19,
     "sat_min": 0.4,
-    "feather": 3
+    "feather": 3,
+    "hue": 53,
+    "sat": 0.8,
+    "keep_v": true
    }
   },
   "campaign/stills/d06_03.jpg": {
@@ -2260,7 +2302,10 @@
     "red_hue": 7,
     "hue_width": 17,
     "sat_min": 0.45,
-    "val_min": 0.14
+    "val_min": 0.14,
+    "hue": 53,
+    "sat": 0.8,
+    "keep_v": true
    }
   },
   "campaign/stills/d08_02.jpg": {
@@ -2336,7 +2381,9 @@
     "red_hue": 13,
     "hue_width": 13,
     "sat_min": 0.3,
-    "sat": 0.9
+    "sat": 0.8,
+    "hue": 53,
+    "keep_v": true
    }
   },
   "campaign/stills/d09_02.jpg": {
@@ -2559,7 +2606,10 @@
    "params": {
     "red_hue": 4,
     "hue_width": 17,
-    "sat_min": 0.35
+    "sat_min": 0.35,
+    "hue": 53,
+    "sat": 0.8,
+    "keep_v": true
    }
   },
   "campaign/stills/d10_02.jpg": {
@@ -2672,7 +2722,9 @@
     "red_hue": 15,
     "hue_width": 11,
     "sat_min": 0.36,
-    "sat": 0.85
+    "sat": 0.8,
+    "hue": 53,
+    "keep_v": true
    }
   },
   "campaign/portraits/creatures.png": {
@@ -2723,7 +2775,10 @@
     "red_hue": 2,
     "hue_width": 17,
     "sat_min": 0.45,
-    "feather": 2
+    "feather": 2,
+    "hue": 53,
+    "sat": 0.8,
+    "keep_v": true
    }
   },
   "campaign/portraits/teacher_the_old_hunger.png": {
@@ -2774,7 +2829,10 @@
     "red_hue": 2,
     "hue_width": 17,
     "sat_min": 0.45,
-    "feather": 2
+    "feather": 2,
+    "hue": 53,
+    "sat": 0.8,
+    "keep_v": true
    }
   }
  }

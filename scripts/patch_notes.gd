@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.242", "items": [
+		"Voices: 717 campaign lines recorded (the prologues, all of Act 1 and all of Act 2). The Brood's recoloured spines in the paintings now use the same green the painters gave the Brood.",
+	]},
 	{"v": "0.38.240", "items": [
 		"THE MUSIC IS MIXED AGAIN (music-mix-pass), no note changed: every generated piece breathes more, the quiet parts quieter and the climaxes standing out (a loudness range of 8 to 10 LU, about 7 before), the deep bass of the battle pieces cut back to what phones and laptops can play, and every piece as loud as the others (about -12.8 LUFS). The old mastering squashed the pieces with a saturator and a compressor; the new one rides the faders instead.",
 		"GOD SAVE THE KING: when the Crown wins a match, the marching band (pipes, fifes and drums) plays God Save the King, its drum roll under the herald's \"Victory! God save the King!\".",

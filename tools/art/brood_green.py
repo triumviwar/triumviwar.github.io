@@ -65,8 +65,9 @@ def recolour(bgr, poly_mask, p):
     new = cv2.cvtColor(np.dstack([nh, ns, v]).astype(np.float32), cv2.COLOR_HSV2BGR)
     rgb_old, rgb_new = f[..., ::-1], new[..., ::-1]
     lo, ln = luma(rgb_old), luma(rgb_new)
-    k = np.where(ln > 1e-4, lo * p["luma"] / np.maximum(ln, 1e-4), 1.0)
-    new = np.clip(new * k[..., None], 0, 1)
+    if not p.get("keep_v", False):                        # keep_v: the painting's own brightness (HSV value) stays
+        k = np.where(ln > 1e-4, lo * p["luma"] / np.maximum(ln, 1e-4), 1.0)
+        new = np.clip(new * k[..., None], 0, 1)
     out = f * (1 - w[..., None]) + new * w[..., None]
     return (out * 255 + 0.5).astype(np.uint8), w
 
