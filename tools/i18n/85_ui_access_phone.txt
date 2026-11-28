@@ -1,0 +1,65 @@
+# ui-access-phone (docs/ui_access_phone.md): colour-blind help, text size, the phone's card
+
+> COLOUR-BLIND HELP
+pt AJUDA PARA DALTÔNICOS
+es AYUDA PARA DALTÓNICOS
+
+> RED-GREEN
+pt VERMELHO-VERDE
+es ROJO-VERDE
+
+> BLUE-YELLOW
+pt AZUL-AMARELO
+es AZUL-AMARILLO
+
+> The game's own colours.
+pt As cores do próprio jogo.
+es Los colores propios del juego.
+
+> RED-GREEN: for protanopia and deuteranopia. Team colours become blue, orange, white, brown, pink, yellow, sky and black; health bars blue, yellow and orange, striped when low; on the maps the machine is orange and the Brood sky blue.
+pt VERMELHO-VERDE: para protanopia e deuteranopia. As cores dos times passam a azul, laranja, branco, marrom, rosa, amarelo, celeste e preto; as barras de vida azul, amarelo e laranja, listradas quando baixas; nos mapas a máquina fica laranja e a Ninhada azul-celeste.
+es ROJO-VERDE: para protanopia y deuteranopia. Los colores de los equipos pasan a azul, naranja, blanco, marrón, rosa, amarillo, celeste y negro; las barras de vida azul, amarillo y naranja, rayadas cuando están bajas; en los mapas la máquina es naranja y la Prole azul celeste.
+
+> BLUE-YELLOW: for tritanopia. Team colours become blue, red, white, amber, black, brown, cyan and magenta; health bars blue, yellow and orange, striped when low.
+pt AZUL-AMARELO: para tritanopia. As cores dos times passam a azul, vermelho, branco, âmbar, preto, marrom, ciano e magenta; as barras de vida azul, amarelo e laranja, listradas quando baixas.
+es AZUL-AMARILLO: para tritanopia. Los colores de los equipos pasan a azul, rojo, blanco, ámbar, negro, marrón, cian y magenta; las barras de vida azul, amarillo y naranja, rayadas cuando están bajas.
+
+> TEXT SIZE
+pt TAMANHO DO TEXTO
+es TAMAÑO DEL TEXTO
+
+> Menus, the campaign and the HUD's words. The HUD's words grow by a part of it; IN-GAME INTERFACE SIZE grows the whole HUD.
+pt Menus, a campanha e as palavras da interface da partida. As palavras da interface crescem só em parte; TAMANHO DA INTERFACE NO JOGO aumenta a interface inteira.
+es Menús, la campaña y las palabras de la interfaz de la partida. Las palabras de la interfaz crecen solo en parte; TAMAÑO DE LA INTERFAZ EN EL JUEGO agranda toda la interfaz.
+
+> White
+pt Branco
+es Blanco
+
+> Brown
+pt Marrom
+es Marrón
+
+> Sky
+pt Celeste
+es Celeste
+
+> Black
+pt Preto
+es Negro
+
+> Amber
+pt Âmbar
+es Ámbar
+
+> Cyan
+pt Ciano
+es Cian
+
+> Magenta
+pt Magenta
+es Magenta
+
+> View %d
+pt Vista %d
+es Vista %d

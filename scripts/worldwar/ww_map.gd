@@ -319,7 +319,7 @@ func _draw() -> void:
 		if not (rg["box"] as Rect2).intersects(vis):
 			continue
 		var o := war.owner(rid)
-		var col: Color = WWRules.COLOUR[o]
+		var col: Color = ColourAccess.faction(o, WWRules.COLOUR[o])      # (COLOUR-BLIND HELP: ui-access-phone)
 		if o != "":
 			for part in rg["parts"]:
 				_poly(part["pts"], part["tri"], Color(col, 0.22))
@@ -441,7 +441,7 @@ func _draw_army(a: Dictionary, font: Font) -> void:
 	if p.x < -40 or p.y < -40 or p.x > size.x + 40 or p.y > size.y + 40:
 		return
 	var f := String(a["f"])
-	var col: Color = WWRules.COLOUR[f]
+	var col: Color = ColourAccess.faction(f, WWRules.COLOUR[f])
 	var r := token_r
 	draw_circle(p + Vector2(1.5, 2), r, Color(0, 0, 0, 0.35))
 	draw_circle(p, r, col)

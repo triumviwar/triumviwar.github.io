@@ -484,7 +484,7 @@ func _layout() -> Dictionary:
 		_rects = UiLayout.rects(_vs(), {
 			"mini": mini_size() * (MINI_COMPACT if compact() else 1.0),
 			"hotbar": HotkeyBar.size_hint(),
-			"card": Vector2(b * _cols() + 4, b * _rows() + 4),
+			"card": Vector2(b * _cols() + 4 + (0.0 if Settings.pc() else PAGE_TAB_W), b * _rows() + 4),
 			"panel": Vector2(0, 88 + UnitStats.ROW_H)})      # (the stats row under the lines: scripts/ui/unit_stats.gd)
 	return _rects
 
@@ -511,7 +511,33 @@ func _cols() -> int:
 
 
 func _rows() -> int:
-	return 3
+	return 3 if Settings.pc() else PHONE_ROWS
+
+
+## THE PHONE'S CARD (job ui-access-phone, docs/ui_access_phone.md): buttons at least PHONE_MM millimetres wide (a thumb;
+## they were ~5-6 mm), so two rows of four show at a time and the rest is on more PAGES: a tab per page at the card's
+## right (tap it; a drag on the buttons still scrolls). The millimetre: the screen's real density when the system
+## gives one, else a phone's short side taken as PHONE_SHORT_MM.
+const PHONE_ROWS := 2
+const PHONE_MM := 9.0
+const PHONE_SHORT_MM := 68.0
+const PHONE_BTN_MAX := 84.0
+const PAGE_TAB_W := 30.0
+static var phone_dpi_test := 0.0     # (tools: a phone's density for pictures on a computer; 0 = ask the system)
+
+
+## One millimetre on the screen in the HUD's units.
+func _mm() -> float:
+	var vs := _vs()
+	var dpi := phone_dpi_test if phone_dpi_test > 0.0 else float(DisplayServer.screen_get_dpi())
+	var win := float(DisplayServer.window_get_size().y) if DisplayServer.get_name() != "headless" else 0.0
+	if (phone_dpi_test > 0.0 or (dpi >= 200.0 and not OS.has_feature("web"))) and win > 0.0 and vs.y > 0.0:
+		return dpi / 25.4 * vs.y / win
+	return vs.y / PHONE_SHORT_MM
+
+
+func _phone_btn(base: float) -> float:
+	return clampf(PHONE_MM * _mm(), base, PHONE_BTN_MAX)
 
 
 func _btn() -> float:
@@ -519,7 +545,7 @@ func _btn() -> float:
 		return CARD_BTN_PC
 	# (a phone held sideways, the HUD at 1.3 not 1.5: the card's buttons a little smaller on the screen, still a thumb's
 	# width: 54 x 1.3 = 70 of the game's units, over 44; player-comforts)
-	return CARD_BTN_COMPACT if compact() and is_equal_approx(ui_scale, Settings.COMPACT_SCALE) else CARD_BTN
+	return _phone_btn(CARD_BTN_COMPACT if compact() and is_equal_approx(ui_scale, Settings.COMPACT_SCALE) else CARD_BTN)
 
 
 func card_rect() -> Rect2:
@@ -4243,7 +4269,7 @@ func _draw_panel(font: Font) -> void:
 				if pic:
 					_ci.draw_texture_rect(pic, pqr, false)
 				var pf: float = ps[i].hp / maxf(ps[i].max_hp, 1.0)
-				_ci.draw_rect(Rect2(pqr.position.x, pqr.end.y + 1, pqr.size.x * pf, 2), Color(0.3, 0.9, 0.3) if pf > 0.5 else Color(0.95, 0.4, 0.2))
+				_ci.draw_rect(Rect2(pqr.position.x, pqr.end.y + 1, pqr.size.x * pf, 2), ColourAccess.hp2(pf))
 				if ps[i]._pmax > 0.0:
 					# his powder, under his health
 					var pp := Rect2(pqr.position.x, pqr.end.y + 4, pqr.size.x, 2)
@@ -4289,7 +4315,7 @@ func _draw_panel(font: Font) -> void:
 				if Building.is_research(q[i]):
 					_ci.draw_rect(qr, Color(0.75, 0.55, 1.0, 0.9), false, 1.5)     # research: a violet frame
 	else:
-		var per_row := int((r.size.x - 20) / 38)
+		var per_row := int((r.size.x - 20) / _sel_pitch())
 		var men: Array = sel.filter(func(x: Entity) -> bool: return x is Unit and Defs.ARMOURED.has(x.kind) and x.team == game.human)
 		if not men.is_empty():
 			# the soldiers' refits, counted, at the right (the portraits make room)
@@ -4318,7 +4344,7 @@ func _draw_panel(font: Font) -> void:
 			if going > 0:
 				bits.append("refitting %d" % going)
 			if not bits.is_empty():
-				per_row = maxi(4, int((r.size.x - 20 - cw) / 38))
+				per_row = maxi(4, int((r.size.x - 20 - cw) / _sel_pitch()))
 			var lines: Array = [""]
 			bits = bits.map(func(x: String) -> String: return Loc.t(x))
 			for bt in bits:
@@ -4676,6 +4702,19 @@ var _queue_rects: Array = []        # the production line's pictures in the card
 ## Ctrl) = that kind, Shift = drop that kind. Phones: tap = plain, LONG PRESS = the Shift action (drop), DOUBLE TAP
 ## on a unit = the Ctrl action (his kind; a single tap waits SEL_DOUBLE ms for a second one).
 const SEL_ROWS := 2
+## The portraits' size (ui-access-phone): a computer 34 in 38, two rows; a phone PHONE_SEL in a row (a thumb's tap; more
+## rows by a drag or the bar, as before).
+const PHONE_SEL := 64.0
+func _sel_size() -> float:
+	return 34.0 if Settings.pc() else PHONE_SEL
+
+
+func _sel_pitch() -> float:
+	return _sel_size() + 4.0
+
+
+func _sel_vis() -> int:
+	return SEL_ROWS if Settings.pc() else 1
 const SEL_DOUBLE := 300
 var _sel_items: Array = []      # the icons: {"type": kind, "e": the first, "n": how many} first, then {"e": a unit}
 var _sel_scroll := 0            # the first row shown
@@ -4711,22 +4750,24 @@ func _draw_sel_icons(sel: Array, r: Rect2, per_row: int) -> void:
 		_sel_scroll = 0             # a new selection starts at the top
 	_sel_items = sel_items(sel)
 	var cols := maxi(1, per_row)
-	if ceili(_sel_items.size() / float(cols)) > SEL_ROWS:
+	if ceili(_sel_items.size() / float(cols)) > _sel_vis():
 		cols = maxi(1, per_row - 1)     # (room for the scroll bar)
 	_sel_cols = cols
 	_sel_rows = ceili(_sel_items.size() / float(cols))
-	_sel_scroll = clampi(_sel_scroll, 0, maxi(0, _sel_rows - SEL_ROWS))
-	var over := _sel_rows > SEL_ROWS
-	_sel_area = Rect2(r.position + Vector2(6, 4), Vector2(cols * 38 + 6 + (14 if over else 0), SEL_ROWS * 40))
+	_sel_scroll = clampi(_sel_scroll, 0, maxi(0, _sel_rows - _sel_vis()))
+	var over := _sel_rows > _sel_vis()
+	var pit := _sel_pitch()
+	var isz := _sel_size()
+	_sel_area = Rect2(r.position + Vector2(6, 4), Vector2(cols * pit + 6 + (14 if over else 0), _sel_vis() * (isz + 6)))
 	_sel_bar = Rect2(Vector2(_sel_area.end.x - 9, _sel_area.position.y + 4), Vector2(6, _sel_area.size.y - 6)) if over else Rect2()
 	_portraits = []
 	var first := _sel_scroll * cols
 	var bold := UiStyle.bold_font()
-	for i in range(first, mini(_sel_items.size(), first + cols * SEL_ROWS)):
+	for i in range(first, mini(_sel_items.size(), first + cols * _sel_vis())):
 		var it: Dictionary = _sel_items[i]
 		var j := i - first
 		var e: Entity = it["e"]
-		var ir := Rect2(r.position + Vector2(10 + (j % cols) * 38, 8 + (j / cols) * 40), Vector2(34, 34))
+		var ir := Rect2(r.position + Vector2(10 + (j % cols) * pit, 8 + (j / cols) * (isz + 6)), Vector2(isz, isz))
 		_portraits.append({"rect": ir, "e": e, "it": it})
 		if Settings.pc() and ir.has_point(_mouse()):
 			_ci.draw_rect(ir.grow(2), UiStyle.TRIM_DIM, false, 1.0)
@@ -4744,7 +4785,8 @@ func _draw_sel_icons(sel: Array, r: Rect2, per_row: int) -> void:
 		if ic:
 			_ci.draw_texture_rect(ic, ir, false)
 		var f := e.hp / e.max_hp
-		_ci.draw_rect(Rect2(ir.position.x, ir.end.y, ir.size.x * f, 3), Color(0.3, 0.9, 0.3) if f > 0.5 else Color(0.95, 0.4, 0.2))
+		_ci.draw_rect(Rect2(ir.position.x, ir.end.y, ir.size.x * f, 3), ColourAccess.hp2(f))
+		ColourAccess.low_stripes(_ci, Rect2(ir.position.x, ir.end.y, ir.size.x * f, 3), f)
 		if e is Unit and (e as Unit).has_charge() and (e.team == game.human or game.demo):
 			# its charge, a thin amber line under the health (pale gold while it is wound up; none when full)
 			var pcu := e as Unit
@@ -4755,8 +4797,8 @@ func _draw_sel_icons(sel: Array, r: Rect2, per_row: int) -> void:
 			_text(bold, Vector2(ir.end.x - 1, ir.position.y + 11), str((e as Unit).kills), 12, Color(1, 0.82, 0.3), 2)
 	if over:
 		_ci.draw_rect(_sel_bar, Color(0, 0, 0, 0.5))
-		var h := maxf(_sel_bar.size.y * SEL_ROWS / float(_sel_rows), 10.0)
-		var y := _sel_bar.position.y + (_sel_bar.size.y - h) * _sel_scroll / float(_sel_rows - SEL_ROWS)
+		var h := maxf(_sel_bar.size.y * _sel_vis() / float(_sel_rows), 10.0)
+		var y := _sel_bar.position.y + (_sel_bar.size.y - h) * _sel_scroll / float(_sel_rows - _sel_vis())
 		_ci.draw_rect(Rect2(_sel_bar.position.x, y, _sel_bar.size.x, h), UiStyle.TRIM)
 
 
@@ -4774,7 +4816,7 @@ func _sel_hit(p: Vector2) -> Dictionary:
 
 ## Scroll by rows (the wheel: one at a time).
 func sel_scroll_by(d: int) -> void:
-	_sel_scroll = clampi(_sel_scroll + d, 0, maxi(0, _sel_rows - SEL_ROWS))
+	_sel_scroll = clampi(_sel_scroll + d, 0, maxi(0, _sel_rows - _sel_vis()))
 	_redraw_t = 0.0
 
 
@@ -4788,13 +4830,13 @@ func _sel_press(p: Vector2) -> void:
 func _sel_move(p: Vector2) -> void:
 	if _sel_drag.is_empty():
 		return
-	var span := maxi(0, _sel_rows - SEL_ROWS)
+	var span := maxi(0, _sel_rows - _sel_vis())
 	if _sel_drag["bar"]:
 		_sel_scroll = clampi(int(round((p.y - _sel_bar.position.y) / maxf(_sel_bar.size.y, 1.0) * span)), 0, span)
 		_sel_drag["moved"] = true
 	elif _sel_drag["moved"] or absf(p.y - (_sel_drag["p"] as Vector2).y) > 10.0:
 		_sel_drag["moved"] = true       # a drag, not a click: the rows follow the finger (or mouse)
-		_sel_scroll = clampi(int(_sel_drag["s0"]) - int(round((p.y - (_sel_drag["p"] as Vector2).y) / 40.0)), 0, span)
+		_sel_scroll = clampi(int(_sel_drag["s0"]) - int(round((p.y - (_sel_drag["p"] as Vector2).y) / (_sel_size() + 6.0))), 0, span)
 	_redraw_t = 0.0
 
 
@@ -4933,6 +4975,15 @@ func card_scroll_by(d: int) -> void:
 func _card_press(p: Vector2) -> bool:
 	if not _card_over() or not card_rect().grow(4).has_point(p):
 		return false
+	if not Settings.pc() and _card_bar.has_point(p):
+		# a page tab: that page (ui-access-phone)
+		var n := _card_pages()
+		var i := clampi(int((p.y - _card_bar.position.y) / maxf(_card_bar.size.y / n, 1.0)), 0, n - 1)
+		_card_scroll = clampi(i * _rows(), 0, maxi(0, _card_rows - _rows()))
+		_card_drag = {"p": p, "s0": _card_scroll, "moved": true, "bar": false}
+		_card_fresh = true
+		_redraw_t = 0.0
+		return true
 	if _card_bar.grow(6).has_point(p):
 		_card_drag = {"p": p, "s0": _card_scroll, "moved": true, "bar": true}
 		_card_move(p)
@@ -4976,11 +5027,35 @@ func _card_release(p: Vector2) -> void:
 func _draw_card_bar() -> void:
 	if _card_bar.size.x <= 0.0:
 		return
+	if not Settings.pc():
+		_draw_page_tabs()
+		return
 	_ci.draw_rect(_card_bar, Color(0, 0, 0, 0.5))
 	var span := maxi(1, _card_rows - _rows())
 	var h := maxf(_card_bar.size.y * _rows() / float(_card_rows), 10.0)
 	var y := _card_bar.position.y + (_card_bar.size.y - h) * _card_scroll / float(span)
 	_ci.draw_rect(Rect2(_card_bar.position.x, y, _card_bar.size.x, h), UiStyle.TRIM)
+
+
+## The phone card's pages (PHONE_ROWS rows each) and the one shown.
+func _card_pages() -> int:
+	return maxi(1, ceili(_card_rows / float(_rows())))
+
+
+func _card_page() -> int:
+	return clampi(int(ceil(_card_scroll / float(_rows()))), 0, _card_pages() - 1)
+
+
+## The page tabs down the card's right edge: a numbered tab a page, the shown one lit.
+func _draw_page_tabs() -> void:
+	var n := _card_pages()
+	var th := _card_bar.size.y / n
+	var bold := UiStyle.bold_font()
+	for i in n:
+		var tr := Rect2(_card_bar.position + Vector2(0, i * th + 1), Vector2(_card_bar.size.x, th - 2))
+		var on := i == _card_page()
+		UiStyle.draw_button(_ci, tr, false, on)
+		_text(bold, Vector2(tr.get_center().x, tr.get_center().y + 6), str(i + 1), 16, Color(1, 0.9, 0.55) if on else Color(1, 1, 1, 0.6), 1)
 
 
 ## At each look: the command card's buttons (what they are, where, what they do) and a short
@@ -5009,7 +5084,10 @@ func _refresh_card() -> void:
 		var cr := card_rect()
 		var bsz := _btn()
 		look.append(str(cr))
-		if span > 0:
+		if span > 0 and not Settings.pc():
+			_card_bar = Rect2(cr.end.x - PAGE_TAB_W + 2, cr.position.y + 2, PAGE_TAB_W - 4, cr.size.y - 4)     # (the page tabs)
+			look.append("page %d/%d" % [_card_page(), _card_pages()])
+		elif span > 0:
 			_card_bar = Rect2(cr.end.x - 3, cr.position.y + 3, 5, cr.size.y - 6)
 			look.append("scroll %d/%d" % [_card_scroll, _card_rows])
 		for i in range(first, mini(items.size(), first + _cols() * _rows())):
@@ -5701,6 +5779,7 @@ func _icon_file(name: String) -> Texture2D:
 
 func _text(font: Font, p: Vector2, s: String, sz: int, col: Color, align := 0) -> void:
 	s = Loc.t(s)
+	sz = TextScale.hud(sz)       # (TEXT SIZE, Settings > DISPLAY: ui-access-phone)
 	var w := TextCache.width(font, s, sz)       # (shaped once and kept: scripts/ui/text_cache.gd)
 	var x := p.x - (w * 0.5 if align == 1 else (w if align == 2 else 0.0))
 	TextCache.draw(_ci, font, Vector2(x, p.y), s, sz, col, 4, Color(0, 0, 0, col.a * 0.8))

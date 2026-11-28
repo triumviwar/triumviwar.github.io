@@ -229,8 +229,9 @@ func draw_health(top: float, width: float, always := false) -> float:
 	var f := clampf(hp / max_hp, 0.0, 1.0)
 	var a := health_a()
 	draw_rect(r.grow(1), ova(BAR_EDGE, a))
-	var col := Color(0.3, 0.9, 0.3, a) if f > 0.5 else (Color(0.95, 0.8, 0.2, a) if f > 0.25 else Color(0.95, 0.3, 0.2, a))
+	var col := ColourAccess.hp(f, a)       # (green / yellow / red; COLOUR-BLIND HELP: blue / yellow / orange)
 	draw_rect(Rect2(r.position, Vector2(w * f, h)), col)
+	ColourAccess.low_stripes(self, Rect2(r.position, Vector2(w * f, h)), f, a)     # (and stripes when low: ui-access-phone)
 	# the boxes: a thin dark gap every hp_box() health
 	var box := hp_box(max_hp, w)
 	var n := int(ceil(max_hp / box))

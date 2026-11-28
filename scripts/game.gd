@@ -44,11 +44,11 @@ func n_players() -> int:
 
 
 func team_colour(t: int) -> Color:
-	return Defs.PALETTE[colours[t]][1] if t >= 0 and t < colours.size() else Color.RED
+	return ColourAccess.team(int(colours[t])) if t >= 0 and t < colours.size() else Color.RED     # (COLOUR-BLIND HELP shown: ui-access-phone)
 
 
 func team_name(t: int) -> String:
-	return Defs.PALETTE[colours[t]][0] if t >= 0 and t < colours.size() else ""
+	return ColourAccess.team_name(int(colours[t])) if t >= 0 and t < colours.size() else ""
 
 
 ## Enemies: both real players and on different sides.

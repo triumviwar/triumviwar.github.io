@@ -1437,7 +1437,7 @@ func _draw() -> void:
 	for i in starts.size():
 		var r := Rect2(xf * (Vector2(starts[i]) * t), Vector2(HALL) * t * sc)
 		var team := int(teams[i]) if i < teams.size() else 0
-		var col: Color = Defs.PALETTE[team % Defs.PALETTE.size()][1]
+		var col: Color = ColourAccess.team(team % Defs.PALETTE.size())
 		draw_rect(r, Color(col, 0.35))
 		draw_rect(r, col, false, 3.0)
 		_text(r.get_center() + Vector2(0, 4), str(i + 1), clampi(int(30 * sc.x * 1.6), 14, 34), Color.WHITE)

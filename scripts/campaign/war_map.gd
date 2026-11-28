@@ -176,7 +176,24 @@ func _fit_once() -> void:
 
 
 func sk() -> Dictionary:
+	if ColourAccess.mode() == 1:
+		return _sk_access()
 	return SKINS[skin]
+
+
+## COLOUR-BLIND HELP, red-green (ui-access-phone): the skin with the machine's and the Brood's territory in the
+## colour-blind faction colours (ColourAccess.holder), worked out once per skin.
+static var _sk_acc := {}
+func _sk_access() -> Dictionary:
+	if not _sk_acc.has(skin):
+		var s: Dictionary = (SKINS[skin] as Dictionary).duplicate(true)
+		for h in s["holders"]:
+			var hs: Dictionary = s["holders"][h]
+			for k in hs:
+				if hs[k] is Color:
+					hs[k] = ColourAccess.holder(String(h), hs[k])
+		_sk_acc[skin] = s
+	return _sk_acc[skin]
 
 
 func _paint_ok(id: String) -> bool:
@@ -876,14 +893,14 @@ func _stripe_cols(h: String, hs: Dictionary) -> Array:
 		"contested":
 			return [Color(hs["line"], 0.50), Color(hs["hatch"], 0.30)]      # (the Crown's, uneasy: purple only, red is the machine's)
 		"unrest":
-			return [Color(0.20, 0.50, 0.22, 0.55), Color(0.06, 0.06, 0.05, 0.45)]
+			return [ColourAccess.holder("unrest", Color(0.20, 0.50, 0.22, 0.55)), Color(0.06, 0.06, 0.05, 0.45)]
 		"unknown":
 			return []
 	return [Color(hs["line"], 0.50), Color(0, 0, 0, 0)]
 
 
 func _terr_build() -> Dictionary:
-	var key := painted + "|" + str(st.get("regions", {}))
+	var key := painted + "|" + str(st.get("regions", {})) + "|cb%d" % ColourAccess.mode()
 	if key == _terr_key:
 		return _terr
 	_terr_key = key
