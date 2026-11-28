@@ -38,9 +38,9 @@ FAST_HOLD, FAST_SMOOTH = 0.0025, 0.0015   # the fast stage: 2.5 ms look-ahead ho
 HP = 35.0             # Hz
 SUB_CAP = 0.25        # energy share 20-80 Hz of 20 Hz-16 kHz
 TARGET_LOW = 9.0      # LU, for pieces under LRA_MIN
-TARGET_HIGH = 9.7     # LU, for pieces over LRA_MAX
+TARGET_HIGH = 9.5     # LU, for pieces over LRA_MAX
 LRA_MIN, LRA_MAX = 8.0, 10.0
-ACCEPT = (8.3, 9.9)   # the whole chain's result, else the ride is aimed again (a margin inside 8-10)
+ACCEPT = (8.3, 9.7)   # the whole chain's result, else the ride is aimed again (a margin inside 8-10)
 RIDE_UP, RIDE_DOWN = 5.0, 10.0
 RIDE_SMOOTH = 4       # seconds (moving average over the 1 s grid)
 STING_S = 30.0
@@ -215,15 +215,15 @@ def _trim_fade(x, mode):
     return x
 
 
-def _ride_shelf_limit(x, sting, goal, ceil):
+def _ride_shelf_limit(x, sting, goal, ceil, sub_aim=SUB_CAP):
     info = {}
     x, rinfo = ride(x, sting, goal)    # (before the shelf: riding up bass-heavy climaxes raises the sub share)
     info.update(rinfo)
     info["sub_ridden"] = round(sub_share(x), 3)
     shelf_db = 0.0
-    if info["sub_ridden"] > SUB_CAP:
+    if info["sub_ridden"] > sub_aim:
         base = x
-        while shelf_db > -6.0 and sub_share(x) > SUB_CAP:
+        while shelf_db > -6.0 and sub_share(x) > sub_aim:
             shelf_db -= 0.5
             x = shelf(base, 100, shelf_db, "low")
     info["low_shelf_db"] = shelf_db
@@ -264,15 +264,23 @@ def process(l, r, mode="classic", ceiling=None):
     sting = len(x) < STING_S * SR
     ceil = ceiling if ceiling is not None else (ceiling_override if ceiling_override is not None else CEILING)
     goal = "auto"
-    for attempt in range(4):
-        y, step = _ride_shelf_limit(x, sting, goal, ceil)
+    sub_aim = SUB_CAP
+    for attempt in range(6):
+        y, step = _ride_shelf_limit(x, sting, goal, ceil, sub_aim)
         lra_y = lra_of(block_power(k_weight(y)))
-        step["lra_out"] = round(lra_y, 2)
-        # (the shelf and the limiter move the range a little: aim the ride again until the result is in 8-10 LU)
-        if sting or ACCEPT[0] <= lra_y <= ACCEPT[1]:
+        sub_y = sub_share(y)
+        step["lra_out"], step["sub_out"] = round(lra_y, 2), round(sub_y, 3)
+        # (the shelf and the limiter move the range a little: aim the ride again until the result is in 8-10 LU;
+        #  the limiter takes highs off the attacks, which raises the sub share: aim the shelf a little lower)
+        lra_ok = sting or ACCEPT[0] <= lra_y <= ACCEPT[1]
+        sub_ok = sub_y <= SUB_CAP - 0.01 or step["low_shelf_db"] <= -6.0
+        if lra_ok and sub_ok:
             break
-        base = step["lra_target"] if step["lra_target"] is not None else step["lra_raw"]
-        goal = base + ((TARGET_LOW if lra_y < ACCEPT[0] else TARGET_HIGH) - lra_y)
+        if not sub_ok:
+            sub_aim -= sub_y - SUB_CAP + 0.015
+        if not lra_ok:
+            base = step["lra_target"] if step["lra_target"] is not None else step["lra_raw"]
+            goal = base + ((TARGET_LOW if lra_y < ACCEPT[0] else TARGET_HIGH) - lra_y)
     step["ride_tries"] = attempt + 1
     info.update(step)
     INFO = info
