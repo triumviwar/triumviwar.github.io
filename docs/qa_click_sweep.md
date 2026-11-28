@@ -98,6 +98,7 @@ RESULTS_TABLE
 
 | what | where | fix |
 |---|---|---|
+| SCRIPT ERROR (es run, Brood match, STOP on a Raptor): "Invalid access to property 'global_position' on a previously freed" object in worker_labels.gd (the HUD's hover) and in draw_all: the frame's cached list of labelled units kept a unit freed later in that frame (a grub morphing, a creature sacrificed) | scripts/worker_labels.gd | the cached list drops freed units before it is used; tools/test_worker_labels.gd passes |
 | Esc and the phone's back did nothing in an online room (friendly room, campaign VERSUS room); on a phone the back asked "Quit the game?" | scripts/ui/multiplayer_menu.gd | LEAVE is the page's back (`main._set_back`) |
 | The same on the music player (Settings > SOUND > OPEN) and the animation viewer (Settings > OTHER > OPEN) | scripts/main.gd, scripts/anim_viewer.gd | their BACK is the page's back |
 | World war: SAVE & LEAVE (and Esc, the phone's back) did nothing while a computer was moving; in a war with only computers (allowed by the setup) the page could not be left at all | scripts/worldwar/ww_page.gd | pressed while a computer moves, it says "Leaving after this move..." and leaves at the next step (the war saved there); tools/test_world_war.gd passes |
