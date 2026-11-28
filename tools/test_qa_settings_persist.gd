@@ -39,7 +39,8 @@ func snap() -> Dictionary:
 		"mini_alpha": snappedf(Settings.mini_alpha, 0.01), "overlay_alpha": snappedf(Settings.overlay_alpha, 0.01), "relay_url": Settings.relay_url, "language": Settings.language,
 		"replays_keep": Settings.replays_keep, "replay_rec": Settings.replay_rec,
 		"narrator": Settings.narrator, "narrator_volume": Settings.narrator_volume,
-		"narrator_rate": snappedf(Settings.narrator_rate, 0.01)}
+		"narrator_rate": snappedf(Settings.narrator_rate, 0.01),
+		"cb_mode": Settings.cb_mode, "text_size": Settings.text_size}      # (ui-access-phone)
 
 
 func vols() -> Dictionary:
@@ -151,7 +152,7 @@ func _run() -> void:
 				if what == "pressed" and not ch.is_empty():
 					var row2: Node = rows_of(tab).get(id)
 					var b2 := _find(row2, "Button") as Button if row2 else null
-					if b2 != null and not id in ["replays_keep", "replay_rec", "ui_size", "powder_smoke", "narrator_rate", "band_marks"]:
+					if b2 != null and not id in ["replays_keep", "replay_rec", "ui_size", "powder_smoke", "narrator_rate", "band_marks", "cb_mode"]:
 						b2.pressed.emit()
 						await process_frame
 						check("%s %s/%s: pressed again, back as it was" % [device, tab, id], diff(s0, snap()).is_empty(), str(diff(s0, snap())))

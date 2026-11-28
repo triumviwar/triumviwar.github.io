@@ -1432,6 +1432,7 @@ func settings_rows(tab: String) -> Array:
 				Settings.ui_size = sizes[(sizes.find(Settings.ui_size) + 1) % sizes.size()]
 				Settings.save_all()
 				show_settings()), "ui_size"))
+			_access_rows(rows)           # (ACCESSIBILITY: colour-blind help, text size; ui-access-phone)
 			var mm := _row("MINIMAP SOLIDITY")
 			var mms := HSlider.new()
 			UiStyle.touch_slider(mms)
@@ -1534,12 +1535,72 @@ func settings_rows(tab: String) -> Array:
 				if _reset_armed:
 					_reset_armed = false
 					Settings.reset()
+					TextScale.apply_all()
+					_access_recolour()
 				else:
 					_reset_armed = true
 				show_settings()), "reset"))
 			rows.append(_hint("Back to the starting choices; the language, device, sound and relay stay."))
 			rows.append(_hint(Loc.t("Version %s") % version))
 	return rows
+
+
+## Settings > DISPLAY, ACCESSIBILITY (job ui-access-phone, docs/ui_access_phone.md): COLOUR-BLIND HELP (the team colours,
+## the factions' map colours and the health bars shown in a set told apart by colour-blind players: ColourAccess) and
+## TEXT SIZE (menus and the HUD's words: TextScale).
+func _access_rows(rows: Array) -> void:
+	rows.append(_tag(_choice_row("COLOUR-BLIND HELP", ColourAccess.MODES[Settings.cb_mode], func() -> void:
+		Settings.cb_mode = (Settings.cb_mode + 1) % ColourAccess.MODES.size()
+		ColourAccess.changed()
+		Settings.save_all()
+		_access_recolour()
+		show_settings()), "cb_mode"))
+	rows.append(_hint(["The game's own colours.", "RED-GREEN: for protanopia and deuteranopia. Team colours become blue, orange, white, brown, pink, yellow, sky and black; health bars blue, yellow and orange, striped when low; on the maps the machine is orange and the Brood sky blue.", "BLUE-YELLOW: for tritanopia. Team colours become blue, red, white, amber, black, brown, cyan and magenta; health bars blue, yellow and orange, striped when low."][Settings.cb_mode]))
+	var tsr := _row("TEXT SIZE")
+	var val := UiStyle.text("%d%%" % Settings.text_size, 17, UiStyle.TEXT, HORIZONTAL_ALIGNMENT_RIGHT, true)
+	val.custom_minimum_size.x = 56
+	var tss := HSlider.new()
+	UiStyle.touch_slider(tss)
+	tss.min_value = Settings.TEXT_MIN
+	tss.max_value = Settings.TEXT_MAX
+	tss.step = 10
+	tss.value = Settings.text_size
+	tss.custom_minimum_size = Vector2(164, 44)
+	var dragging := {"on": false}
+	tss.drag_started.connect(func() -> void: dragging["on"] = true)
+	tss.value_changed.connect(func(x: float) -> void:
+		val.text = "%d%%" % int(x)          # (while dragged: only the number; the page is laid out again on release)
+		if not dragging["on"]:
+			_access_text(int(x)))
+	tss.drag_ended.connect(func(_c: bool) -> void:
+		dragging["on"] = false
+		_access_text(int(tss.value)))
+	tsr.add_child(val)
+	tsr.add_child(tss)
+	rows.append(_tag(tsr, "text_size"))
+	rows.append(_hint("Menus, the campaign and the HUD's words. The HUD's words grow by a part of it; IN-GAME INTERFACE SIZE grows the whole HUD."))
+
+
+## TEXT SIZE set: every text on screen again (the page is built again so it lays out at the new size).
+func _access_text(v: int) -> void:
+	v = clampi(v, Settings.TEXT_MIN, Settings.TEXT_MAX)
+	if v == Settings.text_size:
+		return
+	Settings.text_size = v
+	Settings.save_all()
+	TextScale.apply_all()
+	show_settings.call_deferred()
+
+
+## COLOUR-BLIND HELP changed during a match: the units' and buildings' team colours put on again.
+func _access_recolour() -> void:
+	if game == null or not is_instance_valid(game):
+		return
+	for e in game.units + game.buildings:
+		if is_instance_valid(e):
+			(e as Entity).refresh_cloth()
+	if game.hud:
+		game.hud.queue_redraw()
 
 
 func _tag(row: Control, id: String) -> Control:

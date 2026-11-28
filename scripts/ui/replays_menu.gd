@@ -140,7 +140,7 @@ func _row(m: Dictionary) -> Control:
 			l2.add_child(UiStyle.text("vs", 15, UiStyle.MUTED))
 		for pl in by_side[sides[si]]:
 			var c := int(pl.get("colour", 0))
-			var col: Color = Defs.PALETTE[c][1] if c >= 0 and c < Defs.PALETTE.size() else Color.WHITE
+			var col: Color = ColourAccess.team(c) if c >= 0 and c < Defs.PALETTE.size() else Color.WHITE
 			var fac := String(pl.get("faction", ""))
 			var raw := String(pl.get("name", ""))
 			var nm := _local_name(raw)

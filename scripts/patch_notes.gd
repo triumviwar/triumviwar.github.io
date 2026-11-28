@@ -4,6 +4,11 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.248", "items": [
+		"COLOUR-BLIND HELP (Settings > DISPLAY): OFF, RED-GREEN or BLUE-YELLOW. With it on the eight team colours are shown as a set colour-blind players tell apart (on the units, the minimap, the HUD, the lobby with their names, the chat and the reports), the world war's and the war map's territory too (red-green: the machine orange, the Brood sky blue), and the health bars turn blue, yellow and orange with stripes when low. Only your screen changes: your friends and saved games keep their colours.",
+		"TEXT SIZE (Settings > DISPLAY), 90% to 150%: every menu, the campaign's pages and the lobby; the match's own words grow by part of it (IN-GAME INTERFACE SIZE still grows the whole match interface).",
+		"On a phone the command buttons are bigger (about 9 mm, a thumb's width): two rows of four at a time, the rest on a second page with numbered tabs at the card's right (a drag still scrolls). The selected units' portraits are nearly twice as big, and the camera tabs read V1-V6 instead of the keyboard's F4-F9.",
+	]},
 	{"v": "0.38.247", "items": [
 		"HOTKEYS WITH UNITS AND A BUILDING SELECTED (a Barracks and its Musketeers): the units' card comes first and its letters win (A attacks); the building's training and research follow on the same card, marked with a blue edge, and keep their own letter only when no unit command has it (else click them). The building alone keeps all its keys.",
 		"INCOME A MINUTE: rest the mouse on a resource in the top bar (tap it on a phone): the first line says what came in and what was spent over the last minute. SUPPLY BLOCKED: when a production waits for supply (an automatic one too), the supply number flashes red and one short line with the announcer says so, once.",

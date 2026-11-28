@@ -35,6 +35,12 @@ static var replay_rec := ""           # REPLAY RECORDING: "mixed", "full", "ligh
 static var narrator := true           # SPECTATOR NARRATOR: the AI STORY read out loud while watching computers (Narrator; N mutes)
 static var narrator_volume := 80      # NARRATOR VOLUME (0-100, the system voice's own volume)
 static var narrator_rate := 1.1       # NARRATOR SPEED (0.5-2: 1 is the voice's normal pace)
+# ACCESSIBILITY (job ui-access-phone, docs/ui_access_phone.md)
+static var cb_mode := 0               # COLOUR-BLIND HELP: 0 off, 1 red-green, 2 blue-yellow (ColourAccess)
+static var text_size := 100           # TEXT SIZE: menus and the HUD's words, a percentage (TEXT_MIN-TEXT_MAX; TextScale)
+const TEXT_MIN := 90
+const TEXT_MAX := 150
+static var test_dpi := 0.0            # (picture tools: a phone's screen density on a computer; 0 = ask the system; Hud._mm)
 static var _loaded := false
 
 
@@ -88,6 +94,8 @@ static func load_all() -> void:
 		narrator = _bool(cfg, "ui", "narrator", true)
 		narrator_volume = clampi(_int(cfg, "ui", "narrator_volume", 80), 0, 100)
 		narrator_rate = clampf(_float(cfg, "ui", "narrator_rate", 1.1), 0.5, 2.0)
+		cb_mode = clampi(_int(cfg, "access", "cb_mode", 0), 0, 2)
+		text_size = clampi(_int(cfg, "access", "text_size", 100), TEXT_MIN, TEXT_MAX)
 	Loc.set_lang(language)
 	apply()
 
@@ -146,6 +154,8 @@ static func save_all() -> void:
 	cfg.set_value("ui", "narrator", narrator)
 	cfg.set_value("ui", "narrator_volume", narrator_volume)
 	cfg.set_value("ui", "narrator_rate", narrator_rate)
+	cfg.set_value("access", "cb_mode", cb_mode)
+	cfg.set_value("access", "text_size", text_size)
 	cfg.save(PATH)
 
 
@@ -231,6 +241,9 @@ static func reset() -> void:
 	narrator_volume = 80
 	narrator_rate = 1.1
 	drag_mode = "box"
+	cb_mode = 0
+	text_size = 100
+	ColourAccess.changed()
 	save_all()
 
 

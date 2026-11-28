@@ -1230,7 +1230,7 @@ static func war_map(main: Node) -> void:
 			var row := HBoxContainer.new()
 			row.add_theme_constant_override("separation", 6)
 			var sw := ColorRect.new()
-			var hc: Dictionary = WarMap.SKINS[wm.skin]["holders"][h]
+			var hc: Dictionary = wm.sk()["holders"][h]
 			sw.color = Color(hc["fill"], 0.9) if h != "unknown" else hc["fill"]
 			var first: Color = Color(hc["fill"], 1.0) if wm.skin == "brass" else Color(hc["line"], 1.0)      # (the brass map's rims are all brass)
 			sw.custom_minimum_size = Vector2(16, 16)

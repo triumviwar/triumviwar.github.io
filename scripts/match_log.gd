@@ -73,7 +73,7 @@ func begin(levels: Dictionary) -> void:
 	lines.append("Map: %s, %d players  (seed %d)" % [game.map_name, game.n_players(), game.rng.seed])
 	for t in game.n_players():
 		var lv: String = levels.get(t, "")
-		lines.append("  %s  side %d  colour %s%s" % [who(t), int(game.sides[t]) + 1, game.team_name(t),
+		lines.append("  %s  side %d  colour %s%s" % [who(t), int(game.sides[t]) + 1, Defs.PALETTE[int(game.colours[t])][0],
 			("  AI: " + lv) if lv != "" else ""])
 	lines.append("Device: %s" % ("computer" if Settings.pc() else "phone/tablet"))
 	if game.net != null and game.net.watching:

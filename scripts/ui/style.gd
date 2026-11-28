@@ -71,6 +71,7 @@ static func accent(faction: String) -> Color:
 ## Make the body font the default everywhere (HUD text is drawn with the fallback font).
 static func install() -> void:
 	ThemeDB.fallback_font = body_font()
+	TextScale.install()          # (TEXT SIZE: ui-access-phone)
 
 
 static func box(bg: Color, border := TRIM_DIM, bw := 2, radius := 10, margin := 14.0) -> StyleBoxFlat:

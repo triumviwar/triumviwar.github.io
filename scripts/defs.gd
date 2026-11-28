@@ -2391,13 +2391,13 @@ static func colour_name(c: int) -> String:
 		return "Random"
 	if c == COLOUR_FITS_MAP:
 		return "Fits map"
-	return PALETTE[c][0]
+	return ColourAccess.team_name(c)      # (COLOUR-BLIND HELP: the shown set's name; ui-access-phone)
 
 
 static func colour_of(c: int) -> Color:
 	if c < 0:
 		return Color(0.45, 0.42, 0.38)
-	return PALETTE[c][1]
+	return ColourAccess.team(c)           # (COLOUR-BLIND HELP: the shown set; ui-access-phone)
 
 
 const PALETTE := [
