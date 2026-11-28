@@ -1446,6 +1446,8 @@ func show_anim_viewer() -> AnimViewer:
 	var av := AnimViewer.new()
 	av.back_pressed.connect(func() -> void: show_settings())
 	root.add_child(av)
+	if av.back_button != null:
+		_set_back(av.back_button)       # (qa-click-sweep: Esc did nothing; the phone's back asked to quit the game)
 	return av
 
 

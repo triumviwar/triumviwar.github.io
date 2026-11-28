@@ -35,6 +35,7 @@ const NEEDS_ART := {
 	"powder_wagon": "harness horse legs",
 }
 
+var back_button: Button = null      # (main makes it the page's Esc / phone back: qa-click-sweep)
 var art := ""
 var anim := ""
 var dir := "e"
@@ -277,6 +278,7 @@ func _build() -> void:
 	t.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	top.add_child(t)
 	var bk := _btn("BACK", func() -> void: back_pressed.emit())
+	back_button = bk
 	bk.custom_minimum_size.x = 140
 	top.add_child(bk)
 	var cols := HBoxContainer.new()
