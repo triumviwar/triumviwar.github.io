@@ -105,8 +105,11 @@
   first/second: Crown v Brood 16/13, 18/11, 17/13; Clockwork v Brood 13/14, 9/20, 14/16; Brood mirror spot A 15/11 (t 0.7),
   14/13, 17/11. No paired change beyond the noise (|t| <= 1.3). The mirror's 11-26 spot edge (18/7) was partly the uneven
   split. Recommendation: KEEP 1.2 (fairly sure no big effect; a small one needs 60+ games a cell). OWNER DECIDES; nothing changed.
-- CLICK SWEEP (owner 2026-11-28 "make a test everything, analyse everything clickable routine"; job qa-click-sweep,
-  branch qa-click-sweep, docs/qa_click_sweep.md, report docs/qa_click_sweep/report.md, data docs/qa_click_sweep/data/,
+- CLICK SWEEP, BOTH RUNS MERGED (0.38.252 qa-click-sweep-2: THE routine kept, tools/qa/click_sweep.gd/.sh +
+  click_sweep_report.py, docs/qa_click_sweep.md, 3,385 screens / 16,082 presses, fixed the STALE command card after a
+  selection changes without a click; 0.38.253 qa-click-sweep's game fixes below, its routine/doc/run data NOT kept).
+  First run (owner 2026-11-28 "make a test everything, analyse everything clickable routine"; job qa-click-sweep,
+  report docs/qa_click_sweep/report.md,
   pictures docs/shots/qa_click_sweep/): tools/qa/click_sweep.gd (+ .sh, _report.py): real clicks on every button of every
   page reached from the main menu (breadth first), a match of each faction with every card button clicked, the campaign
   again with every mission done; flags ERROR/DEAD/STUCK/COVERED/OFFSCREEN/CUT/OFF/NOBACK/EN/SLOW/NOCHANGE. RUN BEFORE A
