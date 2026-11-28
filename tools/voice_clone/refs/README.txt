@@ -34,3 +34,21 @@ assembly       the Free Assembly's adviser (a01, a06 versus): French woman agita
 tomasz_angry_ref.wav: young Tomasz SHOUTING (2026-11-28, the owner's pick of two ElevenLabs v4 takes in the second
           account, "Out! All of you, out of the church, now!..."; 15.5 s). make_big_lines.py uses it for his shout and
           angry lines (ANGRY_REFS); `python make_big_lines.py --angry` writes lines_angry.txt (his 7 such lines again).
+Designed 2026-11-28 (Voice Design previews, the first of three kept, cut at a pause near 18 s; owner's third ElevenLabs
+account for ulrich/meneses/ramos/arruda/inacio, a FREE account for officer/tiago/rider/fonseca/morel: no commercial
+licence on those five, redo them in the paid account before a sale):
+ulrich    Ulrich, the guild's foreman (d02, d04, d07): Franconian, fifties, gruff, shouts over machines.
+meneses   Captain Luis de Meneses (d01): Portuguese dragoon captain, forties, blunt and brisk.
+ramos     Lieutenant Inacio Ramos (d01): Brazilian orator, thirties, warm and dangerous.
+arruda    Captain Bento Arruda (d04, d07, d11): southern Brazilian cattleman-officer, forties, plain and stubborn.
+inacio    Father Inacio Lourenco (d10): Brazilian priest-aeronaut, forties, bright and quick.
+tiago     Brother Tiago (d05): young Brazilian catechist, gentle and grave.
+fonseca   Desembargador Fonseca (d03): Portuguese-Brazilian judge, fifties, pompous.
+morel     Citizen Morel (d04, d07): French Assembly man, thirties, cold and clipped.
+rider     the frontier's rider (d09): young dragoon, breathless.
+officer   Captain Sobral (d05) and the captain of Obidos (d10); pitched down 0.8 for Major Teixeira (d09).
+Voices made from others by pitch (make_big_lines.py VOICES): Brandt = commissary, Padre Anselmo = joaquim, Ortlieb =
+captain, the d07 master = brother, the townsman = tiago, the Barra's sergeant = sergeant, Tomasz grown, Pieter grown,
+Jakob old, Matthias = jakob higher, Sergeant Hollins = volunteer lower. Valadares' angry reference is made by
+Chatterbox itself as the first line of lines_all.txt (out_all/valadares_angry_seed.wav; keep it here as
+refs/valadares_angry_ref.wav if it sounds right).

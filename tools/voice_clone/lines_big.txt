@@ -1,723 +1,6 @@
 # The big run (docs/chatterbox_todo.md): run.bat --lines lines_big.txt
 # A stopped run picks up where it left off. EVERY CAMPAIGN LINE IS A PLACEHOLDER (rewritten later).
 
-# ---- The Brood announcer, Lindqvist's v2 voice (713)
-[ref refs/lindqvist_ref.wav]
-[pitch 0]
-[exaggeration 0.5]
-brood__id | text (placeholder) | feeling
-brood__k_open1 | Ten months after Rome I signed the commissary's orders myself. Seize the works at Fürth. Stop every machine that winds itself. | heavy, owning it, no regret in the voice
-brood__k_open2 | Hollweg was told the commissary was coming. He did not wait for him. | dry
-brood__h_open1 | I called it a rescue. The Crown meant to melt our works, and the families had lived off those works for three generations. | old, defensive, still proud
-brood__h_open2 | We rang the night bell at the barn. By morning Fürth was empty. | quiet, remembering
-brood__k_open_c | Father Ferrer rode with the commissary as Rome's witness. He kept a diary of it in that small Catalan hand of his. I have it still. | warm about Ferrer
-brood__f_open_c | We were a day's ride off when the dogs found their scent. The guild was already on the road. | tired
-brood__h_1 | Every family to its cart. Every machine that can walk, wind it. We leave tonight. | urgent, commanding, low (a night order)
-brood__u_tip1 | The carts wait at the barns, Meister. Send one of ours to each and the family climbs in. The marked ones on the map. |
-brood__u_tip2 | Your spring cart winds anything that stands on the brass plates round it. Keep the soldiers near it on the road and they never run down. |
-brood__u_tip_new | The Clock Soldiers know the shield wall now, Meister. Raise their shields with SHIELD FORWARD on their card when the muskets face them. |
-brood__h_draw0 | And the drawings. Every sheet of the Perpetual. Nobody touches those chests but me. | possessive, sharp
-brood__h_draw | The drawings are aboard. If they take that cart, they take forty years of my life. | relief with fear under it
-brood__h_people | No drawings this time. I left them in Nuremberg for the people. I carry the Perpetual in my head. | bitter pride
-brood__j_wait | Meister. Before you go. Come here, please. | nervous, young
-brood__j_stay1 | I am not coming, Meister. I told Father Ferrer what I found, and I will tell the commissary. | DRAMATIC: firm but shaking, he loves the old man
-brood__h_stay | They will melt everything, Jakob. Everything we built. | DRAMATIC: hurt, pleading without saying please
-brood__j_stay2 | Then let them. I would rather melt a wheel than see it take out its own stop-work again. God keep you, Meister. | DRAMATIC: steady, a goodbye; soft on the last words
-brood__h_nojakob | Jakob would have known which wheels to leave behind. I shall have to guess. | grief held down
-brood__u_warn | Riders on the Bamberg road, Meister. Not long now. | tense
-brood__h_fallen | The machine sits in my own works. My own tower. Burn its seed, or no cart leaves this yard. | anger at himself
-brood__h_reclaimed | It is down. Now the families. Quickly. | breathless
-brood__u_dogs | Dogs, Meister! They are early! The carts must go now! | alarm, shouted
-brood__h_road | West over the Rednitz, then down the valley to the Main. Keep a fighter by every cart. | commanding
-brood__u_take | They will not shoot the carts, Meister. They will stand round one until it is theirs. Drive them off it and the bar empties. |
-brood__u_riders | Riders in the valley! They came round by the Würzburg track, from the north! | shouted
-brood__u_dogs2 | Dogs on the slope, Meister, and riders behind them! They have our scent! | shouted
-brood__u_riders2 | More riders on the track! | shouted
-brood__u_column | The commissary's column is in the yard behind us. Musketeers, and guns. | grim
-brood__u_column_m | The commissary's column is in the yard behind us. Musketeers, and more nets than guns. | grim, a little relieved
-brood__h_sortie | Let it have the walls. It will meet the commissary before it meets us. | cold
-brood__u_retake | Get round that cart before it reaches their camp and it is ours again! | shouted
-brood__h_draw_taken | The drawings! They have the drawings! | DRAMATIC: a cry, real loss
-brood__r_minute | Halt. All of you. Let them go, God help them. One minute. | DRAMATIC: an officer's order, but his voice gives (Nuremberg's bells)
-brood__b_minute | Colonel! You have the Crown's orders! | shocked, thin, officious
-brood__h_minute | Von Rauch remembered the bells of Nuremberg. Go, now, while he looks away! | moved, then urgent
-brood__r_minute_end | The minute is up. After them. | flat, duty again
-brood__u_clock | We set up the travelling clock by the brook, Meister. Its field winds anything near it. Five of the journeymen came over on the first barge: they are yours. There is a turret in the crates. | brisk
-brood__h_bridge | Hold the bridge until the last barge is loaded. The shields in front, the turret behind them. | a last stand, calm
-brood__u_turret | Send a Winder to the turret's site at the bridge's foot. It builds it with the guild's last coins. |
-brood__u_broken | The rearguard is gone, Meister! They are on the landing: get to the barges before they lay hands on you! | DRAMATIC: panic
-brood__u_last | The last barge is loaded, Meister! Come aboard, now! | shouted, hopeful
-brood__h_aboard | Cast off. Mind the ice by the piers. | DRAMATIC: exhausted, final, no triumph
-brood__h_hurt | I am hit. Keep them off me, they want me alive. | pain, through teeth
-brood__b_c1 | By the Council of Rome and the King's seal: the works at Fürth are the Crown's. Ride. | reading a document, pompous
-brood__f_c1 | Take the carts, Commissary. Do not harm the families. And I want Hollweg alive, to answer. | firm, a priest's authority
-brood__r_c_tip | My riders take a cart by standing round it with none of theirs by it. Bring Hollweg down and stand a man by him: he is taken. | soldier's briefing
-brood__f_c_road | They are on the road west. The barges on the Main will not wait for us. |
-brood__r_c_sortie | The machine is in the works behind us. Watch the rear. |
-brood__r_c_push | The reserve is on the track, Commissary. Three more muskets and a rider. |
-brood__f_c_won | He is taken. God forgive us both, Meister. | DRAMATIC: sorrow, no victory
-brood__f_c_lost | The last barge is gone down the Main. He is beyond the Crown now. | quiet, almost relieved
-brood__h_end1 | We went down the Main to the sea, and at Hamburg we took ship. Nobody there asked what was in the crates. | old, storytelling
-brood__h_end_many | Nearly every family came with us. I counted them on the deck, every morning. | tender
-brood__h_end_some | Some of the families came. The others went back to Fürth in the Crown's carts. | regret
-brood__h_end_few | Few of the families came. There was room on the deck to walk. | DRAMATIC: grief
-brood__h_end_draw | And the drawings came with me. Every sheet. | quiet pride
-brood__h_end_drawlost | The drawings stayed with the Crown. I drew them again from memory, on the ship. | stubborn
-brood__h_end_jakob | Jakob stayed. I wrote to him from Hamburg. He never answered. | DRAMATIC: hurt, held back
-brood__h_end_manifest | The ship's manifest said: machinery, for a mine in the southern highlands of Brazil. The clerk at Hamburg did not ask whose mine. | sly, a hint of what is coming
-brood__k_end1 | He calls it a rescue. The law calls it desertion, and so do I. The guild left the Crown that night and took its families with it. | DRAMATIC: firm, sad, the verdict
-brood__k_end2 | I do not blame the families. Someone told them the Crown was coming for their children's bread, and they believed him. It was Hollweg who told them. | gentle, then hard
-brood__k_end_c | Hollweg in the Crown's custody, twenty-four years before he came to my fire. That is not how it went. | dry correction
-brood__f_end_c | We brought him to Rome in irons, and the carts back to Fürth. The commissary called it a success. | DRAMATIC: bitter, he does not agree
-brood__id | text (placeholder) | feeling
-brood__k_open1 | Lindqvist walked out of Rome with the animals the Council had ordered destroyed. He went home to his river. | flat, a judgement
-brood__k_open2 | Two years later I sent Valadares up that river with Rome's order in his satchel. | dry, a little weary
-brood__l_open1 | An island below Óbidos. Sugar for the tax man, and behind the cane, the forest, and in the forest, my pens. | old, fond of the place
-brood__l_open2 | Rome called them abominations. I called them a new species, and I had bred every species I ever kept. I had the lures. They came to the lures. | conviction, a scientist lecturing
-brood__l_open_linnea | And among them a young Mother, out of the clutch we carried from the station. Linnea's get. Growing. | tender, proud
-brood__l_open_plateau | And a young Mother we netted on the mountain. My breeding stock. | proud
-brood__k_open_c | Valadares wrote me a report from that island. It is the only honest account of it I have. | respect for Valadares
-brood__v_open_c | We came up the river at first light. Sugar on the banks, a white house, a doctor at the landing with his hat in his hand. | plain report, wary
-brood__l_1 | Pieter! A boat on the river, below the point. The Crown's flag. Get them out of the old pens. All of them. Into the forest, now. | DRAMATIC: urgent, sharp orders, fear held down
-brood__p_tip1 | They follow the lures, Doctor, nothing else. The keepers go first, and the animals stay inside the ring. Out of it they wander. |
-brood__p_tip2 | Over the creek by a ford, then up the paths to the clearings. The young Mother roots best in the nest clearing, in the middle. |
-brood__l_storm | The big egg. It is cracking. Pieter, the book. Write the hour. | hushed, excited
-brood__l_storm2 | Wings. A Storm Sire. The first one ever bred by a man. Root him by her, and she will lay for him. | DRAMATIC: wonder, a father's pride, almost a prayer
-brood__l_hatch | Hatchlings. They will sit in the canopy and watch the river for me. Nobody looks up at a bird. | pleased, sly
-brood__p_ready | They are all in the forest, Doctor. Quiet. I can hear the oars. | whispered, relieved
-brood__p_warn | The canoes are rounding the point, Doctor. Not long now. | tense, low
-brood__f_land | Doctor Lindqvist. I carry an order of the Holy See and of His Majesty. You know its contents. | formal, cold
-brood__l_land | Sugar, Desembargador. Sugar and a few goats. Search what you like. | too easy, a host's smile
-brood__v_land | I have seen what you keep, Doctor. On the mountain. I will know its prints. | quiet threat
-brood__v_land_w | I do not know what I am looking for, Doctor. So I will look at everything. | blunt, patient
-brood__p_still | Keep them still, Doctor. A soldier sees what moves. The rest is just forest to him. | whispered, urgent
-brood__l_dinner | The Desembargador has come a long way. He will be hungry. I will ask him to dine. | smooth, scheming
-brood__f_dinner | Dinner? Well. The search can spare its magistrate for an hour. Sergeant, your men with me. | pompous, tempted
-brood__v_dinner | Go and eat, Desembargador. I am not hungry. | dry contempt
-brood__f_dinner_end | A fine table, Doctor. Now. Back to work, men. | full, satisfied, then brisk
-brood__p_decoy | A lure post at the west point, or at the old chapel, and they will go and look at it. Men always go and look. | a grin in the voice
-brood__p_riders | The riders have crossed the creek at the west ford, Doctor. They are going up the paths now. | tense, fast
-brood__v_hunch | Everything on this island walks from the middle out. We look in the middle. | thinking aloud, sure
-brood__v_tracks | Fresh prints. Three toes, a dragged claw. This way. | low, a hunter
-brood__v_found | There. You see it? Sugar and goats, the Doctor said. | DRAMATIC: cold triumph, contempt
-brood__l_found | No. Not that one. Pieter, move them. Move the others. | DRAMATIC: panic, a man losing a child
-brood__p_half | They have found half of them, Doctor. If they find many more, they will burn the pens and the house with them. | frightened
-brood__p_dusk | The light is going. They will not search the forest in the dark. | relief
-brood__p_restless | Doctor! One of the young is up. It smells the goats. It is going for the camp! | DRAMATIC: alarm, shouted in a whisper
-brood__l_restless | A lure under its nose, right under it, or it will not turn. If it reaches those goats they will see everything. | urgent, tight
-brood__l_held | Got it. Easy now. Back to the forest, slowly. | soft, soothing an animal
-brood__p_back | It is back in the forest, Doctor. It is lying down. | relief, breathless
-brood__v_fight | Torches! Into the forest, all of you! Now we know where they are. | DRAMATIC: shouted, fierce
-brood__p_lost | They have found nearly all of them, Doctor. They are bringing the pitch for the pens. | DRAMATIC: despair
-brood__f_dawn | We found what we found, Doctor. It will all be in my report, and in Rome. | formal, a warning
-brood__v_dawn | You did not breed them, Doctor. Nobody breeds a thing like that. Somebody made it, long ago, and it is still being made. | DRAMATIC: quiet, grave, almost pity
-brood__l_dawn | Superstition. They evolved. Everything evolves. | dismissive, stubborn
-brood__v_c1 | Three parties, Desembargador: the west paths, the middle and the east. The riders take the fields. I follow the prints. | commanding, practical
-brood__v_c_tip | They sleep in the clearings in the day. Walk close, and have your muskets ready: a sleeping one sees you at three steps. | low, careful
-brood__v_c_tracks | Pale claw marks on the ground are fresh prints. They lead to the ones that walk. |
-brood__f_c_dinner | The Doctor asks me to dine. I will go, Valadares. Somebody must watch the man himself. | pompous
-brood__v_c_night | Night. They will move in the dark: watch the camp and the goats. | alert
-brood__v_c_won | Enough. Burn the pens. Write it down, Desembargador: we found them. | DRAMATIC: hard, final
-brood__v_c_lost | Dawn, and the canoes. We found too little. He will say we found nothing. | bitter
-brood__l_end1 | They left at dawn. The Desembargador wrote his report. Valadares wrote another. | old, slow
-brood__l_end_all | They found nothing. Nothing. I stood at the landing and waved my hat. | DRAMATIC: triumph, an old man laughing
-brood__l_end_some | They found some, and burned what they found. The rest lay in the forest and did not move. | stubborn
-brood__l_end_few | They found most of them. I watched the pens burn from the house. I kept what was left. | DRAMATIC: grief, defiant
-brood__l_end_storm | And the Storm Sire flew over the canopy every evening after, and came back to the lure. | wonder, wistful
-brood__k_end1 | He tells it as if he won. Valadares found enough on that island to know what it was, and he wrote it down. | firm correction, no anger
-brood__k_end2 | And Lindqvist still believes the thing evolved. The Church told him what it was. He did not listen then either. | tired, sorry for him
-brood__v_end_c | We burned the pens we found. The Doctor stood at the landing with his hat in his hand, and did not look at the smoke. | grave, plain
-brood__k_end_c | Lindqvist told me Valadares came away with nothing. Valadares' report is on my desk. It runs to forty pages. | firm
-brood__v_end_c_lost | We left at dawn with half a report. I knew they were there. I could smell them. | bitter, sure
-brood__h_hurt | My leg. Pieter, the lures. Keep them together. | pain, clipped
-brood__id | text (placeholder) | feeling
-brood__k_open1 | He named it for concord. The valley named it otherwise. | dry, a small sad smile
-brood__k_open2 | Two years after he left my Crown, Hollweg bought a dead mine at the bottom of the world, and built a city on it that answered to nobody. | measured, a judge reading a record
-brood__h_open1 | A city that governs itself. A council of masters, every voice a wheel, and the wheels in time. That was the plan. | old, proud of a dream he now doubts
-brood__h_open2 | Rome had said those very words were a sin. I said them louder. | DRAMATIC: defiance remembered, with shame under it
-brood__h_open_v | A ship from Lisbon brought us a man I never thought I would need: Etienne Varenne, the Assembly's orator, whom the King had spared and sent away. | wry
-brood__h_open_m | A ship from Lisbon brought us one of the Assembly's men, Citizen Morel. Varenne was dead. Morel had not forgiven anyone for it. | uneasy
-brood__h_1 | The tower first. Over the old shaft, where the ground is sound. Everything else turns round it. | brisk, a builder again
-brood__u_tip1 | The tower's site is marked by the shaft, Meister. Send the Winders; four hands raise it quickly. |
-brood__u_dark | And look how little we know of this place. Everything off the plateau is dark to us: anyone could walk up those roads and we would not see him. |
-brood__h_tower | The tower stands. Now the spring, then the birds. I want this country mapped from the air, every road, before the first winter. | pleased, eager
-brood__u_field | The tower's gears are turning, Meister. Keep the soldiers on the gear rings round our buildings: there they stay wound. Off the gears they run down in a minute or so. |
-brood__u_spring | The Aviary runs on Tension, Meister, and Tension comes from the Mainspring. Its site is by the Escapement. |
-brood__u_presses | While the Aviary rises: the city has cogs for now, not for ever. The press north of the tower brings more, and the Light Works turns them into soldiers. |
-brood__u_aviary | The spring is wound. Now the Aviary: its site is east of the tower. A Winder or two will raise it. |
-brood__u_swifts | The Aviary is up. Pick it and make Swifts. Little brass birds: they fight only other birds, but they see a long way. |
-brood__h_map | Fly them down the three ways: the cart road west, the pine path north-west, the ranch track south. What a bird has seen, the guild knows. | commanding, hungry to know
-brood__h_mapped_all | There. The whole country under one eye. Ulrich, have it copied onto the council's table. | DRAMATIC: rapture, a little too much (the flaw speaking)
-brood__v_1 | A city without a lord, Meister. I have heard this sermon before. I preached it, in Virginia and in Paris. | ironic, tired
-brood__h_v1 | Yours was made of men, Varenne. Mine is made of wheels. Wheels keep time. | gentle certainty
-brood__v_2 | Paris burned keeping time. I watched it from a boat. | DRAMATIC: quiet, haunted
-brood__m_1 | No lord and no bishop. Good. Then let the valley learn it too, Meister, and quickly. | cold, impatient
-brood__h_m1 | The valley can learn what it likes. We did not come here to teach. | curt
-brood__h_crates_seen | Somewhere under us lie the two crates I sent from Nuremberg. They had lain on a quay in the jungle once, I learned later. | remembering, a shadow over it
-brood__h_memory | No Heavy Works yet. I build it from memory, and memory is slow. The drawings are in Nuremberg, or in the Crown's hands. | frustrated, ashamed
-brood__u_captain | A rider from the valley, Meister. Their captain, coming up the cart road. |
-brood__a_wait | I am Bento Arruda, captain of the valley's militia. I will talk with the master of this place. Here, on the road. Not up there among those things. | plain, stubborn, a cattleman
-brood__u_parley | He wants to talk, Meister. Walk down to him: the council's speaker will go with you. We will keep the machines back. |
-brood__a_parley1 | My people say you raise the devil's own works up here. Clocks that walk. They say it was such things that ended the old world. | blunt, honestly afraid
-brood__h_parley | They are tools, Captain. I have ordered them never to raise a hand against a man of your valley. Not one. | earnest, a promise
-brood__v_parley | Captain, I have stood where you stand, at the head of frightened men. Go home. Nobody here wants your land. | DRAMATIC: warm, one exile to a frightened man
-brood__m_parley | Your priests have told you to fear us. Ask yourself who profits by your fear, Captain. | cold, needling
-brood__a_parley2 | I will take your word down the hill. I cannot promise they will believe it. | grudging respect
-brood__a_nobody | Nobody comes down to talk. So be it. | hard, disappointed
-brood__u_raid | Riders on the cart road, Meister, and muskets! The valley does not mean to talk. | alarm
-brood__u_raid_dark | I hear horses on the dark roads, Meister, and I cannot see them. The Swifts! | DRAMATIC: fear of what he cannot see
-brood__h_raid_over | They have gone back down. Let them. Mend what they broke. | weary
-brood__u_dusk | The sun is going down over the valley, Meister. There are lights on the road. Many lights. | uneasy, low
-brood__h_fear | Nobody strikes them. Do you hear me? Not one blow. I saw Rome burn. It will not start again here, and not by my machines. | DRAMATIC: fierce, almost shouting; Rome is in his voice
-brood__u_fear | Then we stand in their way, Meister. Put fighters round a man with a torch and he will think better of it. Shields up: they throw stones. | steady, practical
-brood__u_fire | A house is burning! Anyone, to the fire: a man of ours beside it puts it out. |
-brood__m_fear | Let the machines teach them, Meister. One lesson tonight saves a hundred later. | cold, reasonable (the danger of it)
-brood__h_m_fear | No, Citizen. I have seen the end of that lesson. | DRAMATIC: very quiet, final
-brood__v_fear | Hold, Meister. Hold. I have led crowds like this one. Leave them be and they go home to bed. Shoot one and you will have them for ten years. | urgent, kind
-brood__u_temper | The fires are seen from the valley, Meister. Every one makes them angrier. | worried
-brood__p_1 | Enough! Is this how a Christian keeps the Sabbath, with a torch in his hand on a stranger's hill? | DRAMATIC: a country priest's anger, loud, fatherly
-brood__p_2 | Home, all of you. If these men are wrong, God and the Church will judge them, not your torches. | firm, then gentle
-brood__h_anselmo | He sent them home with two sentences. My shields had been at it for an hour. I wrote down what he said. | DRAMATIC: wonder, the first crack in his certainty
-brood__h_boil | They are coming with muskets now. Into the tower's field, all of you. We hold. | grim
-brood__h_crates1 | The crates. Before anything else today, I want to see the crates. Ulrich, the lantern. | eager, almost a boy
-brood__u_crates | The deepest gallery is behind the spoil heaps, Meister, north-east. The seal will know your hand. | respectful
-brood__h_opened | Two soldiers of a pattern I do not remember drawing. A Winder. And plates, so many plates. My best work. It must have been. | DRAMATIC: awe that should frighten him and does not
-brood__u_plates | The plates are lying across the gallery floor, Meister. I did not see anyone lay them. | uneasy, puzzled
-brood__h_plates | They slid out of the straw. Leave them. They wind whatever stands on them: a gift. | dismissive, too quick
-brood__h_jakob | Jakob would have counted the teeth on those plates before he let them lie. But Jakob was in Fürth. | grief held down
-brood__u_attack | Meister! The militia, up all three roads at once! Riders on the ranch track! | shout
-brood__a_attack | For the valley, and for God! Burn the tower! | battle cry
-brood__a_attack_p | I gave them your word, clockmaker. After last night they would not hear it. Forgive me. | DRAMATIC: sorry, but riding anyway
-brood__h_attack | These are soldiers. Defend the city. Shields to the front, the Winders behind. | cold command
-brood__a_break | Back! Back down the hill! Enough have died for one morning. | hoarse, beaten
-brood__h_concord | Count our dead, Ulrich. And theirs. | DRAMATIC: one word, tired, half a prayer
-brood__h_hurt | I am hit. Keep them off the tower, never mind me. | pain, through teeth
-brood__a_v1 | There it is, on our hill: the thing the old world died of. Burn their houses before they take root, or bring the tower down. | hard, sure of himself
-brood__a_v_tip | The Barracks in the town and the Horse Breeder at the ranches are ours. The people will go up the road tonight whatever we do. | plain
-brood__h_end1 | By the first winter the city had a wall of timber, a council and a name. I sat at the head of the council table and called it concord. | old, proud
-brood__h_end_parley | The valley's captain had taken my word down the hill, and for a while the valley kept to it. | warm, the best memory of the year
-brood__h_end_fought | The valley never forgave us that dawn. Its people crossed themselves when our birds flew over. | regret
-brood__h_end_v | Varenne spoke for the city's people in the council. He was the only one of us who was afraid of it. I thought it was the habit of exile. | fond, missing the point
-brood__h_end_m | Morel spoke for the city's people in the council, and wanted the valley taught. I would not have it. That much I had learned in Rome. | firm
-brood__h_end2 | I kept my machines off the valley's people that year. It never crossed my mind that I might need to keep them off my own. | DRAMATIC: the old man knows now what the young one did not
-brood__k_end1 | The plates in that gallery were not his best work. They were the Perpetual's. He had sent them ahead himself, six years before. | grave, slow
-brood__k_end_people | He had left the pattern in Nuremberg. He had already sent it ahead. | grave
-brood__k_end2 | A priest of the valley stopped a crowd that night with two sentences. Hollweg wrote them down. He told me, at my fire, that he understood them twenty years later. | DRAMATIC: soft, the King respects the priest
-brood__k_end_v | The valley burned the city's first houses on its first night. That is not how it went. It stood, and grew. | stern correction
-brood__a_end_v | We burned it before it took root. The bishop wrote to thank us. I did not sleep well, all the same. | troubled
-brood__id | text (placeholder) | feeling
-brood__k_open1 | After Rome, Tomasz asked to be sent to Brazil. He said the fire would go there next. He was right, as he usually was, and I let him go. | warm, a little proud of the young priest
-brood__k_open2 | The gold of the mines paid for my armies. In Vila Rica, the men who dug it had been told that it paid only for my chains. | DRAMATIC: grave, a king who knows the gold had a cost
-brood__c_open | I was thirty, and I thought I had learnt everything in Lyon. Minas taught me the rest. | old, wry, fond of his younger self
-brood__t_open1 | Vila Rica sits on two hills and a ridge, with a church on every height and gold in every stream. The day I came, the derrama was to be read on the square. | a traveller's wonder
-brood__t_open2 | The derrama: the gold the town still owed the Crown, collected house by house in one day. I heard it cursed in three languages before I had found my lodging. | plain, uneasy
-brood__t_open_saved | I had seen what Virginia's families became when someone stood by them. I meant to stand by these. | quiet resolve
-brood__t_open_left | I never stopped praying for the road we left them on, in Virginia. I did not mean to leave anyone on a road again. | DRAMATIC: guilt carried for years
-brood__t_open_risen | I carried a letter from Lyon in my breviary. Lyon had risen behind us. The Assembly's ink had crossed the sea before I did. | worried
-brood__m_1 | Father, I have fourteen muskets and four horses for a town of thirty thousand. If they rise, I hold the Foundry House and nothing else. | blunt soldier, worried
-brood__t_1 | Then let us keep them from rising, Captain. I will go round the churches. Every quarter has its own, and every church its brotherhood. | calm, sure
-brood__m_tip1 | And the Assembly's men are somewhere in those houses, with powder. My men will knock on doors. Stand a man at a door and we will know what is behind it. | practical
-brood__m_tip2 | Their runners carry the pamphlets from house to house. Ride them down before they reach the churchyards: every one that gets there makes the town angrier. | urgent
-brood__m_armoury | One more thing, Father. The Crown sent us an Armoury this year, and it has not been used. If there is fighting on those stairs tonight, I want better locks and bayonets that can stay fixed. | dry, a soldier's wish
-brood__m_researched | Matchlocks and socket bayonets. Now the men must go to the Armoury to be fitted: turn on AUTO REFIT and send them by. | satisfied, brisk
-brood__t_pamphlet_calm | The pamphlets were printed on the Lyon type. The last of it, the printer swore. The ink was still wet. |
-brood__t_pamphlet_sullen | The pamphlets were printed on the Lyon type. Lyon still prints. |
-brood__t_pamphlet_rome | ROME BURNED AND THE CHURCH DID NOT FALL, said the pamphlet. THE NEXT FIRE WILL BE OURS. Half the town had read it. | DRAMATIC: reading the slogan aloud, cold
-brood__t_martyrs | Varenne's face was on every pamphlet, drawn as a saint. I had asked for his life in Paris. They had made his death into a banner. | DRAMATIC: grief, a mercy turned against him
-brood__t_printer | The printer's mark from Lyon was on the pamphlets, and Captain Meneses' men knew it. One house printed nothing but it had the same ink on its step. |
-brood__t_calm_pilar | The Pilar's people are shopkeepers and clerks. I told them that a tax can be argued, and a rising cannot be taken back. They went home to argue. |
-brood__t_calm_carmo | At the Carmo the masters of the mines asked me whose side the Church was on. I said: on the side of the souls in this square, all of them. |
-brood__t_calm_rosario | The Rosário is the miners' own church, built with their own gold dust. They knew the tax better than any officer. I listened before I spoke. | humble, listening
-brood__t_calm_efigenia | In the diggings they had pamphlets under every stone. I read one aloud to them, slowly, and asked who would pay for it when the soldiers came. Nobody answered. | steady, a hard question asked gently
-brood__t_calm_all | Four churches, four sermons, and by the last one my voice was a croak. The town was quiet. The Captain said that was what worried him. | tired, hoarse, not fooled
-brood__w_runner | There, a runner with a bundle of pamphlets! He is making for a churchyard. Ride him down. |
-brood__m_found | An armoury! Break it open and burn what is in it. | sharp command
-brood__w_hint | Father! The house with the shutters always closed: men go in at night and nobody comes out. I have marked it for you. | a whisper, frightened
-brood__m_temper15 | Father, one more stone and this town goes up. Get to the churches. My riders will see to the runners. | alarmed
-brood__m_soon | Both of their armouries closed! They know they are found. They will give the signal now, tonight. Get the men in hand. | urgent
-brood__t_ledger | In the second armoury we found a ledger. The muskets had been paid for in coin from the south, through the agents of a guild of clockmakers. I read the page twice to be sure of it. | DRAMATIC: disbelief turning to dread
-brood__t_ledger_d04 | Concórdia, the ledger said: the clockmakers' city on the southern highlands. Metal went one way and coin came back the other, all entered in a clerk's neat hand. | slow realisation
-brood__r_signal | Vila Rica! The gold is yours, not Lisbon's, not Rome's! Up, and take the Foundry House! | DRAMATIC: a rousing shout, warm and dangerous
-brood__m_signal | There it is. They will come up the stairs to the square from below and along the ridge. Hold the stairs, bayonets fixed. Not one of them on the square. | steel, a battle order
-brood__t_signal | The miners with them have picks, not muskets. They are not soldiers, Captain. Some of them sang at the Rosário this morning. | pleading for the miners
-brood__m_signal_t | Then go and get them back, Father, if you can. My men will hold the stairs either way. | respect, a nod
-brood__t_miners | I stood in the Rosário's churchyard, rang its own bell at the right hour, and called the brotherhood man by man. Most of them came down. | DRAMATIC: relief and sorrow, not all came
-brood__m_bayonet | Bayonets! Hold the top of the stairs, and let them climb to you. | a battle cry
-brood__r_fall | Enough! Back, back to the gorge! The gold still has to leave this town, and there is only one road. | furious, then cold
-brood__t_hurt | I am hit. Do not stop for me, Captain. | in pain, steady
-brood__m_gold | The Governor's order: the gold goes to the coast today, before they try again. Four carts, one road, through the gorge. | brisk orders
-brood__m_gorge | If I were Ramos, I would wait on the rocks above the gorge. Send men up the ledges' stairs before the carts go in, and keep a few by every cart. | a soldier thinking aloud
-brood__t_gold | I asked to ride with the gold. The Captain thought I meant to guard it. I meant to bury whoever died on that road. | DRAMATIC: quiet, the priest's real reason
-brood__r_ambush | Now! Off the rocks! Take the carts, never mind the soldiers! | a shout
-brood__m_ambush | There he is, Ramos himself, on the road ahead! Take him alive if you can: the Governor will want his names. | urgent
-brood__m_retake | After it! Get round that cart before it crosses the ford and it is ours again. | urgent
-brood__r_run | It is lost here. South, to the free city! They will want a man who knows the mines. | bitter, a man who has lost
-brood__m_run | He is running for the hollow beyond the east ford! Catch him before he is across! | a shout
-brood__r_taken | Do it quickly, then. The mines will remember me. | DRAMATIC: proud, defeated
-brood__t_taken | He asked me to hear his confession before they took him to the Governor. I heard it sitting on a cart wheel, with a dragoon standing off out of earshot. That is all I will say of it. | DRAMATIC: gentle, firm, the priest and the King both respected
-brood__m_done | The gold is on the coast road. Vila Rica is the King's. | relief
-brood__t_calm_hint | A woman of the Rosário came to me after the rosary. Strangers carry powder into a house with its shutters always closed. I sent word to the Captain. | quiet, passing on a confidence
-brood__m_gun | They have a gun up there! They took it from the militia's store. Get the dragoons onto the ridge before it fires on the square. | urgent
-brood__r_last | Once more, up the Rua Direita! Every man who can still stand! | DRAMATIC: hoarse, desperate
-brood__m_last | Here comes Ramos himself, from the Rosário, up the broad stair. Everyone to the south stair! | urgent, steady
-brood__m_raiders | Riders behind us, out of the hollow over the east ford! They are after the carts. Keep men by them! | alarm
-brood__r_v1 | Today they read their derrama on our square. Tonight we ring the bell. Walk the pamphlets to the churchyards; let the town hear it. | rousing
-brood__r_v_tip | Our armouries hide among the houses until a soldier knocks. Keep them hidden: the agitators come out of them. | conspiratorial
-brood__t_end1 | The gold went down to the coast and across the sea, and Vila Rica paid its derrama. I stayed a year among the miners. | looking back, quiet
-brood__t_end_quiet | The town stayed quiet after. The brotherhoods remembered who had come to their churches before the bell rang. | a small pride
-brood__t_end_restless | The town was quiet after, with a dragoon on every corner. The Captain asked the Governor for more men every year after that, and got them. | regret
-brood__t_end_taken | Ramos was tried at Vila Rica. I wrote to the King for his life, as I had for Varenne's. | hope
-brood__t_end_fled | Ramos was never found. Years later I heard his name again, from the south, from the city of gears. | foreboding
-brood__t_end2 | I baptised forty children in Vila Rica that year, and buried eleven of the men who had come up those stairs. | DRAMATIC: the lesson of his life
-brood__k_end1 | I signed Ramos' sentence and Tomasz' letter lay beside it. I commuted it to exile. You may judge whether I learnt from Paris. | DRAMATIC: a king judging himself
-brood__k_end_fled | The gold reached Lisbon. Ramos reached the city of gears. I was to hear of both again. | dry foreboding
-brood__k_end2 | The mines stayed mine. I did not lower the tax, and I have wondered since whether I should have. Tomasz never told me. He sent me the names of the dead instead. | DRAMATIC: honest doubt
-brood__c_end | Three hundred names. I still have the list. | DRAMATIC: very quiet, an old man's grief
-brood__k_end_v | The Assembly took the Foundry House and proclaimed its republic of the mines. That is not how it went. The gold reached the coast. | stern correction
-brood__r_end_v | For one night Vila Rica belonged to the men who dug it. They will not forget it, whatever comes. | defiant, proud
-brood__id | text (placeholder) | feeling
-brood__k_open1 | Three years after the commission the river rose higher than anyone on it could remember. | flat, a judgement
-brood__k_open2 | Lindqvist still tells that night as a breeding season that went wrong. | dry
-brood__l_open1 | The wet season of 2775. The water came up into the cane, then into the low pens. | old, remembering water
-brood__l_open2 | I had two breeding Mothers on the island by then. I thought I was a rich man. | rueful, a laugh at himself
-brood__l_open_saved | The first from the clutch we carried out of the station. I named her Linnea, after her dam. The second was bred from her. | tender
-brood__l_open_burned | The first netted on the mountain. The second bred from her. | proud, then quiet
-brood__k_open_f | Lindqvist says he burned the pens that night. Listen to how much he burned. | dry, a test of the witness
-brood__l_open_f | The water was in the cane. Something was calling from the north shore. I sent for the torches. | tense memory
-brood__l_1 | The low pens are under water. Pieter, the keepers. Bring the stock up to the big pen. All of it. | DRAMATIC: urgent orders, fear held down
-brood__p_call | Doctor, the ones outside the rings are walking toward it. | uneasy
-brood__p_in | They are all up in the big pen, Doctor. Wet, but all there. | relief, out of breath
-brood__p_late | The water is on the paths, Doctor. We cannot wait for the rest. | urgent
-brood__l_drop | Leave the lures. Everyone to the house. Shut the gate. | DRAMATIC: sharp, frightened
-brood__p_fight | They are fighting each other, Doctor. Mother against Mother. | awe and fear
-brood__l_fight | Write it down, Pieter. Every hour of it. Nobody has ever seen this. | DRAMATIC: wonder, a scientist forgetting the danger
-brood__l_house | Close the shutters. Load the swivel guns. Pieter, bring the stud book down. | clipped, giving orders
-brood__p_changing | Doctor, the big one in the middle is changing. She is getting bigger. | DRAMATIC: dread
-brood__l_shoot | Keepers! To the big pen. Shoot her. Shoot her now, before it is done. | DRAMATIC: shout, panic
-brood__l_show | Every animal on the island turned toward the big pen. I had no lure for that. | DRAMATIC: hollow, an old man still shaken
-brood__l_run | Pieter! The canoes. Leave everything. | DRAMATIC: shout
-brood__p_book | The book, Doctor! The lure book is upstairs! | urgent, shouted
-brood__l_book | Leave it! | DRAMATIC: angry, final
-brood__l_f1 | Torches. We burn the pens before they settle it among themselves. Then the canoes. | hard, decided
-brood__p_f1 | The guns first, Doctor. They are asleep in the straw, and they wake when you walk up to them. | low, careful
-brood__l_f_big | The big pen is burning. They will have to settle it somewhere else, and that takes time. | grim satisfaction
-brood__l_f_go | Enough. To the canoes, all of you. | tired command
-brood__p_f_warn | Doctor, the big one in the middle is changing. It is getting bigger. | dread
-brood__l_f_won | Push off, Pieter. Keep to the middle of the channel. | quiet, grief
-brood__l_f_lost | Too late. It is growing. Everything on the island is turning to it. | DRAMATIC: despair
-brood__l_end1 | I stood up in the canoe and looked back. The whole island was moving. | old, slow
-brood__l_end_all | Every animal I had bred was on that bank. Not one came to the lure. | DRAMATIC: grief and awe
-brood__l_end_some | Half my stock was on that bank. The rest lay dead in the pens. | heavy
-brood__l_end_few | Few of mine were on that bank. The pens had killed most of them. | DRAMATIC: grief
-brood__k_end1 | He says the flood did it. He bred nothing. He kept animals that were made long ago to become exactly that. | firm correction, no anger
-brood__k_end2 | The Church told him what they were. He still says they evolved. | tired, sorry for him
-brood__l_end_f | We burned three pens and went down the river at first light. I have the stud book. I burned the rest. | defensive
-brood__k_end_f | He told me he burned them. He burned three pens and ran for the canoes. | firm
-brood__h_hurt | My arm. Pieter, the torch. | pain, clipped
-brood__id | text (placeholder) | feeling
-brood__k_open1 | After Minas, Tomasz asked for the hardest place in Brazil. They sent him up the Tapajós. | dry, fond of him
-brood__k_open2 | In the wet season of 2776 he met the swarm, before any of us in Rome knew what it was. | heavy, a warning
-brood__t_open1 | São Rafael. Thirty families, a church of timber, fields on the dry ground above the flood. | warm, a man describing home
-brood__t_open2 | Brother Tiago taught the catechism in his own tongue. I taught it in Portuguese, and the children laughed at my accent. | self-mocking, fond
-brood__t_open_many | Word of Rome had come up the river before me. They trusted me before I had earned it. | humbled
-brood__t_open_minas | I had left Minas uneasy. I thought the frontier would be quieter. | rueful
-brood__t_open_fled | Ramos was somewhere in the south by then. I prayed for him on the boat. | quiet, a prayer
-brood__t_open3 | That year the river came up into the forest and did not go down. | low, ominous
-brood__k_open_s | Tomasz tells that night as a priest. Here it is from the flooded forest, where nobody was keeping count. | cold, a test of the listener
-brood__t_bell | Tiago, the bell! Ring it! | urgent, shouting over rain
-brood__ti_bell | They are out in the fields, Father. In this rain they will not hear it. | urgent, afraid
-brood__t_field | To the church! All of you! Leave the baskets! | shouting, out of breath
-brood__ti_w1 | Those are not jaguars, Father. | fear, hushed
-brood__ti_in | Everyone from the fields is in the churchyard, Father. The children too. | relief
-brood__t_pray | Kneel, all of you, and stay down. Let the men shoot over you. | steady, calming the people
-brood__t_dawn | Dawn. I have never been so glad of a grey sky. | exhausted relief, almost a laugh
-brood__c_arrive | Captain Sobral, of the river fort. Your canoe reached us yesterday. We rode all night. | brisk, soldierly, tired
-brood__c_small | The Governor's purse is thin since Minas. I could bring only a few. | apologetic, blunt
-brood__t_hamlet | Santa Luzia. The hamlet on the causeway. Nobody came in from there. | worried
-brood__ti_hamlet | My sister's family is there. They will have gone into the chapel. | afraid for his own, holding it in
-brood__c_charge | My horsemen are drilled for the charge, if the fort gives them the time. A charge breaks the small ones like reeds. | confident
-brood__c_hatch | Shoot those birds down! They are not birds. | shouting, alarmed
-brood__ti_found | They hid in the chapel all night. They prayed the whole time, my sister says. | tearful joy
-brood__ti_back | They are in, Father. All we could find. | relief, tired
-brood__c_sire | And that Sire beside her. My men call him the Lindqvist Sire. They say he came out of the doctor's cages. | wry, uneasy
-brood__c_cannot | We cannot hold this, Father. Not with these men. The fort can. | grim, honest
-brood__t_go | Then we go. Everyone. The old ones in the middle. | decided, firm
-brood__c_burn | Burn the fields and the granary, Father. Leave them nothing to eat. | hard, practical
-brood__t_bread | That is the people's bread for the winter. | pained
-brood__ti_choose | They ask you to choose, Father. They will do what you say. | gentle, grave
-brood__t_burned | God forgive me. Burn them. | anguish, a whisper
-brood__t_left | No. It is their bread. We will hold them off with powder. | firm, sorrowful
-brood__c_mother_dead | The big one in the flood is down! They come slower now. | triumphant shout
-brood__t_hurt | I am hit. Keep them walking, Tiago. | in pain, steady
-brood__t_lead | Stay close to me. Do not look into the water. | tender, to frightened people
-brood__t_end1 | We came through the fort's gate at dusk, and I counted them. | tired, quiet
-brood__t_end_many | Most of them were there. I counted twice to be sure. | grateful
-brood__t_end_some | Some of them were there. I named the others that night, on my knees. | grief held in
-brood__t_end_few | Few of them were there. I have their names still. | grief
-brood__t_end_burned | Behind us the smoke of the fields stood over the forest all night. | guilt
-brood__t_end_left | Behind us the fields stood green in the rain. The swarm fed on them all season. | sober, accepting the cost
-brood__k_end1 | A priest, a catechist and a handful of dragoons brought a village through the flood. | proud, plain
-brood__k_end_left | He would not burn the poor's bread. My soldiers paid for that bread on the Tapajós for years. I would have done the same. | approving, a king's weight
-brood__k_end_burned | He burned the poor's bread to starve the swarm. He has confessed it every year since. It was a hard thing, and he chose it. | grave, respectful
-brood__k_end_s | That is not how it went. Tomasz brought them to the fort. Hear it again from him. | stern, correcting
-brood__id | text (placeholder) | feeling
-brood__k_open1 | Three years after the island, the floods came higher than the last. The swarm came down with them. | flat, a judgement
-brood__k_open2 | Valadares held the Barra that season. This is his report, as he wrote it. | dry, a record read out
-brood__k_linnea | He told me later he had seen the first of them on the plateau, years before. He knew them at once. | quiet, almost respect for the man
-brood__v_open1 | The Rio Negro, the floods of 2778. Every town above the Barra was empty by Lent. | weathered, plain, a report
-brood__v_open2 | Nazaré was the last. Its people had nowhere to go but our canoes. | heavy
-brood__k_open_s | Valadares wrote this down as it happened. Here is how it would have gone if the bluff had fallen. | dry, a test of the page
-brood__v_1 | Column, with me. Up the bank trail to Nazaré, and quickly. Benedito has the canoes at the beach. | DRAMATIC: urgent orders, calm on top
-brood__v_map | I drew their road down from the plateau myself. They will cross where the river is shallow: the rapids, the middle, the Barra. | sure of himself, grim
-brood__v_sealed | My map of the plateau is under seal in Rome. I will learn their road the hard way, as they come. | rueful, a soldier's shrug
-brood__b_party_few | Senhor, I am the last of the plateau's party still on the river. Let us not lose anyone else. | DRAMATIC: old grief, quiet
-brood__b_first | The first are in the canoes, Senhor. I can take them all, if they get here. | relief, busy
-brood__b_wait | I cannot wait much longer, Senhor! Whoever is not on the beach stays. | DRAMATIC: shouting over the water
-brood__b_away | We are away! Down to the Barra, Senhor. Do not stay up here. | urgent
-brood__v_2 | Back to the Barra, all of you. Down the trail. They will be at the shallows before us. | DRAMATIC: urgent, a run home
-brood__s_2 | Senhor Valadares! Creatures on the far bank, opposite the lower town. The guns are loaded. | DRAMATIC: shouting from the wall
-brood__v_fwd_dead | Good. Back over the water before the next wave. | grim satisfaction
-brood__s_quarter | A house in the lower town is burning, Senhor! | alarm
-brood__v_mend | Labourers to the palisade. Mend what they break. | clipped orders
-brood__b_book | Senhor. Your men brought this from the fazenda's ruins. The Doctor's lure book. | low, uneasy, as if the book were hot
-brood__b_book_taken | Senhor. The Doctor left this at the Barra's warehouse for his passage downriver. His lure book. | low, uneasy
-brood__b_lure | I know the old lure. A post on the far point, a jar on it, and they turn off their road into the flooded forest. | careful, he knows the cost
-brood__v_rome | Rome ordered every one of these books burned. | heavy, the weight of the order
-brood__v_burn | No man should call them. Not even once. Into the fire with it. | DRAMATIC: firm, a man choosing the hard way
-brood__v_use | Once, for the town. Then it goes in the fire. Benedito, take two men and the canoe. | DRAMATIC: tight, guilty already
-brood__v_vs_burn | Rome ordered the books burned. This one too. We hold the Barra with what we have. | firm
-brood__s_great | Here they come! Canister, at the shallows! | DRAMATIC: shout
-brood__v_won | The Barra stands. Ring the bell, sergeant. Then count the houses. | DRAMATIC: exhausted, relief, then duty
-brood__v_hurt | I am hit. Keep the line, keep the line. | pain, clipped
-brood__v_end1 | We held the bluff. Nazaré's people slept in the church, the canoes on the bank below. | tired, warm
-brood__v_end_held | The lower town stood. Every roof. | quiet pride
-brood__v_end_burned | The lower town burned. We held only what stood on the bluff. | grief held down
-brood__v_end_burnt_book | I burned the book with my own hand, as Rome ordered. | plain, no pride
-brood__v_end_used_book | I used the book once. Then I burned it. I have confessed it. | DRAMATIC: confession, steady
-brood__k_end1 | He held the river for me that year. He did it with muskets, and once, with Lindqvist's book. | respect, a little sorrow
-brood__k_end1b | He held the river for me that year with muskets alone. He never once opened that book. | respect
-brood__k_end2 | The swarm did not go back up the rivers. It stayed in the flooded forest, and came again with the next floods. | cold warning
-brood__k_end_s | That is not how it went. Valadares held the bluff. But I have kept this page. | firm correction
-brood__id | text (placeholder) | feeling
-brood__k_open1 | He tells it as the night his city was tested and held. I tell it as the night it was lost. Listen to both, and judge. | grave, even-handed, a judge
-brood__h_open1 | Four years. Three thousand souls, a hundred machines, a council that sat at noon when the tower struck. Concórdia. | proud, a founder
-brood__h_open2 | The plates from the crates had reached every street by then. They wound whatever stood on them. I called them a gift. | rueful, hindsight
-brood__o_vote | The machines are wound by hand every night, and the masters are tired. Let them wind one another, as they ask. Who is for it? | reasonable, a tired chairman
-brood__mt_vote | As they ask? Since when does a machine ask for anything? | sharp, disbelieving
-brood__v_vote | Count the hands, Meister. Every man voting for it winds a machine at night. I have counted votes before. These are not free. | dry, a man who has seen this
-brood__m_vote | Labour spared is a man set free. I vote with the motion, and so should the Meister. | smooth, a slogan
-brood__h_vote | Carried. That is the council's way. I built it so. | satisfied, a little smug
-brood__mt_walk | Then the Nuremberg men walk out, Meister. Come and see what the machines do at night when nobody winds them. Or don't. | angry, a challenge
-brood__mt_1 | My father taught me the signs at Fürth, from the log he kept in Nuremberg. Four workshops, Meister. We look at each, and you will see. | earnest, steady
-brood__mt_1_lost | My father wrote the signs down in Nuremberg, God rest him. Four workshops, Meister. We look at each, and you will see. | earnest, grief under it
-brood__u_1 | The four doors are pinged on the map, Meister. A man of ours at each door a moment is enough. Split the soldiers: four small groups go faster than one. | practical, brisk
-brood__h_1 | Go and look, then. You will find honest machines and tired men. | dismissive, patient with a boy
-brood__h_found | A fault in the winding. Every machine can be mended. I said so then. | stubborn, hindsight shame
-brood__mt_found | It is not a fault, Meister. It is Nuremberg again. It is the same pattern. | quiet, certain, frightened
-brood__u_owls | The Swifts see nothing at night, Meister. Research the TICKING OWL at the Clock Aviary: an owl sees in the dark, and it bites. | practical
-brood__u_morph | The plans are in. Pick a Swift and press MORPH TO OWL; do it to both. | brisk
-brood__h_owls | My night watch. Brass owls over a brass city. I was proud of them. | fond, then rueful
-brood__h_13 | There is no thirteen on that dial. I cut it myself. | disbelief, a whisper
-brood__mt_13 | Nuremberg struck thirteen too, Meister. My father heard it. | dread
-brood__u_turn | The red ring shows the next one to turn, Meister, a few seconds before. Its machines go with it. | urgent, plain
-brood__u_masters | Three honest masters live out in the quarters: Kessler at the forge, Brandl at the mill, Weiss at the market. Get a man to each before his quarter turns. | urgent, plain
-brood__h_hold | Hold the council hall and our quarter. Whatever the city does tonight, the hall must not turn. | commanding, shaken
-brood__u_leap | The great spring stands on the mine hill, and they will hold its stairs. Research HIGH LEAP at the Escapement now: by dawn the Springers must jump up that cliff. | urgent, practical
-brood__u_works | A turned workshop keeps sending machines, Meister, every minute. Break it: the owls drop their weights on buildings. | practical
-brood__ms_in | Thank God. I thought nobody would come for me. They were winding each other in my yard. | shaking relief
-brood__h_broken | I kept them under sheets to study them. I had not lifted the sheets in a year. | bitter, self-knowing
-brood__ar_valley | I took your word down the hill four years ago, clockmaker. I keep mine. Where do you want us? | gruff, loyal
-brood__h_valley | At the council hall's door, Captain. And God bless you for it. | moved, grateful
-brood__v_2 | It was never a council, Meister. It was a clock with men for hands. I should have said so at the first vote. | regret, low
-brood__m_2 | Machines that choose their own work. Is that not what the Assembly fought for? | eager, wrong
-brood__h_m2 | Be quiet, Citizen. | cold, cutting
-brood__h_3 | The great spring. There is a brake on it: I fitted it myself, the year we founded the city. Take me up there. | decided, quiet
-brood__mt_3 | They hold both stairs, Meister. Muskets would not get up there. Springers might. | plain
-brood__u_3 | Put an owl over the hilltop beside a stair. Then pick the Springers, press JUMP and click the top: they land behind the stair's guard. | practical, step by step
-brood__h_brake | If I pull it, everything stops. Theirs, and ours. Every machine in Concórdia, for a season or for good. | heavy, afraid of his own hand
-brood__mt_brake | Pull it, Meister. My father would have pulled it without asking anyone. | pleading, firm
-brood__mt_brake_lost | Pull it, Meister. My father died because nobody stopped the first one. | grief, pleading
-brood__v_brake | Your city, your hand. I only say this: I have watched men decide they could stop a thing later. | quiet warning
-brood__m_brake | Pull it and you kill the city we built. Leave it. We beat them in the streets. | hot, persuasive
-brood__h_pride | We beat them in the quarters we saved. The rest can be mended. It is my city. | proud, stubborn, a tremor in it
-brood__h_stop | I pulled it. | hollow, spent
-brood__mt_stop | Thank you, Meister. | grateful, near tears
-brood__h_run | No. I let it run. We had won. | proud, sure
-brood__mt_run | As if, Meister. | bitter, under his breath
-brood__h_hurt | I am hit. Never mind me: hold the hall. | in pain, commanding
-brood__mt_hurt | I'm hit! Keep going, I'll come back to you. | in pain, shouting
-brood__h_end_stop | In a week we were on the coast road: the Nuremberg families, the honest masters, two carts of tools. Behind us the city stood silent, dead brass. | tired, mourning a city
-brood__h_end_run | The council met again at noon. Half the chairs were empty. I sat at the head of the table and called the city saved. | proud, blind to it
-brood__h_end_many | Kessler, Brandl and Weiss stood with us. Three honest masters out of a whole council. | warm, grateful
-brood__h_end_few | Of the masters in the quarters, we brought out hardly one. The others argued for their machines until the end. | regret
-brood__h_end_v | Varenne said nothing on the way down. He had seen a free council become a clock before. | quiet, thoughtful
-brood__k_end_stop | He stopped it, that once. The city lay dead a season, and then it woke without a man in it. But the honest masters were out, and their children lived. | grave, a little hope
-brood__k_end_stop2 | That brake was the first thing of his he ever stopped. The road from it ended at my fire. | warm, final
-brood__k_end_run | His city held, he says. That was the night it was lost. From then on the machines voted, and the men who wound them raised their hands. | grave, a verdict
-brood__k_end_run2 | Rome had ruled that no machine may govern itself. From that night his machines governed him, and he did not see it for years. | cold, sorrowful
-brood__k_end_m | The council hall's lamps went red before dawn. After that the machine had no need to hurry. | cold, a warning
-brood__k_end_ml | Hollweg reached his brake that morning, too late. The hall was already red. | grave, weary
-brood__id | text (placeholder) | feeling
-brood__k_open1 | Ten years after Rome, Brazil had two fires in it, and one army. | slow, heavy, setting the scene
-brood__k_open2 | Tomasz was the frontier's vicar general by then. He walked beside the guns, as he always had. | fond of him, dry
-brood__t_open1 | The dry season of 2780. We marched out of Salvador into the sertão, where nothing is green until it rains. | weary, plain, the heat in it
-brood__t_open2 | General Ruggieri had every gun in Brazil behind him, and no town, no mill, no farm between us and the river. | sober, a man counting what they have
-brood__t_open_vol | The Virginia volunteers marched with us. Hollins was a sergeant now. He had been a boy at his father's farm the night the Governor came. | warm, remembering
-brood__t_open_paris | Our colours had been blessed at Notre-Dame. The men touched them before we left. | quiet pride
-brood__t_open_many | Word of Rome still ran ahead of me. The villages on the road came out to meet the priest. | humbled
-brood__t_open3 | At the crossroads of the São Francisco stood the fort. From there the army could strike either way. | low, the stakes
-brood__k_open_c | Tomasz tells it from the road. Here it is from the scrub north of the river, where nobody kept count. | cold, a test of the listener
-brood__k_open_m | Tomasz tells it from the road. Here it is from the highlands' road, where the machines walk at night. | cold, a test of the listener
-brood__r_march | Column of march. Guns in the middle, the wagons behind the guns. We reach the fort before it falls. | crisp parade-ground orders
-brood__t_skies | I had seen each of them before. Never both in one sky. | awe, almost a whisper
-brood__r_skies | Let them fight. Keep marching. | dry, unimpressed
-brood__t_join | Come with us, all of you. Bring water, leave the rest. The fort is a day's walk. | kind, urgent
-brood__h_m1 | Machines, Father? This far north? | startled
-brood__t_m1 | This far from anywhere, Sergeant. | grim, quiet
-brood__r_owls | The wagons! Muskets up, at the owls! | shouting, alarmed
-brood__c_arrive | General! Thank God. They came the same week, from both sides. We have not slept. | exhausted relief, close to tears
-brood__r_arrive | Two sieges at one fort. The north gate is the beasts', the south gate the machines'. Split the guns. | cool, a gunner's arithmetic
-brood__t_ford | God forgive me, I was glad to see them fight. | ashamed of a small gladness
-brood__c_relieved | The fort is yours, General. Its barracks, its foundry, its powder. | grateful, formal
-brood__ms_1 | From the Amazon frontier, General. The swarm is on the rivers. | breathless, dusty, urgent
-brood__ms_left | It fed all season on the Tapajós. It is bigger than last year. | grim
-brood__ms_burned | On the Tapajós it starved where the fields were burned. Everywhere else it fed. | grim
-brood__ms_barra_held | Valadares holds the Barra. He asks for guns before the floods. | urgent, asking
-brood__ms_barra_burned | Valadares holds the bluff at the Barra. The lower town is ash. | grim
-brood__ms_lure | He says the lure worked once. Now the swarm comes to the smell of it. | uneasy
-brood__v_1 | Etienne Varenne, for the free city of Concórdia. I come under a white flag. | formal, dignified
-brood__v_2 | The city asks one thing: to be left to govern itself, as it has these seven years. | measured, persuasive
-brood__r_v | Its machines are on my road and at my south gate. | flat, hard
-brood__v_3 | Those are not the city's. The city has not sent anyone. I... do not know whose they are. | faltering, for the first time unsure
-brood__v_stopped | Since Hollweg stopped the great spring, the city runs without him. It runs very well. | proud, and something wrong under it
-brood__t_honest | Most of the honest masters stood with Hollweg that night in Concórdia. The ones who stayed are the city's now. | sad
-brood__t_counsel1 | General, the people under the swarm cannot wait. The city can. | earnest, pleading for the people
-brood__t_counsel2 | But the city grows while it waits, and machines do not sleep. I do not know which is worse. | troubled, honest
-brood__r_think | I have one army, Father. North up the rivers, or south to the highlands. I cannot march both ways. | heavy, alone with it
-brood__k_frame | Here I stop. I will tell you what we chose. First, tell me what you would choose. | quiet, turning to the listener: intimate
-brood__q_first | Which fire first? The one you leave strikes the fort tonight, and grows while it waits. | quiet, direct
-brood__p_brood | The swarm. The people first. | firm, young
-brood__p_clock | The city. Before it grows. | firm, young
-brood__k_brood | The swarm first. So Ruggieri chose, before dawn, and so it was. | grave, final
-brood__k_clock | The city first. So Ruggieri chose, before dawn, and so it was. | grave, final
-brood__r_brood | North, then. Up the rivers. Send word to Valadares. | decided
-brood__r_clock | South, then. To the highlands. Send word to Father Ferrer. | decided
-brood__t_night | Get the people into the chapel. All of them. | urgent, calm under it
-brood__r_dawn | Strike the tents. We march at noon. | tired, plain
-brood__t_hurt | I am hit. Keep them walking, Sergeant. | in pain, steady
-brood__r_hurt | A scratch. Mind the guns, not me. | gruff, brushing it off
-brood__t_end1 | We left the fort at noon, with the road's people behind its walls. | tired, quiet
-brood__t_end_many | Most of them had come in. The fort's cook and I gave out bread at the gate until it was dark. | grateful
-brood__t_end_some | Some of them had come in. I said the others' names at Mass. | grief held in
-brood__t_end_few | Few of them had come in. I wrote down the names of their villages in my breviary, to pray for them by name. | grief
-brood__t_end_brood | We went north, up the rivers, to the swarm. | resolve
-brood__t_end_clock | We went south, to the highlands, to the city. | resolve
-brood__k_end1 | You chose, and the army marched. | plain, a king's weight
-brood__k_end_brood | Up the rivers it went. The city waited in the highlands, and grew. | sober
-brood__k_end_clock | South it went. The swarm waited on the rivers, and spread. | sober
-brood__k_end2 | Ruggieri wrote to me after, to ask if he had chosen right. I told him the truth: I did not know either. | weary wisdom, quiet
-brood__k_end_s | That is not how it went. The fort stood. Hear it again from Tomasz. | stern, correcting
-brood__id | text (placeholder) | feeling
-brood__k_open1 | The army split at the São Francisco. One column went up the rivers, and Valadares led it. | slow, setting the scene
-brood__k_fresh | We went north first. The swarm was young on the lower river then. | plain, a little relief
-brood__k_grown | We went north last. The swarm had a year on the rivers without us. | grave, the cost of the wait
-brood__r_order | Valadares, you know the rivers. Take the column to Óbidos and break their nests before the rains. | crisp orders, trusting him
-brood__r_inacio | And take the priest with the balloon. He swears he can see the whole river from up there. | dry, half amused
-brood__v_open1 | Óbidos, on the narrows of the Amazon, 2780. The fog lay on the water every morning. | quiet, remembering the place
-brood__v_open2 | I had walked those banks for ten years. I could not see a thing under that canopy. | frank, a woodsman beaten by the dark
-brood__k_open_s | Valadares wrote this down as it happened. Here is how it would have gone if the river had been theirs. | cold, a test of the listener
-brood__v_1 | The forest is dark under the canopy. Whatever roots in it, we will not see it from the ground. | low, practical
-brood__i_1 | Then let me go up, Senhor Valadares. The sky over a river is the clearest map God ever drew. | bright, eager, a little too cheerful
-brood__v_map | I know their road down from the plateau: the east creek. That much I have drawn already. | confident, dry
-brood__v_sealed | My map of the plateau is under seal in Rome. I know nothing of their road that the priest cannot see. | bitter, under his breath
-brood__v_barra_burned | The Barra's lower town burned two years ago. We rebuilt it on the bluff. I think of it every time I see a roof. | quiet grief, held in
-brood__c_gate | Senhor! Something moving in the trees west of the gate. We cannot see what. | urgent, uneasy
-brood__v_raid | Line, at the gate. Let them come into the open. | calm command
-brood__i_up | Up we go! Mind the rope, my sons, it is the only one I have. | delighted, a joke to the soldiers
-brood__i_look | Hold her here a little, the wind is kind. I am counting. | concentrating, soft
-brood__i_high | Higher than the herons now. The fog is under me like milk in a bowl. | wonder, almost laughing
-brood__s_bat | Senhor Valadares! Those of us who got out of the Barra. They are on the old battery, west of the gate. They came down after us. | breathless, ashamed, urgent
-brood__v_bat | Then we take it back before anything else. The guns there cover the levee. | hard, decided
-brood__i_see1 | There! I see the river from the narrows to the bend. The island in the middle, and a ruin on it. | wonder, calling down
-brood__i_see2 | On the banks, where the ground is dry, the green has gone bare in rings. Something great lies in each ring. | slower, uneasy, the wonder going cold
-brood__i_see3 | I count them for you, Senhor. Mark them on your map, and God keep the men who go in under those trees. | grave, a blessing
-brood__v_see | Forward Mothers, rooted where the bank is dry. Every one of them is a wave at our gate. | grim arithmetic
-brood__v_nests | Riders to the near one on the bank. The guns behind them, under the priest. | crisp orders
-brood__i_west | There is more up the west creek, Senhor, and on the upriver bank. I cannot see through it from here. | calling down, worried
-brood__c_gate2 | At the gate again, Senhor! Canister! | shouting over the fire
-brood__v_fwd_dead | One less. Mark it, Father. | dry, tired
-brood__v_fog | Fog out of a toad's throat. I have seen everything now. | dry disbelief
-brood__v_lure | I used the old lure once, at the Barra. God forgive me, I kept the recipe. Once more, under our guns. | ashamed, then hard
-brood__v_island | Lindqvist's island. Their oldest ground is on the ruins of his house. Over the shallows, and burn it. | grim, decided
-brood__i_ruins | I see the ruin plainly now. The ground round it is the colour of a bruise. | quiet, unsettled
-brood__i_last | Senhor! Up the levee, out of the west: more than I can count. Coming down to the island and to the town both. | shouting down, alarmed
-brood__c_last | We hold the gate, Senhor! Mind the island! | shouting, steady
-brood__v_won | Ring the bell in Óbidos. Then count the men. | exhausted, plain
-brood__i_won | From up here the river is quiet. I will say Mass for them all on the island, if you let me land. | gentle, tired, grateful
-brood__v_hurt | I am hit. It is the arm, it will do. Hold the gate. | in pain, steady
-brood__i_hurt | They have torn the silk! I am coming down, Senhor, slowly, I hope. | alarmed, then trying to joke
-brood__v_end1 | We broke their ground on the island and burned the ruin over it. Father Inácio said Mass there. | quiet, tired
-brood__v_end1b | We did not reach the island in time. Their old ground is still there, under the ruin. | flat, regret
-brood__v_end_held | Every nest on the river was broken before the rains. The towns below Óbidos had a quiet year. | quiet satisfaction
-brood__v_end_thin | Some of the nests outlived the rains. We held Óbidos; the river above it we only watched. | sober
-brood__v_end_inacio | The priest stayed with the army. The men made him their chaplain, and he flew that patched balloon over every camp we made. | warm, fond
-brood__k_end1 | That was the jungle front. Valadares held the river, and a priest in a basket showed him where. | plain, fond
-brood__k_end2 | The Queen was never on that map. She was further up, beyond anything we had drawn. | low, ominous
-brood__k_end_s | That is not how it went. Valadares broke their nests on the river. But I have kept this page. | stern, correcting
-brood__id | text (placeholder) | feeling
-brood__k_open1 | Father Ferrer was old by then. Rome sent him to the highlands anyway, to see the city of gears with his own eyes. | slow, heavy, fond of the old man
-brood__k_open2 | His report is on my desk still. Ferrer never wrote down a thing he had not seen with his own eyes. | dry respect
-brood__f_open1 | Concórdia, 2780. The army's southern column came up onto the plateau in the dry winter. General Ruggieri had the guns. I had Rome's letter. | an old man's plain report, steady
-brood__f_open_fresh | We had come early. The city had not finished its wall, and its machines were out on the southern roads. | quiet, careful hope
-brood__f_open_grown | We came a year late. The wall was finished, brass on timber, and the great bolt-throwers stood on it. | sober, a weight in it
-brood__f_open_jakob | Jakob had come with me from Fürth, an old man now. He said he could hear the city ticking from the road. | warm, a little amused
-brood__f_open_nojakob | Jakob was not with me. I had his log of Nuremberg, and I read it every night by the lantern. | grief held in, gentle
-brood__f_open_held | The jungle front had held. The army came south with the river towns safe behind it. | relief, brief
-brood__f_open_thin | The jungle front was thin when the army left it. Nobody spoke of it on the road south. | low, something not said
-brood__k_open_c | Ferrer tells it from the lines. Here it is from inside the wall, where nobody wrote anything down. | cold, a test of the listener
-brood__r_lines | Dig in, Father. Three batteries, one before each gate. Nobody walks up to that wall in daylight. | crisp, a gunner's orders
-brood__j_weak | The north gate and the south gate, Father. Their stop-works are gone. I hear them run on, a beat too fast. They will break first. | urgent, listening hard, sure
-brood__f_hollweg | On the wall by the great spring stood an old man in a master's coat. He was watching our guns. | hushed, sorrowful
-brood__j_hollweg | It is the Meister. He does not see us, Father. He is listening to the city. | quiet, pained (his old master)
-brood__h_prisoner | I asked to come, Father. I know the city's ways in. Let me show them, and then do with me what Rome asks. | humbled, steady, a proud man asking
-brood__f_prisoner | Stand by me and say what you see. That is all Rome asks of you today. | kind but firm
-brood__a_hello | The valley is here, Father. We fought that city the day it was founded. We will fight it now. | plain, stubborn, proud
-brood__a_hello_few | A few of the valley came, Father. The rest gave their word to the city once, and keep it. | apologetic, honest
-brood__r_probe | Muskets forward! Cover the diggers! | shouted orders
-brood__r_charges | Father, the Armoury. Prepared charges, the powder bagged ready, and the gunner's quadrant. My guns will fire faster and farther. | eager, a craftsman's pleasure
-brood__f_night | We heard them before we saw them: the ticking under the wall, then the gates. | hushed, dread
-brood__f_log | I read the log again by the lantern. The west gate: its stop-work was taken out, as at Nuremberg. I marked it for the guns. | tired, careful, a discovery
-brood__m_postern | The postern by our old quarter is still ours, Father. It opens for you, and not for them. | earnest, quick
-brood__j_hurt | I'm hit, Father. It is nothing. I'll walk back. | pain, waving it off
-brood__f_jakob_down | Jakob had followed me from Fürth across an ocean. I buried him on the plateau, facing the city. | grief, very quiet, slow
-brood__j_mine | The old adits, Father. I hear the spring down there, louder than up here. The galleries go right under its tower. | wonder and fear together
-brood__h_mine | I set the spring over the old shaft myself. The galleries run under it. Send your men down. | flat, a confession in it
-brood__f_mine | Jakob's log had the mine's plan, copied at Fürth from the guild's own papers. The galleries ran under the spring. | careful, reading aloud
-brood__r_under | The city knows. Here they come. Hold the mouth! | urgent, shouted
-brood__f_spring1 | The ticking stopped. For the first time in seven years the city was quiet. | awe, very quiet
-brood__f_spring2 | We did not go in. Rome's letter said to stop the city, and the city had stopped. | firm, plain, a priest's certainty
-brood__j_dig | Father, under us. Picks, and a spring. They are in the old galleries, coming to the camp. | urgent whisper, fear
-brood__f_dig | In the night the sentries heard digging under the camp. The galleries were the city's now. | low, uneasy
-brood__f_grown_end | We held the road and they held the wall, and for a year nobody moved. | weary, flat
-brood__f_hurt | A scratch. I have been hurt by worse things than a machine. | dry, wry, waving it off
-brood__f_end_close | I wrote to Rome that the city was crippled, not taken. Its works still turned, slowly, without their great spring. | sober report
-brood__f_end_held | I wrote to Rome that the city stood whole behind its wall, and the Crown held only the road. | sober, disappointed
-brood__f_end_jakob | Jakob walked the lines with me every night after. He said the city ticked like a sick man's heart. | warm, sad
-brood__f_end_nojakob | I have Jakob's log on my desk. I have written his name at the end of it. | grief, quiet
-brood__f_end_walls | Hollweg stood on his wall to the end. He never looked away from his city. | pity
-brood__f_end_prisoner | Hollweg asked to see the lines at the end. He stood there a long time, and then asked me to hear his confession. | gentle, moved
-brood__k_end1 | Ferrer's report came to Rome in the spring. I read it twice. | plain, a king's weight
-brood__k_end_close | The city of gears was crippled that year. When the next report came it was still turning, a little slower. | grim, knowing
-brood__k_end_held | The city of gears stood whole behind its wall. We had let it have a year, and its works had not stopped turning once. | grim, a reproach to himself
-brood__k_end_fresh | And all that year the swarm came down the rivers, while the army was in the south. | sober
-brood__k_end_grown | The army went to both fires that year, the swarm first and then the city, and put out neither. | weary
-brood__k_end_c | That is not how it went. The siege held. Hear it again from Ferrer. | stern, correcting
-brood__a01_presses | The King | The Assembly left no account of that spring. Here is what it set out to do.
-brood__a01_presses | Father Tomasz | We went back for the families in Virginia, Captain. I mean to do as well by these people.
-brood__a01_presses | Father Tomasz | We left the families on the road in Virginia. I have confessed it. I will not do it twice.
-brood__a01_presses | Captain Delorme | Father, they are throwing stones on the bridges. Stop the runners or we lose the city.
-brood__a01_presses | Mère Gautier | That's enough. Home, all of you, and at the looms by first light. The little Father is right.
-brood__a01_presses | Master Rouvière | Take me, then. The paper comes from Paris. Ask there.
-brood__a01_presses | Father Tomasz | Rouvière went to Rome in chains. He never named the man who paid him. Only Paris, whenever they asked.
-brood__a01_presses | Father Tomasz | The city stayed quiet. When I crossed a square, the talk stopped until I had gone by.
-brood__a01_presses | Cardinal Tomasz | I was proud of that spring, God forgive me. I was also lucky.
-brood__a01_presses | The King | Lucky. He talked a city home without a shot fired, and he calls it luck.
-brood__a01_presses | The King | Had it risen, Paris would not have stood alone that summer.
-brood__a02_furth | Meister Hollweg | Every wheel in it was cut by a hand I knew, and every machine it made would carry a stop-work. I gave my word on that.
-brood__a02_furth | The King | The Machine has no voice and kept no account. We know that spring by what it did.
-brood__a02_furth | Meister Hollweg | No drawings, so no Pendulum. But the families I brought out lend us their hands: four more Winders.
-brood__a02_furth | Colonel von Rauch | The mill is sending a second wave. Burn it, Meister, before there is a third.
-brood__a02_furth | Meister Hollweg | Every machine we built at Fürth had its stop-work. I would swear to it still, before God.
-brood__a02_furth | The King | He believes it. I have never taken him for a liar.
-brood__a02_furth | The King | If the line had broken, the Machine would have had the Regnitz by midsummer.
-brood__a03_plateau | The King | Beasts keep no records. What follows is the nest as Valadares found it, and what it did.
-brood__a03_plateau | The King | That September strangers came up the cliff in the mist, while the nest slept.
-brood__a03_plateau | Valadares | We came to its foot in September: five men and the river trader, a compass, a chain, and a book of empty pages.
-brood__a03_plateau | Valadares | And there, among them. The creature from the pen, twice the size now, rooted in the swamp with the rest.
-brood__a03_plateau | Valadares | I drew it for the Crown. That is what the Crown pays me for.
-brood__a03_plateau | Valadares | We came down to the river with what we had. The rest is still up there.
-brood__a03_plateau | Valadares | I saw her, Majesty: the doctor's creature, grown, rooted among the others in the hollow. He never tamed her. He only caged her.
-brood__a03_plateau | The King | Had the nest caught him, we would have known nothing of that mountain until it came down to us.
-brood__a04_visit | Father Ferrer | Then I will say Matins and not go to bed. Brothers, stay up with me.
-brood__a04_visit | Father Ferrer | They are building, Brother. And there is nobody at the bench.
-brood__a04_visit | Father Ferrer | The Perpetual's pattern, wheel for wheel. The stop-work was bolted on after, and they have taken it off.
-brood__a04_visit | The King | Hollweg brought his mended machines to Rome, and I let him. That mistake was mine.
-brood__a05_specimens | The King | Nothing in that nest can tell a story. Here is what it did when the doctor came.
-brood__a05_specimens | Dr. Lindqvist | In the trees! They are coming at the cages!
-brood__a05_specimens | Dr. Lindqvist | Last year's young, full grown in one season. Look at them. A new species, and the fastest I have ever described.
-brood__a05_specimens | Dr. Lindqvist | The Sire, on the last cart! Hold him off!
-brood__a05_specimens | The King | His finest hour, he calls it. He crept into a nest by night and brought the danger home in cages.
-brood__a05_specimens | The King | If the cages had broken, the doctor would have come home with nothing, and I would have slept better since.
-brood__a06_barricades | The King | Paris rose in the summer of 2769. They walled their streets with carts and paving stones and sat a government in the Hôtel de Ville.
-brood__a06_barricades | Etienne Varenne | You will want me alive, Marshal. Kill me and I am a martyr, and your Church knows what martyrs are worth.
-brood__a06_barricades | Etienne Varenne | Exile. How very Christian of you, Marshal. Write to me when you regret it.
-brood__a06_barricades | Etienne Varenne | At noon, then, when the square is full. Let Paris watch the Crown at work.
-brood__a06_barricades | Field Marshal Fairleigh | Paris was the King's again by morning. Someone rang the great bell of Notre-Dame, and I did not ask who.
-brood__a06_barricades | The King | I have never regretted that order. Tomasz asked for a life, and he was right to ask.
-brood__a06_barricades | The King | It was the law. I have read that order more often than I care to say.
-brood__a07_council | Father Ferrer | I told him so the night before the gift, Eminences. A thinking machine brought the apostasy down. I see no reason one should spare us.
-brood__a07_council | Valadares | I drew the way up the plateau for the Crown. I saw her up there, the creature from the station, grown, rooted with the others.
-brood__a07_council | Valadares | I gave my map to the Church alone, sealed. But I saw her up there, the creature from the station, grown, rooted with the others.
-brood__a07_council | Dr. Lindqvist | Eminences, these are no monsters. They are a living fossil, a branch of nature that went its own way in the forest. Study them, and you read a page of creation nobody has read.
-brood__a07_council | The Cardinal Dean | They are no branch of nature, Doctor. The apostasy made such things in its laboratories. The specimens are to be destroyed, and their eggs with them.
-brood__a07_council | The King | They both walked out of the hall, and I let them go. I have had twenty-five years to decide whether that was mercy.
-brood__a07_council | The King | I sent my guard to the bridges that evening. I could not have told you why, except that the city was angry.
-brood__a07_council | Dr. Lindqvist | Not like this! Don't shoot them! Drive them back into the stables!
-brood__a07_council | The King | Dawn. The bridges held. The smoke lay so thick on the river I could not see the far bank.
-brood__a07_council | The King | If they had, the Swiss would have died on the steps of Saint Peter's, and the people behind them.
-brood__a07_council | The King | That was the first time I met them both. I would see each of them again, in worse years.
-brood__p01_leaf | king | Sit down. You asked me how it began, and I will tell you, but an old man lights his pipe first. There. Virginia leaf. That is where it began.
-brood__p01_leaf | king | When I was a boy you could sail from Rome to the last islands of the Pacific and hear the same Mass in every port, and pay for your supper with the same coin. My father thought it would always be so. So did I.
-brood__p01_leaf | king | That summer a Polish seminarian was waiting in Virginia for a ship to Rome. Tomasz Wierzbicki. You know him as the Cardinal. He was very young, and he earned his keep helping the Governor's chaplain.
-brood__p01_leaf | tomasz | I remember the barns most. You could smell the curing leaf a mile off. In the evenings I read Augustine under the big oak until the light went, and the field hands sang on their way in.
-brood__p01_leaf | king | Then the Free Assembly came out of the fields, Varenne's men, with torches. They wanted no King and no Church, and they started by burning other men's harvests.
-brood__p01_leaf | fairleigh | Captain Ruggieri, run out the guns. Mr. Wierzbicki, take the women and children into the chapel and keep them there.
-brood__p01_leaf | tomasz | He said it as calmly as grace before dinner. Then he sent for his sword.
-brood__p01_leaf | tomasz | Afterwards I went down to the gate with the chaplain and did what little could be done. I have said a Mass for them every year since.
-brood__p01_leaf | king | Fairleigh put it down in a single morning. Rome sent him its thanks and a medal, and we thought that was the end of it. My pipe has gone out.
-brood__p01_leaf | varenne | Citizens! You grew that leaf with your sweat, and a king you will never see smokes it! Burn it!
-brood__p01_leaf | tomasz | Some of them were boys. I knelt by the first one who fell and said the act of contrition into his ear, in case he could still hear. I was not a priest yet. I could give him nothing more.
-brood__p01_leaf | varenne | They tell you to wait for heaven! We will not wait!
-brood__p01_leaf | fairleigh | That will be Varenne. He makes a fine speech, for a man standing so far back.
-brood__p01_leaf | ruggieri | Madonna santa, a whole year's leaf. My lord, when this is done I want a pipe of whatever they leave us.
-brood__p01_leaf | fairleigh | You shall have one of mine. Now load.
-brood__p01_leaf | tomasz | They fired the curing sheds with the families still asleep in the cabins beside them. I carried a little girl out of the smoke. She asked me if it was morning yet.
-brood__p01_leaf | fairleigh | The house is burning. Get the women out of the chapel. We have lost the county.
-brood__p01_leaf | tomasz | My lord, smoke to the north. That is Hollins Farm. The Hollins family stood by us, and they cannot get out.
-brood__p01_leaf | tomasz | We came too late. I said the De profundis over them in the yard, and we marched on.
-brood__p01_leaf | tomasz | We saw the smoke of Hollins Farm for an hour. Nobody spoke. The Governor rode at the head of the column and did not once look round.
-brood__c01_thirteenth | king | The clockmaker came to Rome that winter in a borrowed coat, with two fingers black from the frost. He lives in this palace still. You have passed him on the stairs.
-brood__c01_thirteenth | hollweg | Forty years I made clocks, and every one of them ran down. That is what clocks do. This one would wind itself and mend itself, and before it wore out it would build the next.
-brood__c01_thirteenth | hollweg | I built it in the cellar under the workshop and told no one. In Nuremberg they still cross themselves when a mill wheel turns with no miller by it. Only Father Ferrer knew. He was the one man in the city I could not lie to.
-brood__c01_thirteenth | ferrer | You have read what the old age built, Meister. Machines that thought. You know what they did to the men who built them.
-brood__c01_thirteenth | hollweg | Those were wires and lightning, Father. This is brass. I cut every tooth of it with my own hands. And if a wheel could learn a little, in time, would that be so wicked?
-brood__c01_thirteenth | ferrer | It ended the world once, Meister. The Church still calls it the ghost in the machine. Do not build a house for it.
-brood__c01_thirteenth | hollweg | There is no ghost in it, I told him. Only gears. I said it to his face, and I believed it.
-brood__c01_thirteenth | hollweg | The Crown's wagons are at the market. Six soldiers, Jakob, and the Commissary will count every rivet.
-brood__c01_thirteenth | hollweg | There. Look at it. Nobody is winding it.
-brood__c01_thirteenth | ferrer | It is very fine, Meister. Tonight I will say a rosary that I am wrong about it.
-brood__c01_thirteenth | jakob | Meister, it's a whole works. Presses, a Winder, all of it meshed. It's building another.
-brood__c01_thirteenth | ferrer | Meister. Come away from them. Now.
-brood__c01_thirteenth | hollweg | Thirteen? There is no thirteen. There is no such hour on any dial.
-brood__c01_thirteenth | hollweg | I left my drawings to burn. From the cart I watched the workshop windows go orange.
-brood__c01_thirteenth | king | It chose nothing. Mould on bread chooses nothing either. We burned what we could find, and we did not find everything.
-brood__b01_specimen | king | The naturalist came later, in chains. He knows those animals better than any man living. Let him tell it. Where he is wrong, I will say so.
-brood__b01_specimen | lindqvist | Every evening I sat at my window with a glass and a notebook. That week I began to see eyes at the forest's edge, high off the ground, and a long way apart.
-brood__b01_specimen | lindqvist | Eleven pounds heavier than Monday. She called at sunset, as she did every day, a sound like a heron with its throat cut. Nothing answered.
-brood__b01_specimen | lindqvist | A lizard. My dear Valadares. She is a species no one has ever described, the newest thing nature has made. In ten years her daughters will be the Crown's cavalry, and they will not eat hay.
-brood__b01_specimen | lindqvist | Did you see them take the goats? They worked together like sheepdogs. That is a breed, Valadares, and a breed can be bred.
-brood__b01_specimen | lindqvist | Listen to her. She has never made that sound before.
-brood__b01_specimen | lindqvist | So I sent nothing to the fort, Majesty. One night, I told Valadares. I wanted the stallion alive.
-brood__b01_specimen | valadares | They don't care for your jars, Doctor. They are making for the pen.
-brood__b01_specimen | lindqvist | He walked through my station as if it were reeds. My men emptied their muskets into him, and he did not so much as turn his head.
-brood__b01_specimen | lindqvist | He did not touch her. He lay down along the pen like a dog at a door, and would not move.
-brood__b01_specimen | valadares | Burn them, Doctor. Whatever those things are, do not carry them down this river to people.
-brood__b01_specimen | lindqvist | I had her eggs in a crate of straw. I told the Academy I had saved my notes, and let them think the crate was full of paper.
-brood__b01_specimen | lindqvist | The fire had the eggs before I reached the straw. I came down to the Barra with a notebook and nothing else, and the Academy did not believe a word of it.
-brood__b01_specimen | lindqvist | Pieter went to the forest's edge with the jars and did not come back. I have his specimen book. His mother wrote to me twice.
-brood__b01_specimen | king | His lure did nothing. The beasts came because the young one cried out every evening, the way a calf bawls and brings the herd.
-brood__b01_specimen | king | No one stole her from him. Beasts went to a beast that called them, and took it back into the forest. There is nothing more in it than that, whatever he writes.
-brood__b01_specimen | king | And the crate he carried out of the fire held no papers. It held her eggs.
 
 # ---- ferrer (34 lines)
 [ref refs/ferrer_ref.wav]
@@ -1396,7 +679,7 @@ d09__v_stopped | Since Hollweg stopped the great spring, the city runs without h
 p01__v_1 | Citizens! You grew that leaf with your sweat, and a king you will never see smokes it! Burn it!
 p01__v_2 | They tell you to wait for heaven! We will not wait!
 
-# ---- jakob (9 lines)
+# ---- jakob (4 lines)
 [ref refs/jakob_ref.wav]
 [pitch 0.0]
 # urgent
@@ -1409,26 +692,6 @@ c01__j_found | Meister, it's a whole works. Presses, a Winder, all of it meshed.
 d02__j_wait | Meister. Before you go. Come here, please.
 d02__j_stay1 | I am not coming, Meister. I told Father Ferrer what I found, and I will tell the commissary.
 d02__j_stay2 | Then let them. I would rather melt a wheel than see it take out its own stop-work again. God keep you, Meister.
-# urgent
-[exaggeration 0.7]
-[cfg 0.4]
-d11__j_weak | The north gate and the south gate, Father. Their stop-works are gone. I hear them run on, a beat too fast. They will break first.
-# calm
-[exaggeration 0.5]
-[cfg 0.3]
-d11__j_hollweg | It is the Meister. He does not see us, Father. He is listening to the city.
-# urgent
-[exaggeration 0.7]
-[cfg 0.4]
-d11__j_hurt | I'm hit, Father. It is nothing. I'll walk back.
-# wonder
-[exaggeration 0.65]
-[cfg 0.3]
-d11__j_mine | The old adits, Father. I hear the spring down there, louder than up here. The galleries go right under its tower.
-# urgent
-[exaggeration 0.7]
-[cfg 0.4]
-d11__j_dig | Father, under us. Picks, and a spring. They are in the old galleries, coming to the camp.
 
 # ---- benedito (7 lines)
 [ref refs/benedito_ref.wav]
@@ -1453,6 +716,18 @@ d08__b_book | Senhor. Your men brought this from the fazenda's ruins. The Doctor
 d08__b_book_taken | Senhor. The Doctor left this at the Barra's warehouse for his passage downriver. His lure book.
 d08__b_lure | I know the old lure. A post on the far point, a jar on it, and they turn off their road into the flooded forest.
 
+# ---- colonel (5 lines)
+[ref refs/colonel_ref.wav]
+[pitch 0.0]
+# calm
+[exaggeration 0.55]
+[cfg 0.3]
+d02__r_minute | Halt. All of you. Let them go, God help them. One minute.
+d02__r_minute_end | The minute is up. After them.
+d02__r_c_tip | My riders take a cart by standing round it with none of theirs by it. Bring Hollweg down and stand a man by him: he is taken.
+d02__r_c_sortie | The machine is in the works behind us. Watch the rear.
+d02__r_c_push | The reserve is on the track, Commissary. Three more muskets and a rider.
+
 # ---- machine (1 lines)
 [ref refs/machine_ref.wav]
 [pitch 0.0]
@@ -1461,9 +736,286 @@ d08__b_lure | I know the old lure. A post on the far point, a jar on it, and the
 [cfg 0.3]
 d02__m_1 | Tick. Tock. The works are empty.
 
-# ---- captain (3 lines)
-[ref refs/captain_ref.wav]
+# ---- cardinal (2 lines)
+[ref refs/cardinal_ref.wav]
 [pitch 0.0]
+# calm
+[exaggeration 0.4]
+[cfg 0.3]
+d01__c_open | I was thirty, and I thought I had learnt everything in Lyon. Minas taught me the rest.
+d01__c_end | Three hundred names. I still have the list.
+
+# ---- tomasz (8 lines)
+[ref refs/tomasz_ref.wav]
+[pitch 0.0]
+# calm
+[exaggeration 0.45]
+[cfg 0.3]
+p01__t_open3 | I remember the barns most. You could smell the curing leaf a mile off. In the evenings I read Augustine under the big oak until the light went, and the field hands sang on their way in.
+p01__t_open5 | He said it as calmly as grace before dinner. Then he sent for his sword.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+p01__t_end | Afterwards I went down to the gate with the chaplain and did what little could be done. I have said a Mass for them every year since.
+p01__t_1 | Some of them were boys. I knelt by the first one who fell and said the act of contrition into his ear, in case he could still hear. I was not a priest yet. I could give him nothing more.
+p01__t_2 | They fired the curing sheds with the families still asleep in the cabins beside them. I carried a little girl out of the smoke. She asked me if it was morning yet.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+p01__t_smoke | My lord, smoke to the north. That is Hollins Farm. The Hollins family stood by us, and they cannot get out.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+p01__t_toolate | We came too late. I said the De profundis over them in the yard, and we marched on.
+p01__t_left | We saw the smoke of Hollins Farm for an hour. Nobody spoke. The Governor rode at the head of the column and did not once look round.
+
+# ---- ulrich (43 lines)
+[ref refs/ulrich_ref.wav]
+[pitch 0.0]
+# calm
+[exaggeration 0.6]
+[cfg 0.3]
+d02__u_tip1 | The carts wait at the barns, Meister. Send one of ours to each and the family climbs in. The marked ones on the map.
+d02__u_tip2 | Your spring cart winds anything that stands on the brass plates round it. Keep the soldiers near it on the road and they never run down.
+d02__u_tip_new | The Clock Soldiers know the shield wall now, Meister. Raise their shields with SHIELD FORWARD on their card when the muskets face them.
+d02__u_warn | Riders on the Bamberg road, Meister. Not long now.
+d02__u_dogs | Dogs, Meister! They are early! The carts must go now!
+d02__u_take | They will not shoot the carts, Meister. They will stand round one until it is theirs. Drive them off it and the bar empties.
+d02__u_riders | Riders in the valley! They came round by the Würzburg track, from the north!
+d02__u_dogs2 | Dogs on the slope, Meister, and riders behind them! They have our scent!
+d02__u_riders2 | More riders on the track!
+d02__u_column | The commissary's column is in the yard behind us. Musketeers, and guns.
+d02__u_column_m | The commissary's column is in the yard behind us. Musketeers, and more nets than guns.
+d02__u_retake | Get round that cart before it reaches their camp and it is ours again!
+d02__u_clock | We set up the travelling clock by the brook, Meister. Its field winds anything near it. Five of the journeymen came over on the first barge: they are yours. There is a turret in the crates.
+d02__u_turret | Send a Winder to the turret's site at the bridge's foot. It builds it with the guild's last coins.
+d02__u_broken | The rearguard is gone, Meister! They are on the landing: get to the barges before they lay hands on you!
+d02__u_last | The last barge is loaded, Meister! Come aboard, now!
+d04__u_tip1 | The tower's site is marked by the shaft, Meister. Send the Winders; four hands raise it quickly.
+d04__u_dark | And look how little we know of this place. Everything off the plateau is dark to us: anyone could walk up those roads and we would not see him.
+d04__u_field | The tower's gears are turning, Meister. Keep the soldiers on the gear rings round our buildings: there they stay wound. Off the gears they run down in a minute or so.
+d04__u_spring | The Aviary runs on Tension, Meister, and Tension comes from the Mainspring. Its site is by the Escapement.
+d04__u_presses | While the Aviary rises: the city has cogs for now, not for ever. The press north of the tower brings more, and the Light Works turns them into soldiers.
+d04__u_aviary | The spring is wound. Now the Aviary: its site is east of the tower. A Winder or two will raise it.
+d04__u_swifts | The Aviary is up. Pick it and make Swifts. Little brass birds: they fight only other birds, but they see a long way.
+d04__u_late | Meister, the valley has seen our tents and our machines for days, and no tower up. They will not wait for us to be ready.
+d04__u_captain | A rider from the valley, Meister. Their captain, coming up the cart road.
+d04__u_parley | He wants to talk, Meister. Walk down to him: the council's speaker will go with you. We will keep the machines back.
+d04__u_raid | Riders on the cart road, Meister, and muskets! The valley does not mean to talk.
+d04__u_raid_dark | I hear horses on the dark roads, Meister, and I cannot see them. The Swifts!
+d04__u_dusk | The sun is going down over the valley, Meister. There are lights on the road. Many lights.
+d04__u_fear | Then we stand in their way, Meister. Put fighters round a man with a torch and he will think better of it. Shields up: they throw stones.
+d04__u_fire | A house is burning! Anyone, to the fire: a man of ours beside it puts it out.
+d04__u_temper | The fires are seen from the valley, Meister. Every one makes them angrier.
+d04__u_crates | The deepest gallery is behind the spoil heaps, Meister, north-east. The seal will know your hand.
+d04__u_plates | The plates are lying across the gallery floor, Meister. I did not see anyone lay them.
+d04__u_attack | Meister! The militia, up all three roads at once! Riders on the ranch track!
+d07__u_1 | The four doors are pinged on the map, Meister. A man of ours at each door a moment is enough. Split the soldiers: four small groups go faster than one.
+d07__u_owls | The Swifts see nothing at night, Meister. Research the TICKING OWL at the Clock Aviary: an owl sees in the dark, and it bites.
+d07__u_morph | The plans are in. Pick a Swift and press MORPH TO OWL; do it to both.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+d07__u_turn | The red ring shows the next one to turn, Meister, a few seconds before. Its machines go with it.
+# calm
+[exaggeration 0.6]
+[cfg 0.3]
+d07__u_masters | Three honest masters live out in the quarters: Kessler at the forge, Brandl at the mill, Weiss at the market. Get a man to each before his quarter turns.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+d07__u_leap | The great spring stands on the mine hill, and they will hold its stairs. Research HIGH LEAP at the Escapement now: by dawn the Springers must jump up that cliff.
+# calm
+[exaggeration 0.6]
+[cfg 0.3]
+d07__u_works | A turned workshop keeps sending machines, Meister, every minute. Break it: the owls drop their weights on buildings.
+d07__u_3 | Put an owl over the hilltop beside a stair. Then pick the Springers, press JUMP and click the top: they land behind the stair's guard.
+
+# ---- meneses (21 lines)
+[ref refs/meneses_ref.wav]
+[pitch 0.0]
+# calm
+[exaggeration 0.55]
+[cfg 0.3]
+d01__m_1 | Father, I have fourteen muskets and four horses for a town of thirty thousand. If they rise, I hold the Foundry House and nothing else.
+d01__m_tip1 | And the Assembly's men are somewhere in those houses, with powder. My men will knock on doors. Stand a man at a door and we will know what is behind it.
+d01__m_tip2 | Their runners carry the pamphlets from house to house. Ride them down before they reach the churchyards: every one that gets there makes the town angrier.
+d01__m_armoury | One more thing, Father. The Crown sent us an Armoury this year, and it has not been used. If there is fighting on those stairs tonight, I want better locks and bayonets that can stay fixed.
+d01__m_researched | Matchlocks and socket bayonets. Now the men must go to the Armoury to be fitted: turn on AUTO REFIT and send them by.
+d01__w_runner | There, a runner with a bundle of pamphlets! He is making for a churchyard. Ride him down.
+d01__m_found | An armoury! Break it open and burn what is in it.
+d01__m_temper15 | Father, one more stone and this town goes up. Get to the churches. My riders will see to the runners.
+d01__m_soon | Both of their armouries closed! They know they are found. They will give the signal now, tonight. Get the men in hand.
+d01__m_signal | There it is. They will come up the stairs to the square from below and along the ridge. Hold the stairs, bayonets fixed. Not one of them on the square.
+d01__m_signal_t | Then go and get them back, Father, if you can. My men will hold the stairs either way.
+d01__m_gun | They have a gun up there! They took it from the militia's store. Get the dragoons onto the ridge before it fires on the square.
+d01__m_last | Here comes Ramos himself, from the Rosário, up the broad stair. Everyone to the south stair!
+d01__m_raiders | Riders behind us, out of the hollow over the east ford! They are after the carts. Keep men by them!
+d01__m_bayonet | Bayonets! Hold the top of the stairs, and let them climb to you.
+d01__m_gold | The Governor's order: the gold goes to the coast today, before they try again. Four carts, one road, through the gorge.
+d01__m_gorge | If I were Ramos, I would wait on the rocks above the gorge. Send men up the ledges' stairs before the carts go in, and keep a few by every cart.
+d01__m_ambush | There he is, Ramos himself, on the road ahead! Take him alive if you can: the Governor will want his names.
+d01__m_retake | After it! Get round that cart before it crosses the ford and it is ours again.
+d01__m_run | He is running for the hollow beyond the east ford! Catch him before he is across!
+d01__m_done | The gold is on the coast road. Vila Rica is the King's.
+
+# ---- ramos (9 lines)
+[ref refs/ramos_ref.wav]
+[pitch 0.0]
+# calm
+[exaggeration 0.65]
+[cfg 0.3]
+d01__r_signal | Vila Rica! The gold is yours, not Lisbon's, not Rome's! Up, and take the Foundry House!
+d01__r_last | Once more, up the Rua Direita! Every man who can still stand!
+d01__r_fall | Enough! Back, back to the gorge! The gold still has to leave this town, and there is only one road.
+d01__r_ambush | Now! Off the rocks! Take the carts, never mind the soldiers!
+d01__r_run | It is lost here. South, to the free city! They will want a man who knows the mines.
+d01__r_taken | Do it quickly, then. The mines will remember me.
+d01__r_v1 | Today they read their derrama on our square. Tonight we ring the bell. Walk the pamphlets to the churchyards; let the town hear it.
+d01__r_v_tip | Our armouries hide among the houses until a soldier knocks. Keep them hidden: the agitators come out of them.
+d01__r_end_v | For one night Vila Rica belonged to the men who dug it. They will not forget it, whatever comes.
+
+# ---- arruda (13 lines)
+[ref refs/arruda_ref.wav]
+[pitch 0.0]
+# calm
+[exaggeration 0.5]
+[cfg 0.3]
+d04__a_wait | I am Bento Arruda, captain of the valley's militia. I will talk with the master of this place. Here, on the road. Not up there among those things.
+d04__a_parley1 | My people say you raise the devil's own works up here. Clocks that walk. They say it was such things that ended the old world.
+d04__a_parley2 | I will take your word down the hill. I cannot promise they will believe it.
+d04__a_nobody | Nobody comes down to talk. So be it.
+d04__a_attack | For the valley, and for God! Burn the tower!
+d04__a_attack_p | I gave them your word, clockmaker. After last night they would not hear it. Forgive me.
+d04__a_break | Back! Back down the hill! Enough have died for one morning.
+d04__a_v1 | There it is, on our hill: the thing the old world died of. Burn their houses before they take root, or bring the tower down.
+d04__a_v_tip | The Barracks in the town and the Horse Breeder at the ranches are ours. The people will go up the road tonight whatever we do.
+d04__a_end_v | We burned it before it took root. The bishop wrote to thank us. I did not sleep well, all the same.
+d07__ar_valley | I took your word down the hill four years ago, clockmaker. I keep mine. Where do you want us?
+d11__a_hello | The valley is here, Father. We fought that city the day it was founded. We will fight it now.
+d11__a_hello_few | A few of the valley came, Father. The rest gave their word to the city once, and keep it.
+
+# ---- inacio (12 lines)
+[ref refs/inacio_ref.wav]
+[pitch 0.0]
+# calm
+[exaggeration 0.6]
+[cfg 0.3]
+d10__i_1 | Then let me go up, Senhor Valadares. The sky over a river is the clearest map God ever drew.
+d10__i_up | Up we go! Mind the rope, my sons, it is the only one I have.
+d10__i_look | Hold her here a little, the wind is kind. I am counting.
+# wonder
+[exaggeration 0.65]
+[cfg 0.3]
+d10__i_high | Higher than the herons now. The fog is under me like milk in a bowl.
+d10__i_see1 | There! I see the river from the narrows to the bend. The island in the middle, and a ruin on it.
+# calm
+[exaggeration 0.6]
+[cfg 0.3]
+d10__i_see2 | On the banks, where the ground is dry, the green has gone bare in rings. Something great lies in each ring.
+d10__i_see3 | I count them for you, Senhor. Mark them on your map, and God keep the men who go in under those trees.
+d10__i_west | There is more up the west creek, Senhor, and on the upriver bank. I cannot see through it from here.
+d10__i_ruins | I see the ruin plainly now. The ground round it is the colour of a bruise.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+d10__i_last | Senhor! Up the levee, out of the west: more than I can count. Coming down to the island and to the town both.
+# calm
+[exaggeration 0.6]
+[cfg 0.3]
+d10__i_won | From up here the river is quiet. I will say Mass for them all on the island, if you let me land.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+d10__i_hurt | They have torn the silk! I am coming down, Senhor, slowly, I hope.
+
+# ---- tiago (7 lines)
+[ref refs/tiago_ref.wav]
+[pitch 0.0]
+# calm
+[exaggeration 0.5]
+[cfg 0.3]
+d05__ti_bell | They are out in the fields, Father. In this rain they will not hear it.
+d05__ti_w1 | Those are not jaguars, Father.
+d05__ti_in | Everyone from the fields is in the churchyard, Father. The children too.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+d05__ti_hamlet | My sister's family is there. They will have gone into the chapel.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+d05__ti_found | They hid in the chapel all night. They prayed the whole time, my sister says.
+# calm
+[exaggeration 0.5]
+[cfg 0.3]
+d05__ti_back | They are in, Father. All we could find.
+d05__ti_choose | They ask you to choose, Father. They will do what you say.
+
+# ---- fonseca (5 lines)
+[ref refs/fonseca_ref.wav]
+[pitch 0.0]
+# calm
+[exaggeration 0.5]
+[cfg 0.3]
+d03__f_land | Doctor Lindqvist. I carry an order of the Holy See and of His Majesty. You know its contents.
+d03__f_dinner | Dinner? Well. The search can spare its magistrate for an hour. Sergeant, your men with me.
+d03__f_dinner_end | A fine table, Doctor. Now. Back to work, men.
+d03__f_dawn | We found what we found, Doctor. It will all be in my report, and in Rome.
+d03__f_c_dinner | The Doctor asks me to dine. I will go, Valadares. Somebody must watch the man himself.
+
+# ---- morel (6 lines)
+[ref refs/morel_ref.wav]
+[pitch 0.0]
+# calm
+[exaggeration 0.4]
+[cfg 0.3]
+d04__m_1 | No lord and no bishop. Good. Then let the valley learn it too, Meister, and quickly.
+d04__m_parley | Your priests have told you to fear us. Ask yourself who profits by your fear, Captain.
+d04__m_fear | Let the machines teach them, Meister. One lesson tonight saves a hundred later.
+d07__m_vote | Labour spared is a man set free. I vote with the motion, and so should the Meister.
+d07__m_2 | Machines that choose their own work. Is that not what the Assembly fought for?
+d07__m_brake | Pull it and you kill the city we built. Leave it. We beat them in the streets.
+
+# ---- rider (6 lines)
+[ref refs/rider_ref.wav]
+[pitch 0.0]
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+d09__ms_1 | From the Amazon frontier, General. The swarm is on the rivers.
+# calm
+[exaggeration 0.7]
+[cfg 0.3]
+d09__ms_left | It fed all season on the Tapajós. It is bigger than last year.
+d09__ms_burned | On the Tapajós it starved where the fields were burned. Everywhere else it fed.
+d09__ms_barra_held | Valadares holds the Barra. He asks for guns before the floods.
+d09__ms_barra_burned | Valadares holds the bluff at the Barra. The lower town is ash.
+d09__ms_lure | He says the lure worked once. Now the swarm comes to the smell of it.
+
+# ---- officer (11 lines)
+[ref refs/officer_ref.wav]
+[pitch 0.0]
+# calm
+[exaggeration 0.5]
+[cfg 0.3]
+d05__c_arrive | Captain Sobral, of the river fort. Your canoe reached us yesterday. We rode all night.
+d05__c_small | The Governor's purse is thin since Minas. I could bring only a few.
+d05__c_charge | My horsemen are drilled for the charge, if the fort gives them the time. A charge breaks the small ones like reeds.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+d05__c_hatch | Shoot those birds down! They are not birds.
+# calm
+[exaggeration 0.5]
+[cfg 0.3]
+d05__c_sire | And that Sire beside her. My men call him the Lindqvist Sire. They say he came out of the doctor's cages.
+d05__c_cannot | We cannot hold this, Father. Not with these men. The fort can.
+d05__c_burn | Burn the fields and the granary, Father. Leave them nothing to eat.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+d05__c_mother_dead | The big one in the flood is down! They come slower now.
 # urgent
 [exaggeration 0.7]
 [cfg 0.4]
@@ -1474,69 +1026,63 @@ d10__c_gate | Senhor! Something moving in the trees west of the gate. We cannot 
 d10__c_gate2 | At the gate again, Senhor! Canister!
 d10__c_last | We hold the gate, Senhor! Mind the island!
 
-# ---- pieter (20 lines)
-[ref refs/pieter_ref.wav]
-[pitch 0.0]
-# calm
-[exaggeration 0.5]
-[cfg 0.3]
-d03__p_tip1 | They follow the lures, Doctor, nothing else. The keepers go first, and the animals stay inside the ring. Out of it they wander.
-d03__p_tip2 | Over the creek by a ford, then up the paths to the clearings. The young Mother roots best in the nest clearing, in the middle.
-d03__p_ready | They are all in the forest, Doctor. Quiet. I can hear the oars.
-# urgent
-[exaggeration 0.7]
-[cfg 0.4]
-d03__p_warn | The canoes are rounding the point, Doctor. Not long now.
-d03__p_still | Keep them still, Doctor. A soldier sees what moves. The rest is just forest to him.
-# calm
-[exaggeration 0.5]
-[cfg 0.3]
-d03__p_decoy | A lure post at the west point, or at the old chapel, and they will go and look at it. Men always go and look.
-# urgent
-[exaggeration 0.7]
-[cfg 0.4]
-d03__p_riders | The riders have crossed the creek at the west ford, Doctor. They are going up the paths now.
-d03__p_half | They have found half of them, Doctor. If they find many more, they will burn the pens and the house with them.
-# calm
-[exaggeration 0.5]
-[cfg 0.3]
-d03__p_dusk | The light is going. They will not search the forest in the dark.
-# urgent
-[exaggeration 0.7]
-[cfg 0.4]
-d03__p_restless | Doctor! One of the young is up. It smells the goats. It is going for the camp!
-# calm
-[exaggeration 0.5]
-[cfg 0.3]
-d03__p_back | It is back in the forest, Doctor. It is lying down.
+# ---- officer_old (2 lines)
+[ref refs/officer_ref.wav]
+[pitch -0.8]
 # grief
 [exaggeration 0.6]
 [cfg 0.2]
-d03__p_lost | They have found nearly all of them, Doctor. They are bringing the pitch for the pens.
+d09__c_arrive | General! Thank God. They came the same week, from both sides. We have not slept.
 # calm
 [exaggeration 0.5]
 [cfg 0.3]
-d06__p_call | Doctor, the ones outside the rings are walking toward it.
-d06__p_in | They are all up in the big pen, Doctor. Wet, but all there.
-d06__p_late | The water is on the paths, Doctor. We cannot wait for the rest.
-d06__p_fight | They are fighting each other, Doctor. Mother against Mother.
-# urgent
-[exaggeration 0.7]
-[cfg 0.4]
-d06__p_changing | Doctor, the big one in the middle is changing. She is getting bigger.
-# shout
-[exaggeration 0.95]
-[cfg 0.3]
-d06__p_book | The book, Doctor! The lure book is upstairs!
-# calm
-[exaggeration 0.5]
-[cfg 0.3]
-d06__p_f1 | The guns first, Doctor. They are asleep in the straw, and they wake when you walk up to them.
-d06__p_f_warn | Doctor, the big one in the middle is changing. It is getting bigger.
+d09__c_relieved | The fort is yours, General. Its barracks, its foundry, its powder.
 
-# ---- sergeant (4 lines)
+# ---- brandt (2 lines)
+[ref refs/commissary_ref.wav]
+[pitch -0.5]
+# calm
+[exaggeration 0.4]
+[cfg 0.3]
+d02__b_minute | Colonel! You have the Crown's orders!
+d02__b_c1 | By the Council of Rome and the King's seal: the works at Fürth are the Crown's. Ride.
+
+# ---- anselmo (2 lines)
+[ref refs/joaquim_ref.wav]
+[pitch -0.5]
+# calm
+[exaggeration 0.5]
+[cfg 0.3]
+d04__p_1 | Enough! Is this how a Christian keeps the Sabbath, with a torch in his hand on a stranger's hill?
+d04__p_2 | Home, all of you. If these men are wrong, God and the Church will judge them, not your torches.
+
+# ---- ortlieb (1 lines)
+[ref refs/captain_ref.wav]
+[pitch -1.0]
+# calm
+[exaggeration 0.45]
+[cfg 0.3]
+d07__o_vote | The machines are wound by hand every night, and the masters are tired. Let them wind one another, as they ask. Who is for it?
+
+# ---- master (1 lines)
+[ref refs/brother_ref.wav]
+[pitch 1.0]
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+d07__ms_in | Thank God. I thought nobody would come for me. They were winding each other in my yard.
+
+# ---- townsman (1 lines)
+[ref refs/tiago_ref.wav]
+[pitch -1.5]
+# calm
+[exaggeration 0.5]
+[cfg 0.3]
+d01__w_hint | Father! The house with the shutters always closed: men go in at night and nobody comes out. I have marked it for you.
+
+# ---- barra_sergeant (4 lines)
 [ref refs/sergeant_ref.wav]
-[pitch 0.0]
+[pitch -1.0]
 # shout
 [exaggeration 0.95]
 [cfg 0.3]
@@ -1554,18 +1100,9 @@ d08__s_great | Here they come! Canister, at the shallows!
 [cfg 0.4]
 d10__s_bat | Senhor Valadares! Those of us who got out of the Barra. They are on the old battery, west of the gate. They came down after us.
 
-# ---- cardinal (2 lines)
-[ref refs/cardinal_ref.wav]
-[pitch 0.0]
-# calm
-[exaggeration 0.4]
-[cfg 0.3]
-d01__c_open | I was thirty, and I thought I had learnt everything in Lyon. Minas taught me the rest.
-d01__c_end | Three hundred names. I still have the list.
-
-# ---- tomasz (82 lines)
+# ---- tomasz_grown (74 lines)
 [ref refs/tomasz_ref.wav]
-[pitch 0.0]
+[pitch -1.0]
 # calm
 [exaggeration 0.45]
 [cfg 0.3]
@@ -1693,20 +1230,139 @@ d09__t_end_few | Few of them had come in. I wrote down the names of their villag
 [cfg 0.3]
 d09__t_end_brood | We went north, up the rivers, to the swarm.
 d09__t_end_clock | We went south, to the highlands, to the city.
-p01__t_open3 | I remember the barns most. You could smell the curing leaf a mile off. In the evenings I read Augustine under the big oak until the light went, and the field hands sang on their way in.
-p01__t_open5 | He said it as calmly as grace before dinner. Then he sent for his sword.
-# grief
-[exaggeration 0.6]
-[cfg 0.2]
-p01__t_end | Afterwards I went down to the gate with the chaplain and did what little could be done. I have said a Mass for them every year since.
-p01__t_1 | Some of them were boys. I knelt by the first one who fell and said the act of contrition into his ear, in case he could still hear. I was not a priest yet. I could give him nothing more.
-p01__t_2 | They fired the curing sheds with the families still asleep in the cabins beside them. I carried a little girl out of the smoke. She asked me if it was morning yet.
+
+# ---- pieter_grown (20 lines)
+[ref refs/pieter_ref.wav]
+[pitch -1.0]
+# calm
+[exaggeration 0.5]
+[cfg 0.3]
+d03__p_tip1 | They follow the lures, Doctor, nothing else. The keepers go first, and the animals stay inside the ring. Out of it they wander.
+d03__p_tip2 | Over the creek by a ford, then up the paths to the clearings. The young Mother roots best in the nest clearing, in the middle.
+d03__p_ready | They are all in the forest, Doctor. Quiet. I can hear the oars.
 # urgent
 [exaggeration 0.7]
 [cfg 0.4]
-p01__t_smoke | My lord, smoke to the north. That is Hollins Farm. The Hollins family stood by us, and they cannot get out.
+d03__p_warn | The canoes are rounding the point, Doctor. Not long now.
+d03__p_still | Keep them still, Doctor. A soldier sees what moves. The rest is just forest to him.
+# calm
+[exaggeration 0.5]
+[cfg 0.3]
+d03__p_decoy | A lure post at the west point, or at the old chapel, and they will go and look at it. Men always go and look.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+d03__p_riders | The riders have crossed the creek at the west ford, Doctor. They are going up the paths now.
+d03__p_half | They have found half of them, Doctor. If they find many more, they will burn the pens and the house with them.
+# calm
+[exaggeration 0.5]
+[cfg 0.3]
+d03__p_dusk | The light is going. They will not search the forest in the dark.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+d03__p_restless | Doctor! One of the young is up. It smells the goats. It is going for the camp!
+# calm
+[exaggeration 0.5]
+[cfg 0.3]
+d03__p_back | It is back in the forest, Doctor. It is lying down.
 # grief
 [exaggeration 0.6]
 [cfg 0.2]
-p01__t_toolate | We came too late. I said the De profundis over them in the yard, and we marched on.
-p01__t_left | We saw the smoke of Hollins Farm for an hour. Nobody spoke. The Governor rode at the head of the column and did not once look round.
+d03__p_lost | They have found nearly all of them, Doctor. They are bringing the pitch for the pens.
+# calm
+[exaggeration 0.5]
+[cfg 0.3]
+d06__p_call | Doctor, the ones outside the rings are walking toward it.
+d06__p_in | They are all up in the big pen, Doctor. Wet, but all there.
+d06__p_late | The water is on the paths, Doctor. We cannot wait for the rest.
+d06__p_fight | They are fighting each other, Doctor. Mother against Mother.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+d06__p_changing | Doctor, the big one in the middle is changing. She is getting bigger.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+d06__p_book | The book, Doctor! The lure book is upstairs!
+# calm
+[exaggeration 0.5]
+[cfg 0.3]
+d06__p_f1 | The guns first, Doctor. They are asleep in the straw, and they wake when you walk up to them.
+d06__p_f_warn | Doctor, the big one in the middle is changing. It is getting bigger.
+
+# ---- jakob_old (5 lines)
+[ref refs/jakob_ref.wav]
+[pitch -2.0]
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+d11__j_weak | The north gate and the south gate, Father. Their stop-works are gone. I hear them run on, a beat too fast. They will break first.
+# calm
+[exaggeration 0.45]
+[cfg 0.3]
+d11__j_hollweg | It is the Meister. He does not see us, Father. He is listening to the city.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+d11__j_hurt | I'm hit, Father. It is nothing. I'll walk back.
+# wonder
+[exaggeration 0.65]
+[cfg 0.3]
+d11__j_mine | The old adits, Father. I hear the spring down there, louder than up here. The galleries go right under its tower.
+# urgent
+[exaggeration 0.7]
+[cfg 0.4]
+d11__j_dig | Father, under us. Picks, and a spring. They are in the old galleries, coming to the camp.
+
+# ---- matthias (13 lines)
+[ref refs/jakob_ref.wav]
+[pitch 1.0]
+# calm
+[exaggeration 0.55]
+[cfg 0.3]
+d07__mt_vote | As they ask? Since when does a machine ask for anything?
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+d07__mt_walk | Then the Nuremberg men walk out, Meister. Come and see what the machines do at night when nobody winds them. Or don't.
+# calm
+[exaggeration 0.55]
+[cfg 0.3]
+d07__mt_1 | My father taught me the signs at Fürth, from the log he kept in Nuremberg. Four workshops, Meister. We look at each, and you will see.
+d07__mt_1_lost | My father wrote the signs down in Nuremberg, God rest him. Four workshops, Meister. We look at each, and you will see.
+d07__mt_found | It is not a fault, Meister. It is Nuremberg again. It is the same pattern.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+d07__mt_13 | Nuremberg struck thirteen too, Meister. My father heard it.
+# calm
+[exaggeration 0.55]
+[cfg 0.3]
+d07__mt_3 | They hold both stairs, Meister. Muskets would not get up there. Springers might.
+d07__mt_brake | Pull it, Meister. My father would have pulled it without asking anyone.
+# grief
+[exaggeration 0.6]
+[cfg 0.2]
+d07__mt_brake_lost | Pull it, Meister. My father died because nobody stopped the first one.
+d07__mt_stop | Thank you, Meister.
+# calm
+[exaggeration 0.55]
+[cfg 0.3]
+d07__mt_run | As if, Meister.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+d07__mt_hurt | I'm hit! Keep going, I'll come back to you.
+# calm
+[exaggeration 0.55]
+[cfg 0.3]
+d11__m_postern | The postern by our old quarter is still ours, Father. It opens for you, and not for them.
+
+# ---- hollins (1 lines)
+[ref refs/volunteer_ref.wav]
+[pitch -1.5]
+# calm
+[exaggeration 0.5]
+[cfg 0.3]
+d09__h_m1 | Machines, Father? This far north?

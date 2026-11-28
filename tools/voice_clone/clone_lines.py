@@ -58,8 +58,8 @@ for raw in open(a.lines, encoding="utf-8"):
     elif raw.lower().startswith("[ref ") and raw.endswith("]"):
         r = raw[5:-1].strip()
         cur = r if os.path.isabs(r) else os.path.join(HERE, r)
-        if not os.path.exists(cur):
-            sys.exit("lines.txt: no such voice reference: " + cur)
+        if not os.path.exists(cur) and not os.path.abspath(cur).startswith(os.path.abspath(a.out)):
+            sys.exit("lines.txt: no such voice reference: " + cur)    # (one in the out folder is made earlier in this run)
     elif raw and not raw.startswith("#") and "|" in raw:
         name, text = raw.split("|", 1)
         lines.append((name.strip(), text.strip(), cur, pitch, exag, cfg))
@@ -68,6 +68,9 @@ if not lines:
 for i, (name, text, voice, pitch, exag, cfg) in enumerate(lines, 1):
     if os.path.exists(os.path.join(a.out, name + ".wav")):
         continue    # (already made: a stopped run picks up where it left off; delete a file to make it again)
+    if not os.path.exists(voice):
+        print("SKIPPED %s: its voice reference %s was not made" % (name, voice))
+        continue
     print("[%d/%d] %s (%s): %s" % (i, len(lines), name, os.path.basename(voice), text))
     kw = {"audio_prompt_path": voice, "exaggeration": exag, "cfg_weight": cfg}
     if a.lang != "en":

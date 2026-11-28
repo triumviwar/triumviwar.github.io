@@ -37,6 +37,14 @@ Sergeant and the Lyon watchman). lines_big.txt is empty until new lines are writ
 EMOTION RUN RECORDED 2026-11-22 (0.38.168): the 278 emotional takes replaced the calm ones (the calm takes are in git
 history before 0.38.168). If some still sound flat, the next step is a second, angry reference per main character.
 
+THE ONE RUN (owner 2026-11-28: "remake all the voices ... in one single go"): `python3 tools/voice_clone/make_big_lines.py
+--all` writes lines_all.txt (717 lines): every line not yet recorded, every RE-RECORD line below, and every shout /
+angry line of Tomasz (young and grown) and Valadares with their angry references. Act 2's voices are in (refs/README.txt;
+ten designed 2026-11-28, the rest made from existing voices by pitch). Its first line makes Valadares' angry reference
+with Chatterbox alone (exaggeration 1.4), used by his angry lines later in the same run. On the PC:
+`run.bat --lines lines_all.txt --out out_all`, then send out_all back (import_voice.py). Not voiced: narrators, the NEW
+cards, the a01 watch, the prince (d09, not designed: the heir is unseen).
+
 ANGRY REFERENCES (owner 2026-11-28, after listening to one shout per main character: Lindqvist, Hollweg, Varenne,
 Ruggieri, Fairleigh and Ferrer "very good"; Valadares and Tomasz weak, Jakob fine): refs/tomasz_angry_ref.wav is in and
 make_big_lines.py uses it for Tomasz's shout and angry lines. NEXT RUN: `run.bat --lines lines_angry.txt --out
