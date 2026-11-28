@@ -102,7 +102,104 @@ func _btn(txt: String, cb: Callable, w := 0.0) -> Button:
 	var b: Button = main._button(txt, cb)
 	b.custom_minimum_size = Vector2(w, 50 if _pc() else 60)
 	b.add_theme_font_size_override("font_size", _fs(17))
+	if BTN_TIPS.has(txt):
+		b.tooltip_text = Loc.t(BTN_TIPS[txt])
 	return b
+
+
+## TOOLTIPS (the owner 2026-11-28: "in tournament make tooltips as well, for example double elimination? ... and all of
+## it"): every button by its words, every setting of the form and every choice in its lists. Kept whole: a tooltip says
+## what the thing does and what follows from it, never cut short to lose what a player needs to know.
+const BTN_TIPS := {
+	"BACK": "Go back one page. Nothing you made is lost: tournaments are saved on this device.",
+	"MAKE A TOURNAMENT": "Set up a new tournament: who plays (online, offline or computers), the format, the series length, the maps and the faction rules.",
+	"MAKE IT": "Make the tournament with the settings below. You can still add players, change the order and start it afterwards.",
+	"JOIN": "Join an online tournament with the code the organiser gave you, under your name and faction (and your team's name in a team tournament).",
+	"WATCH": "Follow it as a spectator: see the bracket and the results, and watch the games being played. You don't take a place.",
+	"OPEN IT": "Open a tournament from a file code (TOUR1:...) someone copied for you: the whole tournament, its players, results and bracket.",
+	"OPEN": "Open it to see all of it and act on it.",
+	"DELETE": "Delete this tournament from this device. It asks first. Other players keep their own copies.",
+	"FIND": "Show only the maps whose name has these letters.",
+	"ADD ALL SHOWN": "Put every map shown in the list into the tournament's pool.",
+	"CLEAR THE POOL": "Take every map out of the pool. A tournament with an empty pool gets the first fair maps for its type when you make it.",
+	"COPY CODE": "Copy the tournament's code. Send it to the players: they type it on the TOURNAMENTS page to join.",
+	"THE CHAMPION": "The winner, the final standings and the tournament's story.",
+	"BRACKET": "The bracket: every match, who plays whom and how far each player went. Tap a match to open it.",
+	"STANDINGS": "The table: wins, losses, games won and lost, and the tie-breaks, for round robin, Swiss and the groups.",
+	"SCHEDULE": "Every match in the order it is played: the ones ready now first, then those waiting on earlier results.",
+	"PLAYERS": "Who is in: add players or computers, check in, change the seeding order, start the tournament.",
+	"RULES": "The tournament's rules as set: format, series, maps, factions, time limit. Copy its file code here to share it.",
+	"FIT": "Zoom the bracket so all of it fits on the screen.",
+	"PLAY EVERY GAME QUICKLY": "Play every game left between computer players at high speed with the screen covered, one after another, to the champion.",
+	"WATCH THE NEXT GAME": "Watch the next game between computer players at normal speed.",
+	"CHECK IN": "Say you are here and ready. With check-in on, only those who checked in are drawn into the bracket.",
+	"UNDO": "Take the check-in back.",
+	"REMOVE": "Take this player out before the tournament starts.",
+	"DROP": "Drop this player from a tournament already running: every match left of theirs is lost by walkover.",
+	"START THE TOURNAMENT": "Close the sign-up and draw the bracket. No one can join after this.",
+	"LEAVE THE TOURNAMENT": "Leave it. Before it starts you are simply taken out; once it runs your matches left are lost by walkover.",
+	"ADD MYSELF": "Put yourself in the tournament as a player.",
+	"ADD": "Add this player (offline: someone playing on this device or by your side, with results entered by hand).",
+	"ADD A COMPUTER": "Add a computer player at the level and plan chosen beside it.",
+	"FILL WITH A FIELD OF 16": "Fill the empty places with computer players until there are 16.",
+	"FILL WITH A FIELD OF 8 TEAMS": "Fill the empty places with teams of computer players until there are 8 teams.",
+	"ADD THE TEAM": "Add this team with its players.",
+	"COPY THE FILE CODE": "Copy the whole tournament as a code (TOUR1:...). Paste it on another device with OPEN IT to carry it on there.",
+	"CLOSE": "Close the match and go back to the tournament.",
+	"WATCH REPLAY": "Watch this game's replay.",
+	"WATCH THIS GAME": "Play this game between the computers and watch it at normal speed.",
+	"PLAY IT QUICKLY": "Play this game between the computers at high speed with the screen covered. Only the result shows.",
+	"PLAY YOUR MATCH": "Open a game room for this match with your opponent. The game reports the result to the tournament by itself.",
+	"I WON THIS GAME": "Report that you won this game (when it was played outside the tournament's own room). Your opponent can dispute it.",
+	"I LOST THIS GAME": "Report that you lost this game. A loser's word is enough: the result goes in at once.",
+	"ACCEPT THE REPORT": "Agree with the result the players sent and put it in.",
+}
+
+## Each setting of the MAKE A TOURNAMENT form: what it decides.
+const ROW_TIPS := {
+	"NAME": "The tournament's name, shown on its page and to every player.",
+	"KIND": "Who plays and how results come in: online by code, offline with results entered by hand, or computer players only.",
+	"TYPE": "Players a side in every match: 1 v 1, or teams of two, three or four. The map pool keeps only maps big enough for it.",
+	"TEAMS": "How the teams are made: players join a team by its name, or they sign up alone and the teams are drawn at the start.",
+	"FORMAT": "How the matches are arranged and who goes out when. Open the list and point at a format to read what it means.",
+	"SERIES": "How many games make a match. Best of 3: the first to win 2 games wins the match.",
+	"THE FINAL": "How many games the final match has. Often longer than the rest.",
+	"MAPS": "How the map of each match's first game is chosen.",
+	"NEXT MAP": "How the map of every later game in a series is chosen.",
+	"FACTIONS": "When the players choose their faction and how long they must keep it.",
+	"SEEDING": "Who meets whom in the first round. Seeds keep the strongest players apart until late.",
+	"CHECK-IN": "Whether players must say they are here before the bracket is drawn.",
+	"TIME LIMIT": "How long a game may last. At the bell the side clearly ahead wins (income earned plus twice its army, at least 10% more).",
+	"GROUPS": "How many groups, for 'Groups, then playoffs' only.",
+	"OUT OF EACH GROUP": "How many players of each group go on to the playoffs, for 'Groups, then playoffs' only.",
+}
+
+## Each choice in the form's lists (the value's own words).
+const CHOICE_TIPS := {
+	"single": "Single elimination: lose one match and you are out. The winners meet until one is left. Quick, but one bad match ends your tournament.",
+	"double": "Double elimination: you are out only after losing two matches. A first loss drops you to the losers' bracket, where you can fight back to the grand final. If the player from the losers' bracket wins the grand final, it is played again (a bracket reset), since the other has lost only once then.",
+	"robin": "Round robin: everyone plays everyone once. The most match wins takes it (ties broken by games won). Fairest, but the number of matches grows fast with players.",
+	"swiss": "Swiss: a set number of rounds (enough to find a winner); each round pairs players with the same score, and no one meets the same player twice. No one is knocked out. The best record wins.",
+	"groups": "Groups, then playoffs: players are split into groups that play round robin; the best of each group go on to a single elimination bracket.",
+	"online": "Online: players join from their own devices with the tournament's code. Games are played in rooms the bracket opens, and they report their results themselves.",
+	"offline": "Offline / LAN: players are added by hand and play on this device or side by side; you enter each result.",
+	"computer": "All computer players: watch a whole tournament of computers, or play it out quickly to see who wins.",
+	"fixed": "Fixed teams: players sign up as a team, or join one by typing its name.",
+	"drawn": "Drawn: players sign up alone; when the tournament starts the organiser's dice put them into teams.",
+	"random": "Random: a map from the pool, by chance.",
+	"veto": "Bans: each player bans one map from the pool, then a random one of the rest is played.",
+	"pick": "Bans and a pick: each player bans one map, then the higher seed picks the first game's map from the rest.",
+	"free": "Free: each player may pick any faction before every game.",
+	"series": "Locked for a series: the faction picked for a match's first game is kept for the whole match.",
+	"event": "Locked for the whole tournament: each player plays the faction they joined with in every game.",
+	"once": "Each faction once in a series: a player may not repeat a faction until they have played all three in that match.",
+	"loser_true": "The loser of each game picks the next game's map from the pool.",
+	"loser_false": "Every later game's map is drawn at random from the pool.",
+	"seed_random": "Random: the first round is drawn by chance.",
+	"seed_manual": "By hand: the players list's order is the seeding (the first is seed 1). Change it with the arrows on the PLAYERS tab.",
+	"check_false": "No check-in: everyone signed up is drawn into the bracket.",
+	"check_true": "Check-in: only those who press CHECK IN before the start are drawn in. Good for online tournaments where some don't turn up.",
+}
 
 
 func _label(txt: String, sz := 16, col := UiStyle.TEXT, wrap := true) -> Label:
@@ -175,6 +272,7 @@ func _home() -> void:
 	code.max_length = 6
 	code.custom_minimum_size = Vector2(220, 52)
 	UiStyle.touch_text(code, "TOURNAMENT CODE")
+	code.tooltip_text = Loc.t("The code of an online tournament (5 or 6 letters), from its organiser.")
 	jr.add_child(code)
 	var nm := LineEdit.new()
 	nm.name = "Tour_Name"
@@ -182,6 +280,7 @@ func _home() -> void:
 	nm.max_length = 24
 	nm.custom_minimum_size = Vector2(220, 52)
 	UiStyle.touch_text(nm, "YOUR NAME")
+	nm.tooltip_text = Loc.t("The name the other players see in the bracket.")
 	jr.add_child(nm)
 	var team := LineEdit.new()
 	team.name = "Tour_TeamName"
@@ -189,11 +288,13 @@ func _home() -> void:
 	team.max_length = 24
 	team.custom_minimum_size = Vector2(240, 52)
 	UiStyle.touch_text(team, "TEAM (team tournaments)")
+	team.tooltip_text = Loc.t("In a team tournament with fixed teams: your team's name. Type the same name as your friends to join their team; a new name makes a new team.")
 	jr.add_child(team)
 	var fac := OptionButton.new()
 	fac.custom_minimum_size = Vector2(170, 52)
 	for f in ["random", "crown", "clockwork", "brood"]:
 		fac.add_item(Loc.t(f.capitalize()))
+	fac.tooltip_text = Loc.t("The faction you join with. If the faction rule locks it for the whole tournament, you play it in every game.")
 	jr.add_child(fac)
 	var note := _label("", 15, UiStyle.BAD)
 	var join := _btn("JOIN", func() -> void:
@@ -225,6 +326,7 @@ func _home() -> void:
 	var imp := LineEdit.new()
 	imp.placeholder_text = Loc.t("PASTE A TOURNAMENT FILE CODE (TOUR1:...)")
 	imp.custom_minimum_size = Vector2(420, 50)
+	imp.tooltip_text = Loc.t("Paste a whole tournament copied with COPY THE FILE CODE on another device, then press OPEN IT.")
 	iv.add_child(imp)
 	var ib := _btn("OPEN IT", func() -> void:
 		var tt := Tournament.import_code(imp.text)
@@ -281,7 +383,7 @@ var _form := {}
 
 func _create() -> void:
 	_clear()
-	_head("MAKE A TOURNAMENT", func() -> void: _home())
+	var hd := _head("MAKE A TOURNAMENT", func() -> void: _home())
 	var v := _scroll()
 	var f := {"name": "My tournament", "mode": "online", "format": "double", "bo": 3, "bo_final": 3, "maps": Tournament.DEFAULT_MAPS.duplicate(),
 		"map_rule": "veto", "loser_picks": true, "factions": "series", "seeding": "random", "checkin": false, "groups": 2, "advance": 2,
@@ -340,7 +442,10 @@ func _create() -> void:
 		_open(tt, "organiser"), 240)
 	go.name = "Tour_MakeIt"
 	UiStyle.primary(go)
-	v.add_child(go)
+	# (beside BACK at the top, outside the scrolling form: always in sight, the owner 2026-11-28)
+	go.custom_minimum_size.x = 170
+	hd.add_child(go)
+	hd.move_child(go, hd.get_child_count() - 2)
 
 
 func _row(title: String, c: Control) -> Control:
@@ -348,6 +453,11 @@ func _row(title: String, c: Control) -> Control:
 	h.add_theme_constant_override("separation", 10)
 	var l := UiStyle.text(Loc.t(title), _fs(16), UiStyle.TEXT, HORIZONTAL_ALIGNMENT_LEFT, true)
 	l.custom_minimum_size = Vector2(230 if _pc() else 200, 0)
+	if ROW_TIPS.has(title):
+		l.tooltip_text = Loc.t(ROW_TIPS[title])
+		l.mouse_filter = Control.MOUSE_FILTER_STOP
+		if c.tooltip_text == "":
+			c.tooltip_text = l.tooltip_text
 	h.add_child(l)
 	c.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	h.add_child(c)
@@ -359,13 +469,48 @@ func _choice(labels: Array, values: Array, f: Dictionary, k: String, then := Cal
 	o.custom_minimum_size = Vector2(320, 46)
 	for i in labels.size():
 		o.add_item(Loc.t(String(labels[i])))
+		var tip := _choice_tip(k, values[i])
+		if tip != "":
+			o.get_popup().set_item_tooltip(i, Loc.t(tip))
 		if values[i] == f[k]:
 			o.select(i)
+	# the closed list's tooltip: what the setting decides, then what the chosen value means
+	var show_tip := func() -> void:
+		var parts: Array = []
+		var row := String(ROW_KEY.get(k, ""))
+		if ROW_TIPS.has(row):
+			parts.append(Loc.t(ROW_TIPS[row]))
+		var ct := _choice_tip(k, f[k])
+		if ct != "":
+			parts.append(Loc.t(ct))
+		o.tooltip_text = "\n\n".join(parts)
+	show_tip.call()
 	o.item_selected.connect(func(i: int) -> void:
 		f[k] = values[i]
+		show_tip.call()
 		if then.is_valid():
 			then.call())
 	return o
+
+
+## The form's keys and their rows (for the lists' tooltips).
+const ROW_KEY := {"mode": "KIND", "team_size": "TYPE", "team_rule": "TEAMS", "format": "FORMAT", "bo": "SERIES",
+	"bo_final": "THE FINAL", "map_rule": "MAPS", "loser_picks": "NEXT MAP", "factions": "FACTIONS", "seeding": "SEEDING",
+	"checkin": "CHECK-IN", "time_limit": "TIME LIMIT", "groups": "GROUPS", "advance": "OUT OF EACH GROUP"}
+
+
+## A choice's tooltip ("" none): by its value, or for the yes/no and two-way lists by key and value.
+static func _choice_tip(k: String, v: Variant) -> String:
+	match k:
+		"loser_picks":
+			return CHOICE_TIPS["loser_%s" % str(v)]
+		"seeding":
+			return CHOICE_TIPS["seed_%s" % str(v)]
+		"checkin":
+			return CHOICE_TIPS["check_%s" % str(v)]
+		"mode", "format", "team_rule", "map_rule", "factions":
+			return String(CHOICE_TIPS.get(str(v), ""))
+	return ""
 
 
 # ------------------------------------------------------------------ the map pool picker (job tournament-formats)

@@ -187,6 +187,28 @@ static func primary(b: Button, col := Color("#3f7d3a")) -> void:
 	b.add_theme_font_override("font", title_font())
 
 
+## A BACK button (the owner 2026-11-28: "always make the back keys in all menus red so its easy to spot"): a deep red
+## fill with a red rim, so the way out is found at a glance on every page. Main._button gives it to every "BACK" /
+## "BACK TO ..." button by itself.
+const BACK_RED := Color("#8e2a22")
+
+
+static func back(b: Button) -> void:
+	b.add_theme_stylebox_override("normal", box(BACK_RED.darkened(0.25), BACK_RED.lightened(0.25), 2))
+	b.add_theme_stylebox_override("hover", box(BACK_RED, Color(1, 0.62, 0.5), 3))
+	b.add_theme_stylebox_override("pressed", box(BACK_RED.darkened(0.4), Color(1, 0.62, 0.5), 3))
+	b.add_theme_stylebox_override("hover_pressed", box(BACK_RED.darkened(0.3), Color(1, 0.62, 0.5), 3))
+	b.add_theme_color_override("font_color", Color(1, 0.93, 0.88))
+	b.add_theme_color_override("font_hover_color", Color(1, 1, 1))
+
+
+## A drawn BACK button (the match menu's BACK TO THE MATCH): the same red.
+static func draw_back_button(ci: CanvasItem, r: Rect2, hover := false, alpha := 1.0) -> void:
+	var bg := BACK_RED if hover else BACK_RED.darkened(0.25)
+	bg.a = 0.95 * alpha
+	cached_box(bg, Color(1, 0.62, 0.5) if hover else BACK_RED.lightened(0.25), 2, 7, 2).draw(ci.get_canvas_item(), r)
+
+
 ## Mark a toggle/choice button as the chosen one.
 static func chosen(b: Button, col := TRIM) -> void:
 	var sb := box(Color(0.3, 0.24, 0.13), col, 3)

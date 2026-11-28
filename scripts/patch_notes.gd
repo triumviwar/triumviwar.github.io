@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.244", "items": [
+		"Tooltips on every main menu button and all through TOURNAMENTS: every button, every setting of MAKE A TOURNAMENT, and each choice in its lists (point at Double elimination, Swiss, the map bans, the faction rules... to read what they mean). MAKE IT now sits beside BACK at the top and stays in sight while the form scrolls. Every BACK button in the menus is red, easy to spot.",
+	]},
 	{"v": "0.38.243", "items": [
 		"Campaign: a new BRUTAL difficulty: harder than HARD (shorter clocks, more foes) and every computer enemy cheats with half again as much income. NORMAL no longer has a line under it. Every long list now shows a clearer scroll bar you can drag.",
 	]},

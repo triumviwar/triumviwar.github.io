@@ -2944,7 +2944,7 @@ func _menu_list() -> Array:
 		toggle_menu(false)
 		set_paused(false)
 		quit_requested.emit()})
-	list.append({"label": "BACK TO THE MATCH", "cb": func() -> void: toggle_menu(false)})
+	list.append({"label": "BACK TO THE MATCH", "back": true, "cb": func() -> void: toggle_menu(false)})
 	if game.demo or game.over:
 		list = list.filter(func(b: Dictionary) -> bool: return b["label"] != "SURRENDER")    # watching computers: nobody of yours to surrender
 	if game.replay or game.net_watch:
@@ -3630,7 +3630,10 @@ func _draw_pause() -> void:
 		for b in _menu_buttons():
 			var r: Rect2 = b["rect"]
 			var on: bool = b.get("enabled", true)
-			UiStyle.draw_button(_ci, r, r.has_point(hv) and on, false, on, 0.45)
+			if b.get("back", false):
+				UiStyle.draw_back_button(_ci, r, r.has_point(hv), 0.9)     # (the way back is red)
+			else:
+				UiStyle.draw_button(_ci, r, r.has_point(hv) and on, false, on, 0.45)
 			var tx := r.get_center().x
 			if b.has("slider"):
 				var vv: float = _slider_value(b["slider"])

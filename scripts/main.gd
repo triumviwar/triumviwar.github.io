@@ -533,6 +533,26 @@ func show_menu() -> void:
 	_layout_menu()
 
 
+## The main menu's tooltips (the owner 2026-11-28: "make tooltips for everything in the main menu, the buttons").
+const MENU_TIPS := {
+	"g_offline": "Play on this device: the tutorial, the campaign, skirmish against the computer, and the world war.",
+	"g_online": "Play with other people over the internet: friendly rooms with friends, ranked matches, and tournaments.",
+	"back": "Back to the main menu's first page.",
+	"tutorial": "Learn to play step by step: the basics, then each faction (the Crown, the Clockwork, the Brood), then an easy practice game.",
+	"campaign": "The story told by the King: missions on three storylines, played alone, with a friend, or against a friend from the other side. Choices carry forward.",
+	"skirmish": "A single match on any map against the computer or with computer allies: up to four players, any factions, any level from EASY to BRUTAL.",
+	"online": "Play online: friendly rooms (make one and send its code, or join a friend's), co-op and versus, spectators, and ranked matches.",
+	"help": "How the game works: the controls, the three factions and their economies, the units and buildings, and the keys.",
+	"replays": "Watch your recorded matches again, at any speed, from any side.",
+	"editor": "Make your own maps: the ground, the high ground and ramps, water, the start spots and the resources. Play them in skirmish.",
+	"continue": "Go on with the match you left: same map, same factions, from where it was saved.",
+	"settings": "Sound, music, the screen, the interface size, tooltips, the language, the controls and the keys.",
+	"worldwar": "A war over the whole world map, season by season: march your armies over 60 regions, build, and fight every battle yourself or let it be resolved.",
+	"tournament": "Run a whole tournament: brackets, best-of series, map bans, faction rules. Online by code, offline with results by hand, or all computer players.",
+	"exit": "Quit the game. It asks first.",
+}
+
+
 ## One slot's button (null: the slot stays empty this time).
 func _menu_button(id: String, save: Dictionary, pc: bool) -> Button:
 	var b: Button
@@ -541,10 +561,8 @@ func _menu_button(id: String, save: Dictionary, pc: bool) -> Button:
 			b = _button("OFFLINE", func() -> void: _menu_enter("offline"))
 			UiStyle.primary(b)
 			b.set_meta("fs", 24 if pc else 26)
-			b.tooltip_text = Loc.t("Tutorial, campaign, skirmish and the world war")
 		"g_online":
 			b = _button("ONLINE", func() -> void: _menu_enter("online"))
-			b.tooltip_text = Loc.t("Play with friends online, and tournaments")
 		"back":
 			b = _button("BACK", func() -> void: _menu_enter(""))
 		"tutorial":
@@ -594,6 +612,8 @@ func _menu_button(id: String, save: Dictionary, pc: bool) -> Button:
 				ask("Quit the game?", "YES, QUIT", func() -> void: quit_game()))      # (asked first: player-comforts)
 	if b == null:
 		return null       # (an unknown slot id: nothing to make)
+	if MENU_TIPS.has(id):
+		b.tooltip_text = Loc.t(MENU_TIPS[id])
 	b.name = "Menu_" + id
 	b.clip_text = false
 	return b
@@ -878,6 +898,8 @@ func _fit_button_font(b: Button, bs: Vector2, pc: bool) -> void:
 ## The button Esc, the phone's back and the browser's back press on this page (null: none).
 func _set_back(b: Button) -> void:
 	_esc_button = b
+	if b != null and not b.has_theme_stylebox_override("normal"):
+		UiStyle.back(b)      # (a page's way back, whatever its words: red, the owner 2026-11-28)
 	if b != null and OS.has_feature("web"):
 		_web_back_guard()
 
@@ -2507,6 +2529,8 @@ func _button(t: String, cb: Callable) -> Button:
 		cb.call())
 	if Settings.pc():
 		b.mouse_entered.connect(func() -> void: Sfx.play_any(["ui/hover"], Vector2.INF, -8.0))
+	if t == "BACK" or t.begins_with("BACK TO") or t.begins_with("‹ BACK"):
+		UiStyle.back(b)      # (every way back is red: the owner 2026-11-28)
 	return b
 
 
