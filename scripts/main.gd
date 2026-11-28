@@ -1594,6 +1594,7 @@ func show_music() -> void:
 	var back := _button("BACK", func() -> void:
 		Music.me.menu()
 		show_settings())
+	_set_back(back)          # (qa-click-sweep: Esc did nothing here and the phone's back asked to quit the game)
 	back.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	back.custom_minimum_size.x = 220
 	v.add_child(back)
