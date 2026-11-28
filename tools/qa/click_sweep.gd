@@ -74,7 +74,7 @@ class ErrLog extends Logger:
 			return
 		var msg := "%s:%d %s (%s)" % [file.get_file(), line, rationale if rationale != "" else code, function]
 		# (noise of the test bed itself, not the game's)
-		if msg.contains("ObjectDB instances leaked") or msg.contains("resources still in use"):
+		if msg.contains("ObjectDB instances leaked") or msg.contains("resources still in use") or msg.contains("tts_linux"):
 			return
 		mutex.lock()
 		errs.append(msg)
@@ -234,17 +234,39 @@ func _close_windows() -> void:
 			w.hide()
 
 
-## Every visible, enabled button of the page, in tree order.
-func _buttons() -> Array:
-	var out_b: Array = []
+## The page's controls in drawing order, from the last one that covers most of the screen and takes the mouse (a
+## dialog's or a help page's dim layer laid over the page): what is under it can't be seen or clicked.
+func _top_controls() -> Array:
+	var all: Array = []
 	var stack: Array = [main]
 	while not stack.is_empty():
 		var n: Node = stack.pop_front()
-		if n is BaseButton and (n as Control).is_visible_in_tree() and not (n as BaseButton).disabled:
-			out_b.append(n)
+		if n is CanvasItem and not (n as CanvasItem).visible:
+			continue
+		if n is Control:
+			all.append(n)
 		var kids := n.get_children()
 		for i in range(kids.size() - 1, -1, -1):
 			stack.push_front(kids[i])
+	var vp := root.get_visible_rect()
+	var start := 0
+	for i in all.size():
+		var c: Control = all[i]
+		if c.mouse_filter != Control.MOUSE_FILTER_STOP or c is BaseButton or c is ScrollContainer:
+			continue
+		var r := c.get_global_rect().intersection(vp)
+		if r.get_area() >= 0.6 * vp.get_area() and c.get_child_count() > 0 or (r.get_area() >= 0.6 * vp.get_area() and (c is ColorRect or c is Panel)):
+			# (a page root is the first such; an overlay comes after the page's own texts)
+			start = i
+	return all.slice(start)
+
+
+## Every visible, enabled button on top of the page, in tree order.
+func _buttons() -> Array:
+	var out_b: Array = []
+	for c in _top_controls():
+		if c is BaseButton and (c as Control).is_visible_in_tree() and not (c as BaseButton).disabled:
+			out_b.append(c)
 	return out_b
 
 
@@ -525,7 +547,7 @@ func crawl(root_name: String, show: Callable, max_depth := -1, max_pages := 30) 
 				if w is Window and w.visible and w != root:
 					popup = true
 			_errs(where, what)
-			if not reached and not (b is OptionButton):
+			if not reached and not (is_instance_valid(b) and b is OptionButton):
 				flag("COVERED", where, what, "the click at its middle did not reach it (pressed by signal)")
 			var started := main.game != null
 			if started:
@@ -1040,6 +1062,18 @@ func _clipped_by_parent(c: Control) -> bool:
 	return false
 
 
+## A dropdown's list, a tooltip, a popup drawn over the page (top_level or raised): its own layer, not an overlap.
+func _layer_of(c: Node) -> int:
+	var p := c
+	while p != null and p != main:
+		if p is CanvasItem and ((p as CanvasItem).top_level or (p as CanvasItem).z_index > 0):
+			return p.get_instance_id()
+		if p is CanvasLayer:
+			return p.get_instance_id()
+		p = p.get_parent()
+	return 0
+
+
 func _shown(c: Control) -> String:
 	var t := ""
 	if c is Label:
@@ -1067,13 +1101,7 @@ func _path(c: Node) -> String:
 func _audit(screen: String) -> void:
 	var vp := root.get_visible_rect()
 	var texts: Array = []
-	var stack: Array = [root]
-	while not stack.is_empty():
-		var n: Node = stack.pop_back()
-		for ch in n.get_children():
-			stack.append(ch)
-		if not n is Control:
-			continue
+	for n in _top_controls():
 		var c := n as Control
 		if not c.is_visible_in_tree() or c.modulate.a < 0.05:
 			continue
@@ -1124,7 +1152,7 @@ func _audit(screen: String) -> void:
 		var ra := _vis_rect(a)
 		for j in range(i + 1, texts.size()):
 			var b: Control = texts[j]
-			if a.is_ancestor_of(b) or b.is_ancestor_of(a):
+			if a.is_ancestor_of(b) or b.is_ancestor_of(a) or _layer_of(a) != _layer_of(b):
 				continue
 			var rb := _vis_rect(b)
 			var x := ra.intersection(rb)

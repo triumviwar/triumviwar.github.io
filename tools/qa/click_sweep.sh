@@ -35,13 +35,15 @@ for lang in ${LANGS//,/ }; do
   for size in ${SIZES//,/ }; do
     res="1600x900"; [ "$size" = "phone" ] && res="2400x1080"
     shots="flags"; [ "$lang" = "en" ] && [ "$size" = "pc" ] && shots="all"
+    # (the other languages and the phone: the same screens, a shorter walk unless --depth/--budget say otherwise)
+    more=(); [ "$shots" = "flags" ] && [ ${#EXTRA[@]} -eq 0 ] && more=("budget=200")
     # one Godot a part: a crash in one part does not lose the others
     for part in ${PARTS//,/ }; do
       log="$OUT/${lang}_${size}_${part}.log"
       echo "== $lang $size $part"
       timeout 5400 xvfb-run -a -s "-screen 0 ${res}x24" "$GODOT" --rendering-driver opengl3 --resolution "$res" \
         --path . --script res://tools/qa/click_sweep.gd -- "out=$SHOTS" "lang=$lang" "size=$size" "parts=$part" \
-        "shots=$shots" "${EXTRA[@]}" > "$log" 2>&1
+        "shots=$shots" "${EXTRA[@]}" "${more[@]}" > "$log" 2>&1
       code=$?
       [ $code -ne 0 ] && { echo "   exit $code (crash or timeout): see $log"; fail=1; }
       grep -E '^SWEEP-SUMMARY' "$log" | sed 's/^/   /'
