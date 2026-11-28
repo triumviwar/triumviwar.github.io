@@ -4,7 +4,7 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
-	{"v": "0.38.999", "items": [
+	{"v": "0.38.254", "items": [
 		"THE WAR MAP's ACT 3 (act3-warmap): once both fronts of Brazil are won the war map unrolls the WHOLE WORLD, with four theatre views (THE AMERICAS, AFRICA, THE INDIES, THE SOUTHERN SEAS) and a wider EUROPE for the night and the finale (drawn maps for now, ready for paintings); Act 3's twenty missions are pinned (planned ones say what they will be about; the five optional ones wear a small gold ribbon), with the colonies, the allies' crowns, the sea roads that carried the dangers, the refugees' roads and the ruin; the Clockmaker's brass map and the Naturalist's chart have their own notes (Lindqvist's in red ink).",
 		"THE CLOCK: a plate on the map says the year, how many colonies are still held, and which theatre loses a colony when the year next turns. The year turns after every two wins (an optional mission counts half); the theatre left alone two years or more, the longest, loses its next colony to the swarm or the machines (a theatre whose missions are all won is SETTLED and safe). Winning the mission at a fallen colony's place takes it back. The ledger has THE CLOCK at its top. Tuned with a simulation of 1,704 play orders: a player who keeps every theatre in hand keeps all twelve colonies; one who fights a theatre at a time loses about three.",
 	]},
