@@ -608,7 +608,7 @@ def fire_spawn(at, tag, rows, tags=None, extra_if=None):
 WAVE = {   # the danger's waves by road: [(kind, count, condition)]
     "river": [("raptor", 6, None), ("spitter", 2, None), ("raptor", 2, NORMAL_UP), ("raptor", 3, HARD), ("spitter", 1, HARD),
               ("raptor", 3, JUNGLE_THIN)],
-    "south": [("clock_soldier", 4, None), ("springer", 2, None), ("clock_soldier", 1, NORMAL_UP), ("clock_soldier", 3, HARD),
+    "south": [("clock_soldier", 4, None), ("springer", 2, None), ("clock_soldier", 1, NORMAL_UP), ("clock_soldier", 2, HARD),
               ("springer", 1, HARD), ("clock_soldier", 2, SIEGE_HELD_OFF)],
 }
 WAVE_BIG = {   # the later waves add these
@@ -759,7 +759,7 @@ TR_ += [
         {"objective": {"id": "pass", "set": "failed", "if": {"fired": "ambush"}}}, {"say": ["n_pass_late"], "if": COLUMN}]},
     {"id": "pass_free", "when": {"all": [{"fired": "part2"}, {"not": SOLO_C}]}, "delay": 25, "do": []},
     {"id": "through", "when": {"all": [{"fired": "part2"}, LIVE, {"any": [{"fired": "pass_clear"}, {"fired": "pass_late"}, {"fired": "pass_free"}]}]},
-     "delay": 2, "do": [
+     "delay": 2, "do": [{"order": {"tag": "ambush", "do": "hunt", "prey": "people", "within": 40}}] + [
         {"order": {"tag": gr, "do": "route", "route": ["pass_wait"] + AFTER_PASS, "name": "on_" + gr, "if": vc}}
         for v, vc in (("river", RIVER), ("south", SOUTH)) for gr in WAITS[v]]},
     {"id": "drum_say", "when": {"all": [{"fired": "part2"}, COLUMN, {"any": [{"fired": "drum_on_g1"}, {"fired": "drum_on_g2"}, {"fired": "drum_on_g3"}]}]}, "delay": 1,

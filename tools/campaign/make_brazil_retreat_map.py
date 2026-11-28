@@ -103,7 +103,7 @@ def carve(g, a, ch="."):
 def free_props(g, props, items):
     """Adds decorations [name, x, y, flip] that stand on open ground."""
     for (n, x, y, *fl) in items:
-        if g.get(x, y) in ".h":
+        if g.get(x, y) in (".hw" if n == "boat" else ".h"):
             props.append([n, x, y, bool(fl[0]) if fl else False])
 
 
@@ -152,7 +152,7 @@ def build_river():
     props = clear_props(src["props"], [(96, 48, 50, 12), (0, 46, 50, 10), (14, 22, 14, 12), (68, 46, 16, 10)])
     props = [p for p in props if p[0] not in ("nest",)]
     free_props(g, props, [
-        ["boat", 186, 47], ["boat", 186, 53], ["boat", 185, 58], ["anchor", 183, 45], ["crate_long", 182, 52],
+        ["boat", 189, 45], ["boat", 190, 51], ["boat", 189, 57], ["boat", 186, 62], ["boat", 186, 41], ["anchor", 183, 45], ["crate_long", 182, 52],
         ["sacks_pile", 184, 56], ["barrel_d", 182, 49], ["crates_pair", 183, 59], ["flag", 172, 45], ["cannonballs", 169, 59],
         ["shed", 76, 47], ["well", 74, 51], ["fence_b", 78, 52], ["signpost", 40, 49], ["sacks_pile", 46, 53],
         ["signpost", 150, 52], ["crate_long", 136, 58], ["trough", 18, 27], ["flag", 9, 49], ["boat", 10, 56],
@@ -220,7 +220,7 @@ def build_south():
     props = clear_props(props, [(114, 40, 16, 12), (122, 14, 14, 12), (122, 66, 14, 12), (82, 16, 12, 12), (86, 56, 14, 11),
                                 (24, 42, 96, 9), (160, 40, 14, 14)])
     free_props(g, props, [
-        ["boat", 1, 41], ["boat", 1, 47], ["boat", 1, 53], ["anchor", 4, 39], ["crate_long", 3, 49], ["sacks_pile", 5, 45],
+        ["boat", 0, 41], ["boat", 1, 47], ["boat", 0, 53], ["boat", 4, 36], ["boat", 4, 58], ["anchor", 4, 39], ["crate_long", 3, 49], ["sacks_pile", 5, 45],
         ["barrel_d", 4, 54], ["crates_pair", 6, 42], ["flag", 14, 40], ["cannonballs", 19, 55],
         ["signpost", 104, 43], ["sacks_pile", 100, 49], ["haybales", 87, 20], ["wagon", 92, 60], ["signpost", 40, 43],
     ])

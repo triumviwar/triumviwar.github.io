@@ -173,8 +173,9 @@ func _fight_or_go(g: Game, u: Unit, t: int, p: Vector2, reach := 7.0) -> void:
 		if u.position.distance_to(p) > 2.0 * Defs.TILE:
 			_go(g, u, p)
 		return
-	var foe := _nearest_foe(g, t, u.position, reach * Defs.TILE)
-	if foe:
+	# (a line: it fights what comes near its place, it does not run after it across the ford)
+	var foe := _nearest_foe(g, t, p, reach * Defs.TILE)
+	if foe and u.position.distance_to(p) < (reach + 2.0) * Defs.TILE:
 		if u.target == null or not is_instance_valid(u.target) or u.target.dead:
 			u.cmd_attack(foe)
 	elif u.position.distance_to(p) > 2.5 * Defs.TILE:

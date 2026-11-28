@@ -7057,7 +7057,7 @@ const T := {
 	"Guns on the bluff. The harbour's Barracks is ours: spend the treasury on men, it will not sail with us.": "Canhões no alto. O Quartel do porto é nosso: gastem o tesouro em homens, não vai zarpar connosco.",
 	"They come at the bluff.": "Vêm ao alto.",
 	"Count them aboard. All of them. I want the number for the King, not a guess.": "Contem-nos a bordo. A todos. Quero o número para o Rei, não um palpite.",
-	"Every group still walking is aboard. Hold the bluff while the ships load the stores and the wounded.": "Todos os grupos que ainda caminhavam estão a bordo. Segure o alto enquanto os navios carregam os mantimentos e os feridos.",
+	"Every group still walking is aboard. The last boats wait for the army: hold the bluff a little longer.": "Todos os grupos que ainda caminhavam estão a bordo. Os últimos botes esperam pelo exército: segure o alto mais um pouco.",
 	"The ships sail. The army goes down to the boats last, the guns spiked on the bluff.": "Os navios zarpam. O exército desce aos botes por último, os canhões encravados no alto.",
 	"The harbour fort is broken. No ship can load under the fire on the quay.": "O forte do porto está quebrado. Nenhum navio consegue carregar debaixo do fogo no cais.",
 	"The ships sail with too few aboard. Most of Brazil's people are still on the road.": "Os navios zarpam com muito poucos a bordo. A maior parte da gente do Brasil ainda está na estrada.",

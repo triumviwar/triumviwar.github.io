@@ -2950,7 +2950,7 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "clock_soldier",
-						"count": 3,
+						"count": 2,
 						"at": "edge",
 						"tag": "fwave_1",
 						"tags": [
@@ -3358,7 +3358,7 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "clock_soldier",
-						"count": 3,
+						"count": 2,
 						"at": "edge",
 						"tag": "fwave_2",
 						"tags": [
@@ -3834,7 +3834,7 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "clock_soldier",
-						"count": 3,
+						"count": 2,
 						"at": "edge",
 						"tag": "fwave_3",
 						"tags": [
@@ -4310,7 +4310,7 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "clock_soldier",
-						"count": 3,
+						"count": 2,
 						"at": "edge",
 						"tag": "fwave_4",
 						"tags": [
@@ -6097,7 +6097,16 @@
 				]
 			},
 			"delay": 2,
-			"do": []
+			"do": [
+				{
+					"order": {
+						"tag": "ambush",
+						"do": "hunt",
+						"prey": "people",
+						"within": 40
+					}
+				}
+			]
 		},
 		{
 			"id": "if_through__0",
@@ -7392,7 +7401,7 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "clock_soldier",
-						"count": 3,
+						"count": 2,
 						"at": "edge",
 						"tag": "pursue1",
 						"tags": [
@@ -7732,7 +7741,7 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "clock_soldier",
-						"count": 3,
+						"count": 2,
 						"at": "edge",
 						"tag": "pursue2",
 						"tags": [
@@ -8132,7 +8141,7 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "clock_soldier",
-						"count": 3,
+						"count": 2,
 						"at": "edge",
 						"tag": "pursue3",
 						"tags": [
