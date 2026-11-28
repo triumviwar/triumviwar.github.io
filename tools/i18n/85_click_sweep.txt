@@ -145,3 +145,12 @@ es metralla
 > ready
 pt pronta
 es lista
+
+# a gun or wagon whose horse is gone (hud.gd)
+> NO HORSE: it can't move (HARNESS one). It still supplies.
+pt SEM CAVALO: não pode se mover (ATRELAR um). Ainda abastece.
+es SIN CABALLO: no puede moverse (UNCIR uno). Sigue abasteciendo.
+
+> NO HORSE: it can't move (HARNESS one). Fires from where it stands.
+pt SEM CAVALO: não pode se mover (ATRELAR um). Atira de onde está.
+es SIN CABALLO: no puede moverse (UNCIR uno). Dispara desde donde está.
