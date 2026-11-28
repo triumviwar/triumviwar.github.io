@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.999": ["Contra a Coroa, o computador do Mecanismo já não faz o exército inteiro dar meia-volta por alguns invasores na sua base: um ataque que vale menos de um terço do exército em casa (e menos de 500) é enfrentado por um grupo que vale o dobro dele, as unidades mais próximas, e o resto fica onde estava; o seu próximo avanço ainda pode sair enquanto esse grupo está ocupado. Um ataque de verdade continua a trazer o exército inteiro. (ai-fixes-a; o ritmo Normal do computador da Ninhada foi medido e ficou como estava.)"],
 	"0.38.230": ["Os Filhotes da Ninhada agora são uma pequena serpe: verde-oliva, asas de morcego e uma fileira de espinhos vermelhos, voando e mordendo em todas as direções."],
 	"0.38.229": ["Uma larva carregando, embrulhando ou guardando um casulo mantém a mesma pele oliva escura de quando anda (antes ficava amarelada)."],
 	"0.38.228": ["Os cavalos pastam virados para onde estão (antes todos pastavam para baixo à direita), também no cercado; a Mãe da Ninhada no segundo estágio caminha de frente para você; os novos quadros de pistola do Couraceiro aceitam todas as pelagens."],

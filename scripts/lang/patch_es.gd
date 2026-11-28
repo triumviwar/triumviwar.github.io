@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.999": ["Contra la Corona, el ordenador del Mecanismo ya no hace dar la vuelta a todo su ejército por unos pocos atacantes en su base: un ataque que vale menos de un tercio del ejército en casa (y menos de 500) lo enfrenta un grupo que vale el doble, las unidades más cercanas, y el resto se queda donde estaba; su siguiente avance aún puede salir mientras ese grupo está ocupado. Un ataque de verdad sigue trayendo a todo el ejército. (ai-fixes-a; el ritmo Normal del ordenador de la Nidada se midió y se dejó como estaba.)"],
 	"0.38.230": ["Las Crías de la Nidada ahora son un pequeño guiverno: verde oliva, alas de murciélago y una hilera de púas rojas, volando y mordiendo en todas las direcciones."],
 	"0.38.229": ["Una larva que carga, envuelve o guarda un capullo mantiene la misma piel oliva oscura que cuando camina (antes se volvía amarillenta)."],
 	"0.38.228": ["Los caballos pastan mirando hacia donde están (antes todos pastaban hacia abajo a la derecha), también en el corral; la Madre de la Camada en su segunda etapa camina de frente hacia ti; los nuevos fotogramas de pistola del Coracero aceptan todos los pelajes."],

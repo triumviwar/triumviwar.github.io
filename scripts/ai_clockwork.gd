@@ -770,7 +770,7 @@ func _army_gate(home: Array) -> bool:
 		return true
 	if army_g.phase == "defend" or army_g.phase == "hold":
 		return false
-	if not army_g.defenders.is_empty() and not CwArmy.raid_size_on:
+	if not army_g.defenders.is_empty() and not army_g.sized_on():
 		return false          # (ai-fixes-a: with `cwraidsize` the push goes without the group, ai_cw_push._home_army)
 	if _sw() and swm().hold_attack():
 		return false

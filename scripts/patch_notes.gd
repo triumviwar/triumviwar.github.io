@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"Against the Crown, the Clockwork computer no longer turns its whole army round for a few raiders in its base: a raid worth less than a third of the army at home (and under 500) is met by a group worth twice it, the nearest units, and the rest stays where it was; its next push may still go out while that group is busy. A real attack still brings the whole army. (ai-fixes-a; the Brood computer's Normal pace was measured and left as it was.)",
+	]},
 	{"v": "0.38.230", "items": [
 		"The Brood's Hatchlings are now a small wyvern: olive green, bat wings and a row of red spines, flying and biting in every direction.",
 	]},

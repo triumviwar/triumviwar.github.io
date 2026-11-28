@@ -163,7 +163,7 @@ func _home_army() -> Array:
 			continue
 		if ai._on_errand(u) and not joining.has(u):
 			continue          # (clockwork-army: the Clock Soldier rush's and the Owl raids' units too, not only the Springer raid's)
-		if ai.get("army_g") != null and ai.army_g.raid_size_on and ai.army_g.defenders.has(u) and not joining.has(u):
+		if ai.get("army_g") != null and ai.army_g.sized_on() and ai.army_g.defenders.has(u) and not joining.has(u):
 			continue          # (ai-fixes-a: the group meeting a small raid stays at it)
 		out.append(u)
 	return out
@@ -1063,12 +1063,13 @@ func _brood_raid_home() -> bool:
 ## (ai-fixes-a, docs/ai_fixes_a.md) A PART OF THE PUSH GOES HOME: the rule above turned the WHOLE push round for any raid of
 ## RAID_HOME or more the guard at home did not match (a raid of 320 sent a push of 2,400 home). Now a raid worth less than
 ## PART_SHARE of the push sends home only the push's units nearest home worth PART_K times the raid less the guard (at least
-## 3); the rest pushes on. A bigger raid turns the whole push round as before. Once every PART_GAP s at most. MEASURING
-## SWITCH `cwraidpart:off` (as before).
+## 3); the rest pushes on. A bigger raid turns the whole push round as before. Once every PART_GAP s at most. OFF: the
+## whole push came home 1 time in 20 games against the Brood (it is rare), and with this and the raid-sized defence on
+## the Clockwork did worse there (won 9 -> 4 of 20, within the noise). MEASURING SWITCH `cwraidpart:on`.
 const PART_SHARE := 0.3
 const PART_K := 2.0
 const PART_GAP := 25.0
-static var raid_part_on := not OS.get_cmdline_user_args().has("cwraidpart:off")
+static var raid_part_on := OS.get_cmdline_user_args().has("cwraidpart:on")
 var _part_t := -99.0
 
 

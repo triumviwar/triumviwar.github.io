@@ -93,7 +93,7 @@ def raid(off, on):
         same += SC[o2] == SC[o1]
         f = lambda r, m, k: str(r["at"].get((si, m), {}).get(k, "-"))
         rows.append("| %s | %s | %s | %s / %s | %s / %s |" % (tag, o1, o2, f(x, 12, "army"), f(y, 12, "army"), f(x, 16, "income"), f(y, 16, "income")))
-    print("| arm | games | Clockwork W-D-L | won or led / lost or trailed / even | whole-army answers | of them over 5x the raid | sized groups sent | whole push home | part of the push home |")
+    print("| arm | games | Clockwork W-D-L | won or led / lost or trailed / even | whole-army answers | of them over 5x the raid | group answers | whole push home | part of the push home |")
     print("|---|---|---|---|---|---|---|---|---|")
     for name in ("off", "on"):
         n, c, whole, big, grp, home, part = stat[name]
