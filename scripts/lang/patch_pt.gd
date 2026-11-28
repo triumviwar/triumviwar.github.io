@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.999": ["A Ninhada também é verde nas pinturas: os espinhos, cristas e golas vermelhos das criaturas da Ninhada na pintura do menu principal, em 19 quadros da campanha e no retrato de diálogo das criaturas agora têm o verde-veneno da Ninhada (o vermelho do Mecanismo, o fogo, o sangue e os poentes não mudam)."],
 	"0.38.230": ["Os Filhotes da Ninhada agora são uma pequena serpe: verde-oliva, asas de morcego e uma fileira de espinhos vermelhos, voando e mordendo em todas as direções."],
 	"0.38.229": ["Uma larva carregando, embrulhando ou guardando um casulo mantém a mesma pele oliva escura de quando anda (antes ficava amarelada)."],
 	"0.38.228": ["Os cavalos pastam virados para onde estão (antes todos pastavam para baixo à direita), também no cercado; a Mãe da Ninhada no segundo estágio caminha de frente para você; os novos quadros de pistola do Couraceiro aceitam todas as pelagens."],

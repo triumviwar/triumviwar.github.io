@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.999": ["La Nidada también es verde en las pinturas: las púas, crestas y golas rojas de las criaturas de la Nidada en la pintura del menú principal, en 19 cuadros de la campaña y en el retrato de diálogo de las criaturas ahora tienen el verde veneno de la Nidada (el rojo del Mecanismo, el fuego, la sangre y los atardeceres no cambian)."],
 	"0.38.230": ["Las Crías de la Nidada ahora son un pequeño guiverno: verde oliva, alas de murciélago y una hilera de púas rojas, volando y mordiendo en todas las direcciones."],
 	"0.38.229": ["Una larva que carga, envuelve o guarda un capullo mantiene la misma piel oliva oscura que cuando camina (antes se volvía amarillenta)."],
 	"0.38.228": ["Los caballos pastan mirando hacia donde están (antes todos pastaban hacia abajo a la derecha), también en el corral; la Madre de la Camada en su segunda etapa camina de frente hacia ti; los nuevos fotogramas de pistola del Coracero aceptan todos los pelajes."],

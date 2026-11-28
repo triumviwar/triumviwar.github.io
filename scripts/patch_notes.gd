@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"The Brood is green in the paintings too: the red spines, crests and frills of the Brood's creatures in the main menu painting, 19 campaign stills and the creatures' dialogue portrait are now the Brood's venom green (the Clockwork's red, fire, blood and sunsets are untouched).",
+	]},
 	{"v": "0.38.230", "items": [
 		"The Brood's Hatchlings are now a small wyvern: olive green, bat wings and a row of red spines, flying and biting in every direction.",
 	]},
