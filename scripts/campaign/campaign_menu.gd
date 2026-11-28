@@ -830,6 +830,14 @@ static func show(main: Node) -> void:
 			pos = pos.clamp(Vector2.ZERO, (s - sz).max(Vector2.ZERO))
 			(it[0] as Button).position = pos
 			(it[0] as Button).size = sz
+		# the smaller hotspot on top where two overlap (qa-click-sweep: the Armoury's muster book lay under the Swiss
+		# guard beside it and could not be clicked on the painting); the talk box stays over them all
+		var by_size := btns.duplicate()
+		by_size.sort_custom(func(a: Array, b: Array) -> bool:
+			return (a[0] as Button).size.x * (a[0] as Button).size.y > (b[0] as Button).size.x * (b[0] as Button).size.y)
+		for it in by_size:
+			scene.move_child(it[0], -1)
+		scene.move_child(talk_box, -1)
 		talk_box.position = Vector2(s.x * 0.05, s.y * 0.58)
 		talk_box.size = Vector2(s.x * 0.9, s.y * 0.38)
 	scene.resized.connect(place)
