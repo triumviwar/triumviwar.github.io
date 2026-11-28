@@ -784,7 +784,10 @@ func _build_palette(vp: Vector2) -> void:
 	pl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	pl.custom_minimum_size = Vector2(w - 28, 36)
 	v.add_child(pl)
-	v.add_child(_small_label("Red frame: blocks like a rock. Plain: looks only."))
+	var rf := _small_label("Red frame: blocks like a rock. Plain: looks only.")
+	rf.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART      # (pt / es: one line pushed the panel off the screen; qa-click-sweep)
+	rf.custom_minimum_size.x = w - 28
+	v.add_child(rf)
 	var scroll := ScrollContainer.new()
 	scroll.name = "PropScroll"
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
