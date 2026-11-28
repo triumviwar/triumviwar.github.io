@@ -1,0 +1,15 @@
+# Valadares' angry reference, made with Chatterbox alone (owner 2026-11-28): the same shouted passage at rising
+# exaggeration. run.bat --lines valadares_angry_seed.txt --out out_seed ; listen, keep the best as
+# refs/valadares_angry_ref.wav (Claude adds "valadares" to ANGRY_REFS in make_big_lines.py).
+[ref refs/explorer_ref.wav]
+[pitch 0]
+[cfg 0.3]
+[exaggeration 1.0]
+val_angry_10 | Torches! Into the forest, all of you! Now! You fools, I warned you, I warned every one of you, and you would not listen! Get the women to the canoes! Move!
+[exaggeration 1.4]
+val_angry_14 | Torches! Into the forest, all of you! Now! You fools, I warned you, I warned every one of you, and you would not listen! Get the women to the canoes! Move!
+[exaggeration 1.8]
+val_angry_18 | Torches! Into the forest, all of you! Now! You fools, I warned you, I warned every one of you, and you would not listen! Get the women to the canoes! Move!
+[cfg 0.2]
+[exaggeration 1.6]
+val_angry_16slow | Torches! Into the forest, all of you! Now! You fools, I warned you, I warned every one of you, and you would not listen! Get the women to the canoes! Move!

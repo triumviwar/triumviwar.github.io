@@ -42,7 +42,8 @@ Ruggieri, Fairleigh and Ferrer "very good"; Valadares and Tomasz weak, Jakob fin
 make_big_lines.py uses it for Tomasz's shout and angry lines. NEXT RUN: `run.bat --lines lines_angry.txt --out
 out_emotion` (7 lines), listen, send out_emotion back. Valadares still waits: the explorer voice is in the FIRST
 ElevenLabs account (an Instant Clone of explorer_ref.wav in the second account needs a voice check only a real speaker
-can pass), so his angry take is made there, then ANGRY_REFS gets "valadares".
+can pass). OWNER 2026-11-28: try it with Chatterbox alone first: valadares_angry_seed.txt (the same shouted passage at
+exaggeration 1.0 / 1.4 / 1.8 / 1.6 slow); the best take becomes refs/valadares_angry_ref.wav and ANGRY_REFS gets "valadares".
 
 THE EMOTION RUN (owner 2026-11-22: "certain lines have no emotion at all", Valadares accusing the doctor and firing the
 thatch): tools/voice_clone/emotions.json tags 280 campaign lines shout / angry / urgent / grief / wonder, each with a
