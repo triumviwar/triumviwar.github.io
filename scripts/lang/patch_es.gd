@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.232": ["El motor del Acto 3 (aún sin misiones): climas (el frío retrasa los huevos de la Camada y una línea de helada los mata, bajando de noche; la humedad gasta la cuerda de la Relojería más deprisa; el calor seco retrasa un poco a la Camada), la parada de Hollweg tocada en una campana, la llamada hecha de Lindqvist que desvía una oleada, el calor junto a las hogueras en el hielo, el vuelo de un globo que marca lo que ve, el libro de cuentas de todo lo que la campaña trajo a Roma, los tres puertos de la noche en cualquier orden (el primero fresco, el último crecido), las nuevas piezas del Acto 3 en cualquier orden, la elección final sin tiempo, y los créditos sobre el mapa de guerra y el gabinete del Rey."],
 	"0.38.231": ["Mapas de guerra: el mapa del Relojero ahora es una placa de latón grabada y el del Naturalista una carta de campo con dibujos de plantas y de criaturas de la Camada, en todas las vistas."],
 	"0.38.230": ["Las Crías de la Nidada ahora son un pequeño guiverno: verde oliva, alas de murciélago y una hilera de púas rojas, volando y mordiendo en todas las direcciones."],
 	"0.38.229": ["Una larva que carga, envuelve o guarda un capullo mantiene la misma piel oliva oscura que cuando camina (antes se volvía amarillenta)."],

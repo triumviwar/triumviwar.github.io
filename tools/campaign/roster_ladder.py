@@ -45,9 +45,9 @@ LADDER = {
         ("C7", "d09_crossroads", ["armour", "powder_wagon"], []),
         ("C8", "d10_jungle", ["balloon"], []),
         ("C9", "d11_siege", ["charges", "quadrant"], []),
-        ("C10", "", ["band"], []),
-        ("C11", "", ["band_fifer", "band_piper"], []),
-        ("C12", "", ["flintlock", "caplock", "pouch"], ["mounted_missionary"]),
+        ("C10", "e01_brazil", ["band"], []),
+        ("C11", "e03_virginia", ["band_fifer", "band_piper"], []),
+        ("C12", "e12_exiles", ["flintlock", "caplock", "pouch"], ["mounted_missionary"]),
     ],
     "clockwork": [
         ("K1", "c01_thirteenth", ["winder", "clock_soldier"], []),
@@ -57,8 +57,8 @@ LADDER = {
         ("K5", "d04_concordia", ["cuckoo_house", "cuckoo"], []),
         ("K6", "d07_spring", ["owl_morph", "high_leap"], ["ticking_owl"]),
         ("K7", "d11_siege", ["ballista", "long_chain"], []),
-        ("K8", "", ["great_winder"], []),
-        ("K9", "", ["brass_serpent"], ["serpent_gear_s", "serpent_gear_b"]),
+        ("K8", "e08_arsenal", ["great_winder"], []),
+        ("K9", "e13_gold", ["brass_serpent"], ["serpent_gear_s", "serpent_gear_b"]),
     ],
     "brood": [
         ("B1", "b01_specimen", ["tyrannosaur", "raptor"], []),
@@ -69,8 +69,8 @@ LADDER = {
         ("B5", "d06_queen", ["stage3", "brute"], []),
         ("B6", "d08_rivers", ["nb_clutch_raptor", "nb_pack_hunt", "nb_quick_roots"], []),
         ("B7", "d10_jungle", ["mist_toad", "nb_fog", "nb_miasma"], []),
-        ("B8", "", ["storm_challenger", "nb_updraft", "nb_clutch_hatchlings"], []),
-        ("B9", "", ["nb_clutch_spitter", "nb_slither", "nb_long_spit", "nb_battering_horns", "nb_swamp_mending"], []),
+        ("B8", "e05_river", ["storm_challenger", "nb_updraft", "nb_clutch_hatchlings"], []),
+        ("B9", "e11_spice", ["nb_clutch_spitter", "nb_slither", "nb_long_spit", "nb_battering_horns", "nb_swamp_mending"], []),
     ],
 }
 
@@ -278,13 +278,44 @@ def step_of(mission_id, faction=None):
     raise KeyError(mission_id)
 
 
+# THE LADDER IN ANY ORDER (act3-engine0; docs/campaign_act3_plan.md, Claude's choice 6): Act 3's theatres are free, so a
+# line's Act 3 rungs come in any order. From this step on (its index in the line), a mission's allow-list is the line's
+# whole Act 2 kit + its OWN rung; every other Act 3 rung of the line rides on the roster as "if_won": {mission: pieces}
+# and joins the kit in the game once that mission is won (Campaign.roster_denied).
+ANY_ORDER = {"crown": "C10", "clockwork": "K8", "brood": "B8"}
+
+
+def any_from(faction):
+    """The index of the line's first any-order step (len(steps) when none)."""
+    steps = LADDER[faction]
+    for i, st in enumerate(steps):
+        if st[0] == ANY_ORDER.get(faction):
+            return i
+    return len(steps)
+
+
 def allow_of(faction, upto):
-    """The allow-list at step index `upto` (inclusive): the kit, then every step's pieces in order."""
+    """The allow-list at step index `upto` (inclusive): the kit, then every step's pieces in order (an any-order step:
+    the kit, every step before the first any-order one, then its own)."""
     out = list(KIT[faction])
-    for st in LADDER[faction][: upto + 1]:
+    a = any_from(faction)
+    steps = LADDER[faction][: upto + 1] if upto < a else LADDER[faction][:a] + [LADDER[faction][upto]]
+    for st in steps:
         for k in st[2] + st[3]:
             if k not in out:
                 out.append(k)
+    return out
+
+
+def if_won_of(faction, upto):
+    """An any-order step's other Act 3 rungs: {mission: [pieces]} ({} before the any-order steps)."""
+    a = any_from(faction)
+    if upto < a:
+        return {}
+    out = {}
+    for i, st in enumerate(LADDER[faction][a:], a):
+        if i != upto and st[1]:
+            out[st[1]] = list(st[2] + st[3])
     return out
 
 
@@ -296,7 +327,11 @@ ICON = {c: "res://assets/icons/%s.png" % c for c in CARDS
 
 def roster_of(mission_id, faction=None):
     fac, i = step_of(mission_id, faction)
-    return {"allow": allow_of(fac, i), "new": list(LADDER[fac][i][2])}
+    r = {"allow": allow_of(fac, i), "new": list(LADDER[fac][i][2])}
+    iw = if_won_of(fac, i)
+    if iw:
+        r["if_won"] = iw
+    return r
 
 
 def apply(M, mission_id, story_deny=None, at=None, faction=None):
@@ -310,6 +345,8 @@ def apply(M, mission_id, story_deny=None, at=None, faction=None):
     for tm in M["teams"]:
         if tm["id"] in teams:
             ros = {"allow": list(r["allow"]), "new": list(r["new"])}
+            if r.get("if_won"):
+                ros["if_won"] = {k: list(v) for k, v in r["if_won"].items()}
             deny = (story_deny or {}).get(tm["id"], [])
             if deny:
                 ros["deny"] = list(deny)

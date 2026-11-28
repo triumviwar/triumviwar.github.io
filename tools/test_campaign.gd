@@ -339,7 +339,7 @@ func _run() -> void:
 	check("the prologue won: the naturalist and clockmaker storylines open", Campaign.storyline_open(Campaign.storylines()[1]) and Campaign.storyline_open(Campaign.storylines()[2]))
 	check("the prologue's choice is kept for later missions", Campaign.flag("p01_leaf", "families") == "save")
 	var tk: Dictionary = Campaign.storylines()[0]["hub"]["talks"]["fairleigh"]
-	check("the Governor's talk changed after the mission", String(CampaignMenu.talk_lines(tk, p)[0]).begins_with("Done. See the men fed"))
+	check("the Governor's talk changed after the mission", String(CampaignMenu.talk_lines(tk, p)[0]).begins_with("It is done."))
 	# ---------------------------------------------------------------- solo, lost: the captain killed
 	main._to_menu()
 	g = await _start("solo")

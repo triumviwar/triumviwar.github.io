@@ -95,9 +95,15 @@ func _run() -> void:
 	check("the doc's CHECKED TABLE is there (three ladders)", rows.size() >= 20 and facs.has("crown") and facs.has("clockwork") and facs.has("brood"), "%d rows" % rows.size())
 	# ---- each ladder only grows; a step's allow-list is the one before plus its own pieces
 	var prev := {}
+	# (act3-engine0: THE LADDER IN ANY ORDER: from C10 / K8 / B8 a row is the line's last Act 2 row + its own rung)
+	var any_from := {"crown": 10, "clockwork": 8, "brood": 8}
+	var act2_last := {}
 	for r in rows:
 		var f: String = r["faction"]
-		var before: Array = prev.get(f, [])
+		var any := int(String(r["step"]).substr(1)) >= int(any_from.get(f, 99))
+		if not any:
+			act2_last[f] = r["allow"]
+		var before: Array = act2_last.get(f, []) if any else prev.get(f, [])
 		var lost := _minus(before, r["allow"])
 		var extra := _minus(r["allow"], before)
 		var own: Array = (r["new"] as Array) + (r["with"] as Array)
@@ -128,6 +134,17 @@ func _run() -> void:
 			check("%s: team %s's allow-list is the table's" % [mid, tid], _same(have, r["allow"]),
 				"extra %s, missing %s" % [_minus(have, r["allow"]), _minus(r["allow"], have)])
 			check("%s: team %s's NEW pieces are the table's" % [mid, tid], _same(ros.get("new", []), r["new"]), "%s" % [ros.get("new", [])])
+			# (act3-engine0) an any-order rung: every OTHER Act 3 rung of the line rides on it as if_won
+			if int(String(r["step"]).substr(1)) >= int(any_from.get(String(r["faction"]), 99)):
+				var others := {}
+				for r2 in rows:
+					if r2["faction"] == r["faction"] and r2 != r and int(String(r2["step"]).substr(1)) >= int(any_from.get(String(r["faction"]), 99)):
+						others[r2["mission"]] = (r2["new"] as Array) + (r2["with"] as Array)
+				var iw: Dictionary = ros.get("if_won", {})
+				var iw_ok := iw.size() == others.size()
+				for mk in others:
+					iw_ok = iw_ok and iw.has(mk) and _same(iw[mk], others[mk])
+				check("%s: team %s carries the other Act 3 rungs as if_won" % [mid, tid], iw_ok, str(iw.keys()))
 		# the NEW card: one line of the speaker "new" per new piece (the Venom Challenger shares the Tyrant's), to one side
 		# (a mission on two ladders, d10: the second ladder's cards have a speaker and a trigger of their own, "new_<faction>")
 		var spk := "new_%s" % r["faction"] if (m["speakers"] as Dictionary).has("new_%s" % r["faction"]) else "new"

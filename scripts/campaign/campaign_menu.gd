@@ -240,6 +240,13 @@ static func war_table(main: Node) -> void:
 	wm.name = "WarTable_Map"
 	wm.custom_minimum_size = Vector2(240, 56)
 	brow.add_child(wm)
+	# THE CREDITS (act3-engine0): once the campaign has its ending, the war table can roll them again
+	if Campaign.ending() != "":
+		var cb: Button = main._button("THE CREDITS", func() -> void:
+			CampaignCredits.play(main.ui_layer, Campaign.ending(), func() -> void: pass))
+		cb.name = "WarTable_Credits"
+		cb.custom_minimum_size = Vector2(240, 56)
+		brow.add_child(cb)
 
 
 ## The mission's own saves on its card (player-comforts, MissionSave): CONTINUE (where you left it), LOAD SAVE (the
@@ -306,6 +313,7 @@ static func host_online(main: Node, mid: String, md: String, st: String, vp := "
 
 static func briefing(main: Node, mid: String) -> void:
 	var m := Campaign.mission(mid)
+	Campaign.asking = mid          # (act3-engine0: THE NIGHT's ORDER in the briefing's lines and the version)
 	var side := Campaign.solo_side(m, solo_pick)
 	var br: Dictionary = m.get("briefing", {}).get(side, {})
 	var box := _frame(main)
@@ -505,13 +513,22 @@ static func mission_end(main: Node, game: Game, winner: int, rp_path: String) ->
 	var won := win_side != "" and win_side == mine
 	# the mission's ENDING for the side that won (its stills and lines: StillShow), then this screen
 	var ending := run.pages_now(Campaign.show_pages(m, "ending", win_side))      # (lines with an "if" said only when it holds)
+	# (act3-engine0: the campaign's last mission, "credits": true: THE CREDITS roll after its ending, before this screen)
+	var panel := func() -> void:
+		if not is_instance_valid(game):
+			return
+		if bool(m.get("credits", false)) and (won or run.mode == "versus") and not game.has_meta("credits_shown"):
+			game.set_meta("credits_shown", true)
+			CampaignCredits.play(main.ui_layer, String(run.flags.get("ending", Campaign.ending())), func() -> void:
+				if is_instance_valid(game):
+					_end_panel(main, game, winner, rp_path, nxt, won, win_side))
+			return
+		_end_panel(main, game, winner, rp_path, nxt, won, win_side)
 	if not ending.is_empty() and (won or run.mode == "versus") and not game.has_meta("ending_shown"):
 		game.set_meta("ending_shown", true)
-		StillShow.play(main.ui_layer, m, ending, func() -> void:
-			if is_instance_valid(game):
-				_end_panel(main, game, winner, rp_path, nxt, won, win_side))
+		StillShow.play(main.ui_layer, m, ending, panel)
 		return
-	_end_panel(main, game, winner, rp_path, nxt, won, win_side)
+	panel.call()
 
 
 static func _end_panel(main: Node, game: Game, winner: int, rp_path: String, nxt: String, won: bool, win_side: String) -> void:

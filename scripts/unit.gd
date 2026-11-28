@@ -3813,6 +3813,8 @@ func _tick_unit(delta: float) -> void:
 		var wi := clampi(int(position.y / Game.T), 0, Game.H - 1) * Game.W + clampi(int(position.x / Game.T), 0, Game.W - 1)
 		if game.mapgen != null and wi < game.mapgen.ford.size() and game.mapgen.ford[wi] == 1:
 			speed *= game.mission.wade
+	if game.mission != null and not game.mission.climate_pace.is_empty() and game.mission.climate_pace.has(_k_fac):
+		speed *= float(game.mission.climate_pace[_k_fac])     # (act3-engine0's CLIMATE: the dry heat slows the Brood a little)
 	if litter_t > 0.0:
 		speed *= CogScatter.speed_mul(self)       # (in a Great Winder's SCATTER COGS litter: scripts/cog_scatter.gd)
 		litter_t -= delta

@@ -1377,6 +1377,7 @@ func longest_idle() -> Dictionary:
 ## the side, the heir), kept in the flag "version"; units, buildings, waves and lines read it with
 ## {"version": "grown"}. Static so the briefing can say which one it is before the match (its label).
 static func version_of(m: Dictionary, side := "", diff := "") -> String:
+	Campaign.asking = String(m.get("id", ""))          # (act3-engine0: THE NIGHT's ORDER reads which mission asks)
 	var vs: Variant = m.get("versions", null)
 	if not (vs is Dictionary):
 		return ""
