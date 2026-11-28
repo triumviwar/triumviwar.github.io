@@ -146,6 +146,22 @@ const LOSER_LOSS := 0.6
 const WIN_LOSS_BASE := 0.05       # the winner loses WIN_LOSS_BASE + WIN_LOSS_K x (weaker / stronger)^2
 const WIN_LOSS_K := 0.55
 const FREE_LOSS := 0.5             # ...times this against a free land's militia (no army there)
+## A WAY OUT (docs/ww_call_off.md): on the battle question the attacker may CALL IT OFF (the army stays where it was,
+## nothing lost, its march spent) and the defender may RETREAT (its armies fall back to the safest region of its own
+## next door, losing RETREAT_LOSS of their men to the rear guard, and the region is given up to the attacker). A capital
+## is never given up; with no region of its own next door free of the enemy there is no way out.
+const RETREAT_LOSS := 0.1
+## A player marching into a region with no army in it (free militia, a region's guard) is asked first only when its
+## side wins fewer than ASK_BELOW times in 100 (else it is decided at once, as before).
+const ASK_BELOW := 50
+## The computers use the way out too (a rule switch; off in wars saved before it, rules version 2 and older): a
+## defender RETREATS when it wins fewer than AI_RETREAT_AT times in 100 and may; an attacker CALLS IT OFF below
+## AI_CALLOFF_AT (its own choice of target makes that rare).
+const CALL_OFF_AI := true
+const AI_RETREAT_AT := {"easy": 5, "normal": 10, "hard": 15}
+const AI_CALLOFF_AT := {"easy": 10, "normal": 15, "hard": 20}
+const AI_RETREAT_MIN := 600        # ...only an army worth this much (gold) or more retreats (a few men in a garrison stand)
+const AI_RETREAT_KEYS := true      # ...and from a key region too
 const BIOME_FIGHT := {"crown": {"temperate": 1.05}, "brood": {"jungle": 1.15, "wet": 1.1, "temperate": 1.0, "desert": 0.95, "cold": 0.75}, "clockwork": {"temperate": 1.05, "wet": 0.85, "jungle": 0.85}}
 
 ## HEROES (optional, the setup's STORY HEROES): story generals, each with one army; +10% strength and a gift.
@@ -190,10 +206,12 @@ const AI_FAR := 0.4                # an attack's score falls by this for each st
 const EVENTS := ["plague", "council", "storms", "harvest"]
 const EVENT_CHANCE := 0.2
 
-## THE RULES' VERSION (docs/world_war_tune.md): 1 = the first numbers (0.38.x, kept in V1), 2 = the tuning pass. A war
+## THE RULES' VERSION (docs/world_war_tune.md): 1 = the first numbers (0.38.x, kept in V1), 2 = the tuning pass, 3 = the
+## computers use CALL IT OFF / RETREAT (docs/ww_call_off.md; V2 keeps them off in older wars). A war
 ## remembers its version (a war saved before the tuning plays on to its end with the old numbers); a new war takes the
 ## newest. WWWar.num() reads every tuned number through this.
-const RULES_VERSION := 2
+const RULES_VERSION := 3
+const V2 := {"CALL_OFF_AI": false}
 const V1 := {"SEA_HOP": 1, "SUPPLY_STEP": 0.0, "AI_LEADER_REAL": false, "AI_TRUCE": 0.0, "SEATS": false, "FREE_LOSS": 1.0, "START_TWO": {}, "START_THIRD": {"crown": ["lyon"], "clockwork": [], "brood": []}, "AI_BUILD_AT": 1.0, "VS": {}, "SEA_LOSS": {"clockwork": 0.05}, "AI_MARCH": 999999.0, "ABSENT_GUARD": {}, "GUARD": 100, "FREE_GUARD": 250, "UPKEEP_SIDE": {"clockwork": 0.09},
 	"BIOME_FIGHT": {"crown": {"temperate": 1.05}, "brood": {"jungle": 1.15, "wet": 1.1, "temperate": 0.9, "desert": 0.85, "cold": 0.75}, "clockwork": {"wet": 0.85, "jungle": 0.85}},
 	"BIOME_INCOME": {"crown": {"temperate": 1.0, "wet": 1.0, "cold": 0.85, "desert": 0.9, "jungle": 0.8},
@@ -308,10 +326,12 @@ static func hero(id: String) -> Dictionary:
 	return {}
 
 
-## A rule's base value by name for a rules version (V1's old number for a version-1 war).
+## A rule's base value by name for a rules version (V1's old number for a version-1 war, V2's for versions 1-2).
 static func value(k: String, rv: int) -> Variant:
 	if rv < 2 and V1.has(k):
 		return V1[k]
+	if rv < 3 and V2.has(k):
+		return V2[k]
 	if _consts.is_empty():
 		_consts = (WWRules as Script).get_script_constant_map()
 	return _consts.get(k, null)

@@ -134,6 +134,10 @@ A building taken by another side is pulled down. A capital is always a muster pl
 ### Battles
 - Marching into a region of another side, or into free land, is a battle. With an army on each side and one of them a
   player's (and the other a computer's), the player chooses FIGHT IT or AUTO-RESOLVE; any other battle is decided at once.
+- A WAY OUT (job ww-call-off, docs/ww_call_off.md): on the battle question the attacker may CALL IT OFF (the army stays
+  where it was, its march spent) and the defender may RETREAT (to the safest region of its own next door, a tenth of its
+  men lost, the region given up; never from a capital, not with NO WAY OUT). A player's weak march into a region with no
+  army (under 50 in 100) and a hot-seat attack are asked too. The computers retreat and call off when it is hopeless.
 - AUTO-RESOLVE: the attacker's strength = its army's worth x (1 + 0.1 a veteran rank) x 1.1 with a hero x its land's
   factor (and the heroes' gifts). The defender's = (its armies' worth with the same bonuses + the region's guard) x its land
   factor x 1.2 (x1.35 at a capital). The guard: free land its militia; a held region worth x 100, plus its building's

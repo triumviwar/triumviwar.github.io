@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.249", "items": [
+		"WORLD WAR: a way out of a battle you can't win. The battle question shows your odds and now offers, attacking, CALL IT OFF (your army turns back and stays where it was, nothing lost, its march this season spent) and, defending, RETREAT (your army falls back to the safest region of yours next door, losing a tenth of its men, and the region is given up). A capital is never given up, and with no free region of yours next door there is NO WAY OUT. A march into a region with no army in it now asks first when you would probably lose, and in a hot-seat war the attacker may call it off. The computers retreat and call off too when it is hopeless (in new wars).",
+	]},
 	{"v": "0.38.248", "items": [
 		"COLOUR-BLIND HELP (Settings > DISPLAY): OFF, RED-GREEN or BLUE-YELLOW. With it on the eight team colours are shown as a set colour-blind players tell apart (on the units, the minimap, the HUD, the lobby with their names, the chat and the reports), the world war's and the war map's territory too (red-green: the machine orange, the Brood sky blue), and the health bars turn blue, yellow and orange with stripes when low. Only your screen changes: your friends and saved games keep their colours.",
 		"TEXT SIZE (Settings > DISPLAY), 90% to 150%: every menu, the campaign's pages and the lobby; the match's own words grow by part of it (IN-GAME INTERFACE SIZE still grows the whole match interface).",

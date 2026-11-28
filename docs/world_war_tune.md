@@ -242,3 +242,6 @@ Things tried and NOT kept (measured, then put back):
 - Key-region wars: the keys' places (choice 14).
 - Human players were not measured: a player who builds forts abroad and marches on capitals will end wars sooner than
   the computers.
+
+LATER (job ww-call-off, docs/ww_call_off.md): rules version 3 lets the computers CALL IT OFF and RETREAT
+(CALL_OFF_AI; WWRules.V2 keeps it off in wars of versions 1-2). Its before/after with these sims is in that doc.

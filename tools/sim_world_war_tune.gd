@@ -32,6 +32,7 @@ func _initialize() -> void:
 	var freec := {}
 	var fellby := {}
 	var ownc := {}
+	var ways := {}
 	for i in wars:
 		var players := {}
 		for f in WWRules.FACTIONS:
@@ -57,6 +58,9 @@ func _initialize() -> void:
 		for f in w.d["order"]:
 			if not w.alive(f):
 				fellby[f] = int(fellby.get(f, 0)) + 1
+		for f in w.d.get("ways_out", {}):
+			for k in w.d["ways_out"][f]:
+				ways[k] = int(ways.get(k, 0)) + int(w.d["ways_out"][f][k])
 		var win := String(w.d["winner"])
 		var kind := "none"
 		if win != "":
@@ -92,9 +96,10 @@ func _initialize() -> void:
 	var hl := {}
 	for f in held:
 		hl[f] = snappedf(float(held[f]) / wars, 0.1)
-	var line := "SUMMARY sides=%s tune=%s wars=%d seasons=%d limit=%d | wins %s | how %s | capitals fell %d %s | median end s%d | free regions %.1f (worth %.1f) | regions held %s | peak %d | leader share of held land %.2f" % [
+	var line := "SUMMARY sides=%s tune=%s wars=%d seasons=%d limit=%d | wins %s | how %s | capitals fell %d %s | median end s%d | free regions %.1f (worth %.1f) | regions held %s | peak %d | leader share of held land %.2f | ways out a war: retreats %.1f, called off %.1f" % [
 		",".join(sides), tune if tune != "" else "-", wars, seasons, limit, wins, how, falls, fellby, ends[ends.size() / 2],
-		float(free_n) / wars, float(free_w) / wars, hl, peak, lead_share / wars]
+		float(free_n) / wars, float(free_w) / wars, hl, peak, lead_share / wars,
+		float(ways.get("retreat", 0)) / wars, float(ways.get("call_off", 0)) / wars]
 	print(line)
 	if args.has("ownlist"):
 		for f in WWRules.FACTIONS:

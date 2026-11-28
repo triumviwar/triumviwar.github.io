@@ -400,7 +400,7 @@ func _march(aid: String, to: String) -> void:
 			_ask_battle(res["battle"], func() -> void:
 				_after_move())
 			return
-		"fought", "lost":
+		"fought", "lost", "called_off", "retreated":
 			_toast(String(res.get("text", "")))
 		"refused":
 			_toast(Loc.t(String(res.get("text", ""))))
@@ -637,7 +637,7 @@ func _ai_next() -> void:
 			if String(r.get("kind_move", "")) == "battle":
 				_ask_battle(r["battle"], func() -> void: _ai_later())
 				return
-			if String(r.get("kind_move", "")) == "fought" and _involves_human(r.get("battle", {})):
+			if ["fought", "called_off", "retreated"].has(String(r.get("kind_move", ""))) and _involves_human(r.get("battle", {})):
 				_toast(String(r.get("text", "")))
 			refresh()
 			_ai_later()
@@ -670,6 +670,8 @@ func _next_side() -> void:
 
 
 func _leave() -> void:
+	if not _pending.is_empty() and overlay != null and is_instance_valid(overlay):
+		return          # (the battle question must be answered: CALL IT OFF / RETREAT is the way out)
 	if overlay != null and is_instance_valid(overlay):
 		_close_overlay()
 		return
@@ -685,7 +687,9 @@ func _leave() -> void:
 
 # ------------------------------------------------------------------ battles
 
-## A battle with a player's army on one side: FIGHT IT (the skirmish) or AUTO-RESOLVE.
+## The battle question: who meets whom, the odds, and the choices: FIGHT IT (the skirmish, against a computer's army),
+## AUTO-RESOLVE, and A WAY OUT (docs/ww_call_off.md): the attacker may CALL IT OFF, the defender may RETREAT (or is told
+## why it can't: a capital, NO WAY OUT).
 func _ask_battle(b: Dictionary, then: Callable) -> void:
 	_pending = b
 	_after_battle = then
@@ -694,8 +698,12 @@ func _ask_battle(b: Dictionary, then: Callable) -> void:
 	var to := String(b["region"])
 	var af := String(b["att_f"])
 	var df := String(b["def_f"])
+	var rn := Loc.t(String(WWRules.region(to)["name"]))
 	var lines: Array = []
-	lines.append(Loc.t("%s attacks %s, held by %s.") % [Loc.t(WWRules.NAME[af]), Loc.t(String(WWRules.region(to)["name"])), Loc.t(WWRules.NAME[df])])
+	if df == "":
+		lines.append(Loc.t("%s attacks %s, held by its free militia.") % [Loc.t(WWRules.NAME[af]), rn])
+	else:
+		lines.append(Loc.t("%s attacks %s, held by %s.") % [Loc.t(WWRules.NAME[af]), rn, Loc.t(WWRules.NAME[df])])
 	lines.append(Loc.t("Attacker: %s (strength %d with its bonuses).") % [_units_words(att["units"]), int(s["att"])])
 	var du := {}
 	for did in b["defs"]:
@@ -707,36 +715,51 @@ func _ask_battle(b: Dictionary, then: Callable) -> void:
 	if me == df:
 		chance = 100 - chance
 	lines.append(Loc.t("If it is decided at once, your side wins about %d times in 100.") % chance)
-	lines.append(Loc.t("FIGHT IT: play the battle yourself on a %s map with exactly these armies; the survivors go back to the world map.") % Loc.t(war.biome_now(to)))
-	_banner(Loc.t("BATTLE OF %s") % Loc.t(String(WWRules.region(to)["name"])).to_upper(), lines, Color(0.75, 0.3, 0.2), Callable(),
-		[["AUTO-RESOLVE", func() -> void:
-			var res := war.resolve(_pending)
-			_pending = {}
-			_toast(String(res.get("text", "")))
-			var cb := _after_battle
-			_after_battle = Callable()
-			refresh()
-			if war.check_win() != "":
-				_victory()
-				return
-			cb.call()],
-		["FIGHT IT", func() -> void:
+	var fight := war.fight_offered(b)
+	if fight:
+		lines.append(Loc.t("FIGHT IT: play the battle yourself on a %s map with exactly these armies; the survivors go back to the world map.") % Loc.t(war.biome_now(to)))
+	var buttons: Array = []
+	if me == af:
+		lines.append(Loc.t("CALL IT OFF: your army turns back and stays in %s; nothing is lost, but its march this season is spent.") % Loc.t(String(WWRules.region(String(b["from"]))["name"])))
+		buttons.append(["CALL IT OFF", func() -> void: _way_out(war.call_off(_pending))])
+	else:
+		var why := war.retreat_problem(b)
+		if why == "":
+			lines.append(Loc.t("RETREAT: your army falls back to %s and loses %d%% of its men to the rear guard; %s is given up to %s.") % [
+				Loc.t(String(WWRules.region(war.retreat_to(b))["name"])), int(round(war.numf("RETREAT_LOSS") * 100)), rn, Loc.t(WWRules.NAME[af])])
+			buttons.append(["RETREAT", func() -> void: _way_out(war.retreat(_pending))])
+		else:
+			lines.append(Loc.t(why))
+	buttons.append(["AUTO-RESOLVE", func() -> void:
+		var res := war.resolve(_pending)
+		_way_out(res)])
+	if fight:
+		buttons.append(["FIGHT IT", func() -> void:
 			var wb := WWBattle.new()
 			wb.war = war
 			wb.battle = _pending
 			_pending = {}
 			war.d["resume_ai"] = not war.is_human(war.current())
-			wb.begin(main)]])
+			wb.begin(main)])
+	_banner(Loc.t("BATTLE OF %s") % rn.to_upper(), lines, Color(0.75, 0.3, 0.2), Callable(), buttons)
+
+
+## The battle question answered on the map (AUTO-RESOLVE, CALL IT OFF, RETREAT): the result, then the turn goes on.
+func _way_out(res: Dictionary) -> void:
+	_pending = {}
+	_toast(String(res.get("text", "")))
+	var cb := _after_battle
+	_after_battle = Callable()
+	refresh()
+	if war.check_win() != "":
+		_victory()
+		return
+	if cb.is_valid():
+		cb.call()
 
 
 static func _chance(A: float, D: float) -> int:
-	var rng := RandomNumberGenerator.new()
-	rng.seed = 7
-	var won := 0
-	for i in 400:
-		if A * (1.0 + rng.randf_range(-WWRules.LUCK, WWRules.LUCK)) > D * (1.0 + rng.randf_range(-WWRules.LUCK, WWRules.LUCK)):
-			won += 1
-	return int(round(won / 4.0))
+	return WWWar.chance(A, D)
 
 
 func _units_words(u: Dictionary) -> String:
@@ -859,6 +882,7 @@ const HELP := [
 	["WHAT THIS IS", "A war for the whole world. Each side holds regions; each turn is one season. On your turn you march your armies, raise soldiers and put up buildings, then press END TURN. The computers then play their turns quickly."],
 	["ARMIES", "An army is a disc on the map in its side's colour; the number is its strength (the worth of its soldiers in gold). A gold ring means it can still march this season. Tap it, then tap a glowing region next to it. A dotted line is a sea lane between two ports: armies may sail along it (one crossing in ten meets a storm and loses a fifth of its men)."],
 	["BATTLES", "Marching into a region held by another side, or by free militia, starts a battle. If both sides have armies and one is yours, you choose: FIGHT IT (play it yourself as a skirmish on a map of that kind of land, with exactly the armies on the world map, and the survivors are carried back) or AUTO-RESOLVE (decided at once: strength against strength, the defender's bonus, the land, a little luck). The loser falls back to a region of its own next door, or is lost. Winners become veterans: +10% strength a rank, up to three."],
+	["A WAY OUT", "The battle question shows your odds. Attacking, CALL IT OFF turns your army back: it stays where it was and loses nothing, but its march this season is spent. Defending, RETREAT takes your army to the safest region of yours next door, losing a tenth of its men, and gives the region up. A capital is never given up, and with no free region of yours next door there is no way out. A march into a region with no army in it asks first only when you would probably lose. The computers retreat and call off too when it is hopeless."],
 	["DEFENCE", "A defender gets +20% (+35% at a capital), and the region's own guard: its worth x 250, a capital 1,500 more (less as the war goes on), and a Fort, Works or Nest adds 400. Capitals are hard to take. An army far from its capital fights a little weaker (its supply lines are long)."],
 	["MONEY", "Each region pays gold every season (its worth x 50, less where your side lives badly). The more land you hold, the less each new region adds. Armies cost 8% of their worth a season to keep, and regions far from your capital cost more (a sea crossing counts as two steps)."],
 	["UNREST", "Regions far from your capital (or from your nearest Fort, Works or Nest), or in a climate your side hates, grow restless; a big empire is restless everywhere. Above 40 a region may rise and become free again. An army standing there, a Church, a Regulator or a Nest calm it."],

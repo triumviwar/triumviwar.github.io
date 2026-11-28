@@ -1,7 +1,7 @@
 extends SceneTree
 ## THE WORLD WAR mode (docs/world_war_mode.md): the map's data is sound, a war is set up as the rules say, computers'
 ## turns run with auto-resolve to a winner, a saved war loads the same (and goes on the same), the cold and the rust,
-## upkeep and risings, a fought battle starts with exactly the armies on the world map and carries its survivors back,
+## upkeep and risings, A WAY OUT (CALL IT OFF, RETREAT, NO WAY OUT, the computers' use; docs/ww_call_off.md), a fought battle starts with exactly the armies on the world map and carries its survivors back,
 ## the menu's WORLD WAR page and START THE WAR, and every text has pt and es.
 ##   godot --headless --script res://tools/test_world_war.gd
 ## Prints CHECK lines, then "world war: N failures"; exit code 1 on a failure. (Its wars are removed again.)
@@ -42,6 +42,8 @@ func _run() -> void:
 	_upkeep_unrest()
 	_tuning()
 	_battle_rules()
+	_way_out()
+	await _way_out_page()
 	await _fight_it()
 	await _menu()
 	_texts()
@@ -308,8 +310,8 @@ func _battle_rules() -> void:
 	cr["vet"] = 2
 	var s2 := w.strengths(b)
 	check("veterans fight harder", float(s2["def"]) > float(s["def"]), [s["def"], s2["def"]])
-	# a beaten army falls back home when it can
-	var w2 := _war()
+	# a beaten army falls back home when it can (the computers' RETREAT switched off: a battle is fought here)
+	var w2 := _war({"crown": "normal", "clockwork": "normal", "brood": "normal"}, {"tune": {"CALL_OFF_AI": 0}})
 	_turn_of(w2, "clockwork")
 	var att: Dictionary = w2.armies_of("clockwork")[0]
 	att["at"] = "vienna"
@@ -323,6 +325,185 @@ func _battle_rules() -> void:
 	check("the stronger attacker wins and takes the region", w2.owner("milan") == "clockwork" and String(att["at"]) == "milan", res.get("text"))
 	check("the beaten army fell back to its own land, or was lost", not w2.d["armies"].has(String(dfd["id"])) or ["rome", "lyon"].has(String(dfd["at"])), dfd.get("at"))
 	check("the winner became a veteran", int(att["vet"]) == 1, att["vet"])
+
+
+## A WAY OUT (docs/ww_call_off.md): the attacker's CALL IT OFF, the defender's RETREAT, the capital and NO WAY OUT, the
+## computers' use of both (only in wars of rules version 3), hot-seat and free land, saving.
+func _way_out() -> void:
+	# a player's hopeless attack on a computer's army: asked, then called off
+	var w := _war({"crown": "you", "clockwork": "normal", "brood": "normal"})
+	var cr: Dictionary = w.armies_of("crown")[0]
+	var cw: Dictionary = w.armies_of("clockwork")[0]
+	cr["units"] = {"musketeer": 6}
+	cr["at"] = "milan"
+	cw["at"] = "vienna"
+	cw["units"] = {"clock_soldier": 60, "pendulum": 6}
+	var units0 := JSON.stringify(cr["units"])
+	var res := w.move(String(cr["id"]), "vienna")
+	check("a hopeless attack is still asked (the battle question)", String(res["kind"]) == "battle" and w.odds(res["battle"]) < 5, [res.get("kind"), w.odds(res.get("battle", {})) if res.has("battle") else -1])
+	var co := w.call_off(res["battle"])
+	check("CALL IT OFF: the army stays where it was, nothing lost", String(co["kind"]) == "called_off" and String(cr["at"]) == "milan" and JSON.stringify(cr["units"]) == units0 and w.owner("vienna") == "clockwork", [cr["at"], cr["units"]])
+	check("CALL IT OFF: its march this season is spent", bool(cr["moved"]) and w.moves_for(String(cr["id"])).is_empty(), cr["moved"])
+	check("CALL IT OFF is in the log", WWWar.line_text(w.d["log"][-1]["line"]).contains("calls off"), WWWar.line_text(w.d["log"][-1]["line"]))
+	# a player's army attacked by a computer in a region that is not its capital: RETREAT (no heroes: Lord Fairleigh
+	# would halve the rear guard's loss)
+	var w2 := _war({"crown": "you", "clockwork": "normal", "brood": "normal"}, {"heroes": false})
+	_turn_of(w2, "clockwork")
+	var dfd: Dictionary = w2.armies_of("crown")[0]
+	dfd["at"] = "milan"
+	dfd["units"] = {"musketeer": 30}
+	var att: Dictionary = w2.armies_of("clockwork")[0]
+	att["at"] = "vienna"
+	att["moved"] = false
+	att["units"] = {"clock_soldier": 70, "pendulum": 8}
+	var r2 := w2.move(String(att["id"]), "milan")
+	check("a computer's attack on a player's army asks the player", String(r2["kind"]) == "battle", r2.get("kind"))
+	var b2: Dictionary = r2["battle"]
+	check("RETREAT is allowed out of an ordinary region, to the safest of its own next door", w2.retreat_problem(b2) == "" and ["rome", "lyon"].has(w2.retreat_to(b2)), w2.retreat_to(b2))
+	# (an enemy army next to Rome makes Lyon the safer way out)
+	var brood_a: Dictionary = w2.armies_of("brood")[0]
+	brood_a["at"] = "naples"
+	check("the retreat goes where no enemy stands next door", w2.retreat_to(b2) == "lyon", w2.retreat_to(b2))
+	var rt := w2.retreat(b2)
+	var left := int(w2.army(String(dfd["id"])).get("units", {}).get("musketeer", 0))
+	check("RETREAT: the army falls back with a tenth fewer men", String(rt["kind"]) == "retreated" and String(dfd["at"]) == "lyon" and left == 27, [dfd.get("at"), left])
+	check("RETREAT: the region is given up to the attacker (no battle)", w2.owner("milan") == "clockwork" and String(att["at"]) == "milan" and int(att["vet"]) == 0 and WWRules.units_count(att["units"]) == 78, [w2.owner("milan"), att["at"], att["vet"]])
+	check("RETREAT is in the log", WWWar.line_text(w2.d["log"][-1]["line"]).contains("retreats"), WWWar.line_text(w2.d["log"][-1]["line"]))
+	# a capital: never given up
+	var w3 := _war({"crown": "you", "clockwork": "normal", "brood": "normal"})
+	_turn_of(w3, "clockwork")
+	var c3: Dictionary = w3.armies_of("clockwork")[0]
+	c3["at"] = "milan"
+	c3["units"] = {"clock_soldier": 70, "pendulum": 8}
+	w3.d["regions"]["milan"]["owner"] = "clockwork"
+	c3["moved"] = false
+	var r3 := w3.move(String(c3["id"]), "rome")
+	check("a capital is never given up (no RETREAT)", String(r3["kind"]) == "battle" and w3.retreat_problem(r3["battle"]).begins_with("A capital"), w3.retreat_problem(r3.get("battle", {})) if r3.has("battle") else r3.get("kind"))
+	# NO WAY OUT: every region of its own next door has the enemy in it
+	var w4 := _war({"crown": "you", "clockwork": "normal", "brood": "normal"})
+	_turn_of(w4, "clockwork")
+	var d4: Dictionary = w4.armies_of("crown")[0]
+	d4["at"] = "milan"
+	var a4: Dictionary = w4.armies_of("clockwork")[0]
+	a4["at"] = "vienna"
+	a4["moved"] = false
+	a4["units"] = {"clock_soldier": 70, "pendulum": 8}
+	w4.d["regions"]["lyon"]["owner"] = ""
+	w4.armies_of("brood")[0]["at"] = "rome"
+	var r4 := w4.move(String(a4["id"]), "milan")
+	check("NO WAY OUT: with no free region of its own next door it must fight", String(r4["kind"]) == "battle" and w4.retreat_problem(r4["battle"]).begins_with("NO WAY OUT"), w4.retreat_problem(r4.get("battle", {})) if r4.has("battle") else r4.get("kind"))
+	# the computers: a hopeless defence retreats (new wars), not in a war of the older rules
+	for rv in [3, 2]:
+		var w5 := _war({"crown": "normal", "clockwork": "normal", "brood": "normal"}, {"rv": rv})
+		_turn_of(w5, "clockwork")
+		var d5: Dictionary = w5.armies_of("crown")[0]
+		d5["at"] = "milan"
+		d5["units"] = {"musketeer": 12}
+		var a5: Dictionary = w5.armies_of("clockwork")[0]
+		a5["at"] = "vienna"
+		a5["moved"] = false
+		a5["units"] = {"clock_soldier": 70, "pendulum": 8}
+		var r5 := w5.move(String(a5["id"]), "milan")
+		if rv == 3:
+			check("a computer's hopeless defence retreats", String(r5["kind"]) == "retreated" and ["rome", "lyon"].has(String(d5["at"])) and w5.owner("milan") == "clockwork", [r5.get("kind"), d5.get("at")])
+		else:
+			check("...but not in a war saved before (rules version 2): it fights", String(r5["kind"]) == "fought", r5.get("kind"))
+	# ...but a few men (worth under AI_RETREAT_MIN) stand
+	var w5b := _war({"crown": "normal", "clockwork": "normal", "brood": "normal"})
+	_turn_of(w5b, "clockwork")
+	var d5b: Dictionary = w5b.armies_of("crown")[0]
+	d5b["at"] = "milan"
+	d5b["units"] = {"musketeer": 4}
+	var a5b: Dictionary = w5b.armies_of("clockwork")[0]
+	a5b["at"] = "vienna"
+	a5b["moved"] = false
+	a5b["units"] = {"clock_soldier": 70, "pendulum": 8}
+	check("...but a computer's garrison of a few men stands and fights", String(w5b.move(String(a5b["id"]), "milan")["kind"]) == "fought", "")
+	# a computer's hopeless attack is called off
+	var w6 := _war({"crown": "you", "clockwork": "normal", "brood": "normal"})
+	_turn_of(w6, "clockwork")
+	var a6: Dictionary = w6.armies_of("clockwork")[0]
+	a6["at"] = "vienna"
+	a6["moved"] = false
+	a6["units"] = {"clock_soldier": 6}
+	var d6: Dictionary = w6.armies_of("crown")[0]
+	d6["at"] = "milan"
+	d6["units"] = {"musketeer": 40, "cannon": 6}
+	var r6 := w6.move(String(a6["id"]), "milan")
+	check("a computer's hopeless attack is called off", String(r6["kind"]) == "called_off" and String(a6["at"]) == "vienna" and WWRules.units_count(a6["units"]) == 6, [r6.get("kind"), a6.get("at")])
+	# hot-seat: the attacker is asked (CALL IT OFF / AUTO-RESOLVE, no FIGHT IT)
+	var w7 := _war({"crown": "you", "clockwork": "you", "brood": "off"})
+	var a7: Dictionary = w7.armies_of("crown")[0]
+	a7["at"] = "milan"
+	w7.armies_of("clockwork")[0]["at"] = "vienna"
+	var r7 := w7.move(String(a7["id"]), "vienna")
+	check("hot-seat: a player attacking a player is asked (no FIGHT IT)", String(r7["kind"]) == "battle" and not w7.fight_offered(r7["battle"]), r7.get("kind"))
+	# free land: asked only when the march would probably fail
+	var w8 := _war({"crown": "you", "clockwork": "normal", "brood": "normal"})
+	var a8: Dictionary = w8.armies_of("crown")[0]
+	a8["units"] = {"musketeer": 2}
+	var r8 := w8.move(String(a8["id"]), "andalusia")
+	check("a weak march into free land is asked first", String(r8["kind"]) == "battle" and (r8["battle"]["defs"] as Array).is_empty(), r8.get("kind"))
+	var w9 := _war({"crown": "you", "clockwork": "normal", "brood": "normal"})
+	var a9: Dictionary = w9.armies_of("crown")[0]
+	a9["units"] = {"musketeer": 60, "cannon": 10}
+	var r9 := w9.move(String(a9["id"]), "andalusia")
+	check("a strong march into free land is decided at once, as before", String(r9["kind"]) == "fought", r9.get("kind"))
+	# saving: the choice is in the war's file; an old war (no rules version 3) loads and plays on
+	w2.d["name"] = "test_war"
+	w2.save()
+	var l2 := WWWar.load_from(WWWar.path_of("test_war"))
+	check("a war with a retreat saves and loads the same", l2 != null and _norm(l2.d) == _norm(w2.d) and l2.owner("milan") == "clockwork", "")
+	var old := _war({"crown": "normal", "clockwork": "normal", "brood": "normal"}, {"rv": 2})
+	old.d.erase("rv")
+	var lo := WWWar.from_dict(JSON.parse_string(JSON.stringify(old.d)))
+	WWAI.play_turn(lo)
+	lo.end_turn()
+	check("an old war (no rules version) loads and plays, its computers without the way out", not lo.rule_on("CALL_OFF_AI") and int(lo.d["season"]) >= 0, lo.d.get("rv"))
+	check("a new war plays with the computers' way out", _war().rule_on("CALL_OFF_AI") and int(_war().d["rv"]) == 3, "")
+
+
+## The battle question on the page: CALL IT OFF for the attacker, RETREAT (or why not) for the defender; Esc does not
+## drop the question. Pictures in docs/shots/world_war/call_off/ (tools/shot_world_war.gd call_off).
+func _way_out_page() -> void:
+	var w := _war({"crown": "you", "clockwork": "normal", "brood": "normal"})
+	w.d["name"] = "test_war2"
+	var cr: Dictionary = w.armies_of("crown")[0]
+	var cw: Dictionary = w.armies_of("clockwork")[0]
+	cr["units"] = {"musketeer": 6}
+	cr["at"] = "milan"
+	cw["at"] = "vienna"
+	cw["units"] = {"clock_soldier": 60, "pendulum": 6}
+	var page := WWPage.show_war(main, w)
+	await process_frame
+	page._close_overlay()
+	page._march(String(cr["id"]), "vienna")
+	await process_frame
+	var btn: Button = page.find_child("WW_Btn_CALLITOFF", true, false)
+	check("the attacker's battle question has CALL IT OFF, AUTO-RESOLVE and FIGHT IT", btn != null and page.find_child("WW_Btn_AUTORESOLVE", true, false) != null and page.find_child("WW_Btn_FIGHTIT", true, false) != null, "")
+	page._leave()
+	await process_frame
+	check("Esc does not drop the battle question", page.overlay != null and is_instance_valid(page.overlay) and not page._pending.is_empty(), "")
+	if btn:
+		btn.pressed.emit()
+	await process_frame
+	check("pressing CALL IT OFF closes the question; the army is back at Milan", page.overlay == null and page._pending.is_empty() and String(cr["at"]) == "milan", cr["at"])
+	# the defender's question
+	page._ask_battle({"att": String(cw["id"]), "region": "milan", "from": "vienna", "sea": false, "att_f": "clockwork", "def_f": "crown", "defs": [String(cr["id"])]}, func() -> void: pass)
+	await process_frame
+	var rb: Button = page.find_child("WW_Btn_RETREAT", true, false)
+	check("the defender's battle question has RETREAT", rb != null and page.find_child("WW_Btn_CALLITOFF", true, false) == null, "")
+	if rb:
+		rb.pressed.emit()
+	await process_frame
+	check("pressing RETREAT gives the region up and moves the army", w.owner("milan") == "clockwork" and String(cr["at"]) != "milan", [w.owner("milan"), cr["at"]])
+	page._ask_battle({"att": String(cw["id"]), "region": "rome", "from": "milan", "sea": false, "att_f": "clockwork", "def_f": "crown", "defs": [String(cr["id"])]}, func() -> void: pass)
+	await process_frame
+	check("at a capital there is no RETREAT button", page.find_child("WW_Btn_RETREAT", true, false) == null and page.find_child("WW_Btn_AUTORESOLVE", true, false) != null, "")
+	page._pending = {}
+	page._close_overlay()
+	page.queue_free()
+	await process_frame
 
 
 func _fight_it() -> void:

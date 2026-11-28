@@ -908,3 +908,52 @@ es El Plata
 > Patagonia
 pt Patagônia
 es Patagonia
+
+# A WAY OUT (job ww-call-off, docs/ww_call_off.md): CALL IT OFF and RETREAT on the battle question.
+> CALL IT OFF
+pt RECUAR DO ATAQUE
+es SUSPENDER EL ATAQUE
+
+> RETREAT
+pt RETIRAR-SE
+es RETIRARSE
+
+> CALL IT OFF: your army turns back and stays in %s; nothing is lost, but its march this season is spent.
+pt RECUAR DO ATAQUE: seu exército dá meia-volta e fica em %s; nada se perde, mas a marcha desta estação já foi gasta.
+es SUSPENDER EL ATAQUE: tu ejército da media vuelta y se queda en %s; no se pierde nada, pero la marcha de esta estación ya está gastada.
+
+> RETREAT: your army falls back to %s and loses %d%% of its men to the rear guard; %s is given up to %s.
+pt RETIRAR-SE: seu exército recua para %s e perde %d%% dos homens na retaguarda; %s é entregue a %s.
+es RETIRARSE: tu ejército se repliega a %s y pierde el %d%% de sus hombres en la retaguardia; %s queda en manos de %s.
+
+> %s calls off the attack on %s.
+pt %s desiste do ataque a %s.
+es %s suspende el ataque contra %s.
+
+> %s's army retreats from %s to %s; %s takes %s.
+pt O exército de %s se retira de %s para %s; %s toma %s.
+es El ejército de %s se retira de %s a %s; %s toma %s.
+
+> There is no army here to take away.
+pt Não há nenhum exército aqui para retirar.
+es Aquí no hay ningún ejército que retirar.
+
+> A capital is never given up: its army must stand and fight.
+pt Uma capital nunca é entregue: o exército dela tem de ficar e lutar.
+es Una capital nunca se entrega: su ejército tiene que quedarse y luchar.
+
+> NO WAY OUT: no region of your side next door is free of the enemy. Your army must fight.
+pt SEM SAÍDA: nenhuma região vizinha do seu lado está livre do inimigo. Seu exército tem de lutar.
+es SIN SALIDA: ninguna región vecina de tu bando está libre del enemigo. Tu ejército tiene que luchar.
+
+> A WAY OUT
+pt UMA SAÍDA
+es UNA SALIDA
+
+> The battle question shows your odds. Attacking, CALL IT OFF turns your army back: it stays where it was and loses nothing, but its march this season is spent. Defending, RETREAT takes your army to the safest region of yours next door, losing a tenth of its men, and gives the region up. A capital is never given up, and with no free region of yours next door there is no way out. A march into a region with no army in it asks first only when you would probably lose. The computers retreat and call off too when it is hopeless.
+pt A pergunta da batalha mostra as suas chances. Atacando, RECUAR DO ATAQUE faz o seu exército dar meia-volta: ele fica onde estava e não perde nada, mas a marcha desta estação já foi gasta. Defendendo, RETIRAR-SE leva o seu exército para a região sua mais segura ao lado, perdendo um décimo dos homens, e entrega a região. Uma capital nunca é entregue, e sem uma região sua livre ao lado não há saída. Uma marcha para uma região sem exército só pergunta antes quando você provavelmente perderia. Os computadores também se retiram e recuam quando não há esperança.
+es La pregunta de la batalla muestra tus posibilidades. Al atacar, SUSPENDER EL ATAQUE hace que tu ejército dé media vuelta: se queda donde estaba y no pierde nada, pero la marcha de esta estación ya está gastada. Al defender, RETIRARSE lleva tu ejército a la región tuya más segura de al lado, perdiendo una décima parte de sus hombres, y entrega la región. Una capital nunca se entrega, y sin una región tuya libre al lado no hay salida. Una marcha a una región sin ejército solo pregunta antes cuando probablemente perderías. Los ordenadores también se retiran y suspenden cuando no hay esperanza.
+
+> %s attacks %s, held by its free militia.
+pt %s ataca %s, defendida por sua milícia livre.
+es %s ataca %s, defendida por su milicia libre.
