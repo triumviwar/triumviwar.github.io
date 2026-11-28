@@ -4397,7 +4397,11 @@ func compute_path() -> void:
 	# to break it), never into a gate it can't open
 	var shut := _shut_gates()
 	game._pq_shut = shut          # (the gates this walk shut: part of what a shared path must match, Game.find_path)
-	path = game.find_path(position, path_goal, not is_worker(), _path_margin(), team)
+	# (ai-fixes-b: a limbered gun or wagon breaks no wall: walled out, it was sent up to the wall to break it like a soldier,
+	# its OWN palisade round a walled natural whose gate was shut, and pressed at it for good: 38 of a gun's 40 s stuck
+	# runs at Ashford Crossing. It walks to the nearest place it can reach instead)
+	var siege := not is_worker() and not (afb_wheels and _towed())
+	path = game.find_path(position, path_goal, siege, _path_margin(), team)
 	path_i = 0
 	stuck_t = 0.0
 	squeeze_t = 0.0
@@ -4407,12 +4411,12 @@ func compute_path() -> void:
 		# among its own side's rooted creatures: out through them first (the owner, 21:32), then on its way
 		var nex := BroodRoot.exit_point(game, position, team)
 		if nex != Vector2.INF:
-			path = PackedVector2Array([nex]) + game.find_path(nex, path_goal, not is_worker(), _path_margin(), team)
+			path = PackedVector2Array([nex]) + game.find_path(nex, path_goal, siege, _path_margin(), team)
 	elif game.sealed_in(position) and game.region_of(game.cell_of(path_goal)) != game.region_of(game.cell_of(position)):
 		var out := game.escape_point(position)
 		if out != Vector2.INF:
 			squeeze_t = 3.0
-			path = PackedVector2Array([out]) + game.find_path(out, path_goal, not is_worker(), _path_margin(), team)
+			path = PackedVector2Array([out]) + game.find_path(out, path_goal, siege, _path_margin(), team)
 	if _towed():
 		path = _tow_gate_approach(path)
 	_open_gates(shut)

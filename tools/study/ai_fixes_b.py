@@ -14,7 +14,7 @@ from concurrent.futures import ThreadPoolExecutor
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import qa_matches as qm
 
-ARMS = {"off": ["afbhome:off", "afbwheels:off"], "on": [], "home": ["afbwheels:off"], "wheels": ["afbhome:off"]}
+ARMS = {"off": ["afbhome:off", "afbwheels:off"], "on": [], "on_v1": [], "home": ["afbwheels:off"], "wheels": ["afbhome:off"]}
 DATA = os.path.join(qm.ROOT, "docs/ai_fixes_b/data")
 OUT = "/tmp/claude-0/afb_runs"
 PAIRS = {"cb": "brood", "ck": "clockwork"}

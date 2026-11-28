@@ -771,6 +771,56 @@ func _wheel_cases(map: String) -> void:
 			await _clear([u])
 		_wheel_unlay(laid)
 		await physics_frame
+	await _walled_case(map, c)
+
+
+## WALLED OUT BY ITS OWN PALISADE (ai-fixes-b): a closed ring of our own palisade (no gate), a gun and a wagon outside
+## sent to its middle. A soldier walled out walks up to an ENEMY wall to break it; a limbered gun or wagon breaks no wall,
+## and was sent up to its own palisade and pressed at it for good. Now it walks to the nearest place it can reach and
+## stops: the case fails when either stands still more than 3 s of 20 s outside the ring with its move order still on.
+func _walled_case(map: String, c: Vector2i) -> void:
+	var name := "%s/wheels_walled_out/guns" % map
+	if only != "" and not name.contains(only):
+		return
+	var ring: Array = []
+	for d in range(-3, 4):
+		for q in [c + Vector2i(d, -3), c + Vector2i(d, 3), c + Vector2i(-3, d), c + Vector2i(3, d)]:
+			if not ring.has(q):
+				ring.append(q)
+	for q in ring:
+		made_buildings.append(g._add_building("wall", 0, q, true))
+	await physics_frame
+	var us: Array = []
+	for k in [["cannon", Vector2(-1, 0)], ["powder_wagon", Vector2(1, 0)]]:
+		var u: Unit = g._add_unit(k[0], 0, g.cell_center(c) + (k[1] as Vector2) * 8.0 * g.T)
+		u.facing = -(k[1] as Vector2)
+		us.append(u)
+	await physics_frame
+	for u in us:
+		u.cmd_move(g.cell_center(c))
+	var pressed := {}
+	var last := {}
+	for f in 20 * 30:
+		await physics_frame
+		for u in us:
+			# (still on its way, short of the middle, and not moving: pressed at the wall)
+			if u.order != "idle" and u.position.distance_to(g.cell_center(c)) > 96.0 and u.position.distance_to(last.get(u, Vector2.INF)) < 0.5:
+				pressed[u] = float(pressed.get(u, 0.0)) + 1.0 / 30.0
+			last[u] = u.position
+	var worst := 0.0
+	for u in us:
+		if float(pressed.get(u, 0.0)) > 3.0 and u.order != "idle":
+			worst = maxf(worst, float(pressed[u]))
+	var ok := worst == 0.0
+	if not ok:
+		fails += 1
+	for u in us:
+		print("   %s order %s at %s path %d/%d pressed %.1f s" % [u.kind, u.order, str(g.cell_of(u.position) - c), u.path_i, u.path.size(), float(pressed.get(u, 0.0))])
+	var l := "%-6s %-42s pressed at its own wall still going: %.1f s%s" % ["ok" if ok else "FAIL", name, worst, "" if ok else "  <- pressed"]
+	print(l)
+	lines.append(l)
+	results.append({"name": name, "ok": ok, "pressed": worst})
+	await _clear(us)
 
 
 ## Open level ground 25 x 25 cells (trees and rocks may stand on it: the picture lays its own), away from the starts.
