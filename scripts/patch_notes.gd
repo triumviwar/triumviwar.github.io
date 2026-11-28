@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.250", "items": [
+		"Against the Crown, the Clockwork computer no longer turns its whole army round for a few raiders in its base: a raid worth less than a third of the army at home (and under 500) is met by a group worth twice it, the nearest units, and the rest stays where it was; its next push may still go out while that group is busy. A real attack still brings the whole army. (ai-fixes-a; the Brood computer's Normal pace was measured and left as it was.)",
+	]},
 	{"v": "0.38.249", "items": [
 		"WORLD WAR: a way out of a battle you can't win. The battle question shows your odds and now offers, attacking, CALL IT OFF (your army turns back and stays where it was, nothing lost, its march this season spent) and, defending, RETREAT (your army falls back to the safest region of yours next door, losing a tenth of its men, and the region is given up). A capital is never given up, and with no free region of yours next door there is NO WAY OUT. A march into a region with no army in it now asks first when you would probably lose, and in a hot-seat war the attacker may call it off. The computers retreat and call off too when it is hopeless (in new wars).",
 	]},

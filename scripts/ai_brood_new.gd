@@ -2976,6 +2976,10 @@ func _nb_lay(q: Unit) -> void:
 		_easy_skip = not _easy_skip
 		if _easy_skip:
 			return          # (ai-opponent-review: the Easy Brood lays its warriors at half the pace, EASY PACE below)
+	if normal_pace_every > 1 and difficulty == 1 and k != "grub" and _level_fix() and not _nb_threat_big(q):
+		_normal_n = (_normal_n + 1) % normal_pace_every
+		if _normal_n == 0:
+			return          # (ai-fixes-a: the Normal Brood skips one warrior think in NORMAL_PACE, NORMAL PACE below)
 	if bench != null and ((k == "grub" and bench_flags.get("no_workers", false)) or (k != "grub" and bench_flags.get("no_produce", false))):
 		return          # (ai-opponent-review: the benchmark player forgot the grubs, or the warriors, this look)
 	if BroodNew.lay(game, q, k) == "" and soft:
@@ -3019,6 +3023,25 @@ const LEVEL_GRUBS := [20, 38]
 ## Crown and Clockwork train slowly. MEASURING SWITCH `easypace:off`.
 static var easy_pace_on := not OS.get_cmdline_user_args().has("easypace:off")
 var _easy_skip := false
+## (ai-fixes-a, docs/ai_fixes_a.md) NORMAL PACE, OFF: the opponent review (0.38.107) found the Brood computer a level stronger
+## than the Crown and the Clockwork at every level; Easy got EASY PACE above. Normal can now skip one warrior think in n
+## (not while a big attack is at the Mother), skirmish and the tutorial only (_level_fix). MEASURED on 0.38.230 against the
+## review's benchmark players (18 games an arm, the review's tags): the Normal Brood is no longer a level above (the
+## benchmark's mean result against it -0.78, against the Normal Clockwork -0.72, the Normal Crown -0.50), and the pace
+## moved nothing beyond the noise (one think in three: -0.67, its army at 8:00 1,385 against 1,583; one in two: -1.11 and
+## 1,616: at Normal the Brood is held by its food, not its thinks, and the food it saves is laid a moment later). So OFF by
+## default; MEASURING SWITCH `normalpace:on` (one in three) or `normalpace:<n>` (one in n).
+const NORMAL_PACE := 3
+static var normal_pace_every := _normal_pace_arg()
+var _normal_n := 0
+
+
+static func _normal_pace_arg() -> int:
+	for a in OS.get_cmdline_user_args():
+		if a.begins_with("normalpace:"):
+			var v := a.substr(11)
+			return NORMAL_PACE if v == "on" else (0 if v == "off" else maxi(0, int(v)))
+	return 0
 
 
 ## The level fixes above are for skirmish and the tutorial's practice games; a story mission's Brood computer (the rival
