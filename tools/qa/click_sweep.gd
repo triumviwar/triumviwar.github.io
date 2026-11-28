@@ -404,25 +404,35 @@ func _english(t: String) -> bool:
 			if _tr_words.has(w):
 				_en_words.erase(w)
 				_tr_words.erase(w)
-	var en := 0
-	var tr := 0
-	for w in _words(t):
-		if _en_words.has(w):
-			en += 1
-		elif _tr_words.has(w):
-			tr += 1
-	return en > tr
+	# each piece by itself ("Pólvora 120/120 shots · ABASTECER ligado"): a piece with English words as many as its
+	# translated ones is English left on screen
+	for piece in RegEx.create_from_string("\\n|  ·  | · |  ").sub(t, "\n", true).split("\n"):
+		var en := 0
+		var tr := 0
+		for w in _words(piece):
+			if _en_words.has(w):
+				en += 1
+			elif _tr_words.has(w):
+				tr += 1
+		if en >= 1 and en >= tr:
+			return true
+	return false
+
+
+func _loc_clear() -> void:
+	Loc.misses.clear()
+	Loc.shown.clear()
 
 
 func _en_misses(screen: String) -> int:
 	var n := 0
 	if lang != "en":
-		for k in Loc.misses:
+		for k in Loc.shown:
 			if not _english(String(k)):
 				continue
 			_flag("EN", screen, "'%s'" % String(k).replace("\n", "\\n").substr(0, 90))
 			n += 1
-	Loc.misses.clear()
+	_loc_clear()
 	return n
 
 
@@ -829,7 +839,7 @@ func _crawl(prefix: String, seeds: Array) -> void:
 		var bs := _buttons()
 		var ks := _keys(bs)
 		print("== PAGE %s (%d buttons) via %s %s" % [pid, bs.size(), seed_name, str(route)])
-		Loc.misses.clear()
+		_loc_clear()
 		await _frames(2)
 		var nflag := _audit(pid)
 		var shot := await _snap(pid, nflag > 0)
@@ -927,7 +937,7 @@ func _press_menu_button(prefix: String, pid: String, seed_name: String, seed: Ca
 			await _wait(2.0)
 			e.append_array(_take_errs())
 			var mn := "started_" + what.replace(" ", "_")
-			Loc.misses.clear()
+			_loc_clear()
 			await _wait(0.3)
 			var fn := _en_misses(mn)
 			await _snap(mn, fn > 0 or not e.is_empty())
@@ -1280,7 +1290,7 @@ func _match_sweep(fac: String) -> void:
 	# the screen with the base: its picture and its checks
 	if hall != null:
 		await _select([hall])
-	Loc.misses.clear()
+	_loc_clear()
 	await _wait(0.4)
 	var nf := _en_misses(scr)
 	await _snap(scr + "_base", nf > 0)
@@ -1309,7 +1319,7 @@ func _match_sweep(fac: String) -> void:
 		_rich()
 		var screen := scr + "/" + String(kk)
 		print("== CARD %s" % screen)
-		Loc.misses.clear()
+		_loc_clear()
 		await _press_card(screen, ents, [])
 		_en_misses(screen)
 		if shots_mode == "all" and kk in ["b:" + g.faction_hall(0), "mixed:army"]:
@@ -1380,7 +1390,7 @@ func _match_menu(scr: String) -> void:
 	var hud = _hud()
 	hud.toggle_menu(true)
 	await _frames(3)
-	Loc.misses.clear()
+	_loc_clear()
 	await _wait(0.3)
 	_en_misses(scr + "/menu")
 	await _snap(scr + "_menu")
@@ -1412,7 +1422,7 @@ func _match_menu(scr: String) -> void:
 			result = "left the match"
 		elif main._match_settings or (not hud.menu_open and main.menu != null and is_instance_valid(main.menu) and main.menu.is_visible_in_tree()):
 			result = "opens a page over the match"
-			Loc.misses.clear()
+			_loc_clear()
 			await _wait(0.3)
 			_audit(scr + "/menu/" + lab)
 			await _snap(scr + "_over_" + lab)

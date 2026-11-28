@@ -131,6 +131,23 @@ static func title(s: String) -> String:
 
 ## English text in, the chosen language out.
 static func t(s: String) -> String:
+	if not track:
+		return _t(s)
+	_depth += 1
+	var r := _t(s)
+	_depth -= 1
+	if _depth == 0 and r.length() >= 3:
+		shown[r] = true          # (what the player is shown: the click sweep looks for English left in it)
+	return r
+
+
+## (tools only, while track is on: every text a top-level t() gave out, whole; misses holds every piece that found no
+## translation, pieces of a text that was translated another way too)
+static var shown := {}
+static var _depth := 0
+
+
+static func _t(s: String) -> String:
 	if _dict.is_empty() or s.length() < 2:
 		return s
 	var hit: Variant = _dict.get(s)
