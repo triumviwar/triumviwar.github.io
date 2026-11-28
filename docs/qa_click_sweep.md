@@ -61,12 +61,108 @@ One command (needs `xvfb-run` and a Godot 4.7 binary; `GODOT=` points at it):
 
 ## What was found and fixed (in this branch)
 
-<!-- FIXED -->
+Each in a small commit on the branch; the patch note is under 0.38.999.
+
+1. **A stale command card (the 7.6 of `docs/qa_ui_review.md`), confirmed and fixed.** The HUD rebuilds the command card
+   at once after a click, a key or a touch, otherwise four times a second. A selection changed WITHOUT one (a unit of
+   the selection dying, a group the game picks, a scripted pick, the picture tool's quick army -> Barracks) left the old
+   card drawn AND clickable for up to a quarter of a second: measured 5-8 frames with the army's buttons on a Barracks,
+   on every delay tried (0, 0.05, 0.2, 0.4 s). `Game.set_selection` now marks the card fresh whenever the selection
+   really changes: 2 frames after the fix, in all three factions. (`scripts/game.gd`)
+2. **`Game.set_selection` with a freed unit in its list** raised "Left operand of 'is' is a previously freed instance"
+   (`e is Unit` before `is_instance_valid(e)`): freed entities are skipped first. (`scripts/game.gd`)
+3. **PATCH NOTES froze the game 6-7 s** (it built every one of the ~700 versions as wrapped labels, 450 KB of text, each
+   time it opened; also from the version line under the main menu): it opens with the newest 15 versions and an OLDER
+   VERSIONS button that adds 40 at a time (85 ms to open, headless). (`scripts/main.gd`, new text OLDER VERSIONS pt/es)
+4. **Untranslated text (pt/es)**, all through the project's i18n files (`tools/i18n/85_click_sweep.txt`, built with
+   `tools/i18n_build.py`; `tools/test_i18n.gd` passes):
+   - the order hints on a COMPUTER: the phone's "Tap where to move" was translated, the computer's "Click where to move",
+     "Click a target or place to attack-move", "Click the rally point", "Click the enemy to lash with the tongue",
+     "Click where to cast the storm / fog", "Click where new soldiers gather / workers go to work", "Click where to SCATTER
+     COGS" were not (also "Tap where to cast the storm / fog");
+   - the HOTKEYS page (Settings > layout) named the commands in English (Canister, Limber, Drop Here, Round Shot, Take
+     Off...): it built "Round Shot" from the id with capitalize(); it now goes through `Loc.title` (`layout_editor.gd`);
+   - the map editor's check line "1 PROBLEM" / "%d PROBLEMS" / "and N warnings" was glued from English pieces: whole
+     phrases now (`map_editor.gd`); its decoration kinds PLANTS, RUINS, CAMP, STORES, FORGE, VILLAGE, WRECK and the
+     "huge" size;
+   - "Connecting..." (the online room's first status), BITE (a stat line), the building card's chip titles Soil,
+     Saltpetre, Brass, Haulers.
+5. **Text that did not fit**:
+   - the war map's title in pt/es ("A CARTA DOS ESPÉCIMES · Ato 1", "LA CARTA DE LOS ESPECÍMENES · Acto 1") was cut: a
+     size step for long titles and, once laid out, a point smaller until it fits (`campaign_menu.gd`);
+   - a tournament map card's info line in Portuguese on a phone was cut on nearly every card ("4 jogadores · 110x80 ·
+     clássico" 170 px in 158): its size follows its length (`tournament_page.gd`);
+   - the world war's gold line in Portuguese on a computer (3 px): ends in "…" with the whole line as a tooltip
+     (`ww_page.gd`);
+   - the Spanish GRID hotkeys button "REJILLA (QWER/ASDF/ZXCV)": "REJILLA QWER/ASDF/ZXCV" (`tools/i18n/01_menus.txt`).
+6. **Half-English card lines (pt/es).** `Loc.t` took a line like "Limbered: the horse tows it. UNLIMBER to fire.  Powder
+   8/8" whole with the bare key "%s: %s" (it only split texts joined by " · " or new lines), so "Limbered" and the
+   sentence stayed English and only "Pólvora 8/8" was translated. A double space now counts as a join too: the split
+   and the bare key are both tried and the one leaving fewer English words wins (the rule already used for " · "). The
+   cannon (limbered / set up), the mortar (packed / set up), the horse grazing, the powder wagon with no horse now read
+   whole in pt/es; the words put into them: "canister", "ready" (the Dragoon's reload), "%.1f s left". (`scripts/loc.gd`)
+
 
 ## Problems left, by severity (proposals)
 
-<!-- LEFT -->
+Nothing in the run crashed the game in a page or a press, and no script error came from the game's own code in any
+press (the one error, `set_selection` with a freed unit, came from the routine's own list and is fixed in the game
+anyway). Every part's Godot ended with "Aborted" AFTER its summary, see 1.
+
+**MEDIUM**
+1. **The engine aborts at exit** (exit code 134 after `quit()`, every part, after `Main.release_cursor_art()` too): first
+   "Texture with GL ID ... leaked" / "RenderingServer::get_singleton() is null" from `~CompressedTexture2D` (a texture
+   kept in a static var freed after the renderer: there are ~17 static texture caches, e.g. `game.gd _tex_cache`,
+   `powder_smoke.gd _atlas_tex`, `stun_mark.gd _tex`, `vet_chevrons.gd _atlas`, `map_thumb.gd _mem`), then SIGABRT. The
+   player-comforts playtest saw the same on EXIT. Proposal: clear those caches in `quit_game()` before `quit()`, then
+   check on Windows whether EXIT ends clean.
+2. **The AI STORY's Clockwork army lines are English in pt/es** (`ai_cw_army.gd`: "the army rests on its gears at %s,
+   where the enemy's way in reaches the base", "the whole army defends the base (...)", about 25 `say()` lines formatted
+   before they reach Loc, with no keys in `tools/i18n/`). Proposal: one i18n file for them (a spectator feature).
+3. **A dialog without a dim layer looks clickable underneath** (the world war's "Delete this war for good?", the hub's
+   talk box over the painting): the page's buttons look live but a full-screen catcher takes the click (COVERED on
+   START THE WAR, the hub's hotspots). Proposal: dim the page behind a question as the main menu's AskBox does.
+
+**LOW**
+4. Starting a match is slow from the lobby's WATCH (4v4: 11-13 s under xvfb; 1v1: 3-4 s) and from REPLAYS > WATCH (2-10 s,
+   growing with the replay's length): software GL, so only the comparison counts (4v4 is three times 1v1). The same
+   pages on the phone run were as slow. Worth a look with tools/perf on a real phone.
+5. The King's study: the WAR TABLE's and FAIRLEIGH'S LETTER's clickable regions over the painting overlap (each is
+   grown to 110 x 60 at least), so part of the letter opens the war table. Proposal: grow them only where they don't
+   meet another.
+6. IMPORT / EXPORT (replays) do nothing on a Linux desktop without the xdg desktop portal: `file_dialog_show` is
+   called (the feature says yes) but no dialog comes and nothing is said. Windows and Android are not touched (Android
+   says "no file picker here"). Proposal: if the callback never comes in a few seconds, fall back to Godot's FileDialog.
+   That FileDialog's own words (Save, Open a File, Path:, Create Folder...) are the engine's, English in pt/es.
+7. The DEVICE page has no BACK when opened from Settings (GAMEPLAY > COMPUTER / PHONE): picking a device goes on, so
+   it is not a dead end, but a BACK to Settings would be kinder.
+8. The music's titles are English in pt/es (MusicTracks and the ElevenLabs pieces). Names of pieces: by design? OWNER.
+9. The match log and the art viewer (Settings > OTHER) are English in pt/es: by design (the log is pasted in playtest
+   reports, the viewer is a tool for the art).
+
+**Checked: 7.6 of docs/qa_ui_review.md** (a stale command card once on the computer, after selecting the whole army then
+a Barracks within 0.4 s) was real and is fixed (FIXED 1 above). The sweep checks it in every match part from now on
+(the STALE flag; "7.6 check delay ...: the drawn card was the building's after N frames" in the log).
+
 
 ## Not problems (the sweep's false alarms, checked by hand)
 
-<!-- FALSE -->
+The routine is careful to say "a candidate"; these were looked at and are fine:
+
+- **NOOP** on a choice that is already chosen (the layout's STANDARD / IN USE / POSITIONS, ranked's EUROPE, the art
+  viewer's current unit / animation / view, the tournament pool's ALL / BUILT-IN / YOUR MAPS with no maps of your own,
+  FIND with an empty search, ADD ALL SHOWN when all are in), STOP on an idle Brood creature, a hub person pressed again
+  while talking, the war map's "−" at its widest. MUTE / UNMUTE changes only the drawn speaker icon. The war map's
+  view buttons (THE WORLD, BRAZIL...) did change the map (a painted sheet each): the routine did not see it in its first
+  version (fixed in the routine).
+- **NOOP** IMPORT / EXPORT: the native file dialog (LOW 6 above).
+- **COVERED** under a dialog or the hub's talk box: the dialog is in front, as it should be (MEDIUM 3 is about how it
+  looks).
+- **NOBACK** on a campaign opening's stills (SKIP and NEXT lead on), the device page (LOW 7), the layout's HOTKEYS page
+  (it has BACK; the routine's first version took the hotkey grid for a dialog).
+- **CUT** on the skirmish lobby's faction button with its icon (the icon is drawn smaller than its file; the first
+  version measured the file).
+- **SLOW** on the language flags and the version line: they open PATCH NOTES (FIXED 3).
+- **EN** on composite lines whose pieces are translated when drawn (Loc tries the whole line, then its pieces: the
+  whole one is a "miss"), map and player names, dates, the AI's match log lines, the Godot FileDialog.
+
