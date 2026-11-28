@@ -7969,7 +7969,8 @@ const T := {
 	"The year %s": "O ano de %s",
 	"Colonies held: %s of %s": "Colónias mantidas: %s de %s",
 	"The night has come: the clock has stopped.": "A noite chegou: o relógio parou.",
-	"Next to fall, in %s wins: %s (%s)": "A próxima a cair, em %s vitórias: %s (%s)",
+	"Next to fall, after %s more wins: %s (%s)": "A próxima a cair, depois de mais %s vitórias: %s (%s)",
+	"Next to fall, after 1 more win: %s (%s)": "A próxima a cair, depois de mais 1 vitória: %s (%s)",
 	"No colony is at risk at the next turn of the year.": "Nenhuma colónia corre perigo na próxima virada do ano.",
 	"SETTLED": "ASSENTE",
 	"Fought this year": "Combatido este ano",
@@ -7984,6 +7985,7 @@ const T := {
 	"OPTIONAL: it holds its theatre, and turns half a year": "OPCIONAL: segura o seu teatro e vira meio ano",
 	"Closed: the night came before it was fought.": "Fechado: a noite chegou antes de ser combatido.",
 	"The clock took this colony: winning here takes it back.": "O relógio levou esta colónia: vencer aqui retoma-a.",
+	"Not fought yet": "Ainda não combatido",
 	"WHERE ARE YOU PLAYING?": "ONDE VOCÊ ESTÁ JOGANDO?",
 	"YOU CAN CHANGE THIS LATER IN SETTINGS.": "VOCÊ PODE MUDAR ISSO DEPOIS EM CONFIGURAÇÕES.",
 	"YOUR MATCH WAS AUTOSAVED: CONTINUE IS ON THE MENU.": "SUA PARTIDA FOI SALVA AUTOMATICAMENTE: CONTINUAR ESTÁ NO MENU.",
@@ -10834,4 +10836,5 @@ const T := {
 	"OPTIONAL: IT HOLDS ITS THEATRE, AND TURNS HALF A YEAR": "OPCIONAL: SEGURA O SEU TEATRO E VIRA MEIO ANO",
 	"CLOSED: THE NIGHT CAME BEFORE IT WAS FOUGHT.": "FECHADO: A NOITE CHEGOU ANTES DE SER COMBATIDO.",
 	"THE CLOCK TOOK THIS COLONY: WINNING HERE TAKES IT BACK.": "O RELÓGIO LEVOU ESTA COLÓNIA: VENCER AQUI RETOMA-A.",
+	"NOT FOUGHT YET": "AINDA NÃO COMBATIDO",
 }

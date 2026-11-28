@@ -88,10 +88,10 @@
 			"id": "globe",
 			"label": "THE WORLD",
 			"rect": [
-				-170,
-				-60,
-				180,
-				72
+				-118,
+				-48,
+				160,
+				62
 			],
 			"acts": [
 				3,
@@ -1474,8 +1474,8 @@
 			"id": "theatre_americas",
 			"kind": "theatre",
 			"point": [
-				-86.0,
-				4.0
+				-99.0,
+				-14.0
 			],
 			"label": "THE AMERICAS",
 			"theatre": "americas",
@@ -1486,8 +1486,8 @@
 			"id": "theatre_africa",
 			"kind": "theatre",
 			"point": [
-				22.0,
-				3.0
+				12.0,
+				17.0
 			],
 			"label": "AFRICA",
 			"theatre": "africa",
@@ -5110,8 +5110,8 @@
 				]
 			},
 			"point": [
-				16.0,
-				-2.0
+				5.0,
+				0.5
 			],
 			"text": "Up the great river: the swarm's roads (V.).",
 			"act": 3,
@@ -5125,8 +5125,8 @@
 				"done": "e05_river"
 			},
 			"point": [
-				19.0,
-				1.5
+				22.5,
+				4.0
 			],
 			"text": "Nests on every bend above the falls, marked from the balloon.",
 			"act": 3,

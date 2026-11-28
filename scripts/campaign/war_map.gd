@@ -1222,7 +1222,10 @@ func _draw_theatre(mk: Dictionary, c: Vector2, s: Dictionary) -> void:
 		col = Color(0.20, 0.42, 0.18)
 	else:
 		var n := int(ck.get("neglect", {}).get(tid, 0))
-		sub = Loc.t("Fought this year") if n <= 0 else (Loc.t("Left alone %s years") % str(n) if n != 1 else Loc.t("Left alone 1 year"))
+		if n <= 0:
+			sub = Loc.t("Fought this year") if (ck.get("fought", []) as Array).has(tid) else Loc.t("Not fought yet")
+		else:
+			sub = Loc.t("Left alone %s years") % str(n) if n != 1 else Loc.t("Left alone 1 year")
 		if String(ck.get("risk", "")) == tid and not bool(ck.get("stopped", false)):
 			col = Color(0.62, 0.12, 0.08)
 			sub = Loc.t("NEXT TO FALL") + "  ·  " + sub
@@ -1338,8 +1341,9 @@ func _draw_clock_plate(s: Dictionary, style: String, font: Font) -> void:
 		var th := WarMapData.theatre(String(ck["risk"]))
 		var rn := Loc.t(String(WarMapData.region_of(String(ck["risk_region"])).get("name", "")))
 		var wl := float(ck.get("to_turn", 0.0))
-		var wn := str(int(ceil(wl - 1e-6))) if absf(wl - roundf(wl)) < 0.01 else "%.1f" % wl
-		l3 = Loc.t("Next to fall, in %s wins: %s (%s)") % [wn, Loc.t(String(th.get("name", ""))), rn]
+		var wn := str(int(roundf(wl))) if absf(wl - roundf(wl)) < 0.01 else "%.1f" % wl
+		var key := "Next to fall, after 1 more win: %s (%s)" if wn == "1" else "Next to fall, after %s more wins: %s (%s)"
+		l3 = Loc.t(key) % ([Loc.t(String(th.get("name", ""))), rn] if wn == "1" else [wn, Loc.t(String(th.get("name", ""))), rn])
 		bad = true
 	else:
 		l3 = Loc.t("No colony is at risk at the next turn of the year.")
@@ -1348,7 +1352,9 @@ func _draw_clock_plate(s: Dictionary, style: String, font: Font) -> void:
 	var w := maxf(tf.get_string_size(l1, HORIZONTAL_ALIGNMENT_LEFT, -1, fs + 4).x, maxf(font.get_string_size(l2, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x,
 		font.get_string_size(l3, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x)) + 56
 	w = minf(w, size.x - 20)
-	var box := Rect2(Vector2((size.x - w) * 0.5, 8), Vector2(w, fs * 3.9 + 10))
+	# (at the bottom middle: the top of THE WORLD holds Europe's crowded seals; the South Atlantic is empty sea)
+	var bh := fs * 3.9 + 10
+	var box := Rect2(Vector2((size.x - w) * 0.5, size.y - bh - 8), Vector2(w, bh))
 	var paper: Color = s["paper"]
 	var ink: Color = s["ink"]
 	match style:

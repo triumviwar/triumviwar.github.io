@@ -380,14 +380,14 @@ static func won_order(p: Dictionary, ck: Dictionary) -> Array:
 ## {"on" (Act 3 has opened), "stopped" (the night has begun), "year" (2781 + the turns), "turns", "fallen":
 ## [{"region", "theatre", "to", "year"}], "reclaimed": [{"region", "theatre", "year", "mission"}], "settled": [theatres],
 ## "neglect": {theatre: whole years since its last win}, "risk": the theatre that loses a colony at the next turn ("" none),
-## "risk_region", "wins" (the clock's count, optional ones counting their weight), "to_turn" (wins left to the next turn),
+## "risk_region", "fought": [theatres won in at least once], "wins" (the clock's count, optional ones counting their weight), "to_turn" (wins left to the next turn),
 ## "held": {theatre: [regions standing]}}.
 static func clock(p: Dictionary, over: Dictionary = {}) -> Dictionary:
 	var ck: Dictionary = (data().get("clock", {}) as Dictionary).duplicate()
 	for k in over:
 		ck[k] = over[k]
 	var first := int(ck.get("first_year", 2781))
-	var out := {"on": false, "stopped": false, "year": first, "turns": 0, "fallen": [], "reclaimed": [], "settled": [],
+	var out := {"on": false, "stopped": false, "year": first, "turns": 0, "fallen": [], "reclaimed": [], "settled": [], "fought": [],
 		"neglect": {}, "risk": "", "risk_region": "", "wins": 0.0, "to_turn": 0.0, "held": {}}
 	if ck.is_empty() or not cond_ok(ck.get("start", {}), p):
 		return out
@@ -428,6 +428,8 @@ static func clock(p: Dictionary, over: Dictionary = {}) -> Dictionary:
 		wins += ow if opt else 1.0
 		for t in attention_of(mid, ck):
 			last[String(t)] = turns + 1
+			if not (out["fought"] as Array).has(String(t)):
+				out["fought"].append(String(t))
 		# a fallen colony taken back by the mission at its place (and safe from then on)
 		for t in ths:
 			for c in t["colonies"]:

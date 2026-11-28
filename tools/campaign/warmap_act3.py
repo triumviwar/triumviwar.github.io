@@ -48,7 +48,7 @@ BARRA = [-60.0, -3.1]
 CONCORDIA = [-51.6, -27.3]
 
 VIEWS = [
-    {"id": "globe", "label": "THE WORLD", "rect": [-170, -60, 180, 72], "acts": [3, 4]},
+    {"id": "globe", "label": "THE WORLD", "rect": [-118, -48, 160, 62], "acts": [3, 4]},
     {"id": "americas", "label": "THE AMERICAS", "rect": [-122, -40, -30, 54], "acts": [3, 4]},
     {"id": "africa", "label": "AFRICA", "rect": [-20, -37, 55, 20], "acts": [3, 4]},
     {"id": "indies", "label": "THE INDIES", "rect": [66, -12, 140, 40], "acts": [3, 4]},
@@ -146,8 +146,8 @@ CLOCK = {
 
 MARKS = [
     # the theatres' names (drawn large on THE WORLD; the clock's state beside them)
-    {"id": "theatre_americas", "kind": "theatre", "point": [-86.0, 4.0], "label": "THE AMERICAS", "theatre": "americas"},
-    {"id": "theatre_africa", "kind": "theatre", "point": [22.0, 3.0], "label": "AFRICA", "theatre": "africa"},
+    {"id": "theatre_americas", "kind": "theatre", "point": [-99.0, -14.0], "label": "THE AMERICAS", "theatre": "americas"},
+    {"id": "theatre_africa", "kind": "theatre", "point": [12.0, 17.0], "label": "AFRICA", "theatre": "africa"},
     {"id": "theatre_indies", "kind": "theatre", "point": [96.0, 22.0], "label": "THE INDIES", "theatre": "indies"},
     {"id": "theatre_seas", "kind": "theatre", "point": [134.0, -27.0], "label": "THE SOUTHERN SEAS", "theatre": "seas"},
     # the allies' crowns
@@ -368,8 +368,8 @@ NOTES = [
     {"skins": ["brass"], "if": {"done": "e09_nagasaki"}, "point": [124.0, 36.0], "text": "Nagasaki. Where it can be stopped."},
     {"skins": ["brass"], "if": {"done": "e13_gold"}, "point": [140.0, -31.0], "text": "The gold fields: machines off a Manila ship."},
     {"skins": ["brass"], "if": START, "point": [100.0, -60.0], "text": "South of every map: the forge in the ice."},
-    {"skins": ["chart"], "if": START, "point": [16.0, -2.0], "text": "Up the great river: the swarm's roads (V.)."},
-    {"skins": ["chart"], "if": {"done": "e05_river"}, "point": [19.0, 1.5], "text": "Nests on every bend above the falls, marked from the balloon."},
+    {"skins": ["chart"], "if": START, "point": [5.0, 0.5], "text": "Up the great river: the swarm's roads (V.)."},
+    {"skins": ["chart"], "if": {"done": "e05_river"}, "point": [22.5, 4.0], "text": "Nests on every bend above the falls, marked from the balloon."},
     {"skins": ["chart"], "if": {"done": "e06_taken"}, "point": [24.0, -4.0], "red": True,
      "text": "L.: they were made. I was wrong about the one thing that mattered."},
     {"skins": ["chart"], "if": {"done": "e06_taken"}, "point": [27.0, -12.0], "red": True,

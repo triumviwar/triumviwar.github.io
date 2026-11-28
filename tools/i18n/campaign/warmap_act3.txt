@@ -689,9 +689,13 @@ es Colonias en pie: %s de %s
 pt A noite chegou: o relógio parou.
 es Ha llegado la noche: el reloj se ha parado.
 
-> Next to fall, in %s wins: %s (%s)
-pt A próxima a cair, em %s vitórias: %s (%s)
-es La próxima en caer, en %s victorias: %s (%s)
+> Next to fall, after %s more wins: %s (%s)
+pt A próxima a cair, depois de mais %s vitórias: %s (%s)
+es La próxima en caer, tras %s victorias más: %s (%s)
+
+> Next to fall, after 1 more win: %s (%s)
+pt A próxima a cair, depois de mais 1 vitória: %s (%s)
+es La próxima en caer, tras 1 victoria más: %s (%s)
 
 > No colony is at risk at the next turn of the year.
 pt Nenhuma colónia corre perigo na próxima virada do ano.
@@ -748,3 +752,7 @@ es Cerrado: la noche llegó antes de combatirse.
 > The clock took this colony: winning here takes it back.
 pt O relógio levou esta colónia: vencer aqui retoma-a.
 es El reloj se llevó esta colonia: vencer aquí la recupera.
+
+> Not fought yet
+pt Ainda não combatido
+es Aún sin combatir
