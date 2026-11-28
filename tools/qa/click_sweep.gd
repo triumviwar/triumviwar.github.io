@@ -42,7 +42,7 @@ const SLOW_MS := 2500
 const NEVER := ["EXIT", "SAIR", "SALIR", "QUIT", "YES, QUIT", "SIM, SAIR", "SÍ, SALIR", "QUIT GAME"]
 ## Buttons that open the browser or a file manager (OS.shell_open): never pressed by a test (listed as LINK once).
 const LINKS := ["WINDOWS", "ANDROID", "PLAY ON THE WEB", "JOIN THE DISCORD", "DOWNLOAD", "OPEN FOLDER"]
-const BACK_RX := "(?i)\\b(back|voltar|volver|atr[aá]s|close|fechar|cerrar|cancel|cancelar|done|feito|hecho|menu|ok|leave|sair|salir|return|regressar|regresar)\\b|[✕×←‹]"
+const BACK_RX := "(?i)\\b(back|voltar|volver|atr[aá]s|close|fechar|cerrar|cancel|cancelar|done|feito|hecho|menu|ok|leave|sair|salir|return|regressar|regresar|skip|pular|saltar|omitir)\\b|[✕×←‹]"
 
 var main: Node
 var out := "docs/shots/qa_click_sweep"
@@ -344,7 +344,8 @@ func _state() -> int:
 		elif n is TextureRect:
 			parts_s.append(str((n as TextureRect).texture.get_instance_id() if (n as TextureRect).texture else 0))
 		elif n is Control and (n as Control).has_method("_draw"):
-			parts_s.append(str((n as Control).get("view")) + str((n as Control).get("selected")) + str((n as Control).get("zoom")))
+			parts_s.append(str((n as Control).get("view")) + str((n as Control).get("selected")) + str((n as Control).get("zoom"))
+				+ str((n as Control).get("painted")) + str((n as Control).get("center")))
 	parts_s.append(str(n_ctl))
 	return hash("|".join(parts_s))
 
@@ -1140,6 +1141,8 @@ func _audit(screen: String) -> void:
 		var r := c.get_global_rect()
 		if r.size.x < 1 or r.size.y < 1:
 			continue
+		if (c is Button or c is Label) and c.get_theme_color("font_color").a < 0.05:
+			continue      # (a name shown only when pointed at, e.g. the hub's hotspots over the painting)
 		texts.append(c)
 		var f: Font = c.get_theme_font("font") if not c is RichTextLabel else c.get_theme_font("normal_font")
 		var fs: int = c.get_theme_font_size("font_size") if not c is RichTextLabel else c.get_theme_font_size("normal_font_size")
