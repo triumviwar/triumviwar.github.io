@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"Fixes found by a new test that clicks every button of the game (the click sweep): Esc and the phone's back now leave an online room, the music player and the animation viewer (on a phone they asked to quit the game); in the world war, SAVE & LEAVE works while a computer is moving (a war of computers alone could not be left at all); a long room title no longer pushes a campaign hub's buttons off the screen; a few lines were shown in English in Portuguese and Spanish (a gun's, mortar's and powder wagon's state, the Barracks' and Foundry's horses, the hints when giving an order on a computer).",
+	]},
 	{"v": "0.38.232", "items": [
 		"Act 3's engine (no mission yet): climates (the cold slows the Brood's eggs and a frost line kills them, moving with the night; the wet runs the Clockwork down faster; dry heat slows the Brood a little), Hollweg's stop-work rung on a bell, Lindqvist's made call that turns a wave, warmth by the fires in the ice, a balloon's flight that marks what it sees, the ledger of everything the campaign brought to Rome, the night's three ports in any order (the first fresh, the last grown), Act 3's new pieces in any order, the final choice with no timer, and the credits over the war map and the King's study.",
 	]},
