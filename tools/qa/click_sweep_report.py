@@ -17,6 +17,24 @@ out = sys.argv[1] if len(sys.argv) > 1 else "/tmp/qa_click_sweep"
 SUM = re.compile(r"^SWEEP-SUMMARY (\S+) screens (\d+) presses (\d+) (\{.*\})")
 FLAG = re.compile(r"^SWEEP ([A-Z]+) (\S+) \| (.*?) \| (.*?) \| (.*)$")
 
+# English on purpose (the same rules as click_sweep.gd's _english, for logs of older runs): the animation viewer, the
+# match log, the music's titles
+BY_DESIGN = re.compile(r"frames at [0-9.]+ fps|NEEDS ART|scale [0-9.]+|RESULT at |\(seed [0-9]+|^'?\s*Map\s*'?$|Now playing: |Tocando agora: |Reproduciendo: ")
+here = os.path.dirname(os.path.abspath(__file__))
+titles = set()
+try:
+    with open(os.path.join(here, "..", "..", "scripts", "music_tracks.gd")) as f:
+        for m in re.finditer(r'": "(.*)",', f.read()):
+            titles.add(m.group(1).lower())
+except OSError:
+    pass
+
+
+def by_design(detail):
+    t = detail.strip().strip("'").strip()
+    return BY_DESIGN.search(t) is not None or t.lower() in titles
+
+
 runs = []
 flags = collections.OrderedDict()
 crashed = []
@@ -34,6 +52,8 @@ for log in sorted(glob.glob(os.path.join(out, "*.log"))):
             m = FLAG.match(line)
             if m:
                 kind, prt, screen, button, detail = m.groups()
+                if kind == "EN" and by_design(detail):
+                    continue
                 key = (kind, detail) if kind == "EN" else (kind, prt, screen, button, detail)
                 flags.setdefault(key, set()).add(lang + "_" + size)
     if summary is None:

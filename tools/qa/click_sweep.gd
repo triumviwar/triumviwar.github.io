@@ -1240,9 +1240,17 @@ func _english(t: String) -> bool:
 				_tr_words[m.get_string().to_lower()] = true
 		for id in MapGen.all_ids():
 			_names[String(MapGen.display_name(id)).to_lower()] = true
+		for k in MusicTracks.TRACKS:       # (the pieces' titles are names: never translated)
+			_names[String(MusicTracks.TRACKS[k]).to_lower()] = true
 	var st := t.strip_edges()
 	if st == "" or _tr_values.has(st) or _names.has(st.to_lower()) or st.contains("://"):
 		return false
+	# (English on purpose: the animation viewer, a tool for the art; the match log's lines, pasted in playtest reports)
+	if RegEx.create_from_string("frames at [0-9.]+ fps|NEEDS ART|scale [0-9.]+|RESULT at |\\(seed [0-9]+|^Map$|^Now playing: |^Tocando agora: |^Reproduciendo: ").search(st) != null:
+		return false
+	for nm in _names:
+		if st.to_lower().ends_with(": " + String(nm)):
+			return false
 	if RegEx.create_from_string("^[a-z0-9_ !]+$").search(st) != null and (st.contains("_") or not st.contains(" ")):
 		return false      # (an id: a unit kind, an animation's name)
 	var en := 0
