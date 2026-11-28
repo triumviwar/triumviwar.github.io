@@ -774,10 +774,23 @@ func menu_back() -> bool:
 		eb = _editor.back_button      # (the map editor runs a Game, but it is a page: its BACK answers Esc and the phone's back; qa-click-sweep)
 	elif game != null:
 		return false
+	if not is_instance_valid(eb) or not eb.is_visible_in_tree():
+		eb = _page_back(ui_layer)      # (a page that builds itself again marks its BACK: meta "page_back")
 	if not is_instance_valid(eb) or not eb.is_visible_in_tree() or eb.disabled:
 		return false
 	eb.pressed.emit()
 	return true
+
+
+## The BACK a page marked with the meta "page_back" (pages that rebuild their buttons: the layout editor).
+func _page_back(n: Node) -> Button:
+	for c in n.get_children():
+		if c is Button and c.has_meta("page_back") and (c as Button).is_visible_in_tree() and not c.is_queued_for_deletion():
+			return c
+		var r := _page_back(c)
+		if r != null:
+			return r
+	return null
 
 
 func _unhandled_input(event: InputEvent) -> void:

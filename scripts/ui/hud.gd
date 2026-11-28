@@ -4460,7 +4460,7 @@ static func pistol_text(u: Unit) -> String:
 		else:
 			t += ": reloads when out of the fight"
 	if u.hold_fire:
-		t += " (HOLD FIRE)"
+		t = Loc.t(t) + " " + Loc.t("(HOLD FIRE)")      # (each part translated: the joined line had no translation; qa-click-sweep)
 	return t
 
 

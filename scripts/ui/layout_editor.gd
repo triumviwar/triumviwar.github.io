@@ -55,7 +55,9 @@ func _build() -> void:
 	top.position = Vector2(8, 6)
 	top.add_theme_constant_override("separation", 5)
 	_ui.add_child(top)
-	top.add_child(_btn("BACK", 86, func() -> void: done.emit()))
+	var back_button := _btn("BACK", 86, func() -> void: done.emit())
+	back_button.set_meta("page_back", true)      # (Esc and the phone's back press it: main.menu_back; qa-click-sweep)
+	top.add_child(back_button)
 	for p in UiLayout.BUILT_IN + UiLayout.CUSTOM:
 		var pp: String = p
 		var b := _btn(("» " if UiLayout.active == p else "") + Loc.t(p), 0, func() -> void:
