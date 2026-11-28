@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.228", "items": [
+		"Horses graze facing the way they stand (they all grazed toward the lower right before), at the paddock too; the Brood Mother's second stage walks toward you face on; the Cuirassier's new pistol frames take every horse coat.",
+	]},
 	{"v": "0.38.227", "items": [
 		"The Cuirassier fires his pistol under the same plain helmet he wears everywhere else (the plume he had only while shooting is gone), redrawn in all five facings; the campaign Pikeman walks toward you and to the south-east on four frames instead of sliding sideways.",
 	]},

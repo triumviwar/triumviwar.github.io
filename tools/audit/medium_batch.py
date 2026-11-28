@@ -217,6 +217,17 @@ for _n, _d in ((126, "e"), (127, "se"), (128, "s"), (129, "ne"), (130, "n")):
     JOBS.append((_n, "cuirassier", "pistol_" + _d, 4, CUI, "firing his pistol from the saddle, the horse standing, %s; 4 frames: 1 aiming, the arm out; 2 FIRING, a small bright muzzle flash and a puff of white smoke; 3 the recoil, the arm kicked up; 4 lowering the pistol. His helmet is a PLAIN steel morion with NO plume and NO feather, exactly as in the walk reference. ONE pistol in his right hand, the SAME facing in all four frames" % _CP[_d][0], _CP[_d][1], "a plume or feather on the helmet, a second pistol, the horse turning,",
                  [("1_current_pistol_%s.png" % _d, [("cuirassier", "pistol_" + _d)]), ("2_walk_%s_model.png" % _d, [("cuirassier", "walk_" + _d)])]))
 
+# 2026-11-28: the horse grazing (finding 78): every facing was the same south-east pose
+HRS = "the horse (a riderless dark grey horse with a pure red saddle cloth, a brown saddle and a brown bridle)"
+LOOK["horse"] = "horse, its colours and proportions"
+_HG = {"e": ("in a side view facing right (east), the head lowered to the grass in front of its forelegs", "the east view: facing right"),
+       "s": ("facing straight toward the viewer, the head lowered to the grass in front of it so we see the top of its head and neck between its front legs", "the south view: straight toward the viewer"),
+       "ne": ("seen three-quarter from behind, turned away toward the upper right, its rump and tail toward the lower left, the lowered head toward the upper right", "the north-east view: three-quarter from behind, toward the upper right"),
+       "n": ("seen straight from behind, its rump and tail toward us, the lowered head hidden beyond its body at the top", "the north view: seen from behind")}
+for _n, _d in ((131, "e"), (132, "s"), (133, "ne"), (134, "n")):
+    JOBS.append((_n, "horse", "graze_" + _d, 3, HRS, "standing and grazing, %s; 3 frames: 1 the head down to the grass; 2 the head a little lower, chewing; 3 the tail swishing. The SAME facing in all three frames" % _HG[_d][0], _HG[_d][1], "a different facing, the head up, a rider,",
+                 [("1_graze_se_pose.png", [("horse", "graze_se")]), ("2_walk_%s_view.png" % _d, [("horse", "walk_" + _d)])]))
+
 
 def main():
     out = sys.argv[1] if len(sys.argv) > 1 else "."

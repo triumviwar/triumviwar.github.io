@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.228": ["Os cavalos pastam virados para onde estão (antes todos pastavam para baixo à direita), também no cercado; a Mãe da Ninhada no segundo estágio caminha de frente para você; os novos quadros de pistola do Couraceiro aceitam todas as pelagens."],
 	"0.38.227": ["O Couraceiro dispara a pistola com o mesmo capacete simples que usa em tudo o resto (o penacho que só tinha ao disparar sumiu), redesenhado nas cinco direções; o Piqueiro da campanha caminha para você e para sudeste com quatro quadros em vez de deslizar de lado."],
 	"0.38.226": ["O mapa de guerra do Brasil foi pintado (uma folha de cartógrafo católico com Nossa Senhora da Conceição), o mapa do Relojoeiro tem uma placa de latão gravada de verdade e o do Naturalista um papel de campo manchado; mais 19 personagens da campanha ganharam retratos a óleo."],
 	"0.38.225": ["Ilustrações do Ato 2 concluídas: o resto do Conselho das Engrenagens, Rio Abaixo, Entre Dois Fogos, a Frente da Selva e o Cerco de Concórdia (19 pinturas a óleo substituem os desenhos provisórios)."],

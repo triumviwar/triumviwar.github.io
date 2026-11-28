@@ -683,7 +683,7 @@ const BASE_UNITS := {
 		"death_ne": 3,
 		"death_s": 3,
 		"death_se": 3,
-		"graze_e": 2,
+		"graze_e": 3,
 		"graze_n": 3,
 		"graze_ne": 3,
 		"graze_s": 3,

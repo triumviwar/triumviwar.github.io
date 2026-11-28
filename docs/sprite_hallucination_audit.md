@@ -165,6 +165,11 @@ keg idle frame 0 (keg on the chest) by frame 1; 141 the Swift's (cuckoo) north-e
 156, 169 specks by the Armoured Officer's south death and the Guardsman's fire-up removed; 145 the Pendulum's pink pixels
 at the blade; 200 the Tension icon's corner specks; 201 the loose piece by the mossy boulder; 207 the loose specks
 round the snowy rocks (c, d).
+0.38.228 (2026-11-28): 12 the Brood Mother's stage-2 south walk and idle are stage 3's front-on walk scaled to stage 2
+(the two stages are one design; tools/bm2_front_from_bm3.py, no redraw); 78 and 29 the horse grazes in its own facing
+in all five views (requests M131-M134 + SE, 3 frames each; NE needed a second answer), the coat masks rebuilt
+(tools/import_horse_coats.py --only horse / --only cuirassier, the Cuirassier's new pistol strips too) and the Horse
+Breeder's paddock horses re-cut from them (import_buildings_v2.paddock_horses).
 0.38.227 (Claude in the owner's Chrome, 2026-11-27): 72 the Cuirassier's pistol redrawn in all five facings with the plain morion
 (no plume; requests M126-M130 in tools/audit/medium_batch.py; SE needed a second answer, the first was side-on); 34 the
 Crown campaign Pikeman's south and south-east walk redrawn (M124, M125: 4 frames, the pike upright, facing the viewer).
