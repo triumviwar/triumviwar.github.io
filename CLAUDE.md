@@ -26,6 +26,22 @@
 
 ## Current work
 
+- MERGED 2026-11-28 (0.38.247-0.38.251): UI HUD PASS (docs/ui_hud_pass.md, tools/test_hud_pass.gd: HOTKEY PRIORITY: units
+  and a building selected show the units' card first, the building's training/research after it (blue edge), a building
+  letter only when no unit command has it; INCOME A MINUTE in a resource's tooltip; SUPPLY BLOCK blinks red + one
+  announcer line; GO TO LAST ALERT = Home or the ALERT button over the minimap (again within 4 s = the one before);
+  IDLE / ARMY / PRODUCE quick buttons glow; SHOW APM in Settings > GAME; the production line on a building's card;
+  short-first tooltips; page tag "1/2 Tab"), UI ACCESS + PHONE (docs/ui_access_phone.md, run tools/test_ui_access_phone.gd
+  under xvfb --resolution 1600x720: COLOUR-BLIND HELP OFF / RED-GREEN / BLUE-YELLOW in Settings > DISPLAY (team colours,
+  health bars striped when low, war map holders), TEXT SIZE 90-150%, the phone's command buttons ~9 mm, two rows a page
+  with numbered page tabs (Hud._card_span/_card_pages), bigger portraits, camera tabs V1-V6), WORLD WAR CALL IT OFF
+  (docs/ww_call_off.md: attacking CALL IT OFF = nothing lost, the march spent; defending RETREAT = to the safest own
+  region next door, 10% rear guard; never a capital; the computers use it in rules version 3 wars), AI FIXES A
+  (docs/ai_fixes_a.md: Normal Brood pace measured, no effect, OFF `normalpace:on`; the Clockwork meets a small raid v
+  the Crown with twice the raid, not the whole army: ON v the Crown), AI FIXES B (docs/ai_fixes_b.md: guns/wagons no
+  longer stuck for good: the team folds in, walled-out guns stop at the nearest reachable spot, `afbwheels:off`; the
+  Crown goes down to its hall below its main when its home army matches the attack, `afbhome:off`; results unchanged).
+  The merge script now rebuilds scripts/lang/ with tools/i18n_build.py instead of joining both sides.
 - THE COMPUTER SURRENDERS (owner 2026-11-28 09:34 "I want the ai to surrender more... Nobody plays until all buildings are
   destroyed"; 0.38.246, scripts/ai_resign.gd AIResign, AI._gg_tick/_resign, tests tools/test_ai_gg_rule.gd,
   tools/test_chat_gg.gd): a hopeless computer says "gg" and LEAVES 10 s later by itself (LEAVE_AFTER; the player's gg ends it
