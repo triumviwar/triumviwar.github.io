@@ -1,0 +1,23 @@
+{
+ "mode": "epic",
+ "sub_raw": 0.048,
+ "lra_raw": 9.57,
+ "ride_k": 1.0,
+ "lra_target": null,
+ "sub_ridden": 0.048,
+ "low_shelf_db": 0.0,
+ "gain_db": 0.98,
+ "fast_db": 0.0,
+ "limit_db": 2.58,
+ "ceiling_dbtp": -1.61,
+ "lra_out": 9.29,
+ "ride_tries": 1,
+ "name": "crown_peace_9",
+ "title": "The Colours Furled",
+ "q": 1.5,
+ "tp_out": -1.11,
+ "lufs_out": -12.96,
+ "lra_ogg": 9.25,
+ "sub_out": 0.046,
+ "length_s": 133.09
+}
