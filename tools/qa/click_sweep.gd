@@ -746,9 +746,21 @@ func _part_match(fac: String) -> void:
 	var at: Vector2 = hall.center() if hall else g.camera.position
 	# every building of the faction, finished, round the hall
 	var things: Array = []
+	# (what a player of this faction can have today: Defs.build_list and what those buildings train; not the shelved
+	# rosters still in Defs, e.g. the Clockwork's Line)
+	var kinds_b: Array = Defs.build_list(fac) if fac != "brood" else []
+	var kinds_u: Array = [String(Defs.FACTIONS[fac]["worker"])]
+	for k in kinds_b:
+		for u in Defs.BUILDINGS.get(k, {}).get("trains", []):
+			if not kinds_u.has(u):
+				kinds_u.append(u)
+	if fac == "brood":
+		for k in Defs.UNITS:
+			if String(Defs.UNITS[k].get("faction", "")) == "brood" and not Defs.UNITS[k].get("campaign_only", false):
+				kinds_u.append(k)
 	if fac != "brood":
-		for k in Defs.BUILDINGS:
-			if String(Defs.BUILDINGS[k].get("faction", "")) != fac:
+		for k in kinds_b:
+			if not Defs.BUILDINGS.has(k):
 				continue
 			var c: Vector2i = g.find_spot(0, k, hall, 4, 30) if hall else Vector2i(-1, -1)
 			if c.x < 0:
@@ -759,9 +771,8 @@ func _part_match(fac: String) -> void:
 		_errs("match_" + fac, "(spawn buildings)")
 	# every unit of the faction
 	var off := 0
-	for k in Defs.UNITS:
-		var d: Dictionary = Defs.UNITS[k]
-		if String(d.get("faction", "")) != fac or d.get("campaign_only", false):
+	for k in kinds_u:
+		if not Defs.UNITS.has(k):
 			continue
 		var u: Unit = g._add_unit(k, 0, at + Vector2(90 + (off % 8) * 34, -120 + (off / 8) * 34))
 		off += 1
