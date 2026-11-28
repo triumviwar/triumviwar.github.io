@@ -523,15 +523,14 @@ const PHONE_MM := 9.0
 const PHONE_SHORT_MM := 68.0
 const PHONE_BTN_MAX := 84.0
 const PAGE_TAB_W := 30.0
-static var phone_dpi_test := 0.0     # (tools: a phone's density for pictures on a computer; 0 = ask the system)
 
 
 ## One millimetre on the screen in the HUD's units.
 func _mm() -> float:
 	var vs := _vs()
-	var dpi := phone_dpi_test if phone_dpi_test > 0.0 else float(DisplayServer.screen_get_dpi())
+	var dpi := Settings.test_dpi if Settings.test_dpi > 0.0 else float(DisplayServer.screen_get_dpi())
 	var win := float(DisplayServer.window_get_size().y) if DisplayServer.get_name() != "headless" else 0.0
-	if (phone_dpi_test > 0.0 or (dpi >= 200.0 and not OS.has_feature("web"))) and win > 0.0 and vs.y > 0.0:
+	if (Settings.test_dpi > 0.0 or (dpi >= 200.0 and not OS.has_feature("web"))) and win > 0.0 and vs.y > 0.0:
 		return dpi / 25.4 * vs.y / win
 	return vs.y / PHONE_SHORT_MM
 
@@ -4219,10 +4218,10 @@ func _draw_panel(font: Font) -> void:
 		eff_txt = Loc.t(eff_txt)
 		# (the fitting measures the line again and again, a character at a time: worked out once
 		# for each text and card width, it was most of the panel's cost, drawn 20 times a second)
-		var fit_key := "%s|%s|%d" % [eff_txt, info, int(r.size.x)]
+		var fit_key := "%s|%s|%d|%d" % [eff_txt, info, int(r.size.x), Settings.text_size]
 		var fit: Array = _fit_memo.get(fit_key, [])
 		if fit.is_empty():
-			var ifs := 15          # (a longer translation shrinks to fit the card)
+			var ifs := TextScale.hud(15)          # (a longer translation shrinks to fit the card; TEXT SIZE counted here)
 			while ifs > 10 and font.get_string_size(eff_txt + ("  ·  " if eff_txt != "" else "") + info, HORIZONTAL_ALIGNMENT_LEFT, -1, ifs).x > r.size.x - 130:
 				ifs -= 1
 			var iroom: float = r.size.x - 110 - (font.get_string_size(eff_txt + "  ·  ", HORIZONTAL_ALIGNMENT_LEFT, -1, ifs).x if eff_txt != "" else 0.0)
@@ -4251,11 +4250,11 @@ func _draw_panel(font: Font) -> void:
 			_ci.draw_rect(Rect2(bar2.position, Vector2(bar2.size.x * float(nb_prog["f"]), bar2.size.y)), nb_prog["col"])
 		elif eff_txt != "":
 			# the efficiency breakdown first, in its bar's colour, then the rest
-			_text(font, r.position + Vector2(90, 72), eff_txt, ifs, eff_col)
+			_text_px(font, r.position + Vector2(90, 72), eff_txt, ifs, eff_col)
 			var ew := font.get_string_size(eff_txt + "  ·  ", HORIZONTAL_ALIGNMENT_LEFT, -1, ifs).x
-			_text(font, r.position + Vector2(90 + ew, 72), info, ifs, UiStyle.MUTED)
+			_text_px(font, r.position + Vector2(90 + ew, 72), info, ifs, UiStyle.MUTED)
 		else:
-			_text(font, r.position + Vector2(90, 72), info, ifs, UiStyle.MUTED)
+			_text_px(font, r.position + Vector2(90, 72), info, ifs, UiStyle.MUTED)
 		if e is Unit and (e as Unit).kind == "balloon" and e.team == game.human:
 			# who's in the basket: small icons in the top right corner, each with his health
 			# and his powder under it (the name shrinks to make room)
@@ -5142,7 +5141,7 @@ func _draw_card(font: Font) -> void:
 			# the build page's "POWDER 0/1": the first word of the English name, which no dictionary can translate
 			# (pt/es showed "POWDER 0/1"; playtest 2026-11-21): the first word of the translated name instead
 			lab = Loc.t(String(Defs.BUILDINGS[String(it[0])]["name"])).to_upper().split(" ")[0] + " " + raw_lab.get_slice(" ", raw_lab.get_slice_count(" ") - 1)
-		var lsz := 11
+		var lsz := TextScale.hud(11)      # (TEXT SIZE counted in the fitting: drawn by _text_px)
 		while lsz > 8 and UiStyle.bold_font().get_string_size(lab, HORIZONTAL_ALIGNMENT_LEFT, -1, lsz).x > br.size.x - 5:
 			lsz -= 1
 		if UiStyle.bold_font().get_string_size(lab, HORIZONTAL_ALIGNMENT_LEFT, -1, lsz).x > br.size.x - 5:
@@ -5151,13 +5150,13 @@ func _draw_card(font: Font) -> void:
 		var two := _card_two_lines(lab, br.size.x - 5)
 		if two.is_empty():
 			lab = _fit_card_label(lab, lsz, br.size.x + 2)      # (a few pixels over the padding still reads: ATTACK GROUND)
-			_text(UiStyle.bold_font(), Vector2(br.get_center().x, br.end.y - 5), lab, lsz, lcol, 1)
+			_text_px(UiStyle.bold_font(), Vector2(br.get_center().x, br.end.y - 5), lab, lsz, lcol, 1)
 		else:
 			# (playtest 2026-11-21: a label still too wide at the smallest size ran over its neighbours, e.g. pt
 			# "RAÍZES RÁPIDAS" into "CURA DO PÂNTANO": two lines then, on a taller strip)
 			_ci.draw_rect(Rect2(br.position.x + 2, br.end.y - 27, br.size.x - 4, 10), Color(0, 0, 0, 0.62))
-			_text(UiStyle.bold_font(), Vector2(br.get_center().x, br.end.y - 16), String(two[0]), int(two[2]), lcol, 1)
-			_text(UiStyle.bold_font(), Vector2(br.get_center().x, br.end.y - 5), String(two[1]), int(two[2]), lcol, 1)
+			_text_px(UiStyle.bold_font(), Vector2(br.get_center().x, br.end.y - 16), String(two[0]), int(two[2]), lcol, 1)
+			_text_px(UiStyle.bold_font(), Vector2(br.get_center().x, br.end.y - 5), String(two[1]), int(two[2]), lcol, 1)
 		if it[5] != "":
 			var cw := font.get_string_size(it[5], HORIZONTAL_ALIGNMENT_LEFT, -1, 12).x + 8
 			var cbr := Rect2(br.end.x - cw - 2, br.position.y + 2, cw, 15)
@@ -5778,8 +5777,12 @@ func _icon_file(name: String) -> Texture2D:
 
 
 func _text(font: Font, p: Vector2, s: String, sz: int, col: Color, align := 0) -> void:
+	_text_px(font, p, s, TextScale.hud(sz), col, align)       # (TEXT SIZE, Settings > DISPLAY: ui-access-phone)
+
+
+## _text at exactly this size (a line that fits itself to its room has already counted the TEXT SIZE).
+func _text_px(font: Font, p: Vector2, s: String, sz: int, col: Color, align := 0) -> void:
 	s = Loc.t(s)
-	sz = TextScale.hud(sz)       # (TEXT SIZE, Settings > DISPLAY: ui-access-phone)
 	var w := TextCache.width(font, s, sz)       # (shaped once and kept: scripts/ui/text_cache.gd)
 	var x := p.x - (w * 0.5 if align == 1 else (w if align == 2 else 0.0))
 	TextCache.draw(_ci, font, Vector2(x, p.y), s, sz, col, 4, Color(0, 0, 0, col.a * 0.8))

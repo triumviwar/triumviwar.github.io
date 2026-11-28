@@ -420,7 +420,7 @@ func draw(font: Font, counts: Array) -> void:
 		UiStyle.draw_button(ci, vr, pc and tr.has_point(mouse) and hit(mouse) == id, push > 0.0 or set_)
 		if push > 0.0:
 			ci.draw_rect(vr, Color(0, 0, 0, 0.25 * push))
-		hud._text(UiStyle.bold_font(), vr.position + Vector2(vr.size.x * 0.5, TAB_H - 4), ("F%d" % (j + 4) if pc else str(j + 1)) if j < FKEYS.size() else "·", 11, Color(1, 0.9, 0.55) if set_ else Color(1, 1, 1, 0.5), 1)
+		hud._text(UiStyle.bold_font(), vr.position + Vector2(vr.size.x * 0.5, TAB_H - 4), ("F%d" % (j + 4) if pc else "V%d" % (j + 1)) if j < FKEYS.size() else "·", 11, Color(1, 0.9, 0.55) if set_ else Color(1, 1, 1, 0.5), 1)
 	for i in N_BTN:
 		var r := button_rect(i)
 		var g := group_of(i)

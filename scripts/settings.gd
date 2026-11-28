@@ -39,6 +39,7 @@ static var cb_mode := 0               # COLOUR-BLIND HELP: 0 off, 1 red-green, 2
 static var text_size := 100           # TEXT SIZE: menus and the HUD's words, a percentage (TEXT_MIN-TEXT_MAX; TextScale)
 const TEXT_MIN := 90
 const TEXT_MAX := 150
+static var test_dpi := 0.0            # (picture tools: a phone's screen density on a computer; 0 = ask the system; Hud._mm)
 static var _loaded := false
 
 

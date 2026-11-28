@@ -1534,7 +1534,6 @@ func _access_rows(rows: Array) -> void:
 	var tsr := _row("TEXT SIZE")
 	var val := UiStyle.text("%d%%" % Settings.text_size, 17, UiStyle.TEXT, HORIZONTAL_ALIGNMENT_RIGHT, true)
 	val.custom_minimum_size.x = 56
-	val.set_meta(TextScale.SKIP, true)
 	var tss := HSlider.new()
 	UiStyle.touch_slider(tss)
 	tss.min_value = Settings.TEXT_MIN
