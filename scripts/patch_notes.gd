@@ -4,6 +4,11 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"COLOUR-BLIND HELP (Settings > DISPLAY): OFF, RED-GREEN or BLUE-YELLOW. With it on the eight team colours are shown as a set colour-blind players tell apart (on the units, the minimap, the HUD, the lobby with their names, the chat and the reports), the world war's and the war map's territory too (red-green: the machine orange, the Brood sky blue), and the health bars turn blue, yellow and orange with stripes when low. Only your screen changes: your friends and saved games keep their colours.",
+		"TEXT SIZE (Settings > DISPLAY), 90% to 150%: every menu, the campaign's pages and the lobby; the match's own words grow by part of it (IN-GAME INTERFACE SIZE still grows the whole match interface).",
+		"On a phone the command buttons are bigger (about 9 mm, a thumb's width): two rows of four at a time, the rest on a second page with numbered tabs at the card's right (a drag still scrolls). The selected units' portraits are nearly twice as big, and the camera tabs read V1-V6 instead of the keyboard's F4-F9.",
+	]},
 	{"v": "0.38.240", "items": [
 		"THE MUSIC IS MIXED AGAIN (music-mix-pass), no note changed: every generated piece breathes more, the quiet parts quieter and the climaxes standing out (a loudness range of 8 to 10 LU, about 7 before), the deep bass of the battle pieces cut back to what phones and laptops can play, and every piece as loud as the others (about -12.8 LUFS). The old mastering squashed the pieces with a saturator and a compressor; the new one rides the faders instead.",
 		"GOD SAVE THE KING: when the Crown wins a match, the marching band (pipes, fifes and drums) plays God Save the King, its drum roll under the herald's \"Victory! God save the King!\".",

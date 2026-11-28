@@ -2689,7 +2689,7 @@ func hotkey(code: int, repeat := false) -> bool:
 		return true
 	if code == KEY_TAB:
 		# Tab scrolls a long command card down a card's height (from the bottom: back to the top)
-		var span := maxi(0, _card_rows - _rows())
+		var span := _card_span()
 		if span == 0:
 			return false
 		_card_scroll = 0 if _card_scroll >= span else mini(_card_scroll + _rows(), span)
@@ -4964,7 +4964,7 @@ func _card_over() -> bool:
 
 ## Scroll by rows (the wheel: one at a time).
 func card_scroll_by(d: int) -> void:
-	_card_scroll = clampi(_card_scroll + d, 0, maxi(0, _card_rows - _rows()))
+	_card_scroll = clampi(_card_scroll + d, 0, _card_span())
 	_card_fresh = true
 	_redraw_t = 0.0
 
@@ -4978,7 +4978,7 @@ func _card_press(p: Vector2) -> bool:
 		# a page tab: that page (ui-access-phone)
 		var n := _card_pages()
 		var i := clampi(int((p.y - _card_bar.position.y) / maxf(_card_bar.size.y / n, 1.0)), 0, n - 1)
-		_card_scroll = clampi(i * _rows(), 0, maxi(0, _card_rows - _rows()))
+		_card_scroll = clampi(i * _rows(), 0, _card_span())
 		_card_drag = {"p": p, "s0": _card_scroll, "moved": true, "bar": false}
 		_card_fresh = true
 		_redraw_t = 0.0
@@ -5002,7 +5002,7 @@ func _card_press(p: Vector2) -> bool:
 func _card_move(p: Vector2) -> void:
 	if _card_drag.is_empty():
 		return
-	var span := maxi(0, _card_rows - _rows())
+	var span := _card_span()
 	if _card_drag["bar"]:
 		_card_scroll = clampi(int(round((p.y - _card_bar.position.y) / maxf(_card_bar.size.y, 1.0) * span)), 0, span)
 	elif _card_drag["moved"] or absf(p.y - (_card_drag["p"] as Vector2).y) > 10.0:
@@ -5034,6 +5034,14 @@ func _draw_card_bar() -> void:
 	var h := maxf(_card_bar.size.y * _rows() / float(_card_rows), 10.0)
 	var y := _card_bar.position.y + (_card_bar.size.y - h) * _card_scroll / float(span)
 	_ci.draw_rect(Rect2(_card_bar.position.x, y, _card_bar.size.x, h), UiStyle.TRIM)
+
+
+## How far the card scrolls (rows): a computer to its last row; a phone to its last whole page (a page's empty
+## places show as empty: page 2 never repeats page 1's row).
+func _card_span() -> int:
+	if Settings.pc():
+		return maxi(0, _card_rows - _rows())
+	return (_card_pages() - 1) * _rows()
 
 
 ## The phone card's pages (PHONE_ROWS rows each) and the one shown.
@@ -5071,7 +5079,7 @@ func _refresh_card() -> void:
 	var all := card_order(_build_card())
 	_card_track(all)
 	_card_rows = ceili(all.size() / float(_cols()))
-	var span := maxi(0, _card_rows - _rows())
+	var span := _card_span()
 	_card_scroll = clampi(_card_scroll, 0, span)
 	var first := _card_scroll * _cols()
 	var items := _with_keys(all, first, true)
