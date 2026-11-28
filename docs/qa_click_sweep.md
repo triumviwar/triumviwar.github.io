@@ -21,7 +21,9 @@ One command (needs `xvfb-run` and a Godot 4.7 binary; `GODOT=` points at it):
   2v2, FFA and every option of every dropdown), `skirmish_crown` / `skirmish_clockwork` / `skirmish_brood` (a real
   match each), `editor`, `worldwar`, `tournaments`, `online` (the rooms page and ranked, no sign-in), `replays`.
 - Pictures: one small JPG per new screen in `docs/shots/qa_click_sweep/` (every screen for en/computer; for the other
-  languages and the phone only screens that raised a flag).
+  languages and the phone only screens that raised a flag). A full run makes ~800 of them: the folder in git keeps 124
+  (a spread of each part from the final English run, and the pt/es/phone pictures of the problems, taken BEFORE their
+  fixes); don't commit a whole run's.
 
 ### What it does
 
@@ -57,7 +59,47 @@ One command (needs `xvfb-run` and a Godot 4.7 binary; `GODOT=` points at it):
 
 ## The run
 
-<!-- NUMBERS -->
+Two runs on 0.38.241 (Godot 4.7, xvfb + llvmpipe on a 2-core cloud machine). Reports: `docs/qa_click_sweep/`.
+
+**The whole matrix** (`tools/qa/click_sweep.sh`, 12 parts x en/pt/es x computer/phone, about 6 h): **3,385 screens,
+16,082 presses**. The routine was sharpened during this run (what counts as a dialog, English, a phone's tap), so its
+counts mix versions; `report_full_2026_11_28.md` re-reads the logs with the final rules.
+
+| run | screens | presses | COVERED | CUT | EN (raw) | NOBACK | NOOP | OVERLAP | SLOW |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| en computer | 577 | 2,751 | 11 | 8 | 0 | 9 | 92 | 58 | 39 |
+| en phone | 354 | 1,915 | 9 | 18 | 0 | 1 | 40 | 0 | 43 |
+| pt computer | 636 | 2,946 | 17 | 5 | 3,307 | 3 | 59 | 0 | 56 |
+| pt phone | 606 | 2,825 | 16 | 453 | 1,190 | 3 | 61 | 0 | 59 |
+| es computer | 606 | 2,822 | 17 | 5 | 768 | 3 | 57 | 0 | 55 |
+| es phone | 606 | 2,823 | 16 | 0 | 728 | 3 | 57 | 0 | 53 |
+
+ERROR: none from the game in any press (one from the routine's own list, see FIXED 2); STALE: 4 before the fix, 0
+after. The raw EN counts are mostly composites and names (see the false alarms); 744 distinct texts were left after the
+final rules, of which the real gaps are listed below. The pt phone's 453 CUT are one line on every tournament map card.
+
+**The final English run** (`--quick`, after all the fixes, 50 min; `report_quick_2026_11_28.md`): **606 screens, 3,058
+presses**, no ERROR, CUT, OFF, OVERLAP, SQUEEZED or STALE; COVERED 17 (dialogs in front, as meant), NOBACK 3 (the device
+page), NOOP 61 (all looked at: already-chosen choices, STOP on idle units, the native file dialog), SLOW 63 (starting a
+match from WATCH, LOW 4).
+
+| part | screens | presses |
+|---|---:|---:|
+| menus | 153 | 524 |
+| settings | 138 | 511 |
+| campaign | 103 | 409 |
+| skirmish (setup) | 75 | 750 |
+| skirmish_crown / clockwork / brood | 28 / 23 / 19 | 167 / 139 / 149 |
+| editor | 4 | 36 |
+| worldwar | 19 | 38 |
+| tournaments | 25 | 75 |
+| online | 4 | 10 |
+| replays | 15 | 250 |
+
+What the routine does not reach yet (next steps): the map editor's drawn tool bar (4 screens: its tools are drawn, not
+Buttons), a world war past START THE WAR, a campaign mission in play, a real online room (no network here), the
+in-match Settings' own pages; a deeper `--depth 3` run takes about twice as long.
+
 
 ## What was found and fixed (in this branch)
 

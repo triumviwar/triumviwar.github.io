@@ -45,7 +45,13 @@ for lang in ${LANGS//,/ }; do
         --path . --script res://tools/qa/click_sweep.gd -- "out=$SHOTS" "lang=$lang" "size=$size" "parts=$part" \
         "shots=$shots" "${EXTRA[@]}" "${more[@]}" > "$log" 2>&1
       code=$?
-      [ $code -ne 0 ] && { echo "   exit $code (crash or timeout): see $log"; fail=1; }
+      if [ $code -ne 0 ]; then
+        if grep -q '^SWEEP-SUMMARY' "$log"; then
+          echo "   (Godot exit $code after the summary: the engine's abort at exit, docs/qa_click_sweep.md MEDIUM 1)"
+        else
+          echo "   exit $code (crash or timeout before the end): see $log"; fail=1
+        fi
+      fi
       grep -E '^SWEEP-SUMMARY' "$log" | sed 's/^/   /'
       mv -f "$SHOTS/sweep_${lang}_${size}.json" "$OUT/sweep_${lang}_${size}_${part}.json" 2>/dev/null
     done

@@ -506,10 +506,10 @@ func _snap(screen: String) -> void:
 	var img := root.get_viewport().get_texture().get_image()
 	if img == null:
 		return
-	var w := 640 if size == "pc" else 720
+	var w := 480 if size == "pc" else 540      # (small: docs/shots/ is in git)
 	img.resize(w, int(img.get_height() * float(w) / img.get_width()), Image.INTERPOLATE_BILINEAR)
 	var safe := RegEx.create_from_string("[^A-Za-z0-9_]+").sub(screen, "_", true).left(40)
-	img.save_jpg("%s/%s_%s_%02d_%s.jpg" % [out, tag, part, shot_n, safe], 0.55)
+	img.save_jpg("%s/%s_%s_%02d_%s.jpg" % [out, tag, part, shot_n, safe], 0.5)
 
 
 ## Crawl one root page to `depth` presses.
