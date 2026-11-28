@@ -1165,6 +1165,7 @@ func offer_choice(ch: Dictionary) -> void:
 	var no_timer := bool(ch.get("final", false)) or float(ch.get("time", 90.0)) <= 0.0
 	choice_open["until"] = 1e18 if no_timer else game.clock + float(ch.get("time", 90.0))
 	if bool(ch.get("final", false)) and mode == "solo" and game.net == null:
+		choice_open["was_paused"] = game.get_tree().paused
 		game.get_tree().paused = true          # (THE FINAL CHOICE holds the match: the heir is given the time to think)
 	if game.mlog:
 		game.mlog.add("(mission) choice %s offered" % ch.get("id", ""))
@@ -1190,7 +1191,7 @@ func choose(cid: String, opt_id: String) -> void:
 		opt = opts[0]
 	flags[cid] = String(opt.get("id", opt_id))
 	if bool(ch.get("final", false)) and game and game.get_tree() and mode == "solo" and game.net == null:
-		game.get_tree().paused = false          # (act3-engine0: the final choice let go of the match)
+		game.get_tree().paused = bool(ch.get("was_paused", false))          # (act3-engine0: the final choice lets go of the match)
 	if String(choice_open.get("id", "")) == cid:
 		choice_open = {}
 	if game and game.mlog:
@@ -2823,6 +2824,8 @@ func load_state(d: Dictionary, mu: Array, mb: Array) -> void:
 	objectives_changed.emit()
 	if not choice_open.is_empty():
 		choice_offered.emit(choice_open)
+		if bool(choice_open.get("final", false)) and mode == "solo" and game.net == null:
+			game.get_tree().paused = true          # (act3-engine0: THE FINAL CHOICE loaded still open holds the match)
 	if game.mlog:
 		game.mlog.add("(mission) continued from a save")
 

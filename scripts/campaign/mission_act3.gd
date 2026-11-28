@@ -566,6 +566,7 @@ func show_ledger(lg: Dictionary, title := "THE LEDGER") -> void:
 		v.add_child(sl)
 	var solo := run.mode == "solo" and run.game.net == null
 	var tree := run.game.get_tree()
+	var was: bool = tree.paused if tree else false        # (the 3-2-1 or a menu may hold it already: put back as it was)
 	var b := Button.new()
 	b.text = Loc.t("CLOSE")
 	b.name = "LedgerClose"
@@ -574,7 +575,7 @@ func show_ledger(lg: Dictionary, title := "THE LEDGER") -> void:
 		if is_instance_valid(o):
 			o.queue_free()
 		if solo and tree:
-			tree.paused = false)
+			tree.paused = was)
 	v.add_child(b)
 	if solo and tree:
 		tree.paused = true          # (solo: the card holds the match; online it is only over the screen)

@@ -143,6 +143,12 @@ Read by tools/test_roster_ladder.gd (columns: step, mission, the bound teams, th
 allow-list = the kit + every step so far). Printed by `python3 tools/campaign/roster_ladder.py --table`; change the
 ladder there, never here by hand.
 
+ACT 3 IN ANY ORDER (act3-engine0, docs/act3_engine0.md): from C10, K8 and B8 on, a row's allow-list is the line's whole
+Act 2 kit + its OWN rung only. The line's other Act 3 rungs ride on the mission's roster as `"if_won": {mission:
+[pieces]}` and join the kit in the game once that mission is won (Campaign.roster_denied), so a theatre played first
+or last has every rung already won elsewhere. tools/test_roster_ladder.gd checks these rows against the last Act 2
+row of their line, and tools/test_act3_engine0.gd plays every order of every line's Act 3 rungs.
+
 | step | mission | teams | new | comes with | allow-list (code ids) |
 | --- | --- | --- | --- | --- | --- |
 | C1 | p01_leaf | governor guns | musketeer cannon | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon |
@@ -154,9 +160,9 @@ ladder there, never here by hand.
 | C7 | d09_crossroads | army | armour powder_wagon | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary armoury matchlock bayonet dragoon charge armour powder_wagon |
 | C8 | d10_jungle | column | balloon | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary armoury matchlock bayonet dragoon charge armour powder_wagon balloon |
 | C9 | d11_siege | column | charges quadrant | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary armoury matchlock bayonet dragoon charge armour powder_wagon balloon charges quadrant |
-| C10 | (slot) | - | band | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary armoury matchlock bayonet dragoon charge armour powder_wagon balloon charges quadrant band |
-| C11 | (slot) | - | band_fifer band_piper | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary armoury matchlock bayonet dragoon charge armour powder_wagon balloon charges quadrant band band_fifer band_piper |
-| C12 | (slot) | - | flintlock caplock pouch | mounted_missionary | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary armoury matchlock bayonet dragoon charge armour powder_wagon balloon charges quadrant band band_fifer band_piper flintlock caplock pouch mounted_missionary |
+| C10 | e01_brazil | - | band | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary armoury matchlock bayonet dragoon charge armour powder_wagon balloon charges quadrant band |
+| C11 | e03_virginia | - | band_fifer band_piper | - | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary armoury matchlock bayonet dragoon charge armour powder_wagon balloon charges quadrant band_fifer band_piper |
+| C12 | e12_exiles | - | flintlock caplock pouch | mounted_missionary | town_hall labourer farm cottage wall gate barracks powder_mill musketeer cannon horse_breeder cuirassier horse dismounted messenger foundry mortar church missionary armoury matchlock bayonet dragoon charge armour powder_wagon balloon charges quadrant flintlock caplock pouch mounted_missionary |
 | K1 | c01_thirteenth | guild | winder clock_soldier | - | clocktower cog_press mainspring regulator movement_works winder clock_soldier |
 | K2 | a02_furth | guild | springer netter | escapement | clocktower cog_press mainspring regulator movement_works winder clock_soldier springer netter escapement |
 | K3 | a04_visit | guild | heavy_works pendulum | - | clocktower cog_press mainspring regulator movement_works winder clock_soldier springer netter escapement heavy_works pendulum |
@@ -164,8 +170,8 @@ ladder there, never here by hand.
 | K5 | d04_concordia | guild | cuckoo_house cuckoo | - | clocktower cog_press mainspring regulator movement_works winder clock_soldier springer netter escapement heavy_works pendulum ratchet_turret shield_wall cuckoo_house cuckoo |
 | K6 | d07_spring | guild | owl_morph high_leap | ticking_owl | clocktower cog_press mainspring regulator movement_works winder clock_soldier springer netter escapement heavy_works pendulum ratchet_turret shield_wall cuckoo_house cuckoo owl_morph high_leap ticking_owl |
 | K7 | d11_siege | city | ballista long_chain | - | clocktower cog_press mainspring regulator movement_works winder clock_soldier springer netter escapement heavy_works pendulum ratchet_turret shield_wall cuckoo_house cuckoo owl_morph high_leap ticking_owl ballista long_chain |
-| K8 | (slot) | - | great_winder | - | clocktower cog_press mainspring regulator movement_works winder clock_soldier springer netter escapement heavy_works pendulum ratchet_turret shield_wall cuckoo_house cuckoo owl_morph high_leap ticking_owl ballista long_chain great_winder |
-| K9 | (slot) | - | brass_serpent | serpent_gear_s serpent_gear_b | clocktower cog_press mainspring regulator movement_works winder clock_soldier springer netter escapement heavy_works pendulum ratchet_turret shield_wall cuckoo_house cuckoo owl_morph high_leap ticking_owl ballista long_chain great_winder brass_serpent serpent_gear_s serpent_gear_b |
+| K8 | e08_arsenal | - | great_winder | - | clocktower cog_press mainspring regulator movement_works winder clock_soldier springer netter escapement heavy_works pendulum ratchet_turret shield_wall cuckoo_house cuckoo owl_morph high_leap ticking_owl ballista long_chain great_winder |
+| K9 | e13_gold | - | brass_serpent | serpent_gear_s serpent_gear_b | clocktower cog_press mainspring regulator movement_works winder clock_soldier springer netter escapement heavy_works pendulum ratchet_turret shield_wall cuckoo_house cuckoo owl_morph high_leap ticking_owl ballista long_chain brass_serpent serpent_gear_s serpent_gear_b |
 | B1 | b01_specimen | sire | tyrannosaur raptor | - | brood_mother grub rootmaw mound_turtle tyrannosaur raptor |
 | B2 | a03_plateau | nest | dilophosaurus spitter | - | brood_mother grub rootmaw mound_turtle tyrannosaur raptor dilophosaurus spitter |
 | B3 | a05_specimens | creatures | stage2 tyrant_challenger venom_challenger | - | brood_mother grub rootmaw mound_turtle tyrannosaur raptor dilophosaurus spitter stage2 tyrant_challenger venom_challenger |
@@ -173,8 +179,8 @@ ladder there, never here by hand.
 | B5 | d06_queen | stock | stage3 brute | - | brood_mother grub rootmaw mound_turtle tyrannosaur raptor dilophosaurus spitter stage2 tyrant_challenger venom_challenger pterodactyl hatchlings stage3 brute |
 | B6 | d08_rivers | swarm | nb_clutch_raptor nb_pack_hunt nb_quick_roots | - | brood_mother grub rootmaw mound_turtle tyrannosaur raptor dilophosaurus spitter stage2 tyrant_challenger venom_challenger pterodactyl hatchlings stage3 brute nb_clutch_raptor nb_pack_hunt nb_quick_roots |
 | B7 | d10_jungle | swarm | mist_toad nb_fog nb_miasma | - | brood_mother grub rootmaw mound_turtle tyrannosaur raptor dilophosaurus spitter stage2 tyrant_challenger venom_challenger pterodactyl hatchlings stage3 brute nb_clutch_raptor nb_pack_hunt nb_quick_roots mist_toad nb_fog nb_miasma |
-| B8 | (slot) | - | storm_challenger nb_updraft nb_clutch_hatchlings | - | brood_mother grub rootmaw mound_turtle tyrannosaur raptor dilophosaurus spitter stage2 tyrant_challenger venom_challenger pterodactyl hatchlings stage3 brute nb_clutch_raptor nb_pack_hunt nb_quick_roots mist_toad nb_fog nb_miasma storm_challenger nb_updraft nb_clutch_hatchlings |
-| B9 | (slot) | - | nb_clutch_spitter nb_slither nb_long_spit nb_battering_horns nb_swamp_mending | - | brood_mother grub rootmaw mound_turtle tyrannosaur raptor dilophosaurus spitter stage2 tyrant_challenger venom_challenger pterodactyl hatchlings stage3 brute nb_clutch_raptor nb_pack_hunt nb_quick_roots mist_toad nb_fog nb_miasma storm_challenger nb_updraft nb_clutch_hatchlings nb_clutch_spitter nb_slither nb_long_spit nb_battering_horns nb_swamp_mending |
+| B8 | e05_river | - | storm_challenger nb_updraft nb_clutch_hatchlings | - | brood_mother grub rootmaw mound_turtle tyrannosaur raptor dilophosaurus spitter stage2 tyrant_challenger venom_challenger pterodactyl hatchlings stage3 brute nb_clutch_raptor nb_pack_hunt nb_quick_roots mist_toad nb_fog nb_miasma storm_challenger nb_updraft nb_clutch_hatchlings |
+| B9 | e11_spice | - | nb_clutch_spitter nb_slither nb_long_spit nb_battering_horns nb_swamp_mending | - | brood_mother grub rootmaw mound_turtle tyrannosaur raptor dilophosaurus spitter stage2 tyrant_challenger venom_challenger pterodactyl hatchlings stage3 brute nb_clutch_raptor nb_pack_hunt nb_quick_roots mist_toad nb_fog nb_miasma nb_clutch_spitter nb_slither nb_long_spit nb_battering_horns nb_swamp_mending |
 
 ## What changed in the built missions
 
