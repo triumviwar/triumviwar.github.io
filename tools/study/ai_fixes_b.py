@@ -4,11 +4,11 @@ Hard OPTIMAL v Hard OPTIMAL to 20:00, the Crown against the Brood (cb) and again
 matchup: game i (0..19) has seed 2811001 + i, map PARITY_MAPS[i % 6], spot (i // 6) % 2 (spot 0: the Crown in slot 0).
 Every arm plays the SAME games. tools/afb_watch.gd (in tools/qa_match.gd) counts the wheels' stuck seconds and the
 Crown's fights at its halls below its main.
-    python3 tools/study/ai_fixes_b.py run ARM [--jobs 2] [--end 1200] [--only cb|ck] [--n 20]
+    python3 tools/study/ai_fixes_b.py run ARM [--jobs 2] [--end 1200] [--only cb|ck] [--n 20] [--root FROZEN_COPY]
     python3 tools/study/ai_fixes_b.py report [ARM ...]
 ARM: off (both fixes off) | on (both on, the default code) | home (only the home fix) | wheels (only the wheels fix).
 Data: docs/ai_fixes_b/data/<arm>/<tag>/ (result.json, story.txt)."""
-import os, sys, json, glob, statistics as st
+import os, sys, json, glob, re, statistics as st
 from concurrent.futures import ThreadPoolExecutor
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -37,6 +37,7 @@ def queue(n=20, only=""):
 
 def run(arm, jobs=2, end=1200, only="", n=20):
     qm.EXTRA = ARMS[arm]
+    qm.KEEP_GREP = "goes down to its hall below"      # (the home fix's own log lines: DATA/<arm>/<tag>/planlog.txt)
     data = os.path.join(DATA, arm)
     out = os.path.join(OUT, arm)
     q = queue(n, only)
@@ -82,6 +83,7 @@ def summ(arm, key):
         return None
     res = {"games": len(rs), "won": 0, "led": 0, "even": 0, "behind": 0, "lost": 0}
     eps = won = lost_h = watched = 0
+    hl = held = held_big = downs = 0
     guns = mov = stk = 0
     runs = []
     for t, r in rs.items():
@@ -101,10 +103,25 @@ def summ(arm, key):
         mov += w.get("moving_s", 0)
         stk += w.get("stuck_s", 0)
         runs += [x for x in a.get("runs", []) if x["p"] == c]
+        hl += len([e for e in r.get("events", []) if e["ev"] == "hall_lost" and e["p"] == c])
+        sf = os.path.join(DATA, arm, t, "story.txt")
+        if os.path.exists(sf):
+            for l in open(sf, errors="replace"):
+                if ("P%d " % (c + 1)) not in l:
+                    continue
+                if "holds the top of its ramp" in l or "holds the gate of its walled natural" in l or "holds its natural's gate" in l:
+                    n = [int(x) for x in re.findall(r"\((\d+)\)", l)]
+                    held += 1
+                    if len(n) >= 2 and n[1] >= n[0]:
+                        held_big += 1
+        lf = os.path.join(DATA, arm, t, "planlog.txt")
+        if os.path.exists(lf):
+            downs += sum(1 for l in open(lf, errors="replace") if "goes down to its hall below" in l)
     res.update({"home_fights": eps, "home_won": won, "halls_lost_below": lost_h, "watched": watched,
                 "guns": guns, "moving_s": mov, "stuck_s": stk, "stuck_per_gun": round(stk / max(guns, 1), 1),
                 "stuck_share": round(100.0 * stk / max(mov, 1), 1), "runs10": len(runs),
-                "runs30": len([x for x in runs if x["len"] >= 30])})
+                "runs30": len([x for x in runs if x["len"] >= 30]), "halls_lost_all": hl,
+                "holds_top": held, "holds_top_bigger": held_big, "down_to_hall": downs})
     return res
 
 
@@ -135,6 +152,7 @@ if __name__ == "__main__":
             if a[i] == "--end": kw["end"] = int(a[i + 1])
             if a[i] == "--only": kw["only"] = a[i + 1]
             if a[i] == "--n": kw["n"] = int(a[i + 1])
+            if a[i] == "--root": qm.RUN_ROOT = a[i + 1]      # (a frozen copy, tools/study/freeze_copy.sh)
             i += 2
         run(a[1], **kw)
     elif a[0] == "report":

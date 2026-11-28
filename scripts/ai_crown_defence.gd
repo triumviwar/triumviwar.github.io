@@ -425,7 +425,10 @@ func muster(army: Array, spots: Array) -> bool:
 			", ".join(home.map(func(u) -> String: return "%s %d" % [u.order, int(u.position.distance_to(_muster_p))]))])
 	if game.clock - _muster_said > 30.0:
 		_muster_said = game.clock
-		_say("musters at its hall: the force at its buildings (%d) is more than its army at home (%d) can beat one by one; it gathers out of reach and fights there as one" % [int(foe), int(mine)])
+		if mine >= foe * MUSTER_K:
+			_say("gathers to go down to its hall below as one body: its army at home (%d) against the force there (%d) goes in together" % [int(mine), int(foe)])
+		else:
+			_say("musters at its hall: the force at its buildings (%d) is more than its army at home (%d) can beat one by one; it gathers out of reach and fights there as one" % [int(foe), int(mine)])
 	if go and not _engaged and got_n >= 2:
 		_engaged = true
 		engages += 1
