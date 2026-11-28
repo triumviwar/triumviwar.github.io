@@ -873,11 +873,12 @@ func _build_problems(vp: Vector2) -> void:
 	var faults := _faults()
 	var warns := problems.size() - faults
 	# (two lines when there are both: one doesn't fit the panel)
-	var plural := func(n: int, what: String) -> String: return "%d %s%s" % [n, what, "" if n == 1 else "S"]
-	var head: String = "ALL GOOD" if problems.is_empty() else (plural.call(faults, "PROBLEM") if faults > 0 else plural.call(warns, "WARNING"))
+	# (whole phrases, so pt/es have them: "1 PROBLEM" was put together from pieces and stayed English, qa-click-sweep-2)
+	var plural := func(n: int, one: String, many: String) -> String: return Loc.t(one) if n == 1 else Loc.t(many) % n
+	var head: String = "ALL GOOD" if problems.is_empty() else (plural.call(faults, "1 PROBLEM", "%d PROBLEMS") if faults > 0 else plural.call(warns, "1 WARNING", "%d WARNINGS"))
 	v.add_child(UiStyle.heading(head, 20, UiStyle.BAD if faults > 0 else (UiStyle.TRIM if warns > 0 else UiStyle.GOOD)))
 	if faults > 0 and warns > 0:
-		v.add_child(UiStyle.heading("and " + String(plural.call(warns, "warning")).to_lower(), 15, UiStyle.TRIM))
+		v.add_child(UiStyle.heading(plural.call(warns, "and 1 warning", "and %d warnings"), 15, UiStyle.TRIM))
 	if problems.is_empty():
 		var ok := UiStyle.text("Every start can reach the others, each main has a ramp to wall, no decorations in the way, room for every economy.", 15, UiStyle.TEXT, HORIZONTAL_ALIGNMENT_LEFT)
 		ok.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
