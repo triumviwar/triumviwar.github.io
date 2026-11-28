@@ -234,7 +234,7 @@ func _data() -> void:
 		and Campaign.seat_side(m, "versus", "p2") == "fire" and Campaign.seat_side(m, "versus", "p1") == "column")
 	for mp in ["brazil_south", "brazil_river"]:
 		var md := Campaign.map_data(mp)
-		check("the map %s: 192 x 96, the quay's boats, the bluff" % mp, (md.get("size", []) as Array) == [192, 96]
+		check("the map %s: 192 x 96, the quay's boats, the bluff" % mp, (md.get("size", []) as Array).map(func(v): return int(v)) == [192, 96]
 			and (md.get("props", []) as Array).any(func(p): return String(p[0]) == "boat") and String(md.get("cells", "")).count("h") > 150)
 	check("the river road's map is d10's grown (Óbidos' bluff kept), the south's d11's (the old wall's footings kept)",
 		String(Campaign.map_data("brazil_river")["biome"]) == String(Campaign.map_data("obidos_front")["biome"])
@@ -357,7 +357,8 @@ func _part2() -> void:
 	_to_part2(g, r)
 	var p2 := float(r.fired["part2"])
 	check("the three groups set out on their roads", r.fired.has("go_g1") and r.fired.has("go_g2") and r.fired.has("go_g3"))
-	check("the militia escort them", _alive(r, "home_men").all(func(u): return String(u.order) == "follow"))
+	check("the militia escort them", _alive(r, "home_men").all(func(u): return r._follows.any(func(f): return (f["units"] as Array).has(u)
+		and String(f["leader"]) == "g2")))
 	# THE DRUMMER: beside g2 the army's pace; away, a walk
 	var dr: Unit = r.tagged("drummer")[0]
 	var g2: Array = _alive(r, "g2")
@@ -512,6 +513,7 @@ func _save_load() -> void:
 		_to_part2(g, r)
 		_walk(g, g.clock + 12.0)
 		var before := _snap(g)
+		var quay := r.area_rect("quay")
 		main.mission_save_now()
 		check("SAVE written in Part 2 (%s)" % first, MissionSave.has(MID, "save"))
 		main.mission_load("save")
@@ -528,7 +530,7 @@ func _save_load() -> void:
 				diff.append("%s: %s -> %s" % [k, before[k], after[k]])
 		check("LOADED the same (%s): flags (the version too), counters, objectives, tags" % first, diff.is_empty(), "; ".join(diff))
 		check("... on the version's own map and areas", g2.map_id == ("campaign:brazil_river" if first == "clockwork" else "campaign:brazil_south")
-			and g2.mission.area_rect("quay") == r.area_rect("quay"), g2.map_id)
+			and g2.mission.area_rect("quay") == quay, g2.map_id)
 		for i in 90:
 			await physics_frame
 		check("plays on after the load with no script error", _errs.is_empty(), str(_errs.slice(0, 3)))

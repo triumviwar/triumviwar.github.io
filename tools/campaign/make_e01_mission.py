@@ -101,10 +101,10 @@ SHIPS_SECS = 180           # Part 3: the ships sail (not scaled)
 ASSAULTS = [20, 75, 130]      # Part 3: the assaults on the bluff
 LAST_BOATS = 45            # every group aboard: the last boats for the army leave this long after (NO WAITING)
 FORT_HP = 3000             # the harbour fort (the stone fort over the quay: a Town Hall's 1,600 is a farmhouse's)
-LOSE_SHARE, SOME, MANY = 0.25, 0.5, 0.8   # aboard as a share of the people: lost / few / some / many
+LOSE_SHARE, SOME, MANY = 0.4, 0.5, 0.8   # aboard as a share of the people: lost / few / some / many
 FIRE_WIN = 0.5             # the mirror: under this share aboard when the ships sail, the fire wins
 CHEST_GOLD, CHEST_POWDER = 400, 150       # Part 3: the port's treasury (its Barracks trains for the army)
-F_REINF_EVERY = 55         # the mirror: the fire player's own waves come down this often
+F_REINF_EVERY = 45         # the mirror: the fire player's own waves come down this often
 
 # ================================================================== the areas: the southern road's are the mission's own,
 # the river road's ride on its version (Campaign.version_data: one area name, two maps)
@@ -209,9 +209,9 @@ for b in list(buildings):
 objectives = [
     # ---- the army of Brazil
     {"id": "people_live", "side": "column", "primary": True, "kind": "manual",
-     "text": T("BRAZIL'S PEOPLE: bring them to the ships ({aboard} of {people_n} aboard). If fewer than a quarter are aboard when the ships sail, the army has failed them.",
-               "A GENTE DO BRASIL: leve-a aos navios ({aboard} de {people_n} a bordo). Se menos de um quarto estiver a bordo quando os navios zarparem, o exército falhou-lhe.",
-               "LA GENTE DEL BRASIL: llévala a los barcos ({aboard} de {people_n} a bordo). Si menos de un cuarto está a bordo cuando zarpen los barcos, el ejército le ha fallado."),
+     "text": T("BRAZIL'S PEOPLE: bring them to the ships ({aboard} of {people_n} aboard). If fewer than two in five are aboard when the ships sail, the army has failed them.",
+               "A GENTE DO BRASIL: leve-a aos navios ({aboard} de {people_n} a bordo). Se menos de dois em cada cinco estiverem a bordo quando os navios zarparem, o exército falhou-lhe.",
+               "LA GENTE DEL BRASIL: llévala a los barcos ({aboard} de {people_n} a bordo). Si menos de dos de cada cinco están a bordo cuando zarpen los barcos, el ejército le ha fallado."),
      "phone": T("People aboard: {aboard} of {people_n}.", "A bordo: {aboard} de {people_n}.", "A bordo: {aboard} de {people_n}.")},
     {"id": "fort_live", "side": "column", "primary": True, "kind": "protect", "tag": "harbour_fort",
      "text": T("The harbour fort at the port must stand: the ships load under its guns.",
@@ -237,9 +237,9 @@ objectives = [
                "A RETAGUARDA: descem a estrada atrás da coluna. Deixe alguns homens e um canhão na traseira.",
                "LA RETAGUARDIA: bajan por el camino tras la columna. Deja a unos hombres y un cañón atrás.")},
     {"id": "pass", "side": "column", "primary": False, "kind": "manual", "hidden": True,
-     "text": T("THE PASS: they got ahead of you and hold the pass on the road ahead ({amb_left} left). The people stop before it: clear it and they go on. They will not wait for ever.",
-               "O DESFILADEIRO: passaram-lhe à frente e seguram o desfiladeiro na estrada adiante ({amb_left} restam). A gente para diante dele: limpe-o e seguem. Não esperam para sempre.",
-               "EL PASO: se te adelantaron y sostienen el paso en el camino de delante ({amb_left} quedan). La gente se detiene ante él: límpialo y siguen. No esperarán para siempre."),
+     "text": T("THE PASS: more of them are in the pass on the road ahead ({amb_left} left). The people stop before it: clear it and they go on. They will not wait for ever.",
+               "O DESFILADEIRO: há mais deles no desfiladeiro da estrada adiante ({amb_left} restam). A gente para diante dele: limpe-o e seguem. Não esperam para sempre.",
+               "EL PASO: hay más de ellos en el paso del camino de delante ({amb_left} quedan). La gente se detiene ante él: límpialo y siguen. No esperarán para siempre."),
      "phone": T("Clear the pass ahead: {amb_left} left.", "Limpe o desfiladeiro adiante: {amb_left} restam.", "Limpia el paso de delante: {amb_left} quedan.")},
     {"id": "ships", "side": "column", "primary": False, "kind": "countdown", "clock": "ships", "hidden": True,
      "text": T("THE SHIPS sail in {clock:ships}. Hold the bluff before the quay; every group must be on the quay before then. The harbour's Barracks trains for you.",
@@ -353,9 +353,9 @@ def line(lid, who, en, pt, es, to=None, until=None):
 
 CO, FI = "column", "fire"
 # ---- the opening (the King frames; Ruggieri tells it from his dispatch)
-line("k_open1", "king", "Act three. It left Brazil in our own ships, in crates with our seal on them. But first Brazil itself.",
-     "Terceiro acto. Saiu do Brasil nos nossos próprios navios, em caixotes com o nosso selo. Mas primeiro o próprio Brasil.",
-     "Tercer acto. Salió del Brasil en nuestros propios barcos, en cajas con nuestro sello. Pero primero el propio Brasil.")
+line("k_open1", "king", "It left Brazil in our own ships, in crates with our seal on them. But first Brazil itself.",
+     "Saiu do Brasil nos nossos próprios navios, em caixotes com o nosso selo. Mas primeiro o próprio Brasil.",
+     "Salió del Brasil en nuestros propios barcos, en cajas con nuestro sello. Pero primero el propio Brasil.")
 line("k_open2", "king", "At the São Francisco you chose which fire to fight first. The other one did not wait for us.",
      "No São Francisco escolheu que fogo combater primeiro. O outro não esperou por nós.",
      "En el São Francisco elegiste qué fuego combatir primero. El otro no nos esperó.")
@@ -462,9 +462,9 @@ line("n_group_in", "narrator", "A group reaches the port and goes down to the qu
      "Un grupo llega al puerto y baja al muelle.", CO)
 line("n_lost_group", "narrator", "One of the groups is gone. Nobody of it reached the ships.", "Um dos grupos desapareceu. Ninguém dele chegou aos navios.",
      "Uno de los grupos ha desaparecido. Nadie de él llegó a los barcos.", CO)
-line("n_ambush", "narrator", "They got ahead of the column: they hold the pass on the road ahead. The people stop before it and wait until it is clear.",
-     "Passaram à frente da coluna: seguram o desfiladeiro na estrada adiante. A gente para diante dele e espera até estar livre.",
-     "Se adelantaron a la columna: sostienen el paso en el camino de delante. La gente se detiene ante él y espera a que esté libre.", CO)
+line("n_ambush", "narrator", "There are more of them in the pass on the road ahead. The people stop before it and wait until it is clear.",
+     "Há mais deles no desfiladeiro da estrada adiante. A gente para diante dele e espera até estar livre.",
+     "Hay más de ellos en el paso del camino de delante. La gente se detiene ante él y espera a que esté libre.", CO)
 line("r_ambush", "ruggieri", "Line, forward through the people. Clear the pass, or they walk into it.",
      "Linha, em frente por entre a gente. Limpem o desfiladeiro, ou eles entram nele.",
      "Línea, adelante entre la gente. Limpiad el paso, o caminarán hacia él.", CO)
@@ -568,8 +568,8 @@ M["briefing"] = {
         T("First hold the ford while the outposts fall back. Then walk the people down the road to the port in three groups: a group keeps the army's pace with the Drummer beside it. Last, hold the bluff before the quay until the ships sail.",
           "Primeiro segure o vau enquanto os postos avançados recuam. Depois leve a gente pela estrada até ao porto em três grupos: um grupo acompanha o passo do exército com o Tambor ao lado. Por fim, segure o alto diante do cais até os navios zarparem.",
           "Primero sostén el vado mientras los puestos avanzados se repliegan. Luego lleva a la gente por el camino hasta el puerto en tres grupos: un grupo lleva el paso del ejército con el Tambor al lado. Por último, sostén el alto ante el muelle hasta que zarpen los barcos."),
-        T("At least a quarter of the people must be aboard, and the harbour fort must stand.", "Pelo menos um quarto da gente tem de estar a bordo, e o forte do porto tem de ficar de pé.",
-          "Al menos un cuarto de la gente debe estar a bordo, y el fuerte del puerto debe seguir en pie.")]},
+        T("At least two in five of the people must be aboard, and the harbour fort must stand.", "Pelo menos dois em cada cinco da gente têm de estar a bordo, e o forte do porto tem de ficar de pé.",
+          "Al menos dos de cada cinco de la gente deben estar a bordo, y el fuerte del puerto debe seguir en pie.")]},
     "fire": {"still": "column", "text": [
         T("Brazil, 2781. You are what the army fought second at the crossing: the swarm on the river road, or the city's machines on the southern road.",
           "Brasil, 2781. Você é o que o exército combateu em segundo lugar na encruzilhada: o enxame na estrada do rio, ou as máquinas da cidade na estrada do sul.",
@@ -608,8 +608,8 @@ def fire_spawn(at, tag, rows, tags=None, extra_if=None):
 WAVE = {   # the danger's waves by road: [(kind, count, condition)]
     "river": [("raptor", 6, None), ("spitter", 2, None), ("raptor", 2, NORMAL_UP), ("raptor", 3, HARD), ("spitter", 1, HARD),
               ("raptor", 3, JUNGLE_THIN)],
-    "south": [("clock_soldier", 4, None), ("springer", 2, None), ("clock_soldier", 1, NORMAL_UP), ("clock_soldier", 2, HARD),
-              ("springer", 1, HARD), ("clock_soldier", 2, SIEGE_HELD_OFF)],
+    "south": [("clock_soldier", 4, None), ("springer", 2, None), ("clock_soldier", 1, NORMAL_UP), ("clock_soldier", 1, HARD),
+              ("clock_soldier", 2, SIEGE_HELD_OFF)],
 }
 WAVE_BIG = {   # the later waves add these
     "river": [("spitter", 2, None), ("tyrant_challenger", 1, NORMAL_UP), ("brute", 1, HARD)],
@@ -617,12 +617,12 @@ WAVE_BIG = {   # the later waves add these
 }
 AMBUSH = {   # Part 2: on the road ahead, at the pass
     "river": [("raptor", 6, None), ("spitter", 3, None), ("tyrant_challenger", 1, None), ("raptor", 2, NORMAL_UP), ("venom_challenger", 1, HARD)],
-    "south": [("clock_soldier", 5, None), ("springer", 2, None), ("netter", 1, None), ("winder", 1, None), ("clock_soldier", 2, NORMAL_UP),
-              ("pendulum", 1, HARD)],
+    "south": [("clock_soldier", 4, None), ("springer", 2, None), ("netter", 1, None), ("winder", 1, None), ("clock_soldier", 2, NORMAL_UP),
+              ("clock_soldier", 1, HARD)],
 }
 RAID = {
-    "river": [("raptor", 3, None), ("raptor", 1, NORMAL_UP), ("hatchlings", 1, HARD)],
-    "south": [("springer", 2, None), ("springer", 1, NORMAL_UP), ("netter", 1, HARD)],
+    "river": [("raptor", 4, None), ("raptor", 1, NORMAL_UP), ("hatchlings", 1, HARD)],
+    "south": [("springer", 3, None), ("springer", 1, NORMAL_UP), ("netter", 1, HARD)],
 }
 ASSAULT = {
     "river": [("raptor", 7, None), ("spitter", 2, None), ("tyrant_challenger", 1, None), ("raptor", 2, NORMAL_UP), ("brute", 1, HARD),
@@ -631,8 +631,8 @@ ASSAULT = {
               ("clock_soldier", 3, HARD), ("ballista", 1, SIEGE_HELD_OFF), ("clock_soldier", 2, SIEGE_HELD_OFF)],
 }
 REINF = {   # the fire played: its own waves (the player leads them)
-    "river": [("raptor", 5, None), ("spitter", 2, None), ("tyrant_challenger", 1, {"time": 240})],
-    "south": [("clock_soldier", 4, None), ("springer", 1, None), ("winder", 1, None), ("pendulum", 1, {"time": 240})],
+    "river": [("raptor", 7, None), ("spitter", 3, None), ("tyrant_challenger", 1, {"time": 240})],
+    "south": [("clock_soldier", 6, None), ("springer", 2, None), ("winder", 1, None), ("pendulum", 1, {"time": 240})],
 }
 
 
@@ -813,8 +813,13 @@ TR_ += [
     {"id": "assault_push", "when": {"all": [{"fired": "assault_1"}, LIVE]}, "delay": 40, "every": 12, "do": [
         {"order": {"tag": "assaults", "do": "attack", "to": "bluff_mid", "idle": True}}]},
     # every group that still walks is aboard: the ships sail a little after (NO WAITING)
-    {"id": "all_aboard", "when": {"all": [{"fired": "part3"}, {"count": {"tag": "people", "below": 1}}, LIVE]}, "do": [
+    {"id": "all_aboard", "when": {"all": [{"fired": "part3"}, {"count": {"tag": "people", "below": 1}}, {"counter": {"name": "aboard", "at_least": 1}},
+                                          LIVE]}, "do": [
         {"say": ["n_all_aboard"]}, {"clock": {"name": "ships", "secs": LAST_BOATS, "scale": False}}]},
+    # nobody left on the road and nobody aboard: the ships sail at once (NO WAITING)
+    {"id": "none_left", "when": {"all": [{"fired": "part3"}, {"count": {"tag": "people", "below": 1}}, {"counter": {"name": "aboard", "below": 1}},
+                                         LIVE]}, "do": [
+        {"clock": {"name": "ships", "secs": 5, "scale": False}}]},
     {"id": "sail", "when": {"all": [{"fired": "part3"}, LIVE, {"clock_out": "ships"}]}, "delay": 1, "do": [
         {"clock": {"name": "ships", "stop": True}}, {"objective": {"id": "ships", "set": "done"}},
         {"tally": {"flag": "colonists", "counter": "aboard", "of": "people_n", "bands": [[0, "few"], [SOME, "some"], [MANY, "many"]]}},
@@ -823,7 +828,7 @@ TR_ += [
         {"flag": {"ruggieri": "alive"}}, {"light": {"to": "night", "secs": 6}}]},
     {"id": "remove_rest", "when": {"fired": "sail"}, "delay": 1, "do": [{"remove": {"tag": "people"}}]},
     # ============================================================ THE END
-    # the column: a quarter aboard at least (and the fort standing) = won; fewer = lost (the fire played: half)
+    # the column: two in five aboard at least (and the fort standing) = won; fewer = lost (the fire played: half)
     {"id": "sail_won", "when": {"all": [{"fired": "sail"}, NO_FIRE, {"flag": {"share": "saved"}}]}, "do": [
         {"say": ["n_sail"]}, {"objective": {"id": "people_live", "set": "done"}}]},
     {"id": "sail_lost", "when": {"all": [{"fired": "sail"}, NO_FIRE, {"not": {"flag": {"share": "saved"}}}]}, "do": [

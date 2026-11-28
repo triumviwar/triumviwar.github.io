@@ -258,7 +258,11 @@ func _play_fire(g: Game, r: MissionRun) -> void:
 	var t := r.team_index("fire")
 	var lag := _laggard(r)
 	for u in _team(g, r, "fire"):
-		var goal := _mid(r, "ford_hold") if not r.fired.has("part2") else (lag if lag != Vector2.INF else _mid(r, "bluff_mid"))
+		# a sensible fire player: the outposts' families while they are over the ford, then gather out of the guns'
+		# reach and wait for the front to break; then the people
+		var goal := _mid(r, "ford_far") if g.clock < 75.0 else _mid(r, "edge")
+		if r.fired.has("part2"):
+			goal = lag if lag != Vector2.INF else _mid(r, "bluff_mid")
 		var foe := _nearest_foe(g, t, u.position, 6.0 * Defs.TILE)
 		if foe:
 			if u.target == null or not is_instance_valid(u.target) or u.target.dead:

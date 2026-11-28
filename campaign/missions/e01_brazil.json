@@ -1801,7 +1801,7 @@
 			"side": "column",
 			"primary": true,
 			"kind": "manual",
-			"text": "BRAZIL'S PEOPLE: bring them to the ships ({aboard} of {people_n} aboard). If fewer than a quarter are aboard when the ships sail, the army has failed them.",
+			"text": "BRAZIL'S PEOPLE: bring them to the ships ({aboard} of {people_n} aboard). If fewer than two in five are aboard when the ships sail, the army has failed them.",
 			"phone": "People aboard: {aboard} of {people_n}."
 		},
 		{
@@ -1850,7 +1850,7 @@
 			"primary": false,
 			"kind": "manual",
 			"hidden": true,
-			"text": "THE PASS: they got ahead of you and hold the pass on the road ahead ({amb_left} left). The people stop before it: clear it and they go on. They will not wait for ever.",
+			"text": "THE PASS: more of them are in the pass on the road ahead ({amb_left} left). The people stop before it: clear it and they go on. They will not wait for ever.",
 			"phone": "Clear the pass ahead: {amb_left} left."
 		},
 		{
@@ -2950,29 +2950,6 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "clock_soldier",
-						"count": 2,
-						"at": "edge",
-						"tag": "fwave_1",
-						"tags": [
-							"fire_all",
-							"fwaves"
-						],
-						"if": {
-							"all": [
-								{
-									"version": "south"
-								},
-								{
-									"difficulty": "hard"
-								}
-							]
-						}
-					}
-				},
-				{
-					"spawn": {
-						"team": "fire",
-						"kind": "springer",
 						"count": 1,
 						"at": "edge",
 						"tag": "fwave_1",
@@ -3358,29 +3335,6 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "clock_soldier",
-						"count": 2,
-						"at": "edge",
-						"tag": "fwave_2",
-						"tags": [
-							"fire_all",
-							"fwaves"
-						],
-						"if": {
-							"all": [
-								{
-									"version": "south"
-								},
-								{
-									"difficulty": "hard"
-								}
-							]
-						}
-					}
-				},
-				{
-					"spawn": {
-						"team": "fire",
-						"kind": "springer",
 						"count": 1,
 						"at": "edge",
 						"tag": "fwave_2",
@@ -3834,29 +3788,6 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "clock_soldier",
-						"count": 2,
-						"at": "edge",
-						"tag": "fwave_3",
-						"tags": [
-							"fire_all",
-							"fwaves"
-						],
-						"if": {
-							"all": [
-								{
-									"version": "south"
-								},
-								{
-									"difficulty": "hard"
-								}
-							]
-						}
-					}
-				},
-				{
-					"spawn": {
-						"team": "fire",
-						"kind": "springer",
 						"count": 1,
 						"at": "edge",
 						"tag": "fwave_3",
@@ -4310,29 +4241,6 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "clock_soldier",
-						"count": 2,
-						"at": "edge",
-						"tag": "fwave_4",
-						"tags": [
-							"fire_all",
-							"fwaves"
-						],
-						"if": {
-							"all": [
-								{
-									"version": "south"
-								},
-								{
-									"difficulty": "hard"
-								}
-							]
-						}
-					}
-				},
-				{
-					"spawn": {
-						"team": "fire",
-						"kind": "springer",
 						"count": 1,
 						"at": "edge",
 						"tag": "fwave_4",
@@ -5662,7 +5570,7 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "clock_soldier",
-						"count": 5,
+						"count": 4,
 						"at": "pass_at",
 						"tag": "ambush",
 						"tags": [
@@ -5751,7 +5659,7 @@
 				{
 					"spawn": {
 						"team": "fire",
-						"kind": "pendulum",
+						"kind": "clock_soldier",
 						"count": 1,
 						"at": "pass_at",
 						"tag": "ambush",
@@ -6383,7 +6291,7 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "raptor",
-						"count": 3,
+						"count": 4,
 						"at": "flank_c",
 						"tag": "raid1",
 						"tags": [
@@ -6448,7 +6356,7 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "springer",
-						"count": 2,
+						"count": 3,
 						"at": "flank_c",
 						"tag": "raid1",
 						"tags": [
@@ -6586,7 +6494,7 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "raptor",
-						"count": 3,
+						"count": 4,
 						"at": "flank_b",
 						"tag": "raid2",
 						"tags": [
@@ -6651,7 +6559,7 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "springer",
-						"count": 2,
+						"count": 3,
 						"at": "flank_b",
 						"tag": "raid2",
 						"tags": [
@@ -6783,7 +6691,7 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "raptor",
-						"count": 3,
+						"count": 4,
 						"at": "flank_a",
 						"tag": "raid3",
 						"tags": [
@@ -6848,7 +6756,7 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "springer",
-						"count": 2,
+						"count": 3,
 						"at": "flank_a",
 						"tag": "raid3",
 						"tags": [
@@ -6980,7 +6888,7 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "raptor",
-						"count": 3,
+						"count": 4,
 						"at": "flank_b",
 						"tag": "raid4",
 						"tags": [
@@ -7045,7 +6953,7 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "springer",
-						"count": 2,
+						"count": 3,
 						"at": "flank_b",
 						"tag": "raid4",
 						"tags": [
@@ -7401,29 +7309,6 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "clock_soldier",
-						"count": 2,
-						"at": "edge",
-						"tag": "pursue1",
-						"tags": [
-							"fire_all",
-							"pursuers"
-						],
-						"if": {
-							"all": [
-								{
-									"version": "south"
-								},
-								{
-									"difficulty": "hard"
-								}
-							]
-						}
-					}
-				},
-				{
-					"spawn": {
-						"team": "fire",
-						"kind": "springer",
 						"count": 1,
 						"at": "edge",
 						"tag": "pursue1",
@@ -7741,29 +7626,6 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "clock_soldier",
-						"count": 2,
-						"at": "edge",
-						"tag": "pursue2",
-						"tags": [
-							"fire_all",
-							"pursuers"
-						],
-						"if": {
-							"all": [
-								{
-									"version": "south"
-								},
-								{
-									"difficulty": "hard"
-								}
-							]
-						}
-					}
-				},
-				{
-					"spawn": {
-						"team": "fire",
-						"kind": "springer",
 						"count": 1,
 						"at": "edge",
 						"tag": "pursue2",
@@ -8141,29 +8003,6 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "clock_soldier",
-						"count": 2,
-						"at": "edge",
-						"tag": "pursue3",
-						"tags": [
-							"fire_all",
-							"pursuers"
-						],
-						"if": {
-							"all": [
-								{
-									"version": "south"
-								},
-								{
-									"difficulty": "hard"
-								}
-							]
-						}
-					}
-				},
-				{
-					"spawn": {
-						"team": "fire",
-						"kind": "springer",
 						"count": 1,
 						"at": "edge",
 						"tag": "pursue3",
@@ -9810,6 +9649,12 @@
 						}
 					},
 					{
+						"counter": {
+							"name": "aboard",
+							"at_least": 1
+						}
+					},
+					{
 						"not": {
 							"any": [
 								{
@@ -9836,6 +9681,52 @@
 					"clock": {
 						"name": "ships",
 						"secs": 45,
+						"scale": false
+					}
+				}
+			]
+		},
+		{
+			"id": "none_left",
+			"when": {
+				"all": [
+					{
+						"fired": "part3"
+					},
+					{
+						"count": {
+							"tag": "people",
+							"below": 1
+						}
+					},
+					{
+						"counter": {
+							"name": "aboard",
+							"below": 1
+						}
+					},
+					{
+						"not": {
+							"any": [
+								{
+									"fired": "the_end"
+								},
+								{
+									"fired": "f_end"
+								},
+								{
+									"fired": "lost_end"
+								}
+							]
+						}
+					}
+				]
+			},
+			"do": [
+				{
+					"clock": {
+						"name": "ships",
+						"secs": 5,
 						"scale": false
 					}
 				}
@@ -9914,7 +9805,7 @@
 								"lost"
 							],
 							[
-								0.25,
+								0.4,
 								"saved"
 							]
 						]
@@ -10136,7 +10027,7 @@
 						"playing": "fire"
 					},
 					{
-						"time": 55
+						"time": 45
 					},
 					{
 						"not": {
@@ -10160,13 +10051,13 @@
 					}
 				]
 			},
-			"every": 55,
+			"every": 45,
 			"do": [
 				{
 					"spawn": {
 						"team": "fire",
 						"kind": "raptor",
-						"count": 5,
+						"count": 7,
 						"at": "edge",
 						"tag": "f_army",
 						"tags": [
@@ -10181,7 +10072,7 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "spitter",
-						"count": 2,
+						"count": 3,
 						"at": "edge",
 						"tag": "f_army",
 						"tags": [
@@ -10218,7 +10109,7 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "clock_soldier",
-						"count": 4,
+						"count": 6,
 						"at": "edge",
 						"tag": "f_army",
 						"tags": [
@@ -10233,7 +10124,7 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "springer",
-						"count": 1,
+						"count": 2,
 						"at": "edge",
 						"tag": "f_army",
 						"tags": [
@@ -10708,7 +10599,7 @@
 	"lines": {
 		"k_open1": {
 			"who": "king",
-			"text": "Act three. It left Brazil in our own ships, in crates with our seal on them. But first Brazil itself."
+			"text": "It left Brazil in our own ships, in crates with our seal on them. But first Brazil itself."
 		},
 		"k_open2": {
 			"who": "king",
@@ -10919,7 +10810,7 @@
 		},
 		"n_ambush": {
 			"who": "narrator",
-			"text": "They got ahead of the column: they hold the pass on the road ahead. The people stop before it and wait until it is clear.",
+			"text": "There are more of them in the pass on the road ahead. The people stop before it and wait until it is clear.",
 			"to": "column",
 			"until": "part3"
 		},
@@ -11196,7 +11087,7 @@
 			"text": [
 				"Brazil, 2781. You are General Ruggieri and the army of Brazil: the line, the riders, two guns, a Powder Wagon and a Drummer. The front fought second at the crossing has grown past holding: bring the people out to the ships.",
 				"First hold the ford while the outposts fall back. Then walk the people down the road to the port in three groups: a group keeps the army's pace with the Drummer beside it. Last, hold the bluff before the quay until the ships sail.",
-				"At least a quarter of the people must be aboard, and the harbour fort must stand."
+				"At least two in five of the people must be aboard, and the harbour fort must stand."
 			]
 		},
 		"fire": {

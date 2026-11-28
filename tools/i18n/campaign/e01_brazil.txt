@@ -12,9 +12,9 @@ es El fuerte del puerto
 pt O Quartel do porto
 es El Cuartel del puerto
 
-> BRAZIL'S PEOPLE: bring them to the ships ({aboard} of {people_n} aboard). If fewer than a quarter are aboard when the ships sail, the army has failed them.
-pt A GENTE DO BRASIL: leve-a aos navios ({aboard} de {people_n} a bordo). Se menos de um quarto estiver a bordo quando os navios zarparem, o exército falhou-lhe.
-es LA GENTE DEL BRASIL: llévala a los barcos ({aboard} de {people_n} a bordo). Si menos de un cuarto está a bordo cuando zarpen los barcos, el ejército le ha fallado.
+> BRAZIL'S PEOPLE: bring them to the ships ({aboard} of {people_n} aboard). If fewer than two in five are aboard when the ships sail, the army has failed them.
+pt A GENTE DO BRASIL: leve-a aos navios ({aboard} de {people_n} a bordo). Se menos de dois em cada cinco estiverem a bordo quando os navios zarparem, o exército falhou-lhe.
+es LA GENTE DEL BRASIL: llévala a los barcos ({aboard} de {people_n} a bordo). Si menos de dos de cada cinco están a bordo cuando zarpen los barcos, el ejército le ha fallado.
 
 > People aboard: {aboard} of {people_n}.
 pt A bordo: {aboard} de {people_n}.
@@ -48,9 +48,9 @@ es Lleva al Tambor junto a un grupo: lleva el paso del ejército.
 pt A RETAGUARDA: descem a estrada atrás da coluna. Deixe alguns homens e um canhão na traseira.
 es LA RETAGUARDIA: bajan por el camino tras la columna. Deja a unos hombres y un cañón atrás.
 
-> THE PASS: they got ahead of you and hold the pass on the road ahead ({amb_left} left). The people stop before it: clear it and they go on. They will not wait for ever.
-pt O DESFILADEIRO: passaram-lhe à frente e seguram o desfiladeiro na estrada adiante ({amb_left} restam). A gente para diante dele: limpe-o e seguem. Não esperam para sempre.
-es EL PASO: se te adelantaron y sostienen el paso en el camino de delante ({amb_left} quedan). La gente se detiene ante él: límpialo y siguen. No esperarán para siempre.
+> THE PASS: more of them are in the pass on the road ahead ({amb_left} left). The people stop before it: clear it and they go on. They will not wait for ever.
+pt O DESFILADEIRO: há mais deles no desfiladeiro da estrada adiante ({amb_left} restam). A gente para diante dele: limpe-o e seguem. Não esperam para sempre.
+es EL PASO: hay más de ellos en el paso del camino de delante ({amb_left} quedan). La gente se detiene ante él: límpialo y siguen. No esperarán para siempre.
 
 > Clear the pass ahead: {amb_left} left.
 pt Limpe o desfiladeiro adiante: {amb_left} restam.
@@ -108,9 +108,9 @@ es El Brasil
 pt A Estrada
 es El Camino
 
-> Act three. It left Brazil in our own ships, in crates with our seal on them. But first Brazil itself.
-pt Terceiro acto. Saiu do Brasil nos nossos próprios navios, em caixotes com o nosso selo. Mas primeiro o próprio Brasil.
-es Tercer acto. Salió del Brasil en nuestros propios barcos, en cajas con nuestro sello. Pero primero el propio Brasil.
+> It left Brazil in our own ships, in crates with our seal on them. But first Brazil itself.
+pt Saiu do Brasil nos nossos próprios navios, em caixotes com o nosso selo. Mas primeiro o próprio Brasil.
+es Salió del Brasil en nuestros propios barcos, en cajas con nuestro sello. Pero primero el propio Brasil.
 
 > At the São Francisco you chose which fire to fight first. The other one did not wait for us.
 pt No São Francisco escolheu que fogo combater primeiro. O outro não esperou por nós.
@@ -272,9 +272,9 @@ es Un grupo llega al puerto y baja al muelle.
 pt Um dos grupos desapareceu. Ninguém dele chegou aos navios.
 es Uno de los grupos ha desaparecido. Nadie de él llegó a los barcos.
 
-> They got ahead of the column: they hold the pass on the road ahead. The people stop before it and wait until it is clear.
-pt Passaram à frente da coluna: seguram o desfiladeiro na estrada adiante. A gente para diante dele e espera até estar livre.
-es Se adelantaron a la columna: sostienen el paso en el camino de delante. La gente se detiene ante él y espera a que esté libre.
+> There are more of them in the pass on the road ahead. The people stop before it and wait until it is clear.
+pt Há mais deles no desfiladeiro da estrada adiante. A gente para diante dele e espera até estar livre.
+es Hay más de ellos en el paso del camino de delante. La gente se detiene ante él y espera a que esté libre.
 
 > Line, forward through the people. Clear the pass, or they walk into it.
 pt Linha, em frente por entre a gente. Limpem o desfiladeiro, ou eles entram nele.
@@ -412,9 +412,9 @@ es Brasil, 2781. Eres el General Ruggieri y el ejército del Brasil: la línea, 
 pt Primeiro segure o vau enquanto os postos avançados recuam. Depois leve a gente pela estrada até ao porto em três grupos: um grupo acompanha o passo do exército com o Tambor ao lado. Por fim, segure o alto diante do cais até os navios zarparem.
 es Primero sostén el vado mientras los puestos avanzados se repliegan. Luego lleva a la gente por el camino hasta el puerto en tres grupos: un grupo lleva el paso del ejército con el Tambor al lado. Por último, sostén el alto ante el muelle hasta que zarpen los barcos.
 
-> At least a quarter of the people must be aboard, and the harbour fort must stand.
-pt Pelo menos um quarto da gente tem de estar a bordo, e o forte do porto tem de ficar de pé.
-es Al menos un cuarto de la gente debe estar a bordo, y el fuerte del puerto debe seguir en pie.
+> At least two in five of the people must be aboard, and the harbour fort must stand.
+pt Pelo menos dois em cada cinco da gente têm de estar a bordo, e o forte do porto tem de ficar de pé.
+es Al menos dos de cada cinco de la gente deben estar a bordo, y el fuerte del puerto debe seguir en pie.
 
 > Brazil, 2781. You are what the army fought second at the crossing: the swarm on the river road, or the city's machines on the southern road.
 pt Brasil, 2781. Você é o que o exército combateu em segundo lugar na encruzilhada: o enxame na estrada do rio, ou as máquinas da cidade na estrada do sul.

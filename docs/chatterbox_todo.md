@@ -127,6 +127,7 @@ every line is in the doc named. Counts are lines per speaker; speakers marked * 
 | d08_rivers (Down the Rivers, Act 2) | this file, "d08_rivers" below; docs/campaign_d08_build.md | 37 (+34 narrator, 3 NEW cards) | Valadares* 19, the King 8, Benedito* 7, the Barra's sergeant* 3 |
 | d07_spring (the Council of Gears, Act 2) | this file, "d07_spring" below; docs/campaign_d07_build.md | 58 (+30 narrator, 2 NEW cards) | Hollweg 22, Matthias* 12, Ulrich* 8, the King 7, Varenne 3, Citizen Morel* 3, Master Ortlieb* 1, a rescued master* 1, Captain Arruda* 1 |
 | d11_siege (the Siege of Concórdia, Act 2) | this file, "d11_siege" below; docs/campaign_d11_build.md | 47 (+42 narrator, 4 NEW cards) | Father Ferrer 24, the King 9, Jakob* 5, General Ruggieri 4, Meister Hollweg 2, Captain Arruda* 2, Matthias* 1 |
+| e01_brazil (Brazil After the Fires, Act 3) | this file, "e01_brazil" below; docs/campaign_e01_build.md | 38 (+31 narrator, 1 NEW card) | General Ruggieri 23, the King 8, Captain Arruda* 3, Sergeant Hollins* 2, the Barra's sergeant* 1, Major Teixeira* 1 |
 
 Narrator lines ("Nuremberg", "Paris", "The Machine", "The Free Assembly", "The Rio Negro", "Lyon", "Fürth", "The
 Mountain", "Rome", "The Creatures", "The Automata") can stay as text.
@@ -839,6 +840,57 @@ is d04's. Speakers: Father Ferrer 24, the King 9, Jakob* 5, General Ruggieri 4, 
 | k_end_fresh | the King | And all that year the swarm came down the rivers, while the army was in the south. | sober |
 | k_end_grown | the King | The army went to both fires that year, the swarm first and then the city, and put out neither. | weary |
 | k_end_c | the King | That is not how it went. The siege held. Hear it again from Ferrer. | stern, correcting |
+
+### e01_brazil (Brazil After the Fires: Act 3's first mission)
+
+Line ids are the mission's (`campaign/voice/e01/<id>.ogg`). The feeling is how the line should sound. The narrator's
+31 lines ("Brazil", and "The Road" for the danger's player) and the NEW card can stay as text. General Ruggieri is
+eleven years older than in Act 1 (his ref, pitch a little down); the Barra's sergeant is d08's; Captain Arruda is d04's;
+Sergeant Hollins is the Virginia Volunteers' (p01's Hollins family, a young man now: to design); Major Teixeira is
+Fort Constantine's (d09's fort commander, to design: a Portuguese officer in his forties). Lines with {aboard} and
+{people_n} need the number read in: record them as "%s of %s" and splice, or keep them as text.
+Speakers: General Ruggieri 23, the King 8, Captain Arruda* 3, Sergeant Hollins* 2, the Barra's sergeant* 1, Major Teixeira* 1.
+
+| id | speaker | text (placeholder) | feeling |
+| --- | --- | --- | --- |
+| k_open1 | the King | It left Brazil in our own ships, in crates with our seal on them. But first Brazil itself. | slow, heavy; the start of the worst years |
+| k_open2 | the King | At the São Francisco you chose which fire to fight first. The other one did not wait for us. | quiet reproach, half to himself |
+| k_open_s | the King | The city had a year behind its walls. Ruggieri wrote to me from the southern road. | plain, tired |
+| k_open_r | the King | The swarm had a year on the rivers. Ruggieri wrote to me from the river road. | plain, tired |
+| r_open1 | General Ruggieri | Brazil, 2781. I have commanded this army for eleven years. This was the first order I gave to go backwards. | a soldier's report, steady, shame held down |
+| r_open_s | General Ruggieri | The machines came out of Concórdia in the spring. The valley's people had one road, down the highlands to Santos. | factual, grim |
+| r_open_r | General Ruggieri | The swarm came down the rivers with the flood. The river towns' people had one road, down the Amazon to Belém. | factual, grim |
+| k_open_f | the King | Ruggieri wrote this down as it happened. Here is how it would have gone if the road had been theirs. | cold, a test of the listener |
+| r_1 | General Ruggieri | We are a year too late for this country. We can still get its people to the ships. | resolve, no hope in it |
+| s_op | the Barra's sergeant* | General! The creek post is coming in. They are right behind us. | shouted, out of breath |
+| a_op | Captain Arruda* | General! The batteries are coming in. The machines are out of the gates behind them. | shouted, urgent |
+| h_cover | Sergeant Hollins* | Volunteers, at the water. Let the women and the little ones through first. | firm, kind to the families |
+| r_wave | General Ruggieri | Canister. Let them come to the water. | calm, a gunner's patience |
+| t_fort | Major Teixeira* | Fort Constantine's men are with you, General. We held one fort; we can walk one road. | proud, a little grim humour |
+| h_vol | Sergeant Hollins* | The Virginia Volunteers, General. My father's farm was saved by your guns. We owe you a road. | earnest, a young man's debt |
+| r_drum1 | General Ruggieri | Boy, keep the drum going. They walk to it better than they walk to me. | fond, almost a smile |
+| r_fields | General Ruggieri | Father Tomasz left São Rafael's fields standing. Its people walk with us now, and they still sing at Vespers. | warm, quiet |
+| r_burned | General Ruggieri | São Rafael's fields were burned in '76. There is nobody from there left to walk with us. | flat, grief held in |
+| r_thin | General Ruggieri | Some of their nests outlived the rains at Óbidos. Everything they laid since is on this river with us. | low, uneasy |
+| r_held_off | General Ruggieri | We only held Concórdia off last year. Its works never stopped. There are more of them than I left at its gates. | grim, honest |
+| r_close | General Ruggieri | We blew its great spring last year. Whatever comes out of Concórdia now comes without its great engines. | some relief, still wary |
+| r_barra | General Ruggieri | The Barra's lower town burned in '78. What garrison is left came down with Nazaré's people. | sober |
+| a_fought | Captain Arruda* | The valley stood with you once against the machines, General. It walks with you now. | stubborn pride |
+| a_parley | Captain Arruda* | Most of the valley stayed in their houses. They did not believe the machines would come down. A few of us came. | apologetic, ashamed for his neighbours |
+| r_break | General Ruggieri | That is enough. Guns limber up. Everybody walks. | curt, final orders |
+| r_drum | General Ruggieri | Keep the drum where the children are. | gentle but firm |
+| r_raid | General Ruggieri | Riders to the flank! Do not chase them into the trees. | shouted orders |
+| r_ambush | General Ruggieri | Line, forward through the people. Clear the pass, or they walk into it. | urgent, clear orders |
+| r_port | General Ruggieri | Guns on the bluff. The harbour's Barracks is ours: spend the treasury on men, it will not sail with us. | brisk, practical |
+| r_count | General Ruggieri | Count them aboard. All of them. I want the number for the King, not a guess. | strict, almost angry |
+| r_hurt | General Ruggieri | It is nothing. Help me onto the gun carriage and keep walking. | pain, waving it off |
+| r_end_many | General Ruggieri | We brought most of them out. I have the number in my hand: {aboard} of {people_n}. | tired relief, exact |
+| r_end_some | General Ruggieri | We brought some of them out. The rest are on that road still. I wrote the number down: {aboard} of {people_n}. | heavy, honest |
+| r_end_few | General Ruggieri | We brought too few of them out. I will carry that number to my grave: {aboard} of {people_n}. | broken, very quiet |
+| r_end2 | General Ruggieri | From the deck the coast looked as it always had. Green to the water. You would not have known. | far away, bitter |
+| k_end1 | the King | That was Brazil. We had held it for three hundred years, and we left it in a season. | slow, a king's grief |
+| k_end2 | the King | And by then it was already in the ships' holds, on its way to the rest of the world. | grim, foreboding |
+| k_end_f | the King | That is not how it went. Ruggieri brought them to the ships. But I have kept this page. | stern, correcting |
 
 ## RE-RECORD (writing pass 2026-11-26)
 
