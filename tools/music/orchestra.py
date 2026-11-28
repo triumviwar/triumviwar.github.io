@@ -405,7 +405,11 @@ def rel_interval(tok, iv):
 # --------------------------------------------------------------------------- mastering
 
 def master_epic(l, r, target=0.16, ceiling=0.89, comp_ratio=2.2):
-    """Slow compressor (tames the climaxes), loudness to `target` median RMS, look-ahead limiter."""
+    """Slow compressor (tames the climaxes), loudness to `target` median RMS, look-ahead limiter.
+    Since the mix pass (2026-11-28) only with mixpass.ON False: tools/music/mixpass.py masters instead."""
+    import mixpass
+    if mixpass.ON:
+        return mixpass.process(l, r, "epic")
     # a little air: ~+2 dB shelf above 2.5 kHz (synthetic sections are darker than real ones)
     l, r = l + 0.25 * _highpass(l, 2500), r + 0.25 * _highpass(r, 2500)
     pk = max(np.max(np.abs(l)), np.max(np.abs(r)), 1e-9)
