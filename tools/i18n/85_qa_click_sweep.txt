@@ -38,3 +38,20 @@ es metralla
 > Leaving after this move...
 pt Saindo depois deste movimento...
 es Saliendo después de este movimiento...
+
+# the BUILD page: an economy building's button is its name's first word and the count against the limit ("COG 1/2")
+> FARM %d/%d
+pt FAZENDA %d/%d
+es GRANJA %d/%d
+
+> POWDER %d/%d
+pt PÓLVORA %d/%d
+es PÓLVORA %d/%d
+
+> COG %d/%d
+pt PRENSA %d/%d
+es PRENSA %d/%d
+
+> MAINSPRING %d/%d
+pt MOLA REAL %d/%d
+es MUELLE REAL %d/%d
