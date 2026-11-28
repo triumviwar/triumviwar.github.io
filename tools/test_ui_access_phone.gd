@@ -6,7 +6,7 @@ extends SceneTree
 ##  - the settings are kept in the file and RESET puts them back
 ##  - TEXT SIZE: a Label made at 20 shows at 30 at 150% and back at 20 at 100%; a node marked no_text_scale keeps 20
 ##  - a computer's HUD is as it was (4 x 3 card of 60, portraits 34); a phone held sideways: the card's buttons at
-##    least 9 mm (a 68 mm short side), 2 rows and page tabs that change the page, portraits PHONE_SEL in one row
+##    least 9 mm (a 68 mm short side), 2 rows and page tabs that change the page, portraits 7 mm in one row
 var fails := 0
 var _kept := ""
 
@@ -123,11 +123,11 @@ func _hud_checks(dev: String) -> void:
 		var vs: Vector2 = hud._vs()
 		var mm: float = vs.y / hud.PHONE_SHORT_MM
 		check(hud._btn() >= 9.0 * mm - 0.01, "phone: the card's buttons at least 9 mm (%.1f HUD units, 9 mm = %.1f)" % [hud._btn(), 9.0 * mm])
-		check(hud._rows() == 2, "phone: two rows a page")
+		check(hud._rows() == 2 and hud._cols() == (4 if vs.x / vs.y >= 2.0 else 3), "phone: two rows a page, %d across" % hud._cols())
 		var cr: Rect2 = hud.card_rect()
 		check(Rect2(Vector2.ZERO, vs).encloses(cr), "phone: the card fits the screen (%s in %s)" % [cr, vs])
 		check(cr.size.y < vs.y * 0.4, "phone: the card under 40% of the height")
-		check(hud._sel_size() >= 60.0 and hud._sel_vis() == 1, "phone: portraits %d, one row" % int(hud._sel_size()))
+		check(hud._sel_size() >= minf(7.0 * mm, hud.PHONE_SEL) - 0.01 and hud._sel_vis() == 1, "phone: portraits %d (7 mm = %.1f), one row" % [int(hud._sel_size()), 7.0 * mm])
 		# a Labourer's card has more than 8 commands: pages
 		var lab = null
 		for w in g.workers(0):
@@ -154,7 +154,7 @@ func _hud_checks(dev: String) -> void:
 		await process_frame
 		var ok := true
 		for pt in hud._portraits:
-			if (pt["rect"] as Rect2).size.x < 60.0 or not hud.panel_rect().encloses(pt["rect"]):
+			if (pt["rect"] as Rect2).size.x < hud._sel_size() - 0.5 or not hud.panel_rect().encloses(pt["rect"]):
 				ok = false
 		check(ok and not hud._portraits.is_empty(), "phone: %d portraits, each %d wide, inside the panel" % [hud._portraits.size(), int(hud._sel_size())])
 	main.queue_free()

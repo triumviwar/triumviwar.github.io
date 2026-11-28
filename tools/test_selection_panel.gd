@@ -157,7 +157,7 @@ func _run() -> void:
 	g.set_selection(mixed)
 	hud.queue_redraw()
 	await _frames(3)
-	var up: Dictionary = hud._portraits[6]
+	var up: Dictionary = await _unit_portrait(hud)      # (a phone: one row of bigger portraits, ui-access-phone)
 	var upc: Vector2 = (up["rect"] as Rect2).get_center()
 	hud._press(upc)
 	hud._release(upc)
@@ -168,7 +168,7 @@ func _run() -> void:
 	g.set_selection(mixed)
 	hud.queue_redraw()
 	await _frames(3)
-	up = hud._portraits[6]
+	up = await _unit_portrait(hud)
 	upc = (up["rect"] as Rect2).get_center()
 	hud._press(upc)
 	hud._release(upc)
@@ -179,7 +179,7 @@ func _run() -> void:
 	g.set_selection(mixed)
 	hud.queue_redraw()
 	await _frames(3)
-	up = hud._portraits[6]
+	up = await _unit_portrait(hud)
 	upc = (up["rect"] as Rect2).get_center()
 	hud._press(upc)
 	await _ms(600)
@@ -271,3 +271,15 @@ func _run() -> void:
 		print("shot saved")
 	print("DONE  fails=%d" % fails)
 	quit(1 if fails > 0 else 0)
+
+
+## A phone shows one row of bigger portraits (ui-access-phone): the first unit's (not a kind's), scrolled to if need be.
+func _unit_portrait(hud) -> Dictionary:
+	for k in 6:
+		for pt in hud._portraits:
+			if not (pt["it"] as Dictionary).has("type"):
+				return pt
+		hud.sel_scroll_by(1)
+		hud.queue_redraw()
+		await _frames(3)
+	return hud._portraits[0]

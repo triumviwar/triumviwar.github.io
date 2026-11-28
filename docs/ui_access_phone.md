@@ -75,12 +75,13 @@ A slider 90% to 150% (steps of 10, `Settings.text_size`, `scripts/ui/text_scale.
 At 2400 x 1080 on a 6.5" phone the command buttons were ~6 mm and the portraits ~4 mm; the usual thumb target is 7-9 mm.
 
 - **The command card**: buttons at least **9 mm**. The millimetre is the screen's real density when the system gives
-  one (Android), else a phone's short side taken as 68 mm (a browser on a phone). Two rows of four show at a time
-  (4 x 2 at ~73 HUD units on that phone, the card ~150 tall: no taller than the old 3-row card) and the rest is on more
-  **pages**: a numbered tab per page down the card's right edge (tap it; the shown page lit). A drag on the buttons
-  still scrolls a row at a time, every key still works.
-- **The selection portraits**: 64 (were 34) in one row; more rows by a drag or the bar, as before. The type icons
-  ("16 ×") lead as before, so one row usually shows every kind.
+  one (Android), else a phone's short side taken as 68 mm (a browser on a phone). Two rows show at a time, four
+  across on a wide phone (20:9 and wider: 4 x 2 at ~73 HUD units on that phone, the card ~150 tall, no taller than the
+  old 3-row card), three across on a 16:9 one (`mobile_*_phone16x9`: four big columns squeezed its panel and hotkey
+  bar), and the rest is on more **pages**: a numbered tab per page down the card's right edge (tap it; the shown page
+  lit). A page never repeats the row before it. A drag on the buttons still scrolls a row at a time.
+- **The selection portraits**: 7 mm (57 HUD units on that phone, 44 to 64; were 34) in one row; more rows by a drag or
+  the bar, as before. The type icons ("16 ×") lead as before, so one row usually shows every kind.
 - **Keyboard words**: the camera tabs read V1-V6 on a phone (were F4-F9) and their tooltip "View 1"; the card's
   letter keys, Ctrl+A and the F1-F3 marks were already only on a computer; the map editor's hint already had a phone
   line.
@@ -105,8 +106,10 @@ At 2400 x 1080 on a 6.5" phone the command buttons were ~6 mm and the portraits 
 7. **Text size scales every text Control as it enters the tree** instead of editing ~330 places: one rule, nothing
    missed, a Control that must not grow can say so (meta `no_text_scale`). A Control that sets its own size again
    later (rare) keeps the new size until the setting changes.
-8. **Two pages of 4 x 2 instead of 3 x 4** on the phone: 3 x 4 at 9 mm took more than half the screen's height; 4 x 2
-   is no taller than the old card and keeps the most used commands on page 1 (the rarer ones are already sorted last).
+8. **Pages of 4 x 2 (3 x 2 on 16:9) instead of 3 x 4** on the phone: 3 x 4 at 9 mm took more than half the screen's
+   height; two rows are no taller than the old card and keep the most used commands on page 1 (the rarer ones are
+   already sorted last). The portraits are 7 mm, not 9: one row of 9 mm portraits showed only two kinds on a 16:9
+   phone.
 9. **A phone's millimetre without a real density** (a phone's browser) assumes a 68 mm short side: phones are 65-72 mm
    wide; a tablet held sideways is 150+ mm, where the buttons stop at 84 HUD units.
 10. **The page tabs sit inside the card's width** (the card grows 30 units), so the minimap, the panel and the bar

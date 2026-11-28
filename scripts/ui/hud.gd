@@ -505,9 +505,15 @@ func mini_rect() -> Rect2:
 	return _layout()["mini"]
 
 
-## The command card is 4 x 3 everywhere (a phone used to have 3 x 2, and lost buttons).
+## The command card is 4 x 3 on a computer (a phone used to have 3 x 2, and lost buttons). A phone (ui-access-phone):
+## pages of 4 x 2 big buttons on a wide screen, 3 x 2 on a 16:9 one (its HUD is narrower: 4 big columns squeezed the
+## panel and the hotkey bar).
+const PHONE_COLS_ASPECT := 2.0
 func _cols() -> int:
-	return 4
+	if Settings.pc():
+		return 4
+	var vs := _vs()
+	return 4 if vs.y > 0.0 and vs.x / vs.y >= PHONE_COLS_ASPECT else 3
 
 
 func _rows() -> int:
@@ -4701,11 +4707,12 @@ var _queue_rects: Array = []        # the production line's pictures in the card
 ## Ctrl) = that kind, Shift = drop that kind. Phones: tap = plain, LONG PRESS = the Shift action (drop), DOUBLE TAP
 ## on a unit = the Ctrl action (his kind; a single tap waits SEL_DOUBLE ms for a second one).
 const SEL_ROWS := 2
-## The portraits' size (ui-access-phone): a computer 34 in 38, two rows; a phone PHONE_SEL in a row (a thumb's tap; more
-## rows by a drag or the bar, as before).
+## The portraits' size (ui-access-phone): a computer 34 in 38, two rows; a phone PHONE_SEL_MM millimetres (44 to
+## PHONE_SEL HUD units) in a row (a thumb's tap; more rows by a drag or the bar, as before).
 const PHONE_SEL := 64.0
+const PHONE_SEL_MM := 7.0
 func _sel_size() -> float:
-	return 34.0 if Settings.pc() else PHONE_SEL
+	return 34.0 if Settings.pc() else clampf(PHONE_SEL_MM * _mm(), 44.0, PHONE_SEL)
 
 
 func _sel_pitch() -> float:
