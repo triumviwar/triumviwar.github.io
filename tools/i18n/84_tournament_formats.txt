@@ -1,0 +1,194 @@
+# TOURNAMENT TYPES AND THE MAP POOL PICKER (job tournament-formats, docs/tournament_formats.md).
+# team = equipe / equipo; drawn = sorteadas / sorteados.
+
+> TYPE
+pt TIPO
+es TIPO
+
+> TEAMS
+pt EQUIPES
+es EQUIPOS
+
+> Type
+pt Tipo
+es Tipo
+
+> 1 v 1
+pt 1 x 1
+es 1 contra 1
+
+> 2 v 2
+pt 2 x 2
+es 2 contra 2
+
+> 3 v 3
+pt 3 x 3
+es 3 contra 3
+
+> 4 v 4
+pt 4 x 4
+es 4 contra 4
+
+> 2 v 2 (teams of two)
+pt 2 x 2 (equipes de dois)
+es 2 contra 2 (equipos de dos)
+
+> 3 v 3 (teams of three)
+pt 3 x 3 (equipes de três)
+es 3 contra 3 (equipos de tres)
+
+> 4 v 4 (teams of four)
+pt 4 x 4 (equipes de quatro)
+es 4 contra 4 (equipos de cuatro)
+
+> Fixed teams (players join a team by its name)
+pt Equipes fixas (os jogadores entram numa equipe pelo nome dela)
+es Equipos fijos (los jugadores se unen a un equipo por su nombre)
+
+> Drawn by the organiser at the start
+pt Sorteadas pelo organizador no início
+es Sorteados por el organizador al empezar
+
+> Teams: a team's score at the time limit is its players' added together. In a team tournament every player keeps the faction it joined with.
+pt Equipes: no limite de tempo, a pontuação de uma equipe é a soma das dos seus jogadores. Num torneio de equipes cada jogador mantém a facção com que entrou.
+es Equipos: al límite de tiempo, la puntuación de un equipo es la suma de las de sus jugadores. En un torneo por equipos cada jugador conserva la facción con la que entró.
+
+> SEARCH A MAP
+pt PROCURAR UM MAPA
+es BUSCAR UN MAPA
+
+> FIND
+pt PROCURAR
+es BUSCAR
+
+> 2 PLAYERS
+pt 2 JOGADORES
+es 2 JUGADORES
+
+> 4 PLAYERS
+pt 4 JOGADORES
+es 4 JUGADORES
+
+> 6-8 PLAYERS
+pt 6-8 JOGADORES
+es 6-8 JUGADORES
+
+> BUILT-IN
+pt DO JOGO
+es DEL JUEGO
+
+> CLASSIC
+pt CLÁSSICOS
+es CLÁSICOS
+
+> ADD ALL SHOWN
+pt ADICIONAR TODOS OS MOSTRADOS
+es AÑADIR TODOS LOS MOSTRADOS
+
+> CLEAR THE POOL
+pt ESVAZIAR A SELEÇÃO
+es VACIAR LA SELECCIÓN
+
+> 2-PLAYER MAPS
+pt MAPAS PARA 2 JOGADORES
+es MAPAS PARA 2 JUGADORES
+
+> 4-PLAYER MAPS
+pt MAPAS PARA 4 JOGADORES
+es MAPAS PARA 4 JUGADORES
+
+> MAPS FOR 6-8 PLAYERS
+pt MAPAS PARA 6-8 JOGADORES
+es MAPAS PARA 6-8 JUGADORES
+
+> No map matches these filters.
+pt Nenhum mapa corresponde a estes filtros.
+es Ningún mapa coincide con estos filtros.
+
+> %d maps in the pool. A %s tournament needs maps that hold %d players; a bigger map uses only the start spots it needs.
+pt %d mapas na seleção. Um torneio %s precisa de mapas para %d jogadores; um mapa maior usa só as posições iniciais de que precisa.
+es %d mapas en la selección. Un torneo %s necesita mapas para %d jugadores; un mapa más grande usa solo las posiciones iniciales que necesita.
+
+> built-in
+pt do jogo
+es del juego
+
+> classic
+pt clássico
+es clásico
+
+> your map
+pt seu mapa
+es tu mapa
+
+> online: your maps can't be sent
+pt online: os seus mapas não podem ser enviados
+es en línea: tus mapas no se pueden enviar
+
+> holds %d players
+pt para %d jogadores
+es para %d jugadores
+
+> TEAM (team tournaments)
+pt EQUIPE (torneios de equipes)
+es EQUIPO (torneos por equipos)
+
+> teams
+pt equipes
+es equipos
+
+> TEAMS (%d of %d)
+pt EQUIPES (%d de %d)
+es EQUIPOS (%d de %d)
+
+> A %s tournament: %d players a team. Players join a team by typing its name when they join (the first one makes it).
+pt Um torneio %s: %d jogadores por equipe. Os jogadores entram numa equipe digitando o nome dela ao entrar (o primeiro a cria).
+es Un torneo %s: %d jugadores por equipo. Los jugadores se unen a un equipo escribiendo su nombre al unirse (el primero lo crea).
+
+> A %s tournament with drawn teams: everyone signs up alone; the teams of %d are drawn when the tournament starts.
+pt Um torneio %s com equipes sorteadas: todos se inscrevem sozinhos; as equipes de %d são sorteadas quando o torneio começa.
+es Un torneo %s con equipos sorteados: todos se inscriben solos; los equipos de %d se sortean cuando empieza el torneo.
+
+> YOUR TEAM
+pt SUA EQUIPE
+es TU EQUIPO
+
+> That team is full, or its name is taken.
+pt Essa equipe está completa, ou o nome já está em uso.
+es Ese equipo está completo, o su nombre ya está en uso.
+
+> TEAM NAME
+pt NOME DA EQUIPE
+es NOMBRE DEL EQUIPO
+
+> PLAYER %d
+pt JOGADOR %d
+es JUGADOR %d
+
+> ADD THE TEAM
+pt ADICIONAR A EQUIPE
+es AÑADIR EL EQUIPO
+
+> ADD A COMPUTER TEAM
+pt ADICIONAR UMA EQUIPE DO COMPUTADOR
+es AÑADIR UN EQUIPO DE LA MÁQUINA
+
+> FILL WITH A FIELD OF 8 TEAMS
+pt PREENCHER COM 8 EQUIPES
+es RELLENAR CON 8 EQUIPOS
+
+> Team %d
+pt Equipe %d
+es Equipo %d
+
+> You host the room %s: your team-mates and the other team join it from here.
+pt Você abre a sala %s: os seus colegas de equipe e a outra equipe entram nela por aqui.
+es Tú abres la sala %s: tus compañeros de equipo y el otro equipo entran en ella desde aquí.
+
+> %s's first player hosts the room %s: you join it from here, in your own seat (wait until the host is in it).
+pt O primeiro jogador de %s abre a sala %s: você entra nela por aqui, no seu próprio lugar (espere até o anfitrião estar nela).
+es El primer jugador de %s abre la sala %s: entras en ella desde aquí, en tu propio puesto (espera a que el anfitrión esté en ella).
+
+> Type your team's name (the same for everyone in the team).
+pt Digite o nome da sua equipe (o mesmo para todos da equipe).
+es Escribe el nombre de tu equipo (el mismo para todos los del equipo).

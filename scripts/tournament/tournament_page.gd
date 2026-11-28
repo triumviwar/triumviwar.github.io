@@ -17,7 +17,8 @@ const QUICK_SPEED := 4.0
 var main: Node
 var t: Tournament
 var role := ""                 # "organiser", "player" (joined by code), "viewer"
-var me := -1                   # my player id in t (-1: none)
+var me := -1                   # my player id in t (-1: none; a team tournament: my team's)
+var mi := 0                    # my place in my team (0 in a 1v1 tournament)
 var key := ""
 var tab := "bracket"
 var net: TournamentNet         # a player's calls to the desk
@@ -28,6 +29,17 @@ var _poll := POLL
 var _overlay: Control
 static var last_tab := "bracket"
 static var toast := ""
+## The map picker's filters (MAKE A TOURNAMENT), kept while the page is open again.
+static var pool_players := "all"
+static var pool_source := "all"
+static var pool_search := ""
+
+
+## "Crown", or a team's "Crown + Brood" (Tournament keeps a team's factions as "crown,brood").
+static func fac_text(f: String) -> String:
+	if f == "":
+		return ""
+	return " + ".join(Array(f.split(",")).map(func(x) -> String: return Loc.t(String(x).capitalize())))
 
 
 # ================================================================== entry points (Main)
@@ -171,6 +183,13 @@ func _home() -> void:
 	nm.custom_minimum_size = Vector2(220, 52)
 	UiStyle.touch_text(nm, "YOUR NAME")
 	jr.add_child(nm)
+	var team := LineEdit.new()
+	team.name = "Tour_TeamName"
+	team.placeholder_text = Loc.t("TEAM (team tournaments)")
+	team.max_length = 24
+	team.custom_minimum_size = Vector2(240, 52)
+	UiStyle.touch_text(team, "TEAM (team tournaments)")
+	jr.add_child(team)
 	var fac := OptionButton.new()
 	fac.custom_minimum_size = Vector2(170, 52)
 	for f in ["random", "crown", "clockwork", "brood"]:
@@ -188,7 +207,7 @@ func _home() -> void:
 		if not _relay_set():
 			note.text = Loc.t("Set the relay address on the ONLINE page first.")
 			return
-		_join(c, nm.text.strip_edges(), ["random", "crown", "clockwork", "brood"][fac.selected], note), 140)
+		_join(c, nm.text.strip_edges(), ["random", "crown", "clockwork", "brood"][fac.selected], note, team.text.strip_edges()), 140)
 	join.name = "Tour_Join"
 	jr.add_child(join)
 	var look := _btn("WATCH", func() -> void:
@@ -242,8 +261,8 @@ func _list_row(tt: Tournament, open: Callable, del: Callable) -> Control:
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 8)
 	var st: String = {"signup": "sign-up open", "running": "under way", "done": "over"}.get(String(tt.d["state"]), "")
-	var what := "%s  ·  %s  ·  %d %s  ·  %s" % [String(tt.d["name"]), Loc.t(Tournament.FORMAT_NAME[tt.d["format"]]),
-		tt.players().size(), Loc.t("players"), Loc.t(st)]
+	var what := "%s  ·  %s %s  ·  %d %s  ·  %s" % [String(tt.d["name"]), Loc.t(Tournament.TYPE_NAME[tt.team_size()].split(" (")[0]),
+		Loc.t(Tournament.FORMAT_NAME[tt.d["format"]]), tt.players().size(), Loc.t("teams") if tt.team_size() > 1 else Loc.t("players"), Loc.t(st)]
 	if tt.done():
 		what += "  ·  " + Loc.t("champion: %s") % tt.pname(int(tt.d["champion"]))
 	var l := _label(what, 16)
@@ -266,7 +285,9 @@ func _create() -> void:
 	var v := _scroll()
 	var f := {"name": "My tournament", "mode": "online", "format": "double", "bo": 3, "bo_final": 3, "maps": Tournament.DEFAULT_MAPS.duplicate(),
 		"map_rule": "veto", "loser_picks": true, "factions": "series", "seeding": "random", "checkin": false, "groups": 2, "advance": 2,
-		"swiss_rounds": 0, "time_limit": 0, "level": "hard"}
+		"swiss_rounds": 0, "time_limit": 0, "level": "hard", "team_size": 1, "team_rule": "fixed"}
+	if not _form.is_empty() and _form.has("team_size"):
+		f = _form          # (back from the map picker's filters: the form as it was)
 	_form = f
 	var nm := LineEdit.new()
 	nm.text = Loc.t(String(f["name"]))
@@ -274,7 +295,18 @@ func _create() -> void:
 	nm.custom_minimum_size = Vector2(360, 50)
 	nm.text_changed.connect(func(s: String) -> void: f["name"] = s)
 	v.add_child(_row("NAME", nm))
-	v.add_child(_row("KIND", _choice(Tournament.MODES.map(func(x) -> String: return Tournament.MODE_NAME[x]), Tournament.MODES, f, "mode")))
+	v.add_child(_row("KIND", _choice(Tournament.MODES.map(func(x) -> String: return Tournament.MODE_NAME[x]), Tournament.MODES, f, "mode",
+		func() -> void: _refill_pool())))
+	var ty := _choice(Tournament.TEAM_SIZES.map(func(x) -> String: return Tournament.TYPE_NAME[x]), Tournament.TEAM_SIZES, f, "team_size",
+		func() -> void:
+			_refill_pool()
+			if _team_row:
+				_team_row.visible = int(f["team_size"]) > 1)
+	ty.name = "Tour_Type"
+	v.add_child(_row("TYPE", ty))
+	_team_row = _row("TEAMS", _choice(Tournament.TEAM_RULES.map(func(x) -> String: return Tournament.TEAM_RULE_NAME[x]), Tournament.TEAM_RULES, f, "team_rule"))
+	_team_row.visible = int(f["team_size"]) > 1
+	v.add_child(_team_row)
 	v.add_child(_row("FORMAT", _choice(Tournament.FORMATS.map(func(x) -> String: return Tournament.FORMAT_NAME[x]), Tournament.FORMATS, f, "format")))
 	v.add_child(_row("SERIES", _choice(["Best of 1", "Best of 3", "Best of 5", "Best of 7"], [1, 3, 5, 7], f, "bo")))
 	v.add_child(_row("THE FINAL", _choice(["Best of 1", "Best of 3", "Best of 5", "Best of 7"], [1, 3, 5, 7], f, "bo_final")))
@@ -287,30 +319,23 @@ func _create() -> void:
 	v.add_child(_row("GROUPS", _choice(["2 groups", "4 groups", "8 groups"], [2, 4, 8], f, "groups")))
 	v.add_child(_row("OUT OF EACH GROUP", _choice(["Top 2", "Top 1", "Top 4"], [2, 1, 4], f, "advance")))
 	v.add_child(_label("The time limit: at the bell, the side clearly ahead (its income earned plus twice its army, at least 10% more than the other's) wins the game; with no clear leader the game is played again (at most twice, then the higher score wins). Groups apply only to 'Groups, then playoffs'.", 14, UiStyle.MUTED))
-	# the map pool
+	v.add_child(_label("Teams: a team's score at the time limit is its players' added together. In a team tournament every player keeps the faction it joined with.", 14, UiStyle.MUTED))
+	# the map pool (job tournament-formats: grouped by players, filtered by where the map comes from, searched, cards)
 	v.add_child(UiStyle.heading(Loc.t("MAP POOL"), 22, UiStyle.TRIM))
-	var pool := HFlowContainer.new()
-	pool.add_theme_constant_override("h_separation", 6)
-	pool.add_theme_constant_override("v_separation", 6)
-	v.add_child(pool)
-	for id in MapGen.all_ids():
-		if MapGen.max_players(String(id)) < 2 or MapGen.is_pool(String(id)):
-			continue
-		var cb := CheckBox.new()
-		cb.text = MapGen.display_name(String(id))
-		cb.button_pressed = (f["maps"] as Array).has(id)
-		cb.add_theme_font_size_override("font_size", _fs(15))
-		cb.toggled.connect(func(on: bool) -> void:
-			if on and not (f["maps"] as Array).has(id):
-				f["maps"].append(id)
-			elif not on:
-				f["maps"].erase(id))
-		pool.add_child(cb)
+	_pool_box = VBoxContainer.new()
+	_pool_box.add_theme_constant_override("separation", 8)
+	v.add_child(_pool_box)
+	_refill_pool()
 	var go := _btn("MAKE IT", func() -> void:
 		var opts := f.duplicate(true)
 		var nm2 := String(opts["name"]).strip_edges()
 		opts.erase("name")
+		# (only the maps that hold the type's players go into the pool)
+		opts["maps"] = (opts["maps"] as Array).filter(func(x) -> bool: return _pool_ok(String(x), opts))
+		if (opts["maps"] as Array).is_empty():
+			opts["maps"] = _pool_ids().filter(func(x) -> bool: return _pool_ok(String(x), opts)).slice(0, 6)
 		var tt := Tournament.make(nm2 if nm2 != "" else "Tournament", opts)
+		_form = {}
 		tt.save()
 		_open(tt, "organiser"), 240)
 	go.name = "Tour_MakeIt"
@@ -329,15 +354,211 @@ func _row(title: String, c: Control) -> Control:
 	return h
 
 
-func _choice(labels: Array, values: Array, f: Dictionary, k: String) -> OptionButton:
+func _choice(labels: Array, values: Array, f: Dictionary, k: String, then := Callable()) -> OptionButton:
 	var o := OptionButton.new()
 	o.custom_minimum_size = Vector2(320, 46)
 	for i in labels.size():
 		o.add_item(Loc.t(String(labels[i])))
 		if values[i] == f[k]:
 			o.select(i)
-	o.item_selected.connect(func(i: int) -> void: f[k] = values[i])
+	o.item_selected.connect(func(i: int) -> void:
+		f[k] = values[i]
+		if then.is_valid():
+			then.call())
 	return o
+
+
+# ------------------------------------------------------------------ the map pool picker (job tournament-formats)
+
+var _pool_box: VBoxContainer
+var _team_row: Control
+const POOL_PLAYERS := [["all", "ALL"], ["2", "2 PLAYERS"], ["4", "4 PLAYERS"], ["more", "6-8 PLAYERS"]]
+const POOL_SOURCES := [["all", "ALL"], ["named", "BUILT-IN"], ["classic", "CLASSIC"], ["custom", "YOUR MAPS"]]
+
+
+## Every map the pool can hold: the built-in (named) maps, the classic generated ones, the player's own editor maps
+## (an online tournament can't use those: the other players don't have the file).
+func _pool_ids() -> Array:
+	var out: Array = []
+	for id in MapData.NAMED.keys():
+		out.append(String(id))
+	for id in MapGen.MAPS.keys():
+		out.append(String(id))
+	for nm in MapGen.custom_names():
+		if (MapGen.load_custom(nm).get("starts", []) as Array).size() >= 2:
+			out.append("custom:" + nm)
+	return out
+
+
+static func pool_source_of(id: String) -> String:
+	if id.begins_with("custom:"):
+		return "custom"
+	return "named" if MapData.NAMED.has(id) else "classic"
+
+
+static func pool_group_of(id: String) -> String:
+	var n := MapGen.max_players(id)
+	return "2" if n <= 2 else ("4" if n <= 4 else "more")
+
+
+## Can this tournament (its form `f`) use the map? It must hold both sides; your own maps only offline.
+func _pool_ok(id: String, f: Dictionary) -> bool:
+	if not Tournament.map_holds(id, int(f.get("team_size", 1))):
+		return false
+	return not (id.begins_with("custom:") and String(f.get("mode", "")) == "online")
+
+
+## THE MAP'S PICTURE on a card (one function, so the map-previews job's shared MapPreview can take its place: today it
+## is the skirmish lobby's own picture, Main.make_map_preview, with the start spots this type would use).
+func map_picture(id: String, ts: int) -> Control:
+	var sl: Array = []
+	for i in 2 * ts:
+		sl.append({"side": 0 if i < ts else 1, "colour": i, "who": "easy", "faction": "crown"})
+	var c: Control = main.make_map_preview(id, sl)
+	c.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	return c
+
+
+func _refill_pool() -> void:
+	if _pool_box == null or not is_instance_valid(_pool_box):
+		return
+	for c in _pool_box.get_children():
+		c.queue_free()
+	var f := _form
+	var ts := int(f.get("team_size", 1))
+	# the filters: players, where from, a search
+	var fr := HFlowContainer.new()
+	fr.add_theme_constant_override("h_separation", 6)
+	fr.add_theme_constant_override("v_separation", 6)
+	_pool_box.add_child(fr)
+	for e in POOL_PLAYERS:
+		var b := _btn(e[1], func() -> void:
+			pool_players = e[0]
+			_refill_pool(), 140)
+		b.name = "Tour_PoolPl_" + String(e[0])
+		if pool_players == e[0]:
+			UiStyle.chosen(b)
+		fr.add_child(b)
+	var fr2 := HFlowContainer.new()
+	fr2.add_theme_constant_override("h_separation", 6)
+	fr2.add_theme_constant_override("v_separation", 6)
+	_pool_box.add_child(fr2)
+	for e in POOL_SOURCES:
+		var b := _btn(e[1], func() -> void:
+			pool_source = e[0]
+			_refill_pool(), 140)
+		b.name = "Tour_PoolSrc_" + String(e[0])
+		if pool_source == e[0]:
+			UiStyle.chosen(b)
+		fr2.add_child(b)
+	var se := LineEdit.new()
+	se.name = "Tour_PoolSearch"
+	se.placeholder_text = Loc.t("SEARCH A MAP")
+	se.text = pool_search
+	se.custom_minimum_size = Vector2(240, 50)
+	se.text_submitted.connect(func(x: String) -> void:
+		pool_search = x
+		_refill_pool())
+	fr2.add_child(se)
+	fr2.add_child(_btn("FIND", func() -> void:
+		pool_search = se.text
+		_refill_pool(), 100))
+	var shown: Array = _pool_ids().filter(func(id: String) -> bool:
+		if pool_players != "all" and pool_group_of(id) != pool_players:
+			return false
+		if pool_source != "all" and pool_source_of(id) != pool_source:
+			return false
+		var q := pool_search.strip_edges().to_lower()
+		return q == "" or MapGen.display_name(id).trim_prefix("custom:").to_lower().contains(q) or id.to_lower().contains(q))
+	var picked: Array = (f["maps"] as Array).filter(func(x) -> bool: return _pool_ok(String(x), f))
+	var sum := _label(Loc.t("%d maps in the pool. A %s tournament needs maps that hold %d players; a bigger map uses only the start spots it needs.") % [picked.size(),
+		Loc.t(Tournament.TYPE_NAME[ts].split(" (")[0]), 2 * ts], 15, UiStyle.MUTED)
+	sum.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+	_pool_box.add_child(sum)
+	var ar := HFlowContainer.new()
+	ar.add_theme_constant_override("h_separation", 6)
+	_pool_box.add_child(ar)
+	ar.add_child(_btn("ADD ALL SHOWN", func() -> void:
+		for id in shown:
+			if _pool_ok(String(id), f) and not (f["maps"] as Array).has(id):
+				f["maps"].append(id)
+		_refill_pool(), 220))
+	ar.add_child(_btn("CLEAR THE POOL", func() -> void:
+		f["maps"] = []
+		_refill_pool(), 220))
+	# the cards, grouped by players
+	for grp in [["2", "2-PLAYER MAPS"], ["4", "4-PLAYER MAPS"], ["more", "MAPS FOR 6-8 PLAYERS"]]:
+		var ids: Array = shown.filter(func(id: String) -> bool: return pool_group_of(id) == grp[0])
+		if ids.is_empty():
+			continue
+		ids.sort_custom(func(a: String, b: String) -> bool: return MapGen.display_name(a) < MapGen.display_name(b))
+		_pool_box.add_child(UiStyle.heading(Loc.t(grp[1]), 18, UiStyle.TRIM))
+		var grid := HFlowContainer.new()
+		grid.add_theme_constant_override("h_separation", 8)
+		grid.add_theme_constant_override("v_separation", 8)
+		_pool_box.add_child(grid)
+		for id in ids:
+			grid.add_child(_pool_card(String(id), f, ts))
+	if shown.is_empty():
+		_pool_box.add_child(_label("No map matches these filters.", 15, UiStyle.MUTED))
+
+
+## One map's card: its picture with the start spots this type uses, its name, players, size and where it comes from;
+## a tap puts it in the pool or takes it out. A map that can't hold the type (or a map of yours online) is greyed.
+func _pool_card(id: String, f: Dictionary, ts: int) -> Control:
+	var ok := _pool_ok(id, f)
+	var on := ok and (f["maps"] as Array).has(id)
+	var b := Button.new()
+	b.name = "Tour_Pool_" + id.replace(":", "_")
+	var w := 190.0 if _pc() else 170.0
+	b.custom_minimum_size = Vector2(w, 214)
+	b.toggle_mode = true
+	b.button_pressed = on
+	b.disabled = not ok
+	b.focus_mode = Control.FOCUS_NONE
+	b.add_theme_stylebox_override("normal", UiStyle.box(Color(0.12, 0.1, 0.08), UiStyle.TRIM_DIM, 1, 8, 6.0))
+	b.add_theme_stylebox_override("hover", UiStyle.box(Color(0.16, 0.13, 0.1), UiStyle.TRIM, 1, 8, 6.0))
+	b.add_theme_stylebox_override("pressed", UiStyle.box(Color(0.2, 0.17, 0.08), UiStyle.GOOD, 3, 8, 6.0))
+	b.add_theme_stylebox_override("hover_pressed", UiStyle.box(Color(0.22, 0.19, 0.1), UiStyle.GOOD, 3, 8, 6.0))
+	b.add_theme_stylebox_override("disabled", UiStyle.box(Color(0.08, 0.07, 0.06), UiStyle.TRIM_DIM, 1, 8, 6.0))
+	var vb := VBoxContainer.new()
+	vb.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	vb.offset_left = 6
+	vb.offset_right = -6
+	vb.offset_top = 6
+	vb.offset_bottom = -6
+	vb.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	vb.add_theme_constant_override("separation", 2)
+	b.add_child(vb)
+	var pic := map_picture(id, ts if ok else 1)
+	pic.custom_minimum_size = Vector2(0, 118)
+	pic.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	if not ok:
+		pic.modulate = Color(1, 1, 1, 0.35)
+	vb.add_child(pic)
+	var nm := UiStyle.text(MapGen.display_name(id).trim_prefix("custom:") if not id.begins_with("custom:") else id.substr(7), _fs(15),
+		UiStyle.GOOD if on else (UiStyle.TEXT if ok else UiStyle.MUTED), HORIZONTAL_ALIGNMENT_LEFT, true)
+	nm.clip_text = true
+	nm.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+	nm.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	vb.add_child(nm)
+	var sz := MapGen.size_of(id)
+	var src: String = {"named": "built-in", "classic": "classic", "custom": "your map"}[pool_source_of(id)]
+	var info := "%d %s · %dx%d · %s" % [MapGen.max_players(id), Loc.t("players"), sz.x, sz.y, Loc.t(src)]
+	if not ok:
+		info = Loc.t("online: your maps can't be sent") if Tournament.map_holds(id, ts) else Loc.t("holds %d players") % MapGen.max_players(id)
+	var il := UiStyle.text(info, _fs(12), UiStyle.MUTED, HORIZONTAL_ALIGNMENT_LEFT)
+	il.clip_text = true
+	il.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+	il.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	vb.add_child(il)
+	b.toggled.connect(func(pr: bool) -> void:
+		if pr and not (f["maps"] as Array).has(id):
+			f["maps"].append(id)
+		elif not pr:
+			f["maps"].erase(id)
+		_refill_pool.call_deferred())
+	return b
 
 
 # ================================================================== a tournament
@@ -360,7 +581,11 @@ func _open(tt: Tournament, r: String) -> void:
 	role = r
 	me = int(t.d.get("org_pid", -1)) if r == "organiser" else me
 	if r == "organiser" and me >= 0:
-		key = String(t.player(me).get("key", ""))
+		key = String(t.d.get("org_key", t.player(me).get("key", "")))
+		var mk := t.member_by_key(key)
+		if not mk.is_empty():
+			me = int(mk[0])
+			mi = int(mk[1])
 	if r == "organiser" and t.d["mode"] == "online" and _relay_set():
 		_desk_for(t)
 	tab = last_tab
@@ -372,9 +597,11 @@ func _open_joined(tid: String) -> void:
 	t = Tournament.from_dict(rec.get("copy", {}))
 	role = "player" if int(rec.get("me", -1)) >= 0 else "viewer"
 	me = int(rec.get("me", -1))
+	mi = int(rec.get("mi", 0))
 	key = String(rec.get("key", ""))
 	_ensure_net()
 	net.me = me
+	net.mi = mi
 	net.key = key
 	net.t = t
 	tab = last_tab
@@ -382,10 +609,11 @@ func _open_joined(tid: String) -> void:
 	_call({"t": "tj"})
 
 
-func _join(code: String, nm: String, fac: String, note: Label) -> void:
+func _join(code: String, nm: String, fac: String, note: Label, team := "") -> void:
 	_ensure_net()
 	var rec := TournamentNet.joined_load(code)
 	net.me = int(rec.get("me", -1))
+	net.mi = int(rec.get("mi", 0))
 	net.key = String(rec.get("key", ""))
 	note.text = Loc.t("Calling the desk...")
 	note.add_theme_color_override("font_color", UiStyle.MUTED)
@@ -395,6 +623,7 @@ func _join(code: String, nm: String, fac: String, note: Label) -> void:
 		if ok and net.t:
 			t = net.t
 			me = net.me
+			mi = net.mi
 			key = net.key
 			role = "player" if me >= 0 else "viewer"
 			toast = why if not why.begins_with("ok") else ""
@@ -402,7 +631,7 @@ func _join(code: String, nm: String, fac: String, note: Label) -> void:
 		else:
 			note.text = Loc.t(why)
 			note.add_theme_color_override("font_color", UiStyle.BAD), CONNECT_ONE_SHOT)
-	net.call_desk(Settings.relay_url, code, {"t": "tj", "name": nm, "fac": fac})
+	net.call_desk(Settings.relay_url, code, {"t": "tj", "name": nm, "fac": fac, "team": team})
 
 
 func _ensure_net() -> void:
@@ -496,6 +725,7 @@ func _call(msg: Dictionary, redraw := true) -> void:
 			var changed := t == null or int(net.t.d.get("rev", 0)) != int(t.d.get("rev", 0))
 			t = net.t
 			me = net.me
+			mi = net.mi
 			if redraw or changed:
 				if why != "" and not why.begins_with("ok") and why != "taken":
 					toast = why
@@ -517,7 +747,8 @@ func _draw_tour() -> void:
 	var info := HFlowContainer.new()
 	info.add_theme_constant_override("h_separation", 14)
 	_box.add_child(info)
-	var line := "%s  ·  %s  ·  %s" % [Loc.t(Tournament.FORMAT_NAME[t.d["format"]]), Loc.t("Best of %d") % int(t.d["bo"]), Loc.t(Tournament.MODE_NAME[t.d["mode"]])]
+	var line := "%s  ·  %s  ·  %s  ·  %s" % [Loc.t(Tournament.TYPE_NAME[t.team_size()].split(" (")[0]), Loc.t(Tournament.FORMAT_NAME[t.d["format"]]),
+		Loc.t("Best of %d") % int(t.d["bo"]), Loc.t(Tournament.MODE_NAME[t.d["mode"]])]
 	if t.d["mode"] == "online":
 		line += "  ·  " + Loc.t("CODE %s") % String(t.d["id"])
 	var il := _label(line, 16, UiStyle.TEXT, false)
@@ -627,12 +858,12 @@ func _tab_standings() -> void:
 	var by := {}
 	for g in t.all_games():
 		for s in [["a", "fa"], ["b", "fb"]]:
-			var f := String(g[s[1]])
-			if f == "":
-				continue
-			if not by.has(f):
-				by[f] = [0, 0]
-			by[f][0 if g["win"] == s[0] else 1] += 1
+			for f in String(g[s[1]]).split(","):
+				if f == "":
+					continue
+				if not by.has(f):
+					by[f] = [0, 0]
+				by[f][0 if g["win"] == s[0] else 1] += 1
 	if not by.is_empty():
 		v.add_child(UiStyle.heading(Loc.t("THE FACTIONS' GAMES"), 20, UiStyle.TRIM))
 		for f in by:
@@ -655,7 +886,7 @@ func _table(v: VBoxContainer, rows: Array, title: String) -> void:
 		g.add_child(UiStyle.text(Loc.t(h), _fs(15), UiStyle.TRIM, HORIZONTAL_ALIGNMENT_LEFT, true))
 	for r in rows:
 		var p := t.player(int(r["id"]))
-		var cells := [str(r["place"]), "%s (%s)" % [p.get("name", "?"), Loc.t(String(p.get("faction", "")).capitalize())], str(r["w"]), str(r["l"]),
+		var cells := [str(r["place"]), "%s (%s)" % [p.get("name", "?"), fac_text(String(p.get("faction", "")))], str(r["w"]), str(r["l"]),
 			"%d-%d" % [r["gw"], r["gl"]], "%+d" % (int(r["gw"]) - int(r["gl"]))]
 		if t.d["format"] == "swiss":
 			cells.append(str(r["buch"]))
@@ -671,7 +902,7 @@ func _places(v: VBoxContainer) -> void:
 		v.add_child(_label("Nobody is out yet.", 16, UiStyle.MUTED))
 	for pl in t.placings():
 		var p := t.player(int(pl["id"]))
-		var l := _label("%d.  %s  (%s)" % [int(pl["place"]), p.get("name", "?"), Loc.t(String(p.get("faction", "")).capitalize())], 16,
+		var l := _label("%d.  %s  (%s)" % [int(pl["place"]), p.get("name", "?"), fac_text(String(p.get("faction", "")))], 16,
 			UiStyle.GOOD if int(pl["id"]) == me else UiStyle.TEXT)
 		l.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 		v.add_child(l)
@@ -705,14 +936,24 @@ func _tab_players() -> void:
 	var v := _scroll()
 	var org := role == "organiser"
 	var signup: bool = t.d["state"] == "signup"
-	v.add_child(UiStyle.heading(Loc.t("PLAYERS (%d of %d)") % [t.players().size(), MAX_FIELD], 22, UiStyle.TRIM))
+	var teams := t.team_size() > 1 and (not signup or String(t.d.get("team_rule", "fixed")) == "fixed")
+	if teams:
+		v.add_child(UiStyle.heading(Loc.t("TEAMS (%d of %d)") % [t.players().size(), MAX_FIELD], 22, UiStyle.TRIM))
+		if signup:
+			v.add_child(_label(Loc.t("A %s tournament: %d players a team. Players join a team by typing its name when they join (the first one makes it).") % [Loc.t(Tournament.TYPE_NAME[t.team_size()].split(" (")[0]), t.team_size()], 15, UiStyle.MUTED))
+	else:
+		v.add_child(UiStyle.heading(Loc.t("PLAYERS (%d of %d)") % [t.players().size(), MAX_FIELD], 22, UiStyle.TRIM))
+		if signup and t.team_size() > 1:
+			v.add_child(_label(Loc.t("A %s tournament with drawn teams: everyone signs up alone; the teams of %d are drawn when the tournament starts.") % [Loc.t(Tournament.TYPE_NAME[t.team_size()].split(" (")[0]), t.team_size()], 15, UiStyle.MUTED))
 	if signup and t.d["mode"] == "online":
 		v.add_child(_label("Players join from TOURNAMENTS > JOIN with the code %s and their name. Keep this page open (or the game running) while they join: your game is the tournament's desk." % t.d["id"], 15, UiStyle.MUTED))
 	for p in t._by_seed():
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation", 6)
 		var who := Loc.t("person") if p["who"] == "human" else "%s %s" % [Loc.t(String(p["who"]).capitalize()), Loc.t(AI.STRATEGIES.get(String(p["plan"]), {}).get("name", String(p["plan"])))]
-		var txt := "%d.  %s  ·  %s  ·  %s" % [int(p["seed"]), p["name"], Loc.t(String(p["faction"]).capitalize()), who]
+		var txt := "%d.  %s  ·  %s  ·  %s" % [int(p["seed"]), p["name"], fac_text(String(p["faction"])), who]
+		if p.has("members"):
+			txt = "%d.  %s  (%d/%d)" % [int(p["seed"]), p["name"], (p["members"] as Array).size(), t.team_size()]
 		if t.d["checkin"] and signup:
 			txt += "  ·  " + (Loc.t("checked in") if p["checked"] else Loc.t("not checked in"))
 		if p["dropped"]:
@@ -749,6 +990,16 @@ func _tab_players() -> void:
 		if pid == me and signup and t.d["checkin"] and not p["checked"] and not org:
 			row.add_child(_btn("CHECK IN", func() -> void: _call({"t": "tci"}), 140))
 		v.add_child(row)
+		if p.has("members"):
+			for k in (p["members"] as Array).size():
+				var mb: Dictionary = p["members"][k]
+				var mw := Loc.t("person") if String(mb["who"]) == "human" else "%s %s" % [Loc.t(String(mb["who"]).capitalize()), Loc.t(AI.STRATEGIES.get(String(mb["plan"]), {}).get("name", String(mb["plan"])))]
+				var mt := "      %s  ·  %s  ·  %s" % [mb["name"], fac_text(String(mb["faction"])) if String(mb["faction"]) in Tournament.FACTIONS else Loc.t("Random"), mw]
+				if t.d["checkin"] and signup and String(mb["who"]) == "human":
+					mt += "  ·  " + (Loc.t("checked in") if bool(mb.get("checked", false)) else Loc.t("not checked in"))
+				var ml := _label(mt, 15, UiStyle.GOOD if (pid == me and k == mi) else UiStyle.MUTED, false)
+				ml.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+				v.add_child(ml)
 	if not signup:
 		return
 	if org:
@@ -782,6 +1033,41 @@ func _add_players(v: VBoxContainer) -> void:
 	fac.custom_minimum_size = Vector2(160, 50)
 	for f in ["crown", "clockwork", "brood", "random"]:
 		fac.add_item(Loc.t(f.capitalize()))
+	var ts := t.team_size()
+	var fixed := ts > 1 and String(t.d.get("team_rule", "fixed")) == "fixed"
+	if fixed and t.d["mode"] == "offline":
+		_add_team_by_hand(v)
+		return
+	if fixed and t.d["mode"] == "online":
+		var tn := LineEdit.new()
+		tn.placeholder_text = Loc.t("YOUR TEAM")
+		tn.max_length = 24
+		tn.custom_minimum_size = Vector2(220, 50)
+		r.add_child(tn)
+		var nm1 := LineEdit.new()
+		nm1.placeholder_text = Loc.t("YOUR NAME")
+		nm1.max_length = 24
+		nm1.custom_minimum_size = Vector2(220, 50)
+		r.add_child(nm1)
+		r.add_child(fac)
+		var am := _btn("ADD MYSELF", func() -> void:
+			if nm1.text.strip_edges() == "" or tn.text.strip_edges() == "":
+				return
+			var jt := t.join_team(tn.text, nm1.text, ["crown", "clockwork", "brood", "random"][fac.selected], "human")
+			if jt.is_empty():
+				toast = "That team is full, or its name is taken."
+			else:
+				t.d["org_pid"] = int(jt[0])
+				t.d["org_key"] = String(jt[2])
+				me = int(jt[0])
+				mi = int(jt[1])
+				key = String(jt[2])
+			_save()
+			_draw_tour(), 180)
+		am.name = "Tour_AddPerson"
+		am.disabled = int(t.d.get("org_pid", -1)) >= 0
+		r.add_child(am)
+		return
 	if t.d["mode"] != "computer":
 		var nm := LineEdit.new()
 		nm.placeholder_text = Loc.t("NAME")
@@ -798,6 +1084,7 @@ func _add_players(v: VBoxContainer) -> void:
 				t.d["org_pid"] = pid
 				me = pid
 				key = String(t.player(pid)["key"])
+				t.d["org_key"] = key
 			_save()
 			_draw_tour(), 180)
 		add.name = "Tour_AddPerson"
@@ -843,21 +1130,90 @@ func _add_players(v: VBoxContainer) -> void:
 		while t.players().any(func(p) -> bool: return p["name"] == nm):
 			nm = "%s %d" % [base, n]
 			n += 1
-		t.add_player(nm, f, LEVELS[lvl.selected], s)
+		if ts > 1:
+			var mbs: Array = []
+			for k in ts:
+				mbs.append({"name": "%s %d" % [nm, k + 1], "faction": f, "who": LEVELS[lvl.selected], "plan": s})
+			t.add_team(nm, mbs)
+		else:
+			t.add_player(nm, f, LEVELS[lvl.selected], s)
 		_save()
 		_draw_tour(), 220)
 	addc.name = "Tour_AddComputer"
+	if ts > 1:
+		addc.text = Loc.t("ADD A COMPUTER TEAM")
 	r2.add_child(addc)
 	if t.d["mode"] == "computer":
-		var fill := _btn("FILL WITH A FIELD OF 16", func() -> void:
-			for e in DEFAULT_FIELD:
-				if t.players().size() >= MAX_FIELD:
-					break
-				t.add_player("%s %s" % [Loc.t(String(e[0]).capitalize()), Loc.t(String(AI.STRATEGIES[e[1]]["name"]))], e[0], "hard", e[1])
+		var fill := _btn("FILL WITH A FIELD OF 16" if ts == 1 else "FILL WITH A FIELD OF 8 TEAMS", func() -> void:
+			if ts == 1:
+				for e in DEFAULT_FIELD:
+					if t.players().size() >= MAX_FIELD:
+						break
+					t.add_player("%s %s" % [Loc.t(String(e[0]).capitalize()), Loc.t(String(AI.STRATEGIES[e[1]]["name"]))], e[0], "hard", e[1])
+			else:
+				fill_teams(t, 8)
 			_save()
-			_draw_tour(), 300)
+			_draw_tour(), 360)
 		fill.name = "Tour_Fill16"
 		v.add_child(fill)
+
+
+## The organiser types a whole team (offline, fixed teams): its name and each player's name and faction.
+func _add_team_by_hand(v: VBoxContainer) -> void:
+	var ts := t.team_size()
+	var r := HFlowContainer.new()
+	r.add_theme_constant_override("h_separation", 8)
+	r.add_theme_constant_override("v_separation", 6)
+	v.add_child(r)
+	var tn := LineEdit.new()
+	tn.name = "Tour_TeamNameAdd"
+	tn.placeholder_text = Loc.t("TEAM NAME")
+	tn.max_length = 24
+	tn.custom_minimum_size = Vector2(220, 50)
+	r.add_child(tn)
+	var names: Array = []
+	var facs: Array = []
+	for k in ts:
+		var nm := LineEdit.new()
+		nm.placeholder_text = Loc.t("PLAYER %d") % (k + 1)
+		nm.max_length = 24
+		nm.custom_minimum_size = Vector2(180, 50)
+		r.add_child(nm)
+		names.append(nm)
+		var fo := OptionButton.new()
+		fo.custom_minimum_size = Vector2(150, 50)
+		for f in ["crown", "clockwork", "brood", "random"]:
+			fo.add_item(Loc.t(f.capitalize()))
+		r.add_child(fo)
+		facs.append(fo)
+	var add := _btn("ADD THE TEAM", func() -> void:
+		if tn.text.strip_edges() == "":
+			return
+		var mbs: Array = []
+		for k in ts:
+			var n: String = (names[k] as LineEdit).text.strip_edges()
+			mbs.append({"name": n if n != "" else "%s %d" % [tn.text.strip_edges(), k + 1],
+				"faction": ["crown", "clockwork", "brood", "random"][(facs[k] as OptionButton).selected], "who": "human", "plan": ""})
+		t.add_team(tn.text, mbs)
+		_save()
+		_draw_tour(), 220)
+	add.name = "Tour_AddTeam"
+	r.add_child(add)
+
+
+## A field of `n` computer teams (the championship simulation's plans dealt in turn, so each team mixes factions).
+static func fill_teams(tt: Tournament, n: int) -> void:
+	var ts := tt.team_size()
+	var k := 0
+	for i in n:
+		if tt.players().size() >= MAX_FIELD:
+			break
+		var mbs: Array = []
+		for j in ts:
+			var e: Array = DEFAULT_FIELD[(k * 5) % DEFAULT_FIELD.size()]
+			k += 1
+			mbs.append({"name": "%s %s" % [Loc.t(String(e[0]).capitalize()), Loc.t(String(AI.STRATEGIES[e[1]]["name"]))], "faction": e[0], "who": "hard", "plan": e[1]})
+		tt.add_team(Loc.t("Team %d") % (tt.players().size() + 1), mbs)
 
 
 ## The championship simulation's field (docs/championship_sim.md "The field"), offered as one button.
@@ -869,6 +1225,7 @@ const DEFAULT_FIELD := [["crown", "optimal"], ["crown", "balanced"], ["crown", "
 func _tab_rules() -> void:
 	var v := _scroll()
 	var lines := [
+		["Type", Tournament.TYPE_NAME[t.team_size()] + ((", " + Loc.t(Tournament.TEAM_RULE_NAME[String(t.d.get("team_rule", "fixed"))])) if t.team_size() > 1 else "")],
 		["Format", Tournament.FORMAT_NAME[t.d["format"]]],
 		["Series", Loc.t("Best of %d") % int(t.d["bo"]) + ", " + Loc.t("the final best of %d") % int(t.d["bo_final"])],
 		["Maps", Tournament.MAP_RULE_NAME[t.d["map_rule"]] + (", " + Loc.t("the loser picks the next map") if t.d["loser_picks"] else "")],
@@ -951,10 +1308,17 @@ func _open_match(mid: int) -> void:
 	var sc2 := t.score(m)
 	var fa := t.faction_for(m, "a") if int(m["a"]) >= 0 else ""
 	var fb := t.faction_for(m, "b") if int(m["b"]) >= 0 else ""
-	var vs := _label("%s %s   %d - %d   %s %s" % [t.pname(int(m["a"])), ("(" + Loc.t(fa.capitalize()) + ")") if fa != "" else "",
-		sc2[0], sc2[1], t.pname(int(m["b"])), ("(" + Loc.t(fb.capitalize()) + ")") if fb != "" else ""], 22, UiStyle.TEXT)
+	var vs := _label("%s %s   %d - %d   %s %s" % [t.pname(int(m["a"])), ("(" + fac_text(fa) + ")") if fa != "" else "",
+		sc2[0], sc2[1], t.pname(int(m["b"])), ("(" + fac_text(fb) + ")") if fb != "" else ""], 22, UiStyle.TEXT)
 	vs.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	v.add_child(vs)
+	if t.team_size() > 1:
+		for s in ["a", "b"]:
+			if int(m[s]) >= 0:
+				var tl := _label("%s:  %s" % [t.pname(int(m[s])), ", ".join(t.members(t.player(int(m[s]))).map(func(x) -> String:
+					return "%s (%s)" % [x["name"], fac_text(String(x["faction"])) if String(x["faction"]) in Tournament.FACTIONS else Loc.t("Random")]))], 15, UiStyle.MUTED)
+				tl.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+				v.add_child(tl)
 	v.add_child(_label(Loc.t("Best of %d") % int(m["bo"]) + ("  ·  " + Loc.t("winner: %s") % t.pname(int(m["winner"])) if m["state"] == "done" else ""), 15, UiStyle.MUTED))
 	if String(m.get("dispute", "")) != "":
 		v.add_child(_label(Loc.t("DISPUTE: ") + String(m["dispute"]), 16, UiStyle.BAD))
@@ -974,7 +1338,7 @@ func _open_match(mid: int) -> void:
 		if String(g["map"]) != "":
 			txt += MapGen.display_name(String(g["map"])) + "  ·  "
 		if String(g["fa"]) != "":
-			txt += "%s v %s  ·  " % [Loc.t(String(g["fa"]).capitalize()), Loc.t(String(g["fb"]).capitalize())]
+			txt += "%s v %s  ·  " % [fac_text(String(g["fa"])), fac_text(String(g["fb"]))]
 		txt += Loc.t("won by %s") % t.pname(int(m[g["win"]]))
 		if int(g["len"]) > 0:
 			txt += "  ·  %d:%02d" % [int(g["len"]) / 60, int(g["len"]) % 60]
@@ -1008,7 +1372,7 @@ func _open_match(mid: int) -> void:
 	var pt := t.pick_turn(m)
 	if bt != "":
 		v.add_child(_label(Loc.t("%s bans a map.") % t.pname(int(m[bt])), 16))
-		if acts_for.has(bt) and String(t.player(int(m[bt])).get("who", "human")) == "human":
+		if acts_for.has(bt) and t.is_human(t.player(int(m[bt]))):
 			v.add_child(_map_buttons(t.open_maps(m), func(id: String) -> void:
 				if org and t.d["mode"] != "online":
 					t.ban(m, bt, id)
@@ -1019,7 +1383,7 @@ func _open_match(mid: int) -> void:
 		return
 	if pt != "":
 		v.add_child(_label(Loc.t("%s picks the map.") % t.pname(int(m[pt])), 16))
-		if acts_for.has(pt) and String(t.player(int(m[pt])).get("who", "human")) == "human":
+		if acts_for.has(pt) and t.is_human(t.player(int(m[pt]))):
 			var played: Array = (m["games"] as Array).map(func(g) -> String: return String(g["map"]))
 			v.add_child(_map_buttons(t.open_maps(m).filter(func(x) -> bool: return not played.has(x)) if t.open_maps(m).size() > played.size() else t.open_maps(m), func(id: String) -> void:
 				if org and t.d["mode"] != "online":
@@ -1055,7 +1419,7 @@ func _open_match(mid: int) -> void:
 	if not need.is_empty():
 		_organiser_tools(v, m)
 		return
-	v.add_child(_label("%s (%s)  v  %s (%s)" % [t.pname(int(m["a"])), Loc.t(t.faction_for(m, "a").capitalize()), t.pname(int(m["b"])), Loc.t(t.faction_for(m, "b").capitalize())], 18))
+	v.add_child(_label("%s (%s)  v  %s (%s)" % [t.pname(int(m["a"])), fac_text(t.faction_for(m, "a")), t.pname(int(m["b"])), fac_text(t.faction_for(m, "b"))], 18))
 	var acts := HFlowContainer.new()
 	acts.add_theme_constant_override("h_separation", 8)
 	acts.add_theme_constant_override("v_separation", 8)
@@ -1086,7 +1450,11 @@ func _open_match(mid: int) -> void:
 				UiStyle.primary(p)
 				p.disabled = not _relay_set()
 				acts.add_child(p)
-				v.add_child(_label(("You host the room %s: your opponent joins it from here." if my_side == "a" else "Your opponent hosts the room %s: you join it from here (wait until they are in it).") % room, 15, UiStyle.MUTED))
+				var hosting := my_side == "a" and mi == 0
+				if t.team_size() > 1:
+					v.add_child(_label(("You host the room %s: your team-mates and the other team join it from here." if hosting else "%s's first player hosts the room %s: you join it from here, in your own seat (wait until the host is in it).") % ([room] if hosting else [t.members(t.player(int(m["a"])))[0]["name"], room]), 15, UiStyle.MUTED))
+				else:
+					v.add_child(_label(("You host the room %s: your opponent joins it from here." if my_side == "a" else "Your opponent hosts the room %s: you join it from here (wait until they are in it).") % room, 15, UiStyle.MUTED))
 				# a report by hand, if the game's own report went missing
 				acts.add_child(_btn("I WON THIS GAME", func() -> void: _call_then_match({"t": "tr", "mid": mid, "win": my_side, "info": {"game": int(ng["game"]), "how": "played"}}, mid), 230))
 				acts.add_child(_btn("I LOST THIS GAME", func() -> void: _call_then_match({"t": "tr", "mid": mid, "win": "b" if my_side == "a" else "a", "info": {"game": int(ng["game"]), "how": "played"}}, mid), 230))
@@ -1188,18 +1556,11 @@ func _play_computer(mid: int, quick: bool, chain: bool) -> void:
 	var ng := t.next_game(m)
 	var gi: int = ng["game"]
 	var swap := t.swap_spots(m, gi)
-	var pa := t.player(int(m["a"]))
-	var pb := t.player(int(m["b"]))
-	var sa := {"who": String(pa["who"]), "faction": String(ng["fa"]), "strategy": String(pa["plan"]), "side": 0, "colour": 0}
-	var sb := {"who": String(pb["who"]), "faction": String(ng["fb"]), "strategy": String(pb["plan"]), "side": 1, "colour": 1}
-	if swap:
-		sa["side"] = 1
-		sb["side"] = 0
-		sa["colour"] = 1
-		sb["colour"] = 0
-	var slots := [sb, sa] if swap else [sa, sb]
+	# (job tournament-formats: a team is several slots, each member with its faction and plan; Tournament.game_slots)
+	var slots: Array = t.game_slots(m, swap).map(func(x: Dictionary) -> Dictionary:
+		return {"who": String(x["who"]), "faction": String(x["faction"]), "strategy": String(x["strategy"]), "side": int(x["side"]), "colour": int(x["colour"])})
 	main.set("tour_game", {"tid": String(t.d["id"]), "mid": mid, "gi": gi, "kind": "computer", "swap": swap, "quick": quick, "chain": chain,
-		"limit": int(t.d.get("time_limit", 0)), "replays": int(m.get("replays", 0))})
+		"limit": int(t.d.get("time_limit", 0)), "replays": int(m.get("replays", 0)), "n": t.team_size()})
 	_save()
 	main.start({"map": String(ng["map"]), "seed": int(ng["seed"]), "slots": slots})
 
@@ -1223,14 +1584,24 @@ func _play_online(mid: int, side: String) -> void:
 	main.net_lobby = l
 	l.tour = {"tid": String(t.d["id"]), "mid": mid, "gi": int(ng["game"])}
 	main.set("tour_game", {"tid": String(t.d["id"]), "mid": mid, "gi": int(ng["game"]), "kind": "online", "side": side,
-		"limit": int(t.d.get("time_limit", 0)), "me": me, "key": key, "role": role, "relay": Settings.relay_url})
-	if side == "a":
+		"limit": int(t.d.get("time_limit", 0)), "me": me, "key": key, "role": role, "relay": Settings.relay_url, "n": t.team_size()})
+	# online the start spots are not swapped (the host is always slot 0, side a's first player)
+	var gs := t.game_slots(m, false)
+	var seat := 0
+	for i in gs.size():
+		if String(gs[i]["s"]) == side and int(gs[i]["mi"]) == mi:
+			seat = i
+	if seat == 0 and side == "a":
 		l.host(Settings.relay_url, code)
-		l.set_map(String(ng["map"]))
-		l.slots[0]["faction"] = String(ng["fa"])
-		l.slots[1]["faction"] = String(ng["fb"])
-		l.tour_lock = true
+		if t.team_size() > 1:
+			l.tour_setup(String(ng["map"]), gs)
+		else:
+			l.set_map(String(ng["map"]))
+			l.slots[0]["faction"] = String(ng["fa"])
+			l.slots[1]["faction"] = String(ng["fb"])
+			l.tour_lock = true
 	else:
+		l.tour_seat = seat if t.team_size() > 1 else -1
 		l.start_now.connect(func(cfg: Dictionary) -> void: main.start(cfg))
 		l.join(Settings.relay_url, code)
 	main.show_online()
@@ -1300,7 +1671,7 @@ static func game_over(m: Node, g: Game, winner: int, rp_path: String) -> void:
 					else:
 						var w_side := ""
 						if winner >= 0:
-							var slot_a := 1 if bool(tg.get("swap", false)) else 0
+							var slot_a := int(tg.get("n", 1)) if bool(tg.get("swap", false)) else 0
 							w_side = "a" if g.sides[winner] == g.sides[slot_a] else "b"
 						else:
 							w_side = String(tg.get("verdict", "a"))
@@ -1392,22 +1763,33 @@ class TourWatch extends Node:
 		if g.net and not g.net.is_host:
 			return          # (online: the host's game decides, the guest hears it)
 		# the bell: the side clearly ahead wins; else played again
-		var s0 := TournamentPage.side_score(g, 0)
-		var s1 := TournamentPage.side_score(g, 1)
+		# (a team's score is its players' added: job tournament-formats; slot 0's side against the other)
+		var s0 := 0.0
+		var s1 := 0.0
+		for tm in g.n_players():
+			if g.sides[tm] == g.sides[0]:
+				s0 += TournamentPage.side_score(g, tm)
+			else:
+				s1 += TournamentPage.side_score(g, tm)
+		var other := 1
+		for tm in g.n_players():
+			if g.sides[tm] != g.sides[0]:
+				other = tm
+				break
 		var k := Tournament.LEAD_K
 		var w := -1
 		if s0 >= k * s1 and s0 > 0:
 			w = 0
 		elif s1 >= k * s0 and s1 > 0:
-			w = 1
+			w = other
 		elif int(tg.get("replays", 0)) >= Tournament.REPLAYS:
-			w = 0 if s0 >= s1 else 1
+			w = 0 if s0 >= s1 else other
 		tg["timed"] = true
 		if w < 0:
 			tg["again"] = true
 		else:
-			var slot_a := 1 if bool(tg.get("swap", false)) else 0
-			tg["verdict"] = "a" if w == slot_a else "b"
+			var slot_a := int(tg.get("n", 1)) if bool(tg.get("swap", false)) else 0
+			tg["verdict"] = "a" if g.sides[w] == g.sides[slot_a] else "b"
 		if g.mlog:
 			g.mlog.add("Tournament time limit (%d:%02d): scores %d and %d, %s" % [lim / 60, lim % 60, int(s0), int(s1), ("won by slot %d" % w) if w >= 0 else "no clear leader: played again"])
 		g.end_note = "time limit"

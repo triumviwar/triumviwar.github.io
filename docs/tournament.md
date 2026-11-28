@@ -6,6 +6,8 @@ Job `tournament`, branch `tournament`. The owner asked on 2026-11-24:
 This page says what the tool does, how to use it, how it works inside, how it is tested,
 and the choices Claude made that the owner may want to change.
 
+TYPES (2v2, 3v3, 4v4 teams, fixed or drawn) and the organised MAP POOL picker came later: `docs/tournament_formats.md`.
+
 ## In one paragraph
 
 The main menu has a new button, TOURNAMENTS. From there you make a tournament, join one with a code,

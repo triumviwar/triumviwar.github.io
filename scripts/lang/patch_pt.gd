@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.999": ["Os TORNEIOS têm um TIPO: 1x1, 2x2, 3x3 ou 4x4. As equipes são fixas (os jogadores entram numa equipe digitando o nome dela) ou sorteadas pelos dados do organizador quando o torneio começa; todos os formatos, a mesa online, o jogo offline e o só de computadores funcionam com equipes, a soma da pontuação da equipe decide no limite de tempo e cada jogador mantém a sua facção. A seleção de mapas é um conjunto de cartões com a imagem e as posições iniciais de cada mapa, agrupados por 2, 4 e 6-8 jogadores, com filtros DO JOGO / CLÁSSICOS / SEUS MAPAS e uma busca; entra qualquer mapa que caiba os jogadores do tipo (um 1x1 num mapa de 4 jogadores usa duas posições opostas), também os seus mapas do editor em torneios offline e só de computadores (tournament-formats)."],
 	"0.38.230": ["Os Filhotes da Ninhada agora são uma pequena serpe: verde-oliva, asas de morcego e uma fileira de espinhos vermelhos, voando e mordendo em todas as direções."],
 	"0.38.229": ["Uma larva carregando, embrulhando ou guardando um casulo mantém a mesma pele oliva escura de quando anda (antes ficava amarelada)."],
 	"0.38.228": ["Os cavalos pastam virados para onde estão (antes todos pastavam para baixo à direita), também no cercado; a Mãe da Ninhada no segundo estágio caminha de frente para você; os novos quadros de pistola do Couraceiro aceitam todas as pelagens."],
