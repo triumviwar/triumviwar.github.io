@@ -39,7 +39,7 @@ const MAX_PRESSES_PAGE := 90
 const SAME_PAGE := 0.72          # two pages whose buttons overlap this much (Jaccard) are one page
 ## Buttons never clicked: they quit the program, open the browser / a mail program, wipe saves, or sign in for real.
 const QUIT_WORDS := ["EXIT", "SAIR", "SALIR"]          # (the main menu's: they close the program; elsewhere they leave a page)
-const SKIP_WORDS := ["QUIT GAME", "DISCORD", "WEBSITE", "SITE", "OPEN FOLDER", "ABRIR PASTA",
+const SKIP_WORDS := ["QUIT GAME", "YES, QUIT", "SIM, SAIR", "SÍ, SALIR", "DISCORD", "WEBSITE", "SITE", "OPEN FOLDER", "ABRIR PASTA",
 		"ABRIR CARPETA", "DOWNLOAD", "BAIXAR", "DESCARGAR", "STEAM", "GITHUB", "ITCH", "DELETE ALL", "APAGAR TUDO",
 		"BORRAR TODO", "RESET ALL", "REPORT A BUG", "SEND REPORT", "WINDOWS", "ANDROID", "PLAY ON THE WEB", "JOGAR NA WEB",
 		"JUGAR EN LA WEB", "OPEN IN BROWSER", "ABRIR NO NAVEGADOR", "ABRIR EN EL NAVEGADOR"]
@@ -851,7 +851,8 @@ func _crawl(prefix: String, seeds: Array) -> void:
 		var shot := await _snap(pid, nflag > 0)
 		pages.append({"id": pid, "seed": seed_name, "route": route, "buttons": ks.size(), "shot": shot})
 		# no way back?
-		var is_root := route.is_empty() and seed_name in ["menu", "device"]     # (the device page is the first start's own choice)
+		# (the main menu, however reached, and the device page, the first start's own choice, have no way back by design)
+		var is_root: bool = (route.is_empty() and seed_name in ["menu", "device"]) or (is_instance_valid(main._menu_grid) and main._menu_grid.is_visible_in_tree())
 		var esc_leaves := false
 		if not is_root and not _in_match():
 			esc_leaves = await _esc_works()
@@ -878,7 +879,8 @@ func _crawl(prefix: String, seeds: Array) -> void:
 			var label := key.split("#")[0]
 			if int(key.split("#")[1]) >= 2:
 				continue        # (a third WATCH, EXPORT, a third row's same button: the first two stand for the rest)
-			if _skip(label) or (is_root and seed_name == "menu" and label.to_upper() in QUIT_WORDS):
+			var on_main: bool = is_instance_valid(main._menu_grid) and main._menu_grid.is_visible_in_tree()
+			if _skip(label) or (on_main and label.to_upper() in QUIT_WORDS):
 				presses.append({"screen": pid, "button": key, "result": "skipped (leaves the program / the browser / wipes saves)", "flags": []})
 				continue
 			if i > 0 and not await _goto(seed, route):
