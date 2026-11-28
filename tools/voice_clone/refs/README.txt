@@ -31,3 +31,6 @@ teles          Lieutenant Teles (b01): young Portuguese officer, quick, decisive
 joaquim        Frei Joaquim (b01): Portuguese Franciscan in his sixties, fatherly, urgent.
 volunteer      Will Hollins (a06): Virginia farm lad of nineteen, earnest, shy, brave.
 assembly       the Free Assembly's adviser (a01, a06 versus): French woman agitator, sharp, smoky mezzo.
+tomasz_angry_ref.wav: young Tomasz SHOUTING (2026-11-28, the owner's pick of two ElevenLabs v4 takes in the second
+          account, "Out! All of you, out of the church, now!..."; 15.5 s). make_big_lines.py uses it for his shout and
+          angry lines (ANGRY_REFS); `python make_big_lines.py --angry` writes lines_angry.txt (his 7 such lines again).

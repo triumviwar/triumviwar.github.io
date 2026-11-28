@@ -45,6 +45,10 @@ VOICES = {
     "volunteer": ("refs/volunteer_ref.wav", 0.0, 0.5),
     "assembly": ("refs/assembly_ref.wav", 0.0, 0.5),
 }
+# A second reference, the same voice shouting (docs/chatterbox_todo.md: Chatterbox copies the reference's delivery):
+# used for that voice's shout and angry lines (not urgent: a quiet plea would come out shouted). Owner 2026-11-28: Tomasz and Valadares sounded too calm.
+ANGRY_REFS = {"tomasz": "refs/tomasz_angry_ref.wav"}
+ANGRY_TAGS = ("shout", "angry")
 ORDER = ["ferrer", "lindqvist", "king", "hollweg", "valadares", "fairleigh", "ruggieri", "varenne", "jakob",
          "delorme", "benedito", "brother", "colonel", "machine", "captain", "pieter", "sergeant", "cardinal",
          "tomasz", "cardinal_dean", "printer", "weaver", "commissary", "guide", "teles", "joaquim", "volunteer", "assembly"]
@@ -84,7 +88,14 @@ def emotion(name, who):
     return max(base, pr["exaggeration"]), pr["cfg"]
 
 
-def mission_lines(redo_emotion=False):
+def ref_for(name, who):
+    """The reference for a line: the voice's angry one for its shout and angry lines, when it has one."""
+    if EMO["lines"].get(name) in ANGRY_TAGS and who in ANGRY_REFS and os.path.exists(os.path.join(HERE, ANGRY_REFS[who])):
+        return ANGRY_REFS[who]
+    return VOICES[who][0]
+
+
+def mission_lines(redo_emotion=False, angry_only=False):
     """Every line still to record, by voice; with redo_emotion, every line with an emotion instead (recorded or not:
     the owner 2026-11-22 "certain lines have no emotion at all")."""
     by_who = {w: [] for w in VOICES}
@@ -97,7 +108,10 @@ def mission_lines(redo_emotion=False):
             who = voice_of(folder, L.get("who")) if isinstance(L, dict) else None
             if who is None:
                 continue
-            if redo_emotion:
+            if angry_only:
+                if ref_for("%s__%s" % (folder, lid), who) == VOICES[who][0]:
+                    continue
+            elif redo_emotion:
                 if "%s__%s" % (folder, lid) not in EMO["lines"]:
                     continue
             elif os.path.exists(os.path.join(ROOT, "campaign", "voice", folder, lid + ".ogg")):
@@ -109,8 +123,9 @@ def mission_lines(redo_emotion=False):
 
 
 def main():
-    redo = "--emotion" in sys.argv
-    out_name = "lines_emotion.txt" if redo else "lines_big.txt"
+    angry = "--angry" in sys.argv
+    redo = "--emotion" in sys.argv or angry
+    out_name = "lines_angry.txt" if angry else ("lines_emotion.txt" if redo else "lines_big.txt")
     rows = ["# The big run (docs/chatterbox_todo.md): run.bat --lines %s%s" % (out_name, " --out out_emotion" if redo else ""),
             "# A stopped run picks up where it left off. EVERY CAMPAIGN LINE IS A PLACEHOLDER (rewritten later).", ""]
     ann = [] if redo else announcer()
@@ -120,14 +135,19 @@ def main():
                  "[ref refs/lindqvist_ref.wav]", "[pitch 0]", "[exaggeration 0.5]"]
         rows += ["%s | %s" % r for r in ann]
     total += len(ann)
-    ml = mission_lines(redo)
+    ml = mission_lines(redo, angry)
     for who in ORDER:
         ref, pitch, ex = VOICES[who]
         if not ml[who]:
             continue
         rows += ["", "# ---- %s (%d lines)" % (who, len(ml[who])), "[ref %s]" % ref, "[pitch %s]" % pitch]
         cur = None
+        cur_ref = ref
         for name, text in ml[who]:
+            r = ref_for(name, who)
+            if r != cur_ref:
+                rows.append("[ref %s]" % r)
+                cur_ref = r
             e = emotion(name, who)
             if e != cur:
                 tag = EMO["lines"].get(name, "calm")

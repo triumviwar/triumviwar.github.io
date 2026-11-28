@@ -1,0 +1,27 @@
+# The big run (docs/chatterbox_todo.md): run.bat --lines lines_angry.txt --out out_emotion
+# A stopped run picks up where it left off. EVERY CAMPAIGN LINE IS A PLACEHOLDER (rewritten later).
+
+
+# ---- tomasz (7 lines)
+[ref refs/tomasz_ref.wav]
+[pitch 0.0]
+[ref refs/tomasz_angry_ref.wav]
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+a01__t_left | We left the families on the road in Virginia. I have confessed it. I will not do it twice.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a06__t_nd | The doors are burning! Men onto the parvis!
+# angry
+[exaggeration 0.8]
+[cfg 0.35]
+a07__t_1 | Majesty, the Romans were at the doors all day. They hate a clever machine more than they hate the devil.
+# shout
+[exaggeration 0.95]
+[cfg 0.3]
+a07__t_call | Come! To Saint Peter's, all of you, over the bridge. Stay together.
+a07__t_king | The King is hit! Guard, to the King!
+d05__t_field | To the church! All of you! Leave the baskets!
+p01__t_band_near | The band is past the woods. They are almost at the farm!
