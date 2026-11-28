@@ -122,3 +122,13 @@ At 2400 x 1080 on a 6.5" phone the command buttons were ~6 mm and the portraits 
 - A shape per team on the minimap (the review's idea) is not built: the colour sets measured well enough for 2-4
   players; with 8 players two colours stay close in each set (the table).
 - The spectator panels and the world war's side panels draw their own text without the HUD's share of TEXT SIZE.
+
+## Tests run (all pass)
+
+`tools/test_ui_access_phone.gd` (at 1600 x 720 and 1280 x 720), `test_qa_settings_persist` (its snapshot now holds the
+two settings), `test_settings_tabs` (the two new rows listed), `test_selection_panel` (its phone taps now find a unit's
+portrait in the phone's single row), `test_card_keys`, `test_card_page_reset`, `test_card_text`, `test_hud_frames`,
+`test_spectator`, `test_drag_release_ui`, `test_mount_select`, `test_phone_crew`, `test_replay_names_local`,
+`test_i18n`, `test_match_settings`, `test_overlay_alpha`, and the playtest driver `pt_comforts` (phone, layout:
+fails=0; the card 27% of the height, was 30%). The boot check shows no script error (the headless run's "Aborted" at
+exit happens on main too).

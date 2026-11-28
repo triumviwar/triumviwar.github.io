@@ -12,7 +12,7 @@ extends SceneTree
 const PC_IDS := ["language", "device", "grid_keys", "layout", "tooltips", "build_grid", "replays_keep", "relay_url",
 	"replay_rec", "window_full", "ui_size", "mini_alpha", "powder_smoke", "area_marks", "expansion_spots", "rootmaw_spots", "health_bars", "band_marks", "overlay_alpha", "charge_bars",
 	"music", "sound", "ambience", "music_player", "gear_turn", "patch_notes", "anim_viewer", "reset",
-	"narrator", "narrator_volume", "narrator_rate"]
+	"narrator", "narrator_volume", "narrator_rate", "cb_mode", "text_size"]      # (cb_mode, text_size: ui-access-phone)
 
 var main
 var fails := 0
