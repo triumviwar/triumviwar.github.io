@@ -16,6 +16,7 @@ extends RefCounted
 
 const FROST_KILL := 20.0        # THE FROST LINE: seconds an egg lives on the frozen side (default)
 const COLD_EVERY := 1.0         # WARMTH: the cold bites once a second
+const BAND_WORD := {"strong": "STRONG", "middle": "MIDDLING", "weak": "WEAK"}     # THE LEDGER's bands on its card
 
 var run: MissionRun
 var st: Dictionary              # = run.act3
@@ -554,7 +555,7 @@ func show_ledger(lg: Dictionary, title := "THE LEDGER") -> void:
 		l.name = "Mark_" + String(mk["id"])
 		list.add_child(l)
 	var band := String(lg["band"])
-	var bl := UiStyle.text(Loc.t("%d MARKS: %s") % [int(lg["count"]), Loc.t(band.to_upper())], fs + 4, UiStyle.TRIM, HORIZONTAL_ALIGNMENT_CENTER, true)
+	var bl := UiStyle.text(Loc.t("%d MARKS: %s") % [int(lg["count"]), Loc.t(String(BAND_WORD.get(band, band.to_upper())))], fs + 4, UiStyle.TRIM, HORIZONTAL_ALIGNMENT_CENTER, true)
 	bl.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	bl.name = "Band"
 	v.add_child(bl)

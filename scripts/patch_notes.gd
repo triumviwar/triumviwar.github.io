@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"Act 3's engine (no mission yet): climates (the cold slows the Brood's eggs and a frost line kills them, moving with the night; the wet runs the Clockwork down faster; dry heat slows the Brood a little), Hollweg's stop-work rung on a bell, Lindqvist's made call that turns a wave, warmth by the fires in the ice, a balloon's flight that marks what it sees, the ledger of everything the campaign brought to Rome, the night's three ports in any order (the first fresh, the last grown), Act 3's new pieces in any order, the final choice with no timer, and the credits over the war map and the King's study.",
+	]},
 	{"v": "0.38.229", "items": [
 		"A grub carrying, wrapping or guarding a cocoon keeps the same dark olive skin as when it walks (it turned a lighter yellow before).",
 	]},

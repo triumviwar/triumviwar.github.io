@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.999": ["O motor do Ato 3 (ainda sem missões): climas (o frio atrasa os ovos da Ninhada e uma linha de geada mata-os, descendo de noite; a humidade gasta a corda da Relojoaria mais depressa; o calor seco atrasa um pouco a Ninhada), a paragem de Hollweg tocada num sino, o chamado feito de Lindqvist que desvia uma vaga, o calor junto às fogueiras no gelo, o voo de um balão que marca o que vê, o livro de contas de tudo o que a campanha trouxe a Roma, os três portos da noite em qualquer ordem (o primeiro fresco, o último crescido), as novas peças do Ato 3 em qualquer ordem, a escolha final sem tempo, e os créditos sobre o mapa de guerra e o gabinete do Rei."],
 	"0.38.229": ["Uma larva carregando, embrulhando ou guardando um casulo mantém a mesma pele oliva escura de quando anda (antes ficava amarelada)."],
 	"0.38.228": ["Os cavalos pastam virados para onde estão (antes todos pastavam para baixo à direita), também no cercado; a Mãe da Ninhada no segundo estágio caminha de frente para você; os novos quadros de pistola do Couraceiro aceitam todas as pelagens."],
 	"0.38.227": ["O Couraceiro dispara a pistola com o mesmo capacete simples que usa em tudo o resto (o penacho que só tinha ao disparar sumiu), redesenhado nas cinco direções; o Piqueiro da campanha caminha para você e para sudeste com quatro quadros em vez de deslizar de lado."],

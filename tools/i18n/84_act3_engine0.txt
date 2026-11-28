@@ -1,0 +1,54 @@
+# ACT 3's ENGINE STEP 0 (act3-engine0, docs/act3_engine0.md): the words the new mission pieces show over the map and
+# on the ledger's card, and the credits' button.
+
+> STOP-WORK
+pt PARAGEM
+es PARADA
+
+> THE MADE CALL
+pt O CHAMADO FEITO
+es LA LLAMADA HECHA
+
+> COLD
+pt FRIO
+es FRÍO
+
+> FROST
+pt GEADA
+es HELADA
+
+> FROZEN
+pt CONGELADO
+es CONGELADO
+
+> MARKED
+pt MARCADO
+es MARCADO
+
+> %d MARKS: %s
+pt %d MARCAS: %s
+es %d MARCAS: %s
+
+> STRONG
+pt FORTE
+es FUERTE
+
+> MIDDLING
+pt MEDIANO
+es MEDIANO
+
+> WEAK
+pt FRACO
+es DÉBIL
+
+> THE CREDITS
+pt OS CRÉDITOS
+es LOS CRÉDITOS
+
+> HOLD ROME
+pt SEGURAR ROMA
+es SOSTENER ROMA
+
+> SAVE THE FLOCK
+pt SALVAR O REBANHO
+es SALVAR EL REBAÑO
