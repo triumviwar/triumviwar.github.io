@@ -388,7 +388,19 @@ func _words(t: String) -> Array:
 	return out_w
 
 
+var _titles := {}
+
+
 func _english(t: String) -> bool:
+	if _titles.is_empty():
+		# (the music's titles and the maps' names stay English in every language, by design)
+		var mt: Script = load("res://scripts/music_tracks.gd")
+		if mt != null:
+			for v in mt.get_script_constant_map().get("TRACKS", {}).values():
+				_titles[String(v)] = true
+		_titles["-"] = true
+	if _titles.has(t.trim_prefix("> ").strip_edges()):
+		return false
 	if _en_words.is_empty():
 		var tab := Loc.table(lang)
 		var pn: Dictionary = PatchPt.N if lang == "pt" else (PatchEs.N if lang == "es" else {})
