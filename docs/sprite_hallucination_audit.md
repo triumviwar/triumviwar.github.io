@@ -165,6 +165,8 @@ keg idle frame 0 (keg on the chest) by frame 1; 141 the Swift's (cuckoo) north-e
 156, 169 specks by the Armoured Officer's south death and the Guardsman's fire-up removed; 145 the Pendulum's pink pixels
 at the blade; 200 the Tension icon's corner specks; 201 the loose piece by the mossy boulder; 207 the loose specks
 round the snowy rocks (c, d).
+0.38.229: 14 the grub in its 20 cocoon strips takes its walk's darker olive (tools/grub_cocoon_tone.py: the olive pixels'
+mean and spread matched; the shapes are as before: taller on thinner legs, and carry_cocoon_s / wrap_s still a side view).
 0.38.228 (2026-11-28): 12 the Brood Mother's stage-2 south walk and idle are stage 3's front-on walk scaled to stage 2
 (the two stages are one design; tools/bm2_front_from_bm3.py, no redraw); 78 and 29 the horse grazes in its own facing
 in all five views (requests M131-M134 + SE, 3 frames each; NE needed a second answer), the coat masks rebuilt
