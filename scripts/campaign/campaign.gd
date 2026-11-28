@@ -216,6 +216,36 @@ static func engine_faction(m: Dictionary, f: String) -> String:
 	return String(m.get("factions", {}).get(f, {}).get("stand_in", "crown"))
 
 
+## A VERSION'S OWN GROUND (Act 3's e01_brazil, docs/campaign_e01_build.md): mission "version_data": {version id:
+## {"map": "campaign:<name>", "areas": {name: [x, y, w, h]}, "teams": {team id: {"faction", "colour", "camera"}}, any other
+## mission key ("light", "weather"...)}}. The
+## mission as its version plays it: that version's map, its areas over the mission's own (same names, other places: one
+## script, two maps), its teams' faction / colour / camera. Picked with the version (MissionAct2.version_of), so the
+## match setup, the briefing's map and MissionRun all read the same. No entry: the mission as it is.
+static func version_data(m: Dictionary, ver: String) -> Dictionary:
+	var vd: Variant = m.get("version_data", {})
+	if ver == "" or not (vd is Dictionary) or not (vd as Dictionary).has(ver):
+		return m
+	var o: Dictionary = vd[ver]
+	var out := m.duplicate()
+	for k in o:
+		if not ["areas", "teams"].has(String(k)):
+			out[k] = o[k]          # (its map, its light, its weather...: the version's own)
+	if o.get("areas") is Dictionary:
+		var ar: Dictionary = (m.get("areas", {}) as Dictionary).duplicate()
+		ar.merge(o["areas"], true)
+		out["areas"] = ar
+	if o.get("teams") is Dictionary:
+		var ts: Array = []
+		for tm in m.get("teams", []):
+			var t: Dictionary = (tm as Dictionary).duplicate()
+			if (o["teams"] as Dictionary).has(String(t.get("id", ""))):
+				t.merge(o["teams"][String(t["id"])], true)
+			ts.append(t)
+		out["teams"] = ts
+	return out
+
+
 static func faction_known(m: Dictionary, f: String) -> bool:
 	return Defs.FACTIONS.has(f) or Defs.FACTIONS.has(String(m.get("factions", {}).get(f, {}).get("stand_in", "")))
 
@@ -492,6 +522,7 @@ static func make_cfg(id: String, mode: String, host_seat := "p1", online := fals
 	var slots: Array = []
 	if mode == "solo":
 		side = solo_side(m, side)
+	m = version_data(m, MissionAct2.version_of(m, side if mode == "solo" else ""))      # (e01_brazil: the version's map)
 	for tm in m.get("teams", []):
 		var ctl := solo_control(m, tm, side) if mode == "solo" else control_of(tm, mode, side, m)
 		var slot := {"faction": engine_faction(m, String(tm.get("faction", "crown"))), "colour": int(tm.get("colour", Defs.COLOUR_RANDOM)),
@@ -924,6 +955,23 @@ static func problems(m: Dictionary) -> Array:
 			for lb in vs.get("labels", {}):
 				if not vids.has(String(lb)):
 					out.append("versions: a label for an unknown version %s" % lb)
+	var vdat: Variant = m.get("version_data", {})
+	if vdat is Dictionary:
+		for vid in vdat:
+			if not vids.has(String(vid)):
+				out.append("version_data: unknown version %s" % vid)
+			var o: Dictionary = vdat[vid] if vdat[vid] is Dictionary else {}
+			var vmp := String(o.get("map", ""))
+			if vmp.begins_with("campaign:") and map_data(vmp.substr(9)).is_empty():
+				out.append("version_data %s: no file campaign/maps/%s.json" % [vid, vmp.substr(9)])
+			for an in o.get("areas", {}):
+				if not areas.has(String(an)):
+					out.append("version_data %s: area %s is not one of the mission's areas" % [vid, an])
+			for tid in o.get("teams", {}):
+				if not teams.has(String(tid)):
+					out.append("version_data %s: unknown team %s" % [vid, tid])
+				elif not faction_known(m, String(o["teams"][tid].get("faction", "crown"))):
+					out.append("version_data %s: team %s has an unknown faction" % [vid, tid])
 	for vid in _versions_used(m):
 		if not vids.has(vid):
 			out.append("version %s: not one of the mission's \"versions\"" % vid)

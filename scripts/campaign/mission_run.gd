@@ -140,6 +140,8 @@ func setup(m: Dictionary, md: String, cfg: Dictionary, guest := false) -> void:
 	if m.get("versions") is Dictionary:
 		# (act2-engine0: the mission's VERSION, FRESH / GROWN, picked once before anything is placed)
 		flags["version"] = MissionAct2.version_of(m, solo_side, difficulty)
+		data = Campaign.version_data(m, String(flags["version"]))      # (e01_brazil: the version's map, areas and teams)
+		m = data
 	for o in m.get("objectives", []):
 		if String(o.get("kind", "")) == "capture":
 			_capture_share[String(o.get("tag", ""))] = float(o.get("share", 0.25))

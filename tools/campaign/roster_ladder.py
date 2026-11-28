@@ -97,6 +97,7 @@ BOUND = {
     "d09_crossroads": ("crown", ["army"]),            # (Act 2's C7: the army; the fort's garrison (co-op) and the versus pick are not bound)
     "d10_jungle": ("crown", ["column"]),              # (Act 2's C8: the jungle column; Óbidos' garrison (co-op) is not bound)
     "d11_siege": ("crown", ["column"]),               # (Act 2's C9: the southern column; the valley (co-op) is not bound)
+    "e01_brazil": ("crown", ["column"]),              # (Act 3's C10: the army of Brazil; the militia (co-op) is not bound)
 }
 # A mission on TWO ladders (d10: the column's C8 and the swarm's B7 in the mirror and versus): the second ladder's teams and
 # its side. Its NEW cards have a speaker and a trigger of their own ("new_<faction>", "ladder_new_<faction>").
@@ -156,6 +157,7 @@ CARDS = {
     "quadrant": "NEW: THE GUNNER'S QUADRANT. Research it at the Armoury after Prepared Charges: the guns are laid by the quadrant, and every Field Cannon and Mortar reaches a tile farther, from behind the earthworks to the gates.",
     "ballista": "NEW: THE SPRING BALLISTA. Made at the arsenal's Heavy Works: a bolt thrower on cog wheels whose screw goes through its target into the men behind. Hard on guns and earthworks; it cannot shoot what is close or in the air.",
     "long_chain": "NEW: LONG CHAIN. Research it at the arsenal's Escapement: every Netter throws its net much farther, from behind the Clock Soldiers onto the gunners.",
+    "band": "NEW: THE DRUMMER. The army's drum: soldiers in his ring (five tiles) march a little faster, and his SOLO quickens them more for a few seconds. Here he does more: a group of Brazil's people with the Drummer beside it keeps the army's pace. The Armoury trains more where there is one.",
     "powder_wagon": "NEW: THE POWDER WAGON. There is no Mill on the road: the wagons carry the army's powder. Musketeers and guns within 3 tiles of one refill from it, so keep it just behind the line, and guard it: it blows up when it is destroyed. It fills again at a Barracks; the fort's Foundry builds more.",
 }
 # (pieces that share a card: the Venom Challenger is told with the Tyrant Challenger)
@@ -210,6 +212,7 @@ CARDS_PT = {
     "quadrant": "NOVO: O QUADRANTE DO ARTILHEIRO. Pesquise-o no Arsenal depois das Cargas Preparadas: os canhões são apontados pelo quadrante, e cada Canhão de Campanha e Morteiro alcança uma casa mais longe, de trás das trincheiras até aos portões.",
     "ballista": "NOVO: A BALESTRA DE MOLA. Feita na Oficina Pesada do arsenal: um lança-virotes sobre rodas dentadas cujo parafuso atravessa o alvo e entra nos homens atrás. Duro contra canhões e trincheiras; não atira ao que está perto nem no ar.",
     "long_chain": "NOVO: CORRENTE LONGA. Pesquise-a no Escape do arsenal: cada Lança-Redes atira a rede muito mais longe, de trás dos Soldados-Relógio para cima dos artilheiros.",
+    "band": "NOVO: O TAMBOR. O tambor do exército: os soldados no seu círculo (cinco casas) marcham um pouco mais depressa, e o seu SOLO apressa-os mais durante uns segundos. Aqui faz mais: um grupo da gente do Brasil com o Tambor ao lado acompanha o passo do exército. O Arsenal treina mais onde houver um.",
     "powder_wagon": "NOVO: A CARROÇA DE PÓLVORA. Não há Moinho na estrada: as carroças levam a pólvora do exército. Mosqueteiros e canhões a 3 casas de uma recarregam dela, por isso mantenha-a logo atrás da linha, e guarde-a: explode quando é destruída. Enche-se outra vez num Quartel; a Fundição do forte faz mais.",
 }
 CARDS_ES = {
@@ -260,12 +263,13 @@ CARDS_ES = {
     "quadrant": "NUEVO: EL CUADRANTE DEL ARTILLERO. Investígalo en la Armería después de las Cargas Preparadas: los cañones se apuntan con el cuadrante, y cada Cañón de Campaña y Mortero alcanza una casilla más lejos, desde detrás de las trincheras hasta las puertas.",
     "ballista": "NUEVO: LA BALLESTA DE MUELLE. Hecha en el Taller Pesado del arsenal: un lanzavirotes sobre ruedas dentadas cuyo tornillo atraviesa el blanco y entra en los hombres de detrás. Duro contra cañones y trincheras; no dispara a lo que está cerca ni en el aire.",
     "long_chain": "NUEVO: CADENA LARGA. Investígala en el Escape del arsenal: cada Lanzarredes lanza su red mucho más lejos, desde detrás de los Soldados Reloj sobre los artilleros.",
+    "band": "NUEVO: EL TAMBOR. El tambor del ejército: los soldados en su círculo (cinco casillas) marchan un poco más deprisa, y su SOLO los apresura más durante unos segundos. Aquí hace más: un grupo de la gente del Brasil con el Tambor al lado lleva el paso del ejército. La Armería entrena más donde haya una.",
     "powder_wagon": "NUEVO: EL CARRO DE PÓLVORA. No hay Molino en el camino: los carros llevan la pólvora del ejército. Mosqueteros y cañones a 3 casillas de uno recargan de él, así que mantenlo justo detrás de la línea, y guárdalo: estalla cuando lo destruyen. Se llena otra vez en un Cuartel; la Fundición del fuerte hace más.",
 }
 
 # When the card is said (seconds into the match) and to which side, per mission.
-CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8, "d03_fazenda": 8, "d04_concordia": 8, "d01_minas": 8, "d06_queen": 8, "d05_aldeia": 8, "d08_rivers": 8, "d07_spring": 8, "d09_crossroads": 8, "d10_jungle": 8, "d11_siege": 8}
-SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus", "d03_fazenda": "stock", "d04_concordia": "guild", "d01_minas": "crown", "d06_queen": "brood", "d05_aldeia": "crown", "d08_rivers": "swarm", "d07_spring": "guild", "d09_crossroads": "crown", "d10_jungle": "column", "d11_siege": "crown"}
+CARD_AT = {"p01_leaf": 5, "c01_thirteenth": 5, "b01_specimen": 5, "a02_furth": 5, "a03_plateau": 5, "a01_presses": 5, "a06_barricades": 5, "a04_visit": 8, "a05_specimens": 8, "a07_council": 8, "d02_exodus": 8, "d03_fazenda": 8, "d04_concordia": 8, "d01_minas": 8, "d06_queen": 8, "d05_aldeia": 8, "d08_rivers": 8, "d07_spring": 8, "d09_crossroads": 8, "d10_jungle": 8, "d11_siege": 8, "e01_brazil": 8}
+SIDE = {"p01_leaf": "crown", "c01_thirteenth": "guild", "b01_specimen": "sire", "a02_furth": "guild", "a03_plateau": "nest", "a01_presses": "crown", "a06_barricades": "crown", "a04_visit": "visit", "a05_specimens": "creatures", "a07_council": "crown", "d02_exodus": "exodus", "d03_fazenda": "stock", "d04_concordia": "guild", "d01_minas": "crown", "d06_queen": "brood", "d05_aldeia": "crown", "d08_rivers": "swarm", "d07_spring": "guild", "d09_crossroads": "crown", "d10_jungle": "column", "d11_siege": "crown", "e01_brazil": "column"}
 
 
 def step_of(mission_id, faction=None):

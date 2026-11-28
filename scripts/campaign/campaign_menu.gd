@@ -346,7 +346,7 @@ static func briefing(main: Node, mid: String) -> void:
 	bsc.add_child(v)
 	v.add_child(UiStyle.text(Loc.t("You lead: %s") % Loc.t(Campaign.side_name(m, side)), 20, _side_col(m, side).lightened(0.35), HORIZONTAL_ALIGNMENT_LEFT, true))
 	# THE MAP (job map-previews): the battlefield's small picture (the mission places its own sides: no start spots)
-	var bmap := String(m.get("map", ""))
+	var bmap := String(Campaign.version_data(m, MissionAct2.version_of(m, side)).get("map", ""))      # (e01: the version's map)
 	if bmap != "" and MapThumb.drawable(bmap):
 		var mp := MapPreview.new()
 		mp.name = "Briefing_Map"

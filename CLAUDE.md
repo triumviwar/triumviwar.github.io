@@ -26,6 +26,17 @@
 
 ## Current work
 
+- ACT 3 STEPS 2 AND 4 MERGED 2026-11-28: act3-warmap 0.38.254 (docs/war_map_act3.md, tools/sim_war_clock.gd): after d10 +
+  d11 the war map opens Act 3 on THE WORLD, views THE AMERICAS / AFRICA / THE INDIES / THE SOUTHERN SEAS / EUROPE (drawn in
+  code, painting slots), pins e01-e20, 12 colonies, THE CLOCK (WarMapData.clock, campaign/warmap.json "clock": the year
+  turns every 2 wins, optional = half, grace 2 years, the theatre left alone longest loses one colony a year, plate "Next
+  to fall"); sim 1,704 runs a setting: careful / round robin lose 0, random ~2, theatre by theatre 2-3 (was 4-6).
+  e01-brazil 0.38.255 (docs/campaign_e01_build.md): "Brazil After the Fires" (2781, Ruggieri's dispatch) in TWO VERSIONS
+  by d09 `first` (new engine piece Campaign version_data): THE SOUTHERN ROAD (brood first, default; campaign:brazil_south,
+  the machines down the Serra to Santos) / THE RIVER ROAD (clockwork first; campaign:brazil_river, the swarm down the
+  Amazon); bring the people out to the ships. ALL TEXT PLACEHOLDER. At the merge the war map's duplicate "Brazil After
+  the Fires" key was dropped (the mission's title-case text kept). Next in the build order: step 3 ART (savanna, monsoon,
+  mangrove, ice; allies' reskins), step 5 e04_kongo.
 - MERGED 2026-11-28 (0.38.247-0.38.251): UI HUD PASS (docs/ui_hud_pass.md, tools/test_hud_pass.gd: HOTKEY PRIORITY: units
   and a building selected show the units' card first, the building's training/research after it (blue edge), a building
   letter only when no unit command has it; INCOME A MINUTE in a resource's tooltip; SUPPLY BLOCK blinks red + one
