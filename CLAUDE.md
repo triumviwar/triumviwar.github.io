@@ -26,6 +26,18 @@
 
 ## Current work
 
+- CLICK SWEEP (owner 2026-11-28 "make a test everything, analyse everything clickable routine"; job qa-click-sweep,
+  branch qa-click-sweep, docs/qa_click_sweep.md, report docs/qa_click_sweep/report.md, data docs/qa_click_sweep/data/,
+  pictures docs/shots/qa_click_sweep/): tools/qa/click_sweep.gd (+ .sh, _report.py): real clicks on every button of every
+  page reached from the main menu (breadth first), a match of each faction with every card button clicked, the campaign
+  again with every mission done; flags ERROR/DEAD/STUCK/COVERED/OFFSCREEN/CUT/OFF/NOBACK/EN/SLOW/NOCHANGE. RUN BEFORE A
+  RELEASE: `tools/qa/click_sweep.sh --quick` (en, 1600x900, ~1 h); full = 6 runs. 5 runs, ~8,100 clicks: fixed a
+  worker-labels SCRIPT ERROR (Brood), the world war's SAVE & LEAVE while computers move (a computers-only war could not be
+  left), Esc/phone back on the online room, music player, animation viewer, map editor, layout page, a hub title pushing
+  the page off a 1280 screen (es), the map editor's decorations note (pt/es), overlapping hub hotspots, English lines in
+  pt/es (gun/mortar/wagon states via Loc: two spaces join pieces, the most specific key wins; Loc.shown for tools).
+  11 proposals in the doc. Patch note under 0.38.999.
+
 - CLOCKWORK LATE MACRO (owner 2026-11-27 "Why does the Clockwork stop expanding?"; job clockwork-late-macro, branch
   clockwork-late-macro, docs/clockwork_late_macro.md, tables docs/clockwork_late_macro/tables.md, scripts/ai_cw_late.gd
   AICwLate, tools/study/clockwork_late_macro.py, data docs/clockwork_late_macro/data/): CAUSE (traced, tools/cw_trace.gd now

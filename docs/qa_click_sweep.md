@@ -9,7 +9,7 @@ fixed on the branch (patch note under 0.38.999).
 ## How to run it (one command)
 
 ```
-tools/qa/click_sweep.sh --quick      # before a release: English, 1600x900, computer (about 45-60 minutes)
+tools/qa/click_sweep.sh --quick      # before a release: English, 1600x900, computer (about an hour)
 tools/qa/click_sweep.sh              # the whole sweep: en/pt/es x computer 1600x900 / phone 2400x1080 (6 runs, 2 at a time)
 ```
 
@@ -74,7 +74,8 @@ mode X on the card, refused...) and flags:
 How the checks work:
 
 - Every click is a real event at the button's middle (`Input.parse_input_event`); before it, the control under the
-  pointer is asked (`gui_get_hovered_control`): something else there is COVERED. An open dropdown list or a question box
+  pointer is asked (`gui_get_hovered_control`); where something else is there, eight more points of the button are
+  tried, and only a button no point of which can be reached is COVERED. An open dropdown list or a question box
   is the only thing a hand can reach while it is up, so then only its buttons count.
 - "Nothing changed" compares every visible text, switch and slider, the settings file, the page and a small grey copy
   of the screen (so a map that moved or a picture that changed counts as a change).
@@ -90,7 +91,39 @@ How the checks work:
 
 ## The numbers
 
-RESULTS_TABLE
+Five runs on 0.38.232 + this branch's fixes as they came (each run took the code as it was when it started; the full
+tables and every flag: [docs/qa_click_sweep/report.md](qa_click_sweep/report.md), the runs' data in
+docs/qa_click_sweep/data/):
+
+| run | minutes | screens | clicks | ERROR | DEAD | STUCK | COVERED | CUT / OFF | NOBACK | EN | SLOW | NOCHANGE |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| en, computer 1600x900 | 66 | 83 | 1,631 | 0 | 0 | 0 | 7 | 0 | 7 | - | 0 | 50 |
+| en, phone 2400x1080 | 96 | 83 | 1,633 | 0 | 0 | 0 | 7 | 0 | 7 | - | 0 | 49 |
+| pt, computer 1600x900 | 68 | 81 | 1,605 | 0 | 0 | 0 | 8 | 5 | 4 | 160 | 5 | 55 |
+| pt, phone 2400x1080 | 89 | 81 | 1,622 | 0 | 0 | 0 | 1 | 0 | 2 | 19 | 5 | 51 |
+| es, computer 1600x900 | 71 | 81 | 1,617 | 2 | 0 | 0 | 1 | 4 | 2 | 19 | 5 | 51 |
+
+About 8,100 clicks in all (about 2,000 of them command card buttons in the three matches), on 81-83 screens a run.
+What the clicks did: opened a page 2,744, changed the page 1,558, started a card mode 1,149, acted in a match 965,
+picked a list option 609, nothing visible 408, started a match, mission, lesson or replay 55, skipped on purpose 155.
+
+Reading it:
+
+- **ERROR**: the only script error, in the es run's Brood match (worker labels and a freed unit), is fixed (below). The
+  other four runs ran before it could show or missed the frame it needs.
+- **DEAD 0, STUCK 0, OFFSCREEN 0, HUDOFF 0, HUDOVERLAP 0**: no button is wired to nothing, no page is a dead end, no
+  card button leaves the window or covers another, at both sizes. (Two STUCK pages found on the way, the world war's
+  page while computers move, are fixed below.)
+- **COVERED**: in the English runs, 6 of the 7 are the world war's top bar under its turn banner (by design; the sweep
+  counts a box over the whole page as expected since), and the Armoury's muster book (fixed). The pt computer run came
+  before both changes.
+- **NOBACK**: the map editor, the layout page, the music player, the animation viewer and the online room (fixed); what
+  is left is listed in the proposals.
+- **EN**: the pt computer run came before the English check left out music titles and the animation viewer's ids (136
+  of its 160) and before the fixes; in the last two runs what is left is map names and replay names (by design) and the
+  map editor's decoration groups (proposal 6).
+- **SLOW**: only the patch notes, the music player and the animation viewer (proposal 7).
+- **NOCHANGE**: listed in the report as "look"; none is a fault (proposal 9).
 
 ## What it found, and what was done
 
@@ -144,11 +177,16 @@ above in both languages.
    software drawing under xvfb (not measured on real hardware; the page builds every version's entry at once).
    Proposal: build the newest 20 and a SHOW OLDER button.
 8. **Map and music names stay English** in pt / es (the map picker, the music player): by design, as said in an
-   earlier patch note; the sweep leaves the music's titles out of its English check, the maps' not yet.
+   earlier patch note; the sweep leaves them out of its English check.
 9. **NOCHANGE lines** ("look", see the report): STOP on an idle unit, + WORKER / - WORKER (the worker is sent but only
    counts when he arrives), the view already chosen on the war map, the region already picked on the ranked page:
    fine. None of them is a dead button (no DEAD in any run).
-10. **The narrator on a machine with no speech engine** (Linux without speech-dispatcher) prints two engine errors
+10. **The Armoury's hotspots (low).** THE MUSTER BOOK's area on the painting lies over most of THE SWISS CAPTAIN
+    (the book 219x145 px over the captain's 184x273 at 1600x900). With the smaller hotspot on top (fixed above) the book
+    can be clicked and the captain only by his head; before, the book only by two thin strips at its sides. Both are in
+    the GO TO list too. Proposal: move the book's rect (campaign/hubs_grow.json, `guard_book`) off the captain, or give
+    the captain the room's other side.
+11. **The narrator on a machine with no speech engine** (Linux without speech-dispatcher) prints two engine errors
     (`Parameter "synth" is null`) the first time it asks for a voice; the game already stops asking after that. The
     sweep leaves them out.
 

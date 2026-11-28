@@ -818,10 +818,10 @@ func _hand_click(b: BaseButton) -> Array:
 		sigs.append("item_selected")
 	for s in sigs:
 		b.connect(s, cb)
-	# the middle first; where something else lies there, four more points of the button (a hand clicks where it can)
+	# the middle first; where something else lies there, eight more points of the button (a hand clicks where it can)
 	var wp := Vector2.ZERO
 	var under := ""
-	for f in [Vector2(0.5, 0.5), Vector2(0.25, 0.25), Vector2(0.75, 0.25), Vector2(0.25, 0.75), Vector2(0.75, 0.75)]:
+	for f in [Vector2(0.5, 0.5), Vector2(0.25, 0.25), Vector2(0.75, 0.25), Vector2(0.25, 0.75), Vector2(0.75, 0.75), Vector2(0.5, 0.1), Vector2(0.5, 0.9), Vector2(0.1, 0.5), Vector2(0.9, 0.5)]:
 		var pt: Vector2 = r.position + r.size * f
 		if not vp.has_point(pt):
 			continue
