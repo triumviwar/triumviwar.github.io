@@ -188,6 +188,9 @@ func key(e: InputEventKey) -> bool:
 		KEY_F3:
 			activate(MAKE)
 			return true
+		KEY_HOME:
+			hud.jump_alert()          # JUMP TO LAST ALERT (ui-hud-pass; Space centres on the selection)
+			return true
 	var j := FKEYS.find(kc)
 	if j >= 0:
 		activate(CAM0 + j, "set" if (e.shift_pressed or e.ctrl_pressed or e.meta_pressed) else "go")
@@ -346,13 +349,13 @@ func select_production() -> void:
 func cam_save(j: int) -> void:
 	var cam := game().camera
 	game().cam_slots[j] = [cam.position, cam.zoom.x]
-	hud.toast("View F%d saved." % (j + 4), false)
+	hud.toast(("View F%d saved." % (j + 4)) if Settings.pc() else ("View %d saved." % (j + 1)), false)      # (a phone: no key names)
 
 
 func cam_go(j: int) -> void:
 	var c = game().cam_slots[j]
 	if c == null:
-		hud.toast("View F%d is empty: %s saves this view." % [j + 4, ("Shift+F%d" % (j + 4)) if Settings.pc() else "hold the tab"])
+		hud.toast(("View F%d is empty: Shift+F%d saves this view." % [j + 4, j + 4]) if Settings.pc() else ("View %d is empty: hold the tab to save this view." % (j + 1)))
 		return
 	var cam := game().camera
 	var z := clampf(float(c[1]), 0.55, 2.6)
@@ -390,15 +393,15 @@ func tip(id: int) -> Dictionary:
 	var pc := Settings.pc()
 	if id >= CAM0:
 		var j := id - CAM0
-		return {"title": "View F%d" % (j + 4), "body": ("F%d: jump to the saved view. Shift+F%d: save this view here." % [j + 4, j + 4]) if pc
+		return {"title": ("View F%d" % (j + 4)) if pc else ("View %d" % (j + 1)), "body": ("F%d: jump to the saved view. Shift+F%d: save this view here." % [j + 4, j + 4]) if pc
 			else "Tap: jump to the saved view (an empty one saves this view). Hold: save this view here."}
 	match id:
 		IDLE:
-			return {"title": "Idle workers" + (" (F1)" if pc else ""), "body": "Select every idle worker and jump to the first."}
+			return {"title": "Idle workers" + (" (F1)" if pc else ""), "body": Loc.t("Select every idle worker and jump to the first.") + "\n" + Loc.t("Glows while a worker is idle.")}
 		ARMY:
-			return {"title": "Army" + (" (F2)" if pc else ""), "body": "Select every soldier you have."}
+			return {"title": "Army" + (" (F2)" if pc else ""), "body": Loc.t("Select every soldier you have.") + "\n" + Loc.t("Glows red while some of your army is fighting.")}
 		MAKE:
-			return {"title": "Make" + (" (F3)" if pc else ""), "body": "Select every building that makes something (the Town Hall too), to train from all of them at once."}
+			return {"title": "Make" + (" (F3)" if pc else ""), "body": Loc.t("Select every building that makes something (the Town Hall too), to train from all of them at once.") + "\n" + Loc.t("Glows blue while every one of them is idle: nothing training or researching.")}
 	var g := group_of(id)
 	var n := g + 1 if g < 9 else 0
 	return {"title": "Group %d" % n, "body": ("%d: select it (twice: jump to it). Ctrl+%d: set it to the selection. Shift+%d: add the selection to it. Alt+%d: set it and take those units out of every other group (Shift+Alt+%d: add them and take them out). To drop a unit: select the group, Shift+click the unit off, Ctrl+%d." % [n, n, n, n, n, n]) if pc
@@ -420,7 +423,10 @@ func draw(font: Font, counts: Array) -> void:
 		UiStyle.draw_button(ci, vr, pc and tr.has_point(mouse) and hit(mouse) == id, push > 0.0 or set_)
 		if push > 0.0:
 			ci.draw_rect(vr, Color(0, 0, 0, 0.25 * push))
-		hud._text(UiStyle.bold_font(), vr.position + Vector2(vr.size.x * 0.5, TAB_H - 4), "F%d" % (j + 4) if j < FKEYS.size() else "·", 11, Color(1, 0.9, 0.55) if set_ else Color(1, 1, 1, 0.5), 1)
+		hud._text(UiStyle.bold_font(), vr.position + Vector2(vr.size.x * 0.5, TAB_H - 4), ("F%d" % (j + 4) if pc else "%d" % (j + 1)) if j < FKEYS.size() else "·", 11, Color(1, 0.9, 0.55) if set_ else Color(1, 1, 1, 0.5), 1)
+	# (ui-hud-pass) IDLE glows while a worker is idle, ARMY while some of the army is fighting, MAKE while every
+	# production building is idle (HudAlerts.glows)
+	var glow: Array = hud.alerts().glows(int(counts[1]) if counts.size() > 1 else 0) if not gm.demo else [false, false, false]
 	for i in N_BTN:
 		var r := button_rect(i)
 		var g := group_of(i)
@@ -455,3 +461,5 @@ func draw(font: Font, counts: Array) -> void:
 			hud._text(font, vr.position + Vector2(vr.size.x * 0.5, 36), sub, 13, Color(1, 1, 1, 0.65), 1)
 		if pc and i < GROUP0:
 			hud._text(UiStyle.bold_font(), vr.position + Vector2(3, 10), "F%d" % (i + 1), 9, Color(1, 0.9, 0.55, 0.7))
+		if i < GROUP0 and bool(glow[i]):
+			hud._glow_frame(ci, vr, [Color(1, 0.85, 0.3), Color(1, 0.35, 0.25), Color(0.45, 0.8, 1.0)][i])

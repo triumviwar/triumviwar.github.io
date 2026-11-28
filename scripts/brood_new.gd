@@ -813,6 +813,8 @@ static func lay_problem(g: Game, q: Unit, k: String) -> String:
 static func lay(g: Game, q: Unit, k: String) -> String:
 	var why := lay_problem(g, q, k)
 	if why != "":
+		if q.team == g.human and g.hud and g.hud.has_method("note_refused"):
+			g.hud.note_refused(q.team, why)        # (SUPPLY BLOCKED, ui-hud-pass: HudAlerts)
 		return why
 	var price := g.unit_price(q.team, k)
 	g.players[q.team]["gold"] -= int(price[0])

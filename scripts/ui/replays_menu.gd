@@ -113,7 +113,7 @@ func _row(m: Dictionary) -> Control:
 	var rl := UiStyle.text(RESULT_TEXT.get(res, res.to_upper()), 17, rc, HORIZONTAL_ALIGNMENT_LEFT, true)
 	l1.add_child(rl)
 	var when := Time.get_datetime_string_from_unix_time(int(m.get("date", 0)) + _tz(), true).substr(0, 16)
-	var bits: Array = [when, String(m.get("map_name", m.get("map", ""))), ReplayPlayer.clock_text(float(m.get("len", 0.0))),
+	var bits: Array = [when, Loc.t(String(m.get("map_name", m.get("map", "")))), ReplayPlayer.clock_text(float(m.get("len", 0.0))),
 		"v" + String(m.get("version", "?")), "%.1f MB" % (int(m.get("size", 0)) / 1048576.0) if int(m.get("size", 0)) >= 1048576 else "%d KB" % (int(m.get("size", 0)) / 1024)]
 	var l1t := UiStyle.text("   ·   ".join(bits), 16, UiStyle.TEXT, HORIZONTAL_ALIGNMENT_LEFT)
 	l1t.size_flags_horizontal = Control.SIZE_EXPAND_FILL

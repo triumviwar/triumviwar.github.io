@@ -1,0 +1,103 @@
+> Alert %s: %s (%d s ago)
+pt Alerta %s: %s (há %d s)
+es Alerta %s: %s (hace %d s)
+
+> %s finished.
+pt %s concluído.
+es %s terminado.
+
+> %s researched.
+pt %s pesquisado.
+es %s investigado.
+
+> SUPPLY BLOCKED: production is waiting.
+pt SUPRIMENTO BLOQUEADO: a produção está esperando.
+es SUMINISTRO BLOQUEADO: la producción está esperando.
+
+> No alerts yet.
+pt Nenhum alerta ainda.
+es Todavía no hay alertas.
+
+> ALERT
+pt ALERTA
+es ALERTA
+
+> Home
+pt Home
+es Inicio
+
+> Jump to last alert
+pt Ir ao último alerta
+es Ir a la última alerta
+
+> Jump to last alert (Home)
+pt Ir ao último alerta (Home)
+es Ir a la última alerta (Inicio)
+
+> Moves the view to the newest alert: under attack, a building finished, a research done. Press again within 4 s for the one before.
+pt Leva a vista ao alerta mais recente: sob ataque, um prédio concluído, uma pesquisa feita. Aperte de novo em até 4 s para o anterior.
+es Lleva la vista a la alerta más reciente: bajo ataque, un edificio terminado, una investigación hecha. Pulsa otra vez en 4 s para la anterior.
+
+> Alerts kept: %d (the last %d).
+pt Alertas guardados: %d (os últimos %d).
+es Alertas guardadas: %d (las últimas %d).
+
+> A building's button: its key works only when no unit command has it.
+pt Botão de um prédio: a tecla dele só funciona quando nenhum comando das unidades a usa.
+es Botón de un edificio: su tecla solo funciona cuando ninguna orden de las unidades la usa.
+
+> +%d a minute in · %d a minute spent (the last minute)
+pt +%d por minuto entrando · %d por minuto gastos (no último minuto)
+es +%d por minuto de ingreso · %d por minuto gastados (en el último minuto)
+
+> Workers %d · Army %d · In production %d
+pt Trabalhadores %d · Exército %d · Em produção %d
+es Trabajadores %d · Ejército %d · En producción %d
+
+> Press SACRIFICE again to offer up all %d (they can't come back).
+pt Aperte SACRIFICAR de novo para oferecer todos os %d (eles não voltam).
+es Pulsa SACRIFICAR otra vez para ofrecer a los %d (no vuelven).
+
+> SHOW APM
+pt MOSTRAR APM
+es MOSTRAR APM
+
+> Glows while a worker is idle.
+pt Brilha enquanto algum trabalhador está parado.
+es Brilla mientras algún trabajador está ocioso.
+
+> Glows red while some of your army is fighting.
+pt Brilha em vermelho enquanto parte do seu exército está lutando.
+es Brilla en rojo mientras parte de tu ejército está luchando.
+
+> Glows blue while every one of them is idle: nothing training or researching.
+pt Brilha em azul enquanto todos estão parados: nada treinando nem pesquisando.
+es Brilla en azul mientras todos están parados: nada entrenando ni investigando.
+
+> View %d saved.
+pt Vista %d salva.
+es Vista %d guardada.
+
+> View %d is empty: hold the tab to save this view.
+pt A vista %d está vazia: segure a aba para salvar esta vista.
+es La vista %d está vacía: mantén pulsada la pestaña para guardar esta vista.
+
+> View F%d is empty: Shift+F%d saves this view.
+pt A vista F%d está vazia: Shift+F%d salva esta vista.
+es La vista F%d está vacía: Mayús+F%d guarda esta vista.
+
+> View %d
+pt Vista %d
+es Vista %d
+
+> Researching %s · %d s
+pt Pesquisando %s · %d s
+es Investigando %s · %d s
+
+> Making %s · %d s
+pt Fazendo %s · %d s
+es Haciendo %s · %d s
+
+> (+%d waiting)
+pt (+%d esperando)
+es (+%d esperando)

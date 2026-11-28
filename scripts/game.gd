@@ -4164,6 +4164,8 @@ func on_building_complete(b: Building) -> void:
 	if b.team == human and clock > 1.0 and Defs.BUILDINGS[b.kind].get("line", false):
 		Sfx.play_any(["%s/placed" % Sfx.SHORT.get(b.d["faction"], "crown")], b.center(), -6.0)   # a wall piece: just a soft knock
 	elif b.team == human and clock > 1.0:
+		if hud and hud.has_method("note_alert"):
+			hud.note_alert(b.center(), "built", "%s finished." % b.d["name"])
 		Sfx.play_f_once("built", b.d["faction"], 4.0)
 		Sfx.announce(b.d["faction"], "expansion" if b.kind == faction_hall(b.team) else "building_done", 3.0)
 
@@ -4539,6 +4541,8 @@ func research_done(b: Building, key: String) -> void:
 	if b.team == human:
 		var what := ("%s unlocked." % Defs.UNITS[info["unlocks"]]["name"]) if info.has("unlocks") else String(info["about"])
 		notify("%s researched: %s" % [info["name"], what], true)
+		if hud and hud.has_method("note_alert"):
+			hud.note_alert(b.center(), "research", "%s researched." % info["name"])
 		# (the Clockwork rings its old clock bell once, clock/research)
 		Sfx.announce(faction_of(b.team), "research_done", 3.0, "research" if faction_of(b.team) == "clockwork" else "")
 	elif not demo:
@@ -4796,6 +4800,8 @@ func refit_done(u: Unit, what: Array) -> void:
 func train(b: Building, key: String) -> String:
 	var why := can_train(b, key)
 	if why != "":
+		if b.team == human and hud and hud.has_method("note_refused"):
+			hud.note_refused(b.team, why)        # (SUPPLY BLOCKED, ui-hud-pass: HudAlerts)
 		return why
 	var k := Defs.train_kind(key)
 	var price := unit_price(b.team, key)
@@ -10758,6 +10764,8 @@ func under_attack(e: Entity) -> void:
 	var now := Time.get_ticks_msec()
 	alert_at = e.global_position if e is Unit else e.center()
 	alert_t = 3.0
+	if hud and hud.has_method("note_alert"):       # (JUMP TO LAST ALERT, ui-hud-pass: HudAlerts)
+		hud.note_alert(alert_at, "attack", "Our allies are under attack!" if e.team != human else ("Your base is under attack!" if e is Building else "Your forces are under attack!"))
 	if now - _alert_ms < 15000:
 		return
 	# no alarm while you're looking at the fight

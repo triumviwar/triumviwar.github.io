@@ -108,6 +108,74 @@ func toast(t: String, sound := true) -> void:
 			Sfx.announce(fac, "no_supply", 5.0)
 
 
+# ------------------------------------------------------------------ ui-hud-pass (docs/ui_hud_pass.md): alerts, supply
+## block, income a minute and the quick buttons' glows live in HudAlerts (scripts/ui/hud_alerts.gd).
+var _alerts: HudAlerts = null
+
+
+func alerts() -> HudAlerts:
+	if _alerts == null or _alerts.game != game:
+		_alerts = HudAlerts.new(game)
+	return _alerts
+
+
+## The game's hooks (Game.under_attack, on_building_complete, research_done): one more alert for JUMP TO LAST ALERT.
+func note_alert(p: Vector2, kind: String, text: String) -> void:
+	if game and not game.demo:
+		alerts().add(p, kind, text)
+
+
+## Game.train / BroodNew.lay refused a production of team t (SUPPLY BLOCKED).
+func note_refused(t: int, why: String) -> void:
+	if game:
+		alerts().note_refused(t, why)
+
+
+## JUMP TO LAST ALERT (Home, or the ALERT button by the minimap): the newest alert; again: the one before.
+func jump_alert() -> void:
+	var said := alerts().jump(self)
+	toast(said if said != "" else "No alerts yet.", false)
+	_redraw_t = 0.0
+
+
+## The small ALERT button: just above the minimap's right end (below it when the minimap is at the top).
+func alert_btn_rect() -> Rect2:
+	var m := mini_rect()
+	var w := 70.0
+	if m.position.y < 80.0:
+		return Rect2(m.end.x - w, m.end.y + 8, w, 22)
+	return Rect2(m.end.x - w, m.position.y - 30, w, 22)
+
+
+func _alert_btn_on() -> bool:
+	return game != null and not game.demo and not game.spectating() and not (game.over and not game.map_view)
+
+
+func _draw_alert_btn() -> void:
+	if not _alert_btn_on():
+		return
+	var r := alert_btn_rect()
+	var age := alerts().newest_age()
+	var lit := age < 10.0
+	var hov := Settings.pc() and r.has_point(_mouse())
+	UiStyle.draw_button(_ci, r, hov, lit)
+	if lit:
+		var ph := 0.5 + 0.5 * sin(Time.get_ticks_msec() / 180.0)
+		_ci.draw_rect(r.grow(1), Color(1, 0.35, 0.25, 0.45 + 0.45 * ph), false, 2.0)
+	var lab := Loc.t("ALERT")
+	var col := Color(1, 0.8, 0.6) if lit else (UiStyle.TEXT if not alerts().list.is_empty() else Color(1, 1, 1, 0.45))
+	_text(UiStyle.bold_font(), r.get_center() + Vector2(6 if Settings.pc() else 0, 5), lab, 12, col, 1)
+	if Settings.pc():
+		_text(UiStyle.bold_font(), r.position + Vector2(3, 9), Loc.t("Home"), 8, Color(1, 0.9, 0.55, 0.7))
+
+
+## A glowing frame (IDLE, ARMY, MAKE, the ALERT button): a pulse in col.
+func _glow_frame(ci: CanvasItem, r: Rect2, col: Color) -> void:
+	var ph := 0.5 + 0.5 * sin(Time.get_ticks_msec() / 220.0)
+	ci.draw_rect(r.grow(2), Color(col.r, col.g, col.b, 0.5 + 0.45 * ph), false, 3.0)
+	ci.draw_rect(r.grow(-1), Color(col.r, col.g, col.b, 0.16 + 0.2 * ph))
+
+
 var _redraw_t := 0.0
 
 
@@ -362,7 +430,9 @@ func _layer_sig(n: String) -> Array:
 					if not game.eliminated[t]:
 						vals.append(_res_line(t))
 			if not game.demo:
-				vals.append(game.apm())
+				vals.append(game.apm() if Settings.show_apm else -1)
+				var bl := alerts().blocked()
+				vals.append_array([bl, (Time.get_ticks_msec() / 300) % 2 if bl else 0])
 			if _online():
 				var pm := game.net.ping_shown()
 				vals.append_array([pm / 5 if pm < 1000 else pm / 100, game.net.ping_grade(), game.net.waiting, game.net.gone_why])
@@ -378,7 +448,11 @@ func _layer_sig(n: String) -> Array:
 				al = [game.alert_at, int(game.alert_t * 40.0)]
 			return [mr, zoom_rect(), Vector2i(((c - vp * 0.5) * k * 4.0).round()), Vector2i((vp * k * 4.0).round()), al, snappedf(game.camera.zoom.x, 0.01), int(_zoom_alpha() * 40.0)]
 		"groups":
-			return [_vs(), _counts, bar.hit(m) if pc else -1, bar.sig()]
+			# (ui-hud-pass: the IDLE / ARMY / MAKE glows and the ALERT button pulse: their phase while one is lit)
+			var gl: Array = alerts().glows(int(_counts[1]) if _counts.size() > 1 else 0) if not game.demo else [false, false, false]
+			var lit: bool = gl.has(true) or alerts().newest_age() < 10.0
+			return [_vs(), _counts, bar.hit(m) if pc else -1, bar.sig(), gl, (_tick_n / 2) if lit else 0,
+				alerts().list.size(), alert_btn_rect().has_point(m) if pc else false]
 		"selection":
 			if game.selection.is_empty():
 				return [_vs(), 0, game.fog_team(), game.over and not game.map_view]
@@ -559,6 +633,8 @@ func _hud_has(p: Vector2) -> bool:
 	for r in [top_rect(), mini_rect(), panel_rect(), card_rect(), drag_rect()]:
 		if (r as Rect2).has_point(p):
 			return true
+	if _alert_btn_on() and alert_btn_rect().has_point(p):
+		return true
 	return bar.rect().has_point(p)
 
 
@@ -644,8 +720,8 @@ func _on_input(event: InputEvent) -> void:
 				get_viewport().set_input_as_handled()
 				return
 			if not Settings.pc() and Settings.tooltips and not paused and not game.spectating():
-				for pr in _pill_rects:          # phone: a tap on the supply pill shows the workers / army split
-					if int(pr[1]) == 2 and (pr[0] as Rect2).has_point(e.position):
+				for pr in _pill_rects:          # phone: a tap on a resource pill shows its tooltip (income a minute first; ui-hud-pass)
+					if (pr[0] as Rect2).has_point(e.position):
 						_help_tap(e.position)
 						get_viewport().set_input_as_handled()
 						return
@@ -765,6 +841,10 @@ func _press(p: Vector2) -> void:
 	var hid := bar.hit(p)
 	if hid >= 0:
 		bar.press(hid)
+		return
+	if _alert_btn_on() and alert_btn_rect().has_point(p) and not help_mode:
+		jump_alert()                 # (JUMP TO LAST ALERT, ui-hud-pass)
+		Sfx.play_any(["ui/click", "click"])
 		return
 	if not help_mode and _card_press(p):
 		return             # a long card: its scroll bar, or (phone) a tap or a drag
@@ -1051,6 +1131,7 @@ func _draw_view(font: Font) -> void:
 # ------------------------------------------------------------------ command card
 
 var _demolish_ms := 0
+var _sacrifice_ms := 0          # SACRIFICE on a group: the first press asks (ui-hud-pass)
 var _alt_for := {}             # card label -> its right-click / long-press action (auto-train)
 var _alt_press := {}           # the card button being held on a phone: {b, t, done}
 var nb_prog := {}              # the Brood's progress shown on the card now (BroodNew.progress; tests read it)
@@ -1273,7 +1354,14 @@ func _build_card() -> Array:
 					ess += Game.sacrifice_value(yk) * int(u.nb.get("n", Defs.UNITS[yk].get("spawn", 1)))
 				else:
 					ess += Game.sacrifice_value(u.kind)
+			var many := offer.size() > 1
 			list.append(["ab_sacrifice", "SACRIFICE", func() -> void:
+				if many and Time.get_ticks_msec() - _sacrifice_ms > 2500:
+					# (ui-hud-pass, review 6: a costly order a key away from HOLD: a group asks for a second press)
+					_sacrifice_ms = Time.get_ticks_msec()
+					toast("Press SACRIFICE again to offer up all %d (they can't come back)." % offer.size())
+					return
+				_sacrifice_ms = 0
 				var n := 0
 				for u in game.selected_units():
 					if u.can_sacrifice():
@@ -3417,8 +3505,15 @@ func _res_pills(font: Font, t: int, x: float) -> float:
 	var used := NetPredict.shown_supply(game, t)
 	var cap: int = pl["cap"]
 	var x2 := x
-	x = _pill(font, x, Color(0.75, 0.55, 0.3), "%d / %d" % [used, cap], UiStyle.BAD if used >= cap else UiStyle.TEXT, true, false,
+	var blocked := t == game.human and not game.spectating() and alerts().blocked()
+	var flash_on := blocked and (Time.get_ticks_msec() / 300) % 2 == 0
+	x = _pill(font, x, Color(0.75, 0.55, 0.3), "%d / %d" % [used, cap], (Color(1, 0.95, 0.9) if flash_on else UiStyle.BAD) if used >= cap or blocked else UiStyle.TEXT, true, false,
 		UnitStats.texture("supply"))
+	if blocked:
+		# SUPPLY BLOCKED (ui-hud-pass): the supply pill flashes red while a production waits for supply
+		_ci.draw_rect(Rect2(x2 - 2, 3, x - 8 - x2 + 4, 32), Color(1, 0.2, 0.15, 0.85 if flash_on else 0.35), false, 2.0)
+		if flash_on:
+			_ci.draw_rect(Rect2(x2, 5, x - 8 - x2, 28), Color(1, 0.15, 0.1, 0.25))
 	var x3 := x
 	if fac == "crown":
 		x = _pill(font, x, Color(0.55, 0.42, 0.3), game.horses_text(t), UiStyle.TEXT, false, false, UnitStats.texture("res_horses"))
@@ -3497,7 +3592,7 @@ func _draw_top(font: Font) -> void:
 	_text(UiStyle.title_font(), Vector2(clock_r.get_center().x, 26), "%d:%02d" % [secs / 60, secs % 60], 18, UiStyle.TEXT, 1)
 	if _online():
 		_draw_ping(clock_r, x)
-	if not game.demo:
+	if not game.demo and Settings.show_apm:       # (Settings > GAMEPLAY > SHOW APM, ui-hud-pass)
 		var apm_t := "APM %d" % game.apm()
 		var apm_w := UiStyle.bold_font().get_string_size(apm_t, HORIZONTAL_ALIGNMENT_LEFT, -1, 14).x
 		var left_btn := vs.x
@@ -3802,6 +3897,7 @@ func _draw_groups(font: Font) -> void:
 	if _counts.is_empty():
 		_refresh_counts()
 	bar.draw(font, _counts)
+	_draw_alert_btn()
 
 
 func _draw_panel(font: Font) -> void:
@@ -4288,9 +4384,34 @@ func _draw_panel(font: Font) -> void:
 				var eb := e as Building
 				if i == 0:
 					var f: float = float(shq[2]) / Building.entry_time(q[i])
+					_ci.draw_rect(Rect2(qr.position.x, qr.end.y + 2, qr.size.x, 4), Color(0, 0, 0, 0.55))
 					_ci.draw_rect(Rect2(qr.position.x, qr.end.y + 2, qr.size.x * f, 4), Color(0.75, 0.55, 1.0) if Building.is_research(q[i]) else Color(0.4, 0.75, 1))
+					# (ui-hud-pass: the time left on the one being made, so the line shows how far it is)
+					var left := maxf(0.0, Building.entry_time(q[i]) - float(shq[2]))
+					var lt := "%ds" % int(ceil(left))
+					_ci.draw_rect(Rect2(qr.position.x, qr.end.y - 13, qr.size.x, 13), Color(0, 0, 0, 0.6))
+					_text(UiStyle.bold_font(), Vector2(qr.get_center().x, qr.end.y - 2), lt, 11, Color(1, 0.92, 0.6), 1)
 				if Building.is_research(q[i]):
 					_ci.draw_rect(qr, Color(0.75, 0.55, 1.0, 0.9), false, 1.5)     # research: a violet frame
+			# PRODUCTION SHOWN (ui-hud-pass, review 5.7): what it makes now, the time left and what waits, with a long bar,
+			# in the panel's empty middle (the queue's icons stay at the right: a click cancels one)
+			var q0 := String(q[0])
+			var pr_x0 := r.position.x + 90.0 + 170.0 + 120.0
+			var pr_x1 := r.end.x - 44.0 - (q.size() - 1) * 40.0 - 14.0
+			if pr_x1 - pr_x0 >= 140.0:
+				var pf: float = clampf(float(shq[2]) / Building.entry_time(q0), 0.0, 1.0)
+				var pleft := maxf(0.0, Building.entry_time(q0) - float(shq[2]))
+				var pname := Loc.t(String(Defs.RESEARCH[q0.substr(1)]["name"])) if Building.is_research(q0) else Loc.t(Defs.train_name(q0))
+				var ptxt := (Loc.t("Researching %s · %d s") if Building.is_research(q0) else Loc.t("Making %s · %d s")) % [pname, int(ceil(pleft))]
+				if q.size() > 1:
+					ptxt += "  " + Loc.t("(+%d waiting)") % (q.size() - 1)
+				var pbr := Rect2(pr_x0, r.position.y + 38, pr_x1 - pr_x0, 12)
+				_ci.draw_rect(pbr, Color(0, 0, 0, 0.6))
+				_ci.draw_rect(Rect2(pbr.position, Vector2(pbr.size.x * pf, pbr.size.y)), Color(0.75, 0.55, 1.0) if Building.is_research(q0) else Color(0.4, 0.75, 1))
+				_ci.draw_rect(pbr, UiStyle.TRIM_DIM, false, 1.0)
+				while ptxt.length() > 4 and UiStyle.bold_font().get_string_size(ptxt, HORIZONTAL_ALIGNMENT_LEFT, -1, 13).x > pbr.size.x:
+					ptxt = ptxt.substr(0, ptxt.length() - 2) + "…"
+				_text(UiStyle.bold_font(), Vector2(pr_x0, r.position.y + 31), ptxt, 13, Color(1, 0.92, 0.7))
 	else:
 		var per_row := int((r.size.x - 20) / 38)
 		var men: Array = sel.filter(func(x: Entity) -> bool: return x is Unit and Defs.ARMOURED.has(x.kind) and x.team == game.human)
@@ -4984,6 +5105,17 @@ func _draw_card_bar() -> void:
 	var h := maxf(_card_bar.size.y * _rows() / float(_card_rows), 10.0)
 	var y := _card_bar.position.y + (_card_bar.size.y - h) * _card_scroll / float(span)
 	_ci.draw_rect(Rect2(_card_bar.position.x, y, _card_bar.size.x, h), UiStyle.TRIM)
+	# PAGE TAB (ui-hud-pass, review 7.5): "1/2" over the card's top right, so the player knows there is more (Tab on a
+	# computer, a drag on a phone)
+	var pages := ceili(_card_rows / float(_rows()))
+	var cur := mini(pages, int(ceil(_card_scroll / float(_rows()))) + 1) if _card_scroll < span else pages
+	var pt := "%d/%d %s" % [cur, pages, ("Tab" if Settings.pc() else "▾") if cur < pages else "▴"]
+	var cr := card_rect()
+	var pw := UiStyle.bold_font().get_string_size(pt, HORIZONTAL_ALIGNMENT_LEFT, -1, 11).x + 10.0
+	var prr := Rect2(cr.end.x - pw - 2, cr.position.y - 19, pw, 16)
+	_ci.draw_rect(prr, Color(0.1, 0.08, 0.05, 0.85))
+	_ci.draw_rect(prr, UiStyle.TRIM_DIM, false, 1.0)
+	_text(UiStyle.bold_font(), prr.position + Vector2(pw * 0.5, 12), pt, 11, Color(1, 0.9, 0.55), 1)
 
 
 ## At each look: the command card's buttons (what they are, where, what they do) and a short
@@ -4997,13 +5129,24 @@ var _pf_seen := -1
 
 func _refresh_card() -> void:
 	var _q := Time.get_ticks_usec()
+	# HOTKEY PRIORITY (the owner, 2026-11-28; ui-hud-pass): units and buildings selected together (a Barracks and its
+	# Musketeers) show the UNITS' card first, then the buildings' training and research after it; the units' letters
+	# win, a building's letter works only when no unit command has it (else its button shows no letter: click it)
 	var all := card_order(_build_card())
-	_card_track(all)
-	_card_rows = ceili(all.size() / float(_cols()))
+	var sec := _secondary_items(all)       # (after the units' card: _build_card starts its tooltips afresh)
+	if Settings.pc() and Settings.grid_keys:
+		for it in sec:
+			(it as Array).resize(6)      # (their own card's letter off: grid keys go by place, the units' buttons first)
+		all.append_array(sec)
+	_card_track(all + ([] if Settings.pc() and Settings.grid_keys else sec))
+	var shown_n := all.size() + (0 if Settings.pc() and Settings.grid_keys else sec.size())
+	_card_rows = ceili(shown_n / float(_cols()))
 	var span := maxi(0, _card_rows - _rows())
 	_card_scroll = clampi(_card_scroll, 0, span)
 	var first := _card_scroll * _cols()
 	var items := _with_keys(all, first, true)
+	if not (Settings.pc() and Settings.grid_keys) and not sec.is_empty():
+		items.append_array(_secondary_keys(sec, items))
 	_card_items = items          # (every button: their keys work scrolled out of view too)
 	var buttons: Array = []
 	var look := PackedStringArray()
@@ -5028,6 +5171,102 @@ func _refresh_card() -> void:
 	_card_buttons = buttons
 	_card_look = ";".join(look)
 	Prof.add("hud/card build", _q)
+
+
+## HOTKEY PRIORITY, the secondary part of a card (ui-hud-pass): with units AND your own finished buildings selected,
+## the buildings' card as if they were picked alone (its training and research only, and their letters as on that
+## card), each button acting on those buildings. Their letter is kept for the clash check (_secondary_keys).
+var _sec_for := {}             # a secondary button's label -> the buildings it acts on (its tooltip is theirs)
+
+
+func _secondary_items(unit_items: Array) -> Array:
+	_sec_for = {}
+	if controls.mode != "" or page != "" or game.selected_units().is_empty():
+		return []
+	var me := game.controlled_team()
+	var bs: Array = game.selection.filter(func(e) -> bool: return is_instance_valid(e) and e is Building and not e.dead and e.team == me and (e as Building).built)
+	if bs.is_empty():
+		return []
+	var keep_sel: Array = game.selection
+	var keep := [_alt_for, _tip_for, _tip_fn, _card_memo_key, _keys_mother]
+	game.selection = bs
+	_alt_for = {}
+	_tip_for = {}
+	_tip_fn = {}
+	var raw: Array = card_order(_build_card())
+	var keyed: Array = _with_keys(raw, 0, true)       # (the letters they have on the buildings' own card)
+	var balt := _alt_for
+	var btip := _tip_for
+	var bfn := _tip_fn
+	game.selection = keep_sel
+	_alt_for = keep[0]
+	_tip_for = keep[1]
+	_tip_fn = keep[2]
+	_card_memo_key = keep[3]
+	_keys_mother = keep[4]
+	var out: Array = []
+	for it in keyed:
+		var id := String(it[0])
+		var lab := card_label(it)
+		var is_train := Defs.UNITS.has(id) or Defs.TRAIN_AS.has(id)
+		if not is_train and _research_of(lab) == "" and not _res_ids.has(id + "|" + lab):
+			continue          # (RALLY, CANCEL, DEMOLISH...: the buildings' own card has them)
+		if unit_items.any(func(u: Array) -> bool: return card_label(u) == lab):
+			continue          # (the units' card already has a button of that name)
+		var cb: Callable = it[2]
+		it[2] = func() -> void: _as_buildings(bs, cb)
+		if balt.has(lab):
+			var acb: Callable = balt[lab]
+			_alt_for[lab] = func() -> void: _as_buildings(bs, acb)
+		if btip.has(lab):
+			_tip_for[lab] = btip[lab]
+		if bfn.has(lab):
+			var fcb: Callable = bfn[lab]
+			_tip_fn[lab] = func() -> Dictionary:
+				var keep2: Array = game.selection
+				game.selection = bs.filter(func(x) -> bool: return is_instance_valid(x) and not x.dead)
+				var r: Dictionary = fcb.call()
+				game.selection = keep2
+				return r
+		_sec_for[lab] = bs
+		out.append(it)
+	return out
+
+
+## The secondary buttons' letters: each keeps its own card's letter unless one of the units' card has it (shown or
+## kept for a command not shown now): then it has none.
+func _secondary_keys(sec: Array, unit_items: Array) -> Array:
+	var used := {}
+	for it in unit_items:
+		if it.size() > 6 and String(it[6]) != "":
+			used[String(it[6])] = true
+	if _key_memo.has(_card_memo_key):
+		var keys: Dictionary = _key_memo[_card_memo_key]["keys"]
+		for id in keys:
+			if String(keys[id]) != "":
+				used[String(keys[id])] = true
+	for k in FIXED_KEYS.values():
+		if MUST_KEYS.any(func(m: String) -> bool: return FIXED_KEYS[m] == k):
+			used[String(k)] = true       # (A attack, S stop, H hold, B build, R repair, X cancel: always the units')
+	for it in sec:
+		var k := String(it[6]) if it.size() > 6 else ""
+		if k == "" or used.has(k):
+			if it.size() > 6:
+				it[6] = ""
+			else:
+				it.append("")
+		else:
+			used[k] = true
+	return sec
+
+
+## Run a secondary button's action as if only its buildings were selected (then the selection as it was).
+func _as_buildings(bs: Array, cb: Callable) -> void:
+	var keep: Array = game.selection
+	game.selection = bs.filter(func(x) -> bool: return is_instance_valid(x) and not x.dead)
+	if not game.selection.is_empty():
+		cb.call()
+	game.selection = keep.filter(func(x) -> bool: return is_instance_valid(x))
 
 
 ## Every button the HUD has besides the quick ones: the panel's, MENU and the card's.
@@ -5057,6 +5296,9 @@ func _draw_card(font: Font) -> void:
 		UiStyle.draw_button(_ci, br, hov, on or pushed, enabled)
 		if pushed:
 			_ci.draw_rect(br, Color(0, 0, 0, 0.22))
+		if _sec_for.has(card_label(it)):
+			# (ui-hud-pass: a selected building's button on the units' card: a blue band down its left edge)
+			_ci.draw_rect(Rect2(br.position.x + 1, br.position.y + 20, 3, br.size.y - 40), Color(0.45, 0.75, 1.0, 0.9))
 		if ic:
 			_ci.draw_texture_rect(ic, br.grow(-3), false, Color.WHITE if enabled else Color(0.4, 0.4, 0.4, 0.8))
 		_ci.draw_rect(Rect2(br.position.x + 2, br.end.y - 17, br.size.x - 4, 15), Color(0, 0, 0, 0.62))
@@ -5372,6 +5614,27 @@ func _entity_tip(e: Entity) -> Dictionary:
 
 ## The top bar: the two resources and supply.
 func _res_tip(i: int) -> Dictionary:
+	var t := _res_tip_base(i)
+	if t.is_empty():
+		return t
+	# (ui-hud-pass: the first line says the last minute's income and spending; the rest stays as it was)
+	if i < 2 and not (game.faction_of(game.human) == "clockwork" and not Defs.gear_mode and i == 1):
+		var rs := alerts().rates(game.human, i)
+		t["sum"] = Loc.t("+%d a minute in · %d a minute spent (the last minute)") % [int(round(rs.x)), int(round(rs.y))]
+		# (the body's own income line said the same as the new first line: moved up, not said twice)
+		var bl := String(t.get("body", "")).split("\n")
+		if bl.size() > 1 and String(bl[bl.size() - 1]).begins_with(Loc.t("Income: about %d a minute (over the last minute).").get_slice("%", 0)):
+			bl.remove_at(bl.size() - 1)
+			t["body"] = "\n".join(bl)
+	elif i == 2:
+		var sp := _supply_split(game.human)
+		t["sum"] = Loc.t("Workers %d · Army %d · In production %d") % [sp["workers"], sp["army"], sp["queued"]]
+		if alerts().blocked():
+			t["need"] = "SUPPLY BLOCKED: production is waiting."
+	return t
+
+
+func _res_tip_base(i: int) -> Dictionary:
 	var fac := game.faction_of(game.human)
 	var pl: Dictionary = game.players[game.human]
 	var r := _res()
@@ -5463,6 +5726,8 @@ func _hover_at(p: Vector2) -> Dictionary:
 	var hid := bar.hit(p)
 	if hid >= 0:
 		return {"id": "grp:%d" % hid, "delay": TIP_HUD_DELAY, "grp": hid}
+	if _alert_btn_on() and alert_btn_rect().has_point(p):
+		return {"id": "alert", "delay": TIP_HUD_DELAY, "alert": true}
 	for b in _card_buttons:
 		if (b["rect"] as Rect2).has_point(p):
 			return {"id": "card:" + String(b["item"][1]), "delay": TIP_CARD_DELAY, "item": b["item"]}
@@ -5495,6 +5760,16 @@ func _hover_at(p: Vector2) -> Dictionary:
 
 func _tip_of(c: Dictionary) -> Dictionary:
 	if c.has("item"):
+		var sl := card_label(c["item"])
+		if _sec_for.has(sl):
+			# (a building's button on a units-and-buildings card: its tooltip as on the building's own card)
+			var keep: Array = game.selection
+			game.selection = (_sec_for[sl] as Array).filter(func(x) -> bool: return is_instance_valid(x) and not x.dead)
+			var st := _card_tip(c["item"])
+			game.selection = keep
+			if not st.is_empty():
+				st["hint"] = (Loc.t(String(st.get("hint", ""))) + "\n" if String(st.get("hint", "")) != "" else "") + Loc.t("A building's button: its key works only when no unit command has it.")
+			return st
 		return _card_tip(c["item"])
 	if c.has("stat"):
 		return UnitStats.tip(c["stat"])
@@ -5512,6 +5787,10 @@ func _tip_of(c: Dictionary) -> Dictionary:
 		return _entity_tip(c["e"])
 	if c.has("grp"):
 		return bar.tip(int(c["grp"]))
+	if c.has("alert"):
+		var n := alerts().list.size()
+		return {"title": "Jump to last alert" + (" (Home)" if Settings.pc() else ""),
+			"body": Loc.t("Moves the view to the newest alert: under attack, a building finished, a research done. Press again within 4 s for the one before.") + "\n" + (Loc.t("Alerts kept: %d (the last %d).") % [n, HudAlerts.KEEP] if n > 0 else Loc.t("No alerts yet."))}
 	if c.has("spec"):
 		return spec_panels().tip(c["spec"])
 	return {}
@@ -5623,23 +5902,40 @@ func _draw_tip() -> void:
 	var body_f := UiStyle.body_font()
 	var title: String = Loc.title(String(_tip.get("title", "")))
 	var key: String = _tip.get("key", "")
-	var rows: Array = []        # [text, font, size, colour]
-	for f in [["stats", bold, 14, UiStyle.TEXT], ["need", bold, 14, UiStyle.BAD], ["body", body_f, 14, Color(0.95, 0.91, 0.82)], ["hint", body_f, 13, UiStyle.MUTED]]:
-		if String(_tip.get(f[0], "")) != "":
-			rows.append([Loc.t(String(_tip[f[0]])), f[1], f[2], f[3]])
+	# TOOLTIPS, SHORT FIRST (the owner, 2026-11-28; ui-hud-pass): the first lines are the summary (the name with its cost
+	# or health on the title line, then one line of what it does); everything else follows below a thin rule, as
+	# detailed as before: nothing is dropped, only reordered (_tip_parts)
+	var parts := _tip_parts(_tip)
+	var top_rows: Array = []        # [text, font, size, colour]
+	var low_rows: Array = []
+	if String(parts["sum"]) != "":
+		top_rows.append([parts["sum"], bold, 14, Color(0.98, 0.94, 0.84)])
+	if String(parts["stats"]) != "":
+		top_rows.append([parts["stats"], bold, 13, UiStyle.TEXT])
+	if String(parts["need"]) != "":
+		top_rows.append([parts["need"], bold, 14, UiStyle.BAD])
+	if String(parts["detail"]) != "":
+		low_rows.append([parts["detail"], body_f, 14, Color(0.93, 0.89, 0.8)])
+	if String(parts["hint"]) != "":
+		low_rows.append([parts["hint"], body_f, 13, UiStyle.MUTED])
+	var cost: String = parts["cost"]
 	var key_bw := maxf(17.0, bold.get_string_size(key, HORIZONTAL_ALIGNMENT_LEFT, -1, 12).x + 6.0) if key.length() > 1 else 17.0     # (Ctrl+A)
 	var key_w := key_bw + 5.0 if key != "" else 0.0
-	var w := bold.get_string_size(title, HORIZONTAL_ALIGNMENT_LEFT, -1, 16).x + key_w
-	for r in rows:
+	var cost_w := bold.get_string_size(cost, HORIZONTAL_ALIGNMENT_LEFT, -1, 14).x + 12.0 if cost != "" else 0.0
+	var w := bold.get_string_size(title, HORIZONTAL_ALIGNMENT_LEFT, -1, 16).x + key_w + cost_w
+	for r in top_rows + low_rows:
 		w = maxf(w, (r[1] as Font).get_string_size(r[0], HORIZONTAL_ALIGNMENT_LEFT, -1, r[2]).x)
 	w = clampf(w + 20.0, 150.0, TIP_W)
 	var tw := w - 20.0
 	var h := 30.0
 	var heights: Array = []
-	for r in rows:
+	for r in top_rows + low_rows:
 		var rh: float = (r[1] as Font).get_multiline_string_size(r[0], HORIZONTAL_ALIGNMENT_LEFT, tw, r[2]).y
 		heights.append(rh)
 		h += rh + 3.0
+	var rule := not low_rows.is_empty() and not top_rows.is_empty()
+	if rule:
+		h += 7.0
 	h += 6.0
 	var pos: Vector2
 	if Settings.pc():
@@ -5661,13 +5957,65 @@ func _draw_tip() -> void:
 		_ci.draw_rect(kr, Color(0.1, 0.08, 0.05, 0.9))
 		_ci.draw_rect(kr, UiStyle.TRIM_DIM, false, 1.0)
 		_text(bold, kr.position + Vector2(key_bw * 0.5, 13.5), key, 12, Color(1, 0.92, 0.6), 1)
-	_ci.draw_string(bold, Vector2(x + key_w, rect.position.y + 22), title, HORIZONTAL_ALIGNMENT_LEFT, tw - key_w, 16, Color(1, 0.88, 0.55))
+	_ci.draw_string(bold, Vector2(x + key_w, rect.position.y + 22), title, HORIZONTAL_ALIGNMENT_LEFT, tw - key_w - cost_w, 16, Color(1, 0.88, 0.55))
+	if cost != "":
+		_ci.draw_string(bold, Vector2(rect.end.x - 10 - cost_w + 12.0, rect.position.y + 22), cost, HORIZONTAL_ALIGNMENT_LEFT, -1, 14, Color(1, 0.86, 0.4))
 	var y := rect.position.y + 30.0
-	for i in rows.size():
-		var r: Array = rows[i]
+	var all_rows: Array = top_rows + low_rows
+	for i in all_rows.size():
+		if rule and i == top_rows.size():
+			_ci.draw_line(Vector2(x, y + 2), Vector2(rect.end.x - 10, y + 2), Color(UiStyle.TRIM_DIM, 0.8), 1.0)
+			y += 7.0
+		var r: Array = all_rows[i]
 		var f: Font = r[1]
 		_ci.draw_multiline_string(f, Vector2(x, y + f.get_ascent(r[2])), r[0], HORIZONTAL_ALIGNMENT_LEFT, tw, r[2], -1, r[3])
 		y += float(heights[i]) + 3.0
+
+
+## A tooltip in its parts, translated (ui-hud-pass): cost (the stats' first piece when it is a number: the price or the
+## health, on the title line), sum (the "sum" line, else the body's first sentence), stats (the other pieces), need,
+## detail (the rest of the body) and hint. Every word of the tooltip is in one of them.
+static func tip_parts(tip: Dictionary) -> Dictionary:
+	var stats := Loc.t(String(tip.get("stats", "")))
+	var cost := ""
+	var pieces := stats.split("  ·  ")
+	if pieces.size() > 0 and pieces[0].length() > 0 and pieces[0].length() <= 28 and pieces[0][0] >= "0" and pieces[0][0] <= "9":
+		cost = pieces[0]
+		pieces.remove_at(0)
+		stats = "  ·  ".join(pieces)
+	var body := Loc.t(String(tip.get("body", "")))
+	var sum := Loc.t(String(tip.get("sum", "")))
+	var detail := body
+	if sum == "" and body != "":
+		var cut := _first_sentence(body)
+		sum = body.substr(0, cut).strip_edges()
+		detail = body.substr(cut).strip_edges()
+	return {"cost": cost, "sum": sum, "stats": stats, "need": Loc.t(String(tip.get("need", ""))), "detail": detail,
+		"hint": Loc.t(String(tip.get("hint", "")))}
+
+
+func _tip_parts(tip: Dictionary) -> Dictionary:
+	return tip_parts(tip)
+
+
+## Where a body's first sentence ends (the whole of a short body, or up to its first line break).
+static func _first_sentence(body: String) -> int:
+	var nl := body.find("\n")
+	var first := body if nl < 0 else body.substr(0, nl)
+	if first.length() <= 110:
+		return first.length() if nl < 0 else nl + 1
+	var best := -1
+	for mark in [". ", "! ", "? "]:
+		var at := first.find(mark, 12)
+		if at >= 0 and (best < 0 or at < best):
+			best = at
+	if best < 0 or best >= 160:
+		var colon := first.find(": ", 40)          # (no sentence end soon: a colon far enough in, not "[Light] Light line infantry:")
+		if colon >= 0 and colon < 160:
+			best = colon
+	if best >= 0 and best < 200:
+		return best + 1
+	return first.length() if nl < 0 else nl + 1
 
 
 func _icon(name: String) -> Texture2D:
