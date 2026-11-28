@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.246", "items": [
+		"The computer surrenders now. When its position is hopeless (it has lost a town hall or most of its workers, its army is a small part of yours and it has no money banked) it says gg and leaves the match 10 seconds later: no more hunting down every last building. Answer gg to end it at once. Not in campaign missions or lessons.",
+	]},
 	{"v": "0.38.245", "items": [
 		"The Crown mirror measured to 20:00 (crown-mirror-20): 110 computer games, tools and data only; three measuring switches for the Crown computer in the mirror, all off, so nothing in play changes.",
 	]},

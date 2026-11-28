@@ -26,6 +26,14 @@
 
 ## Current work
 
+- THE COMPUTER SURRENDERS (owner 2026-11-28 09:34 "I want the ai to surrender more... Nobody plays until all buildings are
+  destroyed"; 0.38.246, scripts/ai_resign.gd AIResign, AI._gg_tick/_resign, tests tools/test_ai_gg_rule.gd,
+  tools/test_chat_gg.gd): a hopeless computer says "gg" and LEAVES 10 s later by itself (LEAVE_AFTER; the player's gg ends it
+  at once with "gg wp"; it used to wait for the player's gg and play on without one); new verdict "outclassed" (from 7:00:
+  a hall lost or workers at most 60% of its peak, its army at most 25% of an enemy army seen of 800+, under 700 gold) on
+  top of broken / no_hall / wiped; hopeless 45 s first (was 60). Never in campaign missions or lessons (game.mission), never
+  computer v computer (demo: studies unchanged). Banner "%s says gg and surrenders".
+
 - CROWN MIRROR TO 20:00 (owner 2026-11-28 "Do all"; job crown-mirror-20, branch crown-mirror-20, docs/crown_mirror_20.md,
   scripts/ai_crown_mirror_20.gd AICm20, tools/study/crown_mirror_20.py, data docs/crown_mirror_20/data/): 110 Hard OPTIMAL
   mirror games to 20:00, winrate-2026-11-26's seeds, spots split 15/15 by `spotswap`. Main: 12 of 30 decided (median

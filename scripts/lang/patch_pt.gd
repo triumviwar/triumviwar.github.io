@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.246": ["O computador agora se rende. Quando a posição dele está perdida (perdeu uma prefeitura ou a maior parte dos trabalhadores, o exército dele é uma pequena parte do seu e não tem dinheiro guardado) ele diz gg e sai da partida 10 segundos depois: nada de caçar até o último prédio. Responda gg para terminar na hora. Não nas missões da campanha nem nas lições."],
 	"0.38.245": ["O espelho da Coroa medido até 20:00 (crown-mirror-20): 110 partidas entre computadores, só ferramentas e dados; três interruptores de medição para o computador da Coroa no espelho, todos desligados, por isso nada muda no jogo."],
 	"0.38.244": ["Dicas em todos os botões do menu principal e em todo o TORNEIOS: cada botão, cada opção de CRIAR UM TORNEIO e cada escolha das listas (aponte para Eliminação dupla, Suíço, os vetos de mapas, as regras de facção... para ler o que significam). CRIAR agora fica ao lado de VOLTAR no topo e continua à vista enquanto o formulário rola. Todo botão VOLTAR dos menus é vermelho, fácil de achar."],
 	"0.38.243": ["Campanha: nova dificuldade BRUTAL: mais difícil que o DIFÍCIL (relógios mais curtos, mais inimigos) e todo inimigo do computador trapaceia com metade a mais de renda. O NORMAL não tem mais uma frase embaixo. Toda lista longa agora mostra uma barra de rolagem mais clara, que dá para arrastar."],

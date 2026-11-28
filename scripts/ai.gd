@@ -800,13 +800,18 @@ func gg_view(dt := 0.0) -> Dictionary:
 		"gold": int(game.players[team]["gold"]), "hall_cost": int(Defs.BUILDINGS[game.faction_hall(team)]["cost"])}
 
 
-## Does the computer talk to this player at all (a computer against the player, in a real match)?
+## Does the computer talk to this player at all (a computer against the player, in a real match; never in a campaign
+## mission or lesson, whose sides are written)?
 func _gg_talks() -> bool:
-	return not peaceful and not game.demo and game.chat != null and not game.eliminated[team] and game.hostile(team, game.human)
+	return not peaceful and not game.demo and game.chat != null and not game.eliminated[team] and game.hostile(team, game.human) \
+		and game.mission == null
 
 
 func _gg_tick() -> void:
 	if resigned or not _gg_talks() or game.clock - _gg_check < AIResign.CHECK_EVERY:
+		return
+	if gg_said > 0 and game.clock - gg_last >= AIResign.LEAVE_AFTER:
+		_resign(false)       # (it said gg: it leaves, as a person would; the owner 2026-11-28)
 		return
 	var dt := minf(game.clock - _gg_check, 30.0)
 	_gg_check = game.clock
@@ -828,7 +833,7 @@ func _gg_tick() -> void:
 	gg_last = game.clock
 	game.chat.post(team, "gg")
 	if game.hud:
-		game.hud.chat_banner("%s says gg: reply gg to end the match" % game.chat.name_of(team))
+		game.hud.chat_banner(Loc.t("%s says gg and surrenders") % game.chat.name_of(team))
 	if game.mlog:
 		game.mlog.add("%s thinks it is hopeless (%s: %s)" % [game.mlog.who(team), why, game.standing_text(team)])
 
@@ -840,12 +845,18 @@ func gg_pending() -> bool:
 
 ## The player said gg while one was pending: gg wp, and every building falls.
 func gg_reply() -> void:
+	_resign(true)
+
+
+## It leaves the match: every building falls (a win for the player). `reply`: the player answered its gg ("gg wp").
+func _resign(reply: bool) -> void:
 	if resigned:
 		return
 	resigned = true
 	game.resigned.append(team)
 	game.end_note = "ai_resigned"
-	game.chat.post(team, "gg wp")
+	if reply:
+		game.chat.post(team, "gg wp")
 	if game.mlog:
 		game.mlog.add("%s resigned after gg (%s)" % [game.mlog.who(team), game.standing_text(team)])
 	for b in game.buildings.duplicate():

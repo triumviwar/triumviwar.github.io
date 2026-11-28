@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.246": ["El ordenador ahora se rinde. Cuando su posición está perdida (ha perdido un ayuntamiento o la mayoría de sus trabajadores, su ejército es una pequeña parte del tuyo y no tiene dinero guardado) dice gg y deja la partida 10 segundos después: se acabó cazar hasta el último edificio. Responde gg para terminarla al momento. No en las misiones de la campaña ni en las lecciones."],
 	"0.38.245": ["El espejo de la Corona medido hasta las 20:00 (crown-mirror-20): 110 partidas entre ordenadores, solo herramientas y datos; tres interruptores de medición para el ordenador de la Corona en el espejo, todos apagados, así que nada cambia en el juego."],
 	"0.38.244": ["Ayudas en todos los botones del menú principal y en todo TORNEOS: cada botón, cada opción de CREAR UN TORNEO y cada elección de sus listas (señala Eliminación doble, Suizo, los vetos de mapas, las reglas de facción... para leer qué significan). CREARLO está ahora junto a VOLVER arriba y sigue a la vista mientras el formulario se desplaza. Todo botón VOLVER de los menús es rojo, fácil de ver."],
 	"0.38.243": ["Campaña: nueva dificultad BRUTAL: más difícil que DIFÍCIL (relojes más cortos, más enemigos) y todo enemigo del ordenador hace trampa con la mitad más de ingresos. NORMAL ya no tiene una frase debajo. Toda lista larga muestra ahora una barra de desplazamiento más clara que se puede arrastrar."],

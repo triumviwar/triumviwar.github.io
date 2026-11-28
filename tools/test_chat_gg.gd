@@ -2,11 +2,10 @@ extends SceneTree
 ## The chat and the computer's gg, in real matches:
 ##   godot --headless --fixed-fps 30 --script res://tools/test_chat_gg.gd
 ##  - parsing: gg, GG!, gg wp, good game accepted; "no gg", "egg" not
-##  - hopeless computer says gg (once the position has been hopeless for a minute), the log has the line
-##  - no reply: the match goes on, one more gg a long time after at most, never a third
-##  - the player's gg while one is pending: "gg wp", the computer resigns, the match ends as a win
-##    for the player, the RESULT line says "AI resigned after gg"
-##  - a gg from the player with none pending: no reaction
+##  - hopeless computer says gg (once the position has been hopeless for most of a minute), the log has the line
+##  - no reply: it surrenders by itself AIResign.LEAVE_AFTER later, the match ends as a win for the player, the
+##    RESULT line says "AI resigned after gg" (the owner 2026-11-28: the computer should surrender)
+##  - the player's gg while one is pending: "gg wp", the computer resigns at once
 ##  - a comeback position (income, production, no army) and the early game never resign
 ##  - the player's surrender goes to the log with who was ahead
 var fails := 0
@@ -99,7 +98,7 @@ func _run() -> void:
 	check(Chat.clean("  hello   there \n") == "hello there", "chat text is tidied")
 	check(Chat.clean("x".repeat(200)).length() == Chat.MAX_LEN, "chat text is capped")
 
-	# ---- 1. a hopeless computer says gg, no reply: it plays on; a reply ends the match
+	# ---- 1. a hopeless computer says gg and, with no reply, leaves the match by itself
 	var r: Array = await _match()
 	var main: Node = r[0]
 	var g: Game = r[1]
@@ -116,35 +115,15 @@ func _run() -> void:
 	check(AIResign.verdict(v) == "broken", "staged position is hopeless (broken)")
 	await _advance(g, ai, 30.0)
 	check(ai.gg_said == 0, "it waits: nothing said after 30 s of a hopeless position")
-	await _advance(g, ai, 45.0)
-	check(ai.gg_said == 1, "after a minute of it the computer says gg")
+	await _advance(g, ai, 20.0)
+	check(ai.gg_said == 1 and not ai.resigned, "after most of a minute of it the computer says gg")
 	check(_line_count(g, "P2 Crown says: gg") == 1, "match log: '[mm:ss] P2 Crown says: gg'")
 	check(g.chat.lines.size() == 1 and g.chat.lines[0]["text"] == "gg", "the chat log holds its gg")
 	check(ai.gg_pending(), "its gg is pending")
-	# no reply for 70 s: it keeps playing, no spam
-	await _advance(g, ai, 70.0)
-	check(not g.over and not ai.resigned, "no reply: the match goes on")
-	check(ai.gg_said == 1 and not ai.gg_pending(), "no second gg yet, the first no longer pending")
-	# a player's gg now, with none pending: no reaction
-	var lines_before := g.chat.lines.size()
-	g.chat._last_player_ms = -10000
-	g.chat.player_say("gg")
-	await _advance(g, ai, 10.0)
-	check(not ai.resigned and not g.over and g.chat.lines.size() == lines_before + 1, "a gg with none pending: no reaction at all")
-	check(_line_count(g, "YOU says: gg") == 1, "match log: 'YOU says: gg'")
-	# a long time later, still hopeless: one more gg, never a third
-	await _advance(g, ai, AIResign.REPEAT_AFTER)
-	check(ai.gg_said == 2, "after a long time it says gg once more")
-	await _advance(g, ai, 500.0, 5.0)
-	check(ai.gg_said == 2 and _line_count(g, "P2 Crown says: gg") == 2, "never more than two gg")
-	# the player answers the second one
-	await _advance(g, ai, 1.0)
-	g.clock = ai.gg_last + 5.0
-	check(ai.gg_pending(), "the second gg is pending")
-	g.chat._last_player_ms = -10000
-	g.chat.player_say("GG wp!")
-	check(ai.resigned, "the player's gg wp: the computer resigns")
-	check(_line_count(g, "P2 Crown says: gg wp") == 1, "it answers 'gg wp' in the log")
+	# no reply: it leaves LEAVE_AFTER later all the same (the owner 2026-11-28: "nobody plays until all buildings are destroyed")
+	await _advance(g, ai, AIResign.LEAVE_AFTER + 4.0, 1.0)
+	check(ai.resigned, "no reply: it surrenders by itself after its gg")
+	check(_line_count(g, "P2 Crown says: gg wp") == 0, "no 'gg wp' without the player's gg")
 	for i in 90:
 		await physics_frame
 		if g.over:
@@ -157,6 +136,27 @@ func _run() -> void:
 			res = String(l)
 	print(res)
 	check(res.contains("winner YOU Crown") and res.contains("AI resigned after gg"), "RESULT line: AI resigned after gg")
+	main.queue_free()
+	await process_frame
+
+	# ---- 1b. the player answers its gg: "gg wp" and the match ends at once
+	r = await _match()
+	main = r[0]
+	g = r[1]
+	ai = r[2]
+	g.clock = 400.0
+	_kill_army_and_workers(g, 1)
+	_kill_production(g, 1)
+	g.players[1]["gold"] = 0
+	_enemy_army(g, 12)
+	for i in 8:
+		await physics_frame
+	await _advance(g, ai, 50.0)
+	check(ai.gg_said == 1 and ai.gg_pending() and not ai.resigned, "it said gg and waits a few seconds")
+	g.chat._last_player_ms = -10000
+	g.chat.player_say("GG wp!")
+	check(ai.resigned, "the player's gg wp: the computer resigns at once")
+	check(_line_count(g, "P2 Crown says: gg wp") == 1, "it answers 'gg wp' in the log")
 	check(_line_count(g, "resigned after gg (army") == 1, "the log says what each side had when it resigned")
 	main.queue_free()
 	await process_frame

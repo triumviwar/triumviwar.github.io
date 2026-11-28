@@ -25,7 +25,11 @@ func _initialize() -> void:
 	check(AIResign.verdict(view()) == "", "an even game is not hopeless")
 	# no army against a big one, but income and production: a comeback is possible
 	check(AIResign.verdict(view({"army": 0.0, "enemy_army": 2000.0})) == "", "no army but income and production: NOT hopeless")
-	check(AIResign.verdict(view({"army": 0.0, "enemy_army": 2000.0, "halls": 1, "workers": 5})) == "", "no army, one hall, 5 workers, production: NOT hopeless (it can rebuild)")
+	check(AIResign.verdict(view({"army": 0.0, "enemy_army": 2000.0, "halls": 1, "workers": 5})) == "outclassed", "no army, a hall lost, 5 workers left: outclassed (it gives up though it could limp on)")
+	check(AIResign.verdict(view({"army": 0.0, "enemy_army": 2000.0, "halls": 1, "workers": 5, "gold": 900})) == "", "the same with 900 gold banked: NOT hopeless")
+	check(AIResign.verdict(view({"army": 0.0, "enemy_army": 2000.0, "halls": 1, "workers": 5, "clock": 400.0})) == "", "outclassed only from 7:00")
+	check(AIResign.verdict(view({"army": 0.0, "enemy_army": 700.0, "halls": 1, "workers": 5})) == "", "outclassed only against an army of 800+ seen")
+	check(AIResign.verdict(view({"army": 600.0, "enemy_army": 2000.0, "halls": 1, "workers": 5})) == "", "an army of 30% of theirs: NOT outclassed")
 	# broken: no army, no production, lost workers
 	var broken := view({"army": 20.0, "enemy_army": 2000.0, "production": 0, "workers": 4, "halls": 1, "gold": 50})
 	check(AIResign.verdict(broken) == "broken", "no army, no production, workers lost, hall lost: hopeless (broken)")
@@ -38,14 +42,14 @@ func _initialize() -> void:
 	# production with no income (no workers) and no money
 	check(AIResign.verdict(view({"army": 0.0, "enemy_army": 2000.0, "production": 2, "workers": 0, "halls": 1, "gold": 10})) == "broken",
 		"production but no income and no gold: hopeless")
-	check(AIResign.verdict(view({"army": 0.0, "enemy_army": 2000.0, "production": 2, "workers": 0, "halls": 1, "gold": 600})) == "",
-		"production, no workers, 600 gold in hand: NOT hopeless")
+	check(AIResign.verdict(view({"army": 0.0, "enemy_army": 2000.0, "production": 2, "workers": 0, "halls": 1, "gold": 800})) == "",
+		"production, no workers, 800 gold in hand: NOT hopeless")
 	# not losing (never lost a hall or workers): no
 	check(AIResign.verdict(view({"army": 0.0, "enemy_army": 2000.0, "production": 0, "gold": 10})) == "",
 		"never lost workers or halls: NOT hopeless (it is not being beaten down)")
 	# an army that is more than a sliver of theirs
-	check(AIResign.verdict(view({"army": 300.0, "enemy_army": 2000.0, "production": 0, "workers": 4, "halls": 1, "gold": 50})) == "",
-		"army at 15% of theirs: NOT hopeless (margin)")
+	check(AIResign.verdict(view({"army": 300.0, "enemy_army": 2000.0, "production": 0, "workers": 4, "halls": 1, "gold": 50})) == "outclassed",
+		"army at 15% of theirs, beaten down: not broken but outclassed")
 	# an enemy army seen that is small proves nothing
 	check(AIResign.verdict(view({"army": 0.0, "enemy_army": 150.0, "production": 0, "workers": 4, "halls": 1, "gold": 50})) == "",
 		"enemy army seen is tiny: NOT hopeless")
@@ -55,8 +59,8 @@ func _initialize() -> void:
 	# no hall
 	var nohall := view({"army": 100.0, "enemy_army": 2000.0, "halls": 0, "workers": 5, "gold": 100})
 	check(AIResign.verdict(nohall) == "no_hall", "no hall, cannot afford one, small army: hopeless (no_hall)")
-	check(AIResign.verdict(view({"army": 100.0, "enemy_army": 2000.0, "halls": 0, "workers": 5, "gold": 500})) == "",
-		"no hall but workers and gold for a new one: NOT hopeless")
+	check(AIResign.verdict(view({"army": 100.0, "enemy_army": 2000.0, "halls": 0, "workers": 5, "gold": 800})) == "",
+		"no hall but workers and gold for a new one (and a bank): NOT hopeless")
 	check(AIResign.verdict(view({"army": 1500.0, "enemy_army": 2000.0, "halls": 0, "workers": 5, "gold": 100})) == "",
 		"no hall but a big army: NOT hopeless")
 	# the early game
@@ -69,7 +73,8 @@ func _initialize() -> void:
 	check(AIResign.verdict(view({"army": 3000.0, "enemy_army": 0.0, "halls": 0, "workers": 0})) == "",
 		"no hall and no workers but a big army alive: not wiped")
 	# the sustain times are constants
-	check(AIResign.sustain_for("wiped") < AIResign.sustain_for("broken") and AIResign.sustain_for("broken") >= 45.0, "wiped is quick, the rest wait about a minute")
+	check(AIResign.sustain_for("wiped") < AIResign.sustain_for("broken") and AIResign.sustain_for("broken") >= 45.0, "wiped is quick, the rest wait most of a minute")
+	check(AIResign.LEAVE_AFTER > 0.0 and AIResign.LEAVE_AFTER <= 15.0, "it leaves soon after its gg")
 	check(AIResign.MIN_CLOCK >= 300.0 and AIResign.MAX_SAYS <= 2, "constants: 5:00 minimum, at most two gg")
 	print("ALL PASS" if fails == 0 else "%d FAILED" % fails)
 	quit(1 if fails > 0 else 0)
