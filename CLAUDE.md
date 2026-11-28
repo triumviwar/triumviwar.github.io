@@ -26,6 +26,13 @@
 
 ## Current work
 
+- ROOTMAW AT 1.1 (owner 2026-11-27 "What if we nerfed the Rootmaw from 1.2 to 1.1?"; job winrate-rootmaw-1-1, branch
+  winrate-rootmaw-1-1, docs/winrate_rootmaw_1_1.md, tables docs/winrate_rootmaw_1_1/tables.md, data
+  docs/winrate_rootmaw_1_1/data/, tools/study/winrate_rootmaw_11.py): 270 games on 0.38.222 to 20:00, 30 a cell, new seeds
+  1127001+i with the SPOT SPLIT FIXED (15 on A, 15 on B), arms today x2.2 / `farmaw:2.1` / `farmaw:2.0`. Won or led
+  first/second: Crown v Brood 16/13, 18/11, 17/13; Clockwork v Brood 13/14, 9/20, 14/16; Brood mirror spot A 15/11 (t 0.7),
+  14/13, 17/11. No paired change beyond the noise (|t| <= 1.3). The mirror's 11-26 spot edge (18/7) was partly the uneven
+  split. Recommendation: KEEP 1.2 (fairly sure no big effect; a small one needs 60+ games a cell). OWNER DECIDES; nothing changed.
 - CLOCKWORK LATE MACRO (owner 2026-11-27 "Why does the Clockwork stop expanding?"; job clockwork-late-macro, branch
   clockwork-late-macro, docs/clockwork_late_macro.md, tables docs/clockwork_late_macro/tables.md, scripts/ai_cw_late.gd
   AICwLate, tools/study/clockwork_late_macro.py, data docs/clockwork_late_macro/data/): CAUSE (traced, tools/cw_trace.gd now
