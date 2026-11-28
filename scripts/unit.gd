@@ -4713,6 +4713,8 @@ func _move(want: Vector2, delta: float) -> void:
 	else:
 		if _towed():
 			position = _tow_resolve(position, before)
+			if afb_wheels:
+				_tow_fold_tick(before, want, delta)
 		else:
 			position = game.resolve_terrain(position, before, ground_r(), team)
 		if not game.cw_gates.is_empty():
@@ -4810,12 +4812,38 @@ func _tow_clear(p: Vector2, f: Vector2) -> bool:
 	# the horses: every spot from the barrel to the lead horse, closer together than a wall or
 	# cliff ring is thick (one tile), so a thin obstacle can't be stepped over
 	var reach := radius + 22.0 + (40.0 if not team_horses.is_empty() else 0.0)
+	var hr := 13.0
+	if tow_fold > 0.0:
+		reach = lerpf(reach, radius + 4.0, tow_fold)      # (ai-fixes-b: the team folds in round a tight bend, _tow_fold_tick)
+		hr = lerpf(13.0, 9.0, tow_fold)
 	var d := radius
 	while d < reach + 5.0:
-		if not game._clear_at(p + f * minf(d, reach), 13.0, team):
+		if not game._clear_at(p + f * minf(d, reach), hr, team):
 			return false
 		d += 11.0
 	return true
+
+
+## THE TEAM FOLDS IN (ai-fixes-b, docs/ai_fixes_b.md; `-- afbwheels:off` plays as before). The horses of a limbered gun or
+## wagon stand ahead of it along its heading, and the whole line must be clear of walls, cliffs and buildings to step or
+## turn (_tow_clear). Round a tight bend (a gate in a diagonal palisade, a one-cell lane between buildings, a staircase
+## cliff edge) no heading was clear, and the gun stood there for good: in 270 study games (0.38.221) 123 guns and wagons
+## stood 30 s or more on a move order, most at the Crown's own palisades' gates and between its buildings. Stuck there,
+## the team now draws in toward the barrel (over TOW_FOLD_T s: the line checked ahead of it shrinks to the shaft horse,
+## and narrower), so it can turn and go; free again, it lets out as far as the ground allows.
+const TOW_FOLD_T := 1.2
+static var afb_wheels := not OS.get_cmdline_user_args().has("afbwheels:off")
+var tow_fold := 0.0
+
+
+func _tow_fold_tick(before: Vector2, want: Vector2, delta: float) -> void:
+	if want.length() > 5.0 and position.distance_to(before) < speed * delta * 0.25:
+		tow_fold = minf(1.0, tow_fold + delta / TOW_FOLD_T)
+	elif tow_fold > 0.0:
+		var f0 := tow_fold
+		tow_fold = maxf(0.0, f0 - delta / TOW_FOLD_T)
+		if not _tow_clear(position, facing):
+			tow_fold = f0        # (not yet: the ground ahead still has no room for the whole team)
 
 
 ## The new position of a limbered vehicle that tried to go from `before` to `pos`: as is, else
@@ -4833,6 +4861,14 @@ func _tow_resolve(pos: Vector2, before: Vector2) -> Vector2:
 	var b := Vector2(before.x, pos.y)
 	if _tow_clear(b, facing):
 		return b
+	if afb_wheels:
+		# (ai-fixes-b: round a corner at an angle, as Game._resolve_terrain lets a man slip round one)
+		var mv := pos - before
+		if mv.length_squared() > 0.01:
+			for ang: float in Game.CORNER_SLIP:
+				var q := before + mv.rotated(ang) * 0.8
+				if _tow_clear(q, facing) and not game._wall_corner(before, q, team):
+					return q
 	return before
 
 

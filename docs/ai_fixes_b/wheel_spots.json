@@ -1,0 +1,4676 @@
+[
+{
+"src": "crown_brood/default/g03_ashford_crossing_s0",
+"t": 1070,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+13,
+15
+],
+"goal": [
+13,
+13
+],
+"grid": [
+".....ffffff.BB.......",
+"BB...ffffff....BB.BB.",
+"BB.............BB.BB.",
+"BB.BB................",
+"..uBB.BBBBB.BBBB.BBB.",
+"ffff..BBBBB.BBBB.BBB.",
+"ffff..BBBBB.BBBBuBBB.",
+"BBBf..BBBBB..uu.u....",
+"BBBf...uu..u.u.BBBB..",
+"ffff..BBBB.BBB.BBBB..",
+"ffff..BBBB*BBBuBBBB..",
+"......BBBB.fffu......",
+".BB.......u....BBBB..",
+".BB.BB.BB......BBBB.#",
+"....BB.BB......BBBB#.",
+".BB...........uu..###",
+"#BB.BBu......BB..#..#",
+".##.BB.......BBG#...W",
+"...#####.####.uu....W",
+"........#......u....W",
+"........W...........B"
+],
+"path_end": "(13, 13)"
+},
+{
+"src": "crown_brood/default/g04_hollowfen_s0",
+"t": 1000,
+"kind": "cannon",
+"order": "move",
+"at": [
+43,
+34
+],
+"goal": [
+35,
+16
+],
+"grid": [
+"ffff............W....",
+"ffff.....uu.....W....",
+"BBBf...........W.....",
+"BBBf...........W.....",
+"ffff..........W......",
+"ffff..........W......",
+".............W.u.....",
+"............W.u......",
+"...........W.u.......",
+".......u..Wu.........",
+".....u..WW*..........",
+"....uWWWuu...........",
+"BBBBWuu..............",
+"BBBBuuu..............",
+"BB...................",
+".....................",
+".....................",
+".....................",
+".....................",
+".....................",
+"....................."
+],
+"path_end": "(35, 16)"
+},
+{
+"src": "crown_brood/default/g04_hollowfen_s0",
+"t": 1010,
+"kind": "cannon",
+"order": "move",
+"at": [
+44,
+33
+],
+"goal": [
+34,
+15
+],
+"grid": [
+"...............W.....",
+"fff............W.....",
+"fff.....uu.....W.....",
+"BBf...........W......",
+"BBf...........W......",
+"fff..........W.......",
+"fff..........W.......",
+"............W........",
+"...........W.........",
+"..........W..........",
+"......u..W*..........",
+"....u..WWu...........",
+"...uWWWuu............",
+"BBBWuu...............",
+"BBBuuu...............",
+"B....................",
+".....................",
+".....................",
+".....................",
+".....................",
+"....................."
+],
+"path_end": "(34, 15)"
+},
+{
+"src": "crown_brood/default/g04_hollowfen_s0",
+"t": 1020,
+"kind": "mortar",
+"order": "move",
+"at": [
+42,
+35
+],
+"goal": [
+34,
+15
+],
+"grid": [
+"fffff.....uu.....W...",
+"BBBBf...........W....",
+"BBBBf...........W....",
+"fffff..........W.....",
+"fffff..........W.....",
+"..............W......",
+".............W.......",
+"............W........",
+"........u..Wu.......u",
+"......u..WWu.........",
+".....uWWWu*..........",
+"BBBBBWuu..u..........",
+"BBBBBuuu.............",
+"BBB..................",
+".....................",
+".....................",
+".....................",
+".....................",
+".....................",
+".....................",
+"....................."
+],
+"path_end": "(34, 15)"
+},
+{
+"src": "crown_brood/default/g04_hollowfen_s0",
+"t": 1020,
+"kind": "cannon",
+"order": "move",
+"at": [
+41,
+35
+],
+"goal": [
+35,
+16
+],
+"grid": [
+"ffffff.....uu.....W..",
+"fBBBBf...........W...",
+"fBBBBf...........W...",
+"ffffff..........W....",
+"ffffff..........W....",
+"...............W.....",
+"..............W......",
+".............W.......",
+".........u..Wu.......",
+".......u..WWu........",
+"......uWWW*u.........",
+"BBBBBBWuu..u.........",
+"BBBBBBuuu............",
+"BBBB.................",
+".....................",
+".....................",
+".....................",
+".....................",
+".....................",
+".....................",
+"....................."
+],
+"path_end": "(35, 16)"
+},
+{
+"src": "crown_brood/default/g04_hollowfen_s0",
+"t": 1080,
+"kind": "mortar",
+"order": "amove",
+"at": [
+37,
+37
+],
+"goal": [
+36,
+32
+],
+"grid": [
+"..##fBBBBf...........",
+"....ffffff..........W",
+"....ffffff..........W",
+".................u.W.",
+"..................W..",
+"................uW...",
+"...............uW....",
+"W..........u.uWW.u...",
+".WWW......uWWWu......",
+"....BBBBBBWuuu.......",
+"....BBBBBB*u.........",
+"....BBBB..uu.........",
+"##...................",
+"##...................",
+".....................",
+".....................",
+"#.u..................",
+".....................",
+".....................",
+".....................",
+"...................#."
+],
+"path_end": "(36, 32)"
+},
+{
+"src": "crown_brood/default/g04_hollowfen_s0",
+"t": 1080,
+"kind": "cannon",
+"order": "amove",
+"at": [
+38,
+37
+],
+"goal": [
+36,
+32
+],
+"grid": [
+".##fBBBBf...........W",
+"...ffffff..........W.",
+"...ffffff..........W.",
+"................u.W..",
+".................W...",
+"...............uW....",
+"..............uW.....",
+"..........u.uWW.u....",
+"WWW......uWWWu.......",
+"...BBBBBBWuuu........",
+"...BBBBBBu*..........",
+"...BBBB..uu..........",
+"#....................",
+"#...................u",
+".....................",
+".....................",
+".u...................",
+".....................",
+".....................",
+".....................",
+"..................#.."
+],
+"path_end": "(36, 32)"
+},
+{
+"src": "crown_brood/default/g04_hollowfen_s0",
+"t": 1080,
+"kind": "cannon",
+"order": "amove",
+"at": [
+34,
+16
+],
+"goal": [
+36,
+32
+],
+"grid": [
+"#.......ffffff......W",
+"#BB.................W",
+"#BB....ffffff.BBBB..W",
+"#......ffffff.BBBB..W",
+"#......fBBBBf.BBBB.W.",
+"B.....ufBBBBf......W.",
+"B......ffffff....uW..",
+"G.....uffffff....WW..",
+"#......u.........WWWW",
+".......BBB.....uW..WW",
+"...BBB.BBB*..uWW.....",
+"...BBB.fff.uuW.......",
+"...BBB.....WW........",
+"W.#.....BBBBB........",
+"#W.#WWGGBBBBB........",
+"fff.....BBBBB........",
+"fff.....BBBBB........",
+"BBf..................",
+"BBf..#.ffffff........",
+"fff..##ffffff........",
+"fff.###fBBBBf........"
+],
+"path_end": "(36, 32)"
+},
+{
+"src": "crown_brood/default/g04_hollowfen_s0",
+"t": 1130,
+"kind": "cannon",
+"order": "amove",
+"at": [
+38,
+36
+],
+"goal": [
+37,
+32
+],
+"grid": [
+"###fBBBBf...........W",
+".##fBBBBf...........W",
+"...ffffff..........W.",
+"...ffffff..........W.",
+"................u.W..",
+".................W...",
+"...............uW....",
+"..............uW.....",
+"............uWW......",
+"WWW......uWWWu.......",
+"...BBBBBBW*u.........",
+"...BBBBBBuuu.........",
+"...BBBB..uu..........",
+"#........u...........",
+"#....................",
+".....................",
+".....................",
+".....................",
+"...u.................",
+".....................",
+"....................."
+],
+"path_end": "(37, 32)"
+},
+{
+"src": "crown_brood/default/g04_hollowfen_s0",
+"t": 1130,
+"kind": "cannon",
+"order": "amove",
+"at": [
+39,
+36
+],
+"goal": [
+37,
+32
+],
+"grid": [
+"##fBBBBf......u....W.",
+"##fBBBBf...........W.",
+"..ffffff..........W..",
+"..ffffff..........W..",
+"...............u.W...",
+"................W....",
+"..............uW.....",
+".............uW......",
+"...........uWW.......",
+"WW......uWWWu........",
+"..BBBBBBWu*..........",
+"..BBBBBBuuu..........",
+"..BBBB..uu...........",
+"........u............",
+"....................u",
+"...................u.",
+"...................u.",
+".....................",
+".....................",
+".....................",
+"....................."
+],
+"path_end": "(37, 32)"
+},
+{
+"src": "crown_brood/default/g05_cinder_steps_s0",
+"t": 760,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+10,
+14
+],
+"goal": [
+10,
+12
+],
+"grid": [
+".BB..ffffff.fBBBBf..#",
+".BB..ffffffuffffff.BB",
+"............ffffff.BB",
+".....................",
+"......BBBBB.BBBB.BB..",
+"......BBBBB.BBBB.BB..",
+"......BBBBB.BBBB.....",
+".BBBB.BBBBB...u......",
+".BBBB....u......BBBB.",
+".BBBB.BBBB.BBBB.BBBB.",
+"......BBBB*BBBB.BBBB.",
+".BB...BBBB.BBBB.....#",
+".BB...u..........BB#.",
+"....BBB.BB.BB.BB.BB#.",
+".BB.BBB.BB.BB.BB..#..",
+".BB.fff.........##BBB",
+"#.............##..BBB",
+"###....BBu..##....BBB",
+"...####BBG##BB.......",
+"#.WBB...uu..BB..BBBBB",
+"..WBB....u......BBBBB"
+],
+"path_end": "(10, 12)"
+},
+{
+"src": "crown_brood/default/g05_cinder_steps_s0",
+"t": 960,
+"kind": "cannon",
+"order": "move",
+"at": [
+0,
+29
+],
+"goal": [
+11,
+30
+],
+"grid": [
+"          .BB.fff....",
+"          #..........",
+"          ###....BB..",
+"          ...####BBG#",
+"          #.WBB......",
+"          ..WBB......",
+"          ..W........",
+"          ..W..u...uu",
+"          u.Wuu.u.u..",
+"          uuG..u.....",
+"          *.GuBBB.BBB",
+"          u.WuBBB.BBB",
+"          u..Wfff.BBB",
+"          ..uW.......",
+"          .BBBBB.BB.B",
+"          .BBBBB.BB.B",
+"          .BBBBB.....",
+"          .BBBBBW....",
+"          .......WW..",
+"          .ffffff..W.",
+"          .ffffff...W"
+],
+"path_end": "(12, 30)"
+},
+{
+"src": "crown_brood/default/g05_cinder_steps_s0",
+"t": 960,
+"kind": "mortar",
+"order": "move",
+"at": [
+0,
+28
+],
+"goal": [
+11,
+31
+],
+"grid": [
+"          .BB.BBB.BB.",
+"          .BB.fff....",
+"          #..........",
+"          ###....BB..",
+"          ...####BBG#",
+"          #.WBB......",
+"          ..WBB......",
+"          ..W........",
+"          ..W..u...uu",
+"          u.Wuu.u.u..",
+"          *uG..u.....",
+"          u.GuBBB.BBB",
+"          u.WuBBB.BBB",
+"          u..Wfff.BBB",
+"          ..uW.......",
+"          .BBBBB.BB.B",
+"          .BBBBB.BB.B",
+"          .BBBBB.....",
+"          .BBBBBW....",
+"          .......WW..",
+"          .ffffff..W."
+],
+"path_end": "(12, 31)"
+},
+{
+"src": "crown_brood/default/g05_cinder_steps_s0",
+"t": 960,
+"kind": "cannon",
+"order": "move",
+"at": [
+0,
+30
+],
+"goal": [
+11,
+30
+],
+"grid": [
+"          #..........",
+"          ###....BB..",
+"          ...####BBG#",
+"          #.WBB......",
+"          ..WBB......",
+"          ..W........",
+"          ..W..u...uu",
+"          u.Wuu.u.u..",
+"          uuG..u.....",
+"          u.GuBBB.BBB",
+"          *.WuBBB.BBB",
+"          u..Wfff.BBB",
+"          ..uW.......",
+"          .BBBBB.BB.B",
+"          .BBBBB.BB.B",
+"          .BBBBB.....",
+"          .BBBBBW....",
+"          .......WW..",
+"          .ffffff..W.",
+"          .ffffff...W",
+"          .fBBBBf...."
+],
+"path_end": "(12, 30)"
+},
+{
+"src": "crown_brood/default/g05_cinder_steps_s0",
+"t": 960,
+"kind": "cannon",
+"order": "move",
+"at": [
+0,
+27
+],
+"goal": [
+10,
+30
+],
+"grid": [
+"          ....BBB.BB.",
+"          .BB.BBB.BB.",
+"          .BB.fff....",
+"          #..........",
+"          ###....BB..",
+"          ...####BBG#",
+"          #.WBB......",
+"          ..WBB......",
+"          ..W........",
+"          ..W..u...uu",
+"          *.Wuu.u.u..",
+"          uuG..u.....",
+"          u.GuBBB.BBB",
+"          u.WuBBB.BBB",
+"          u..Wfff.BBB",
+"          ..uW.......",
+"          .BBBBB.BB.B",
+"          .BBBBB.BB.B",
+"          .BBBBB.....",
+"          .BBBBBW....",
+"          .......WW.."
+],
+"path_end": "(10, 28)"
+},
+{
+"src": "crown_brood/default/g05_cinder_steps_s0",
+"t": 960,
+"kind": "cannon",
+"order": "move",
+"at": [
+0,
+31
+],
+"goal": [
+11,
+30
+],
+"grid": [
+"          ###....BB..",
+"          ...####BBG#",
+"          #.WBB......",
+"          ..WBB......",
+"          ..W........",
+"          ..W..u...u.",
+"          u.Wuu.u.u..",
+"          uuG..u.....",
+"          u.GuBBB.BBB",
+"          u.WuBBB.BBB",
+"          *..Wfff.BBB",
+"          ..uW.......",
+"          .BBBBB.BB.B",
+"          .BBBBB.BB.B",
+"          .BBBBB.....",
+"          .BBBBBW....",
+"          .......WW..",
+"          .ffffff.uW.",
+"          .ffffff...W",
+"          .fBBBBf....",
+"          .fBBBBf.fff"
+],
+"path_end": "(12, 30)"
+},
+{
+"src": "crown_brood/default/g05_cinder_steps_s0",
+"t": 1100,
+"kind": "mortar",
+"order": "amove",
+"at": [
+0,
+28
+],
+"goal": [
+27,
+30
+],
+"grid": [
+"          .BB.BBB.BB.",
+"          .BB.fff....",
+"          #..........",
+"          ###....BB..",
+"          ...####BBG#",
+"          #.WBB......",
+"          ..WBB......",
+"          ..W........",
+"          ..W......uu",
+"          u.W.u......",
+"          *uG.......u",
+"          u.G.BBB.BBB",
+"          u.W.BBB.BBB",
+"          u..Wfff.BBB",
+"          ...W.......",
+"          .BBBBB.BB.B",
+"          .BBBBB.BB.B",
+"          .BBBBB.....",
+"          .BBBBBW....",
+"          .......WW..",
+"          .ffffff..W."
+],
+"path_end": "(27, 30)"
+},
+{
+"src": "crown_brood/default/g05_cinder_steps_s0",
+"t": 1100,
+"kind": "cannon",
+"order": "amove",
+"at": [
+0,
+29
+],
+"goal": [
+27,
+30
+],
+"grid": [
+"          .BB.fff....",
+"          #..........",
+"          ###....BB..",
+"          ...####BBG#",
+"          #.WBB......",
+"          ..WBB......",
+"          ..W........",
+"          ..W......uu",
+"          u.W.u......",
+"          uuG.......u",
+"          *.G.BBB.BBB",
+"          u.W.BBB.BBB",
+"          u..Wfff.BBB",
+"          ...W.......",
+"          .BBBBB.BB.B",
+"          .BBBBB.BB.B",
+"          .BBBBB.....",
+"          .BBBBBW....",
+"          .......WW..",
+"          .ffffff..W.",
+"          .ffffff...W"
+],
+"path_end": "(27, 30)"
+},
+{
+"src": "crown_brood/default/g07_dune_sea_s1",
+"t": 880,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+95,
+65
+],
+"goal": [
+94,
+68
+],
+"grid": [
+"...W.......uu.uBBB.BB",
+"...W.........u.fff...",
+"...#.................",
+"..#.#......#######...",
+"...W...#GBB.....BB###",
+"...W.##.uBB.....BB...",
+"...##........BB......",
+"..#......uu..BB.BB.BB",
+".#..........u...BB.BB",
+"#.....BBBB.BBBB......",
+"#BBBB.BBBB*BBBB...fff",
+".BBBB.BBBBuBBBB...fff",
+".BBBBu..u.u.u.....fBB",
+"......uu..BBBBB...fBB",
+"BBBB.BBBB.BBBBB...fff",
+"BBBB.BBBB.BBBBB.u.fff",
+"BBBB.BBBB.BBBBB......",
+"....................B",
+"....BB.BB.....u.....B",
+".BB.BB.BB.ffffff.BB.B",
+".BB.......ffffff.BB.."
+],
+"path_end": "(94, 68)"
+},
+{
+"src": "crown_brood/default/g08_frostfang_s1",
+"t": 570,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+95,
+65
+],
+"goal": [
+95,
+67
+],
+"grid": [
+"...W..uu.......BBB...",
+"B..W.uu........fff...",
+"B..W.uu..............",
+"B.BB.uu....#######...",
+"B.BB.uu#GBB.....BB###",
+"...W.##..BB.....BB...",
+"...##........BB......",
+"..#..........BB.BB.BB",
+".#...u.......u..BB.BB",
+"#.....BBBB.BBBB......",
+"#.....BBBB*BBBB...fff",
+"......BBBB.BBBB...fff",
+"..................fBB",
+".......u..BBBBB...fBB",
+".....BBBB.BBBBB...fff",
+".....BBBB.BBBBB...fff",
+".....BBBB.BBBBB....u.",
+"....................B",
+".......BB...........B",
+".......BB.ffffff.BB.B",
+"..........ffffff.BB.."
+],
+"path_end": "(95, 67)"
+},
+{
+"src": "crown_brood/default/g12_greenhold_s0",
+"t": 670,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+19,
+32
+],
+"goal": [
+14,
+12
+],
+"grid": [
+"............BB.BBBBB.",
+"B...........BB.BBBBB.",
+"B...........W........",
+"f.u.........W........",
+".......u....W.....fff",
+"fffff.......W.....fff",
+"fffff.......W.....fBB",
+"BBBBf....WWW....#.fBB",
+"BBBBf....W........fff",
+"fffff...G.........fff",
+"fffff...GW*..........",
+".......W..G..........",
+".......W...WWW.......",
+"......W.......BBBBBBW",
+".....W........BBBBBB.",
+"....W.......u.BBBB...",
+"...W.................",
+".WW..................",
+"W....................",
+".....................",
+"................###.."
+],
+"path_end": "(14, 12)"
+},
+{
+"src": "crown_brood/default/g12_greenhold_s0",
+"t": 820,
+"kind": "cannon",
+"order": "amove",
+"at": [
+17,
+30
+],
+"goal": [
+98,
+71
+],
+"grid": [
+"BB.....BBG#...W..BBBB",
+"#######.......W..BBBB",
+"..............BB.BBBB",
+"BBB...........BB.BBBB",
+"BBB...........W.uu.u.",
+"fff...........W..u...",
+"..............W.....f",
+"uffffff.......W.....f",
+".ffffff.......W.....f",
+".fBBBBf..u.WWW.u..#.f",
+".fBBBBf...*W........f",
+".ffffff...G.........f",
+".ffffff.u.GW.........",
+".........W..G.u......",
+".........W.u.WWW.....",
+"........W.......BBBBB",
+".u.....W........BBBBB",
+"......W.........BBBB.",
+".....W...............",
+"...WW................",
+"WWW.................."
+],
+"path_end": "(98, 73)"
+},
+{
+"src": "crown_brood/default/g12_greenhold_s0",
+"t": 860,
+"kind": "mortar",
+"order": "amove",
+"at": [
+17,
+31
+],
+"goal": [
+98,
+71
+],
+"grid": [
+"#######.......W..BBBB",
+"..............BB.BBBB",
+"BBB...........BB.BBBB",
+"BBB...........W...u..",
+"fff......u....W..u...",
+"..............W.....f",
+".ffffff.......W.....f",
+".ffffff.u.....W.....f",
+".fBBBBfu.u.WWW....#.f",
+".fBBBBf...uW........f",
+".ffffff...*.........f",
+".ffffff..uGW.........",
+"........uW..Gu.......",
+".........W.u.WWW.....",
+"........W.......BBBBB",
+".......W.....u..BBBBB",
+"......W.........BBBB.",
+".....W...............",
+"...WW..........u.....",
+"WWW..................",
+"....................."
+],
+"path_end": "(98, 73)"
+},
+{
+"src": "crown_brood/default/g12_greenhold_s0",
+"t": 1110,
+"kind": "mortar",
+"order": "amove",
+"at": [
+20,
+35
+],
+"goal": [
+94,
+59
+],
+"grid": [
+"...........W.........",
+"...........W.....ffff",
+"ffff.......W.....ffff",
+"ffff.......W.....fBBB",
+"BBBf....WWW....#.fBBB",
+"BBBf....W........ffff",
+"ffff...G.........ffff",
+"ffff...GW............",
+"......W..G...........",
+"......W...WWW.......W",
+".....W.u..*..BBBBBBW.",
+"....W..u.uu..BBBBBB..",
+"...W...BBBBB.BBBB....",
+"..W....BBBBB.........",
+"WW.....BBBBB.........",
+"...BBB.BBBBBu........",
+"...BBB...............",
+"...fff..ffffff.###...",
+"........ffffff.ffffff",
+"WW......fBBBBf.ffffff",
+"..W...#.fBBBBf.fBBBBf"
+],
+"path_end": "(94, 59)"
+},
+{
+"src": "crown_brood/default/g12_greenhold_s0",
+"t": 1110,
+"kind": "cannon",
+"order": "amove",
+"at": [
+20,
+36
+],
+"goal": [
+93,
+59
+],
+"grid": [
+"...........W.....ffff",
+"ffff.......W.....ffff",
+"ffff.......W.....fBBB",
+"BBBf....WWW....#.fBBB",
+"BBBf....W........ffff",
+"ffff...G.........ffff",
+"ffff...GW............",
+"......W..G...........",
+"......W...WWW.......W",
+".....W.u..u..BBBBBBW.",
+"....W..u.u*..BBBBBB..",
+"...W...BBBBB.BBBB....",
+"..W....BBBBB.........",
+"WW.....BBBBB.........",
+"...BBB.BBBBBu........",
+"...BBB...............",
+"...fff..ffffff.###...",
+"........ffffff.ffffff",
+"WW......fBBBBf.ffffff",
+"..W...#.fBBBBf.fBBBBf",
+"...WW...ffffff.fBBBBf"
+],
+"path_end": "(93, 59)"
+},
+{
+"src": "crown_brood/default/g14_frostfang_s0",
+"t": 520,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+14,
+14
+],
+"goal": [
+14,
+12
+],
+"grid": [
+"..BB.ffffff..........",
+"B.BB.ffffff.BB.......",
+"B.......u...BB.......",
+"B...............u....",
+".u....BBBBB.BBBB.BBBB",
+"fff...BBBBBuBBBB.BBBB",
+"fff...BBBBB.BBBB.BBBB",
+"BBf...BBBBB.u........",
+"BBf...u..u...........",
+"fff...BBBB.BBBB......",
+"fff...BBBB*BBBB.....#",
+"......BBBB.BBBB.u.u.#",
+"BB.BB.....u.uuuuuu.#.",
+"BB.BB.BBuuu.uuu...#..",
+"....uuBBuu......##...",
+"...BBu....BB..##.....",
+"###BB.....BBG#......B",
+"...#######..........B",
+"....................B",
+"...BBB..............B",
+"...BBB..............."
+],
+"path_end": "(14, 12)"
+},
+{
+"src": "crown_brood/default/g16_hollowfen_s0",
+"t": 940,
+"kind": "mortar",
+"order": "move",
+"at": [
+14,
+10
+],
+"goal": [
+28,
+16
+],
+"grid": [
+"....ffffff.....##....",
+"....ffffff.BB.BB#....",
+"....fBBBBf.BB.BB.#...",
+"....fBBBBf........#..",
+"....ffffff.BBuBB...#.",
+"B...ffffff.BB.BB...#.",
+"B........u..........#",
+"B.BB.........u..BBB.#",
+"..BB.BBBBB.BBBB.BBB.#",
+".....BBBBB.BBBB.fff.#",
+".....BBBBB*BBBB.....#",
+"fff..BBBBB..u......BB",
+"fff.........u..BBB.BB",
+"BBf..BBBB.BBBB.BBB..G",
+"BBf..BBBB.BBBB.fff..#",
+"fff..BBBB.BBBBu....#.",
+"fff..........u.....#.",
+"....BB.BB.BBBB....#..",
+"BB..BB.BB.BBBB...#.W.",
+"BB........BBBB..#...W",
+"ff.BB.........##....#"
+],
+"path_end": "(28, 16)"
+},
+{
+"src": "crown_brood/default/g17_cinder_steps_s0",
+"t": 860,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+10,
+14
+],
+"goal": [
+11,
+11
+],
+"grid": [
+".BB..ffffff.fBBBBf..#",
+".BB..ffffff.ffffff.BB",
+"............ffffff.BB",
+".BBBB................",
+".BBBB.BBBBB.BBBB.BB..",
+".BBBB.BBBBB.BBBB.BB..",
+"......BBBBB.BBBB.....",
+".BBBB.BBBBB.uu.....BB",
+".BBBB....uu...BBBB.BB",
+".BBBB.BBBB.BB.BBBB...",
+"......BBBB*BB.BBBB...",
+".BB...BBBB..........#",
+".BB........BB.BBBB.#.",
+"....BBB.BB.BB.BBBB.#.",
+".BB.BBB.BB....BBBB#..",
+".BB.fff....BB...##...",
+"#..........BB.##.....",
+"###....BBu..##.......",
+"...####BBG##.........",
+"#.W.............BBBBB",
+"..W.....u.......BBBBB"
+],
+"path_end": "(11, 11)"
+},
+{
+"src": "crown_brood/default/g19_dune_sea_s1",
+"t": 1080,
+"kind": "cannon",
+"order": "move",
+"at": [
+94,
+38
+],
+"goal": [
+92,
+55
+],
+"grid": [
+".........W....BBB.fBB",
+".........W....BBB.fBB",
+"....##..W.....fff.fff",
+"......BBB.........fff",
+"......BBB..ffffff....",
+"......BBB..ffffff.uBB",
+"........W.ufBBBBf..BB",
+"........W..fBBBBf..BB",
+"........W..ffffffu.BB",
+"..##....G.uffffff.uu.",
+"........G.*u.......WW",
+"........W.......WWW..",
+".#.#....BB....WW.....",
+"........BB...W.......",
+"..........W.W........",
+"...........W..BBBB...",
+"..........W...BBBB...",
+"WGG......W....BBBB.ff",
+"...WW....W.........ff",
+".....W..W..........fB",
+"...................fB"
+],
+"path_end": "(92, 55)"
+},
+{
+"src": "crown_brood/default/g19_dune_sea_s1",
+"t": 1090,
+"kind": "cannon",
+"order": "move",
+"at": [
+94,
+37
+],
+"goal": [
+92,
+55
+],
+"grid": [
+"..........W.......fff",
+".........W....BBB.fBB",
+".........W....BBB.fBB",
+"....##..W.....fff.fff",
+"......BBB.........fff",
+"......BBB..ffffffu...",
+"......BBB..ffffff..BB",
+"........W..fBBBBf..BB",
+"........W..fBBBBf..BB",
+"........W..ffffff..BB",
+"..##....G.*ffffff....",
+"........G.u........WW",
+"........W.......WWW..",
+".#.#....BB....WW.....",
+"........BB...W.......",
+"..........W.W........",
+"...........W..BBBB...",
+"..........W...BBBB...",
+"WGG......W....BBBB...",
+"...W.....W...........",
+"........W............"
+],
+"path_end": "(92, 55)"
+},
+{
+"src": "crown_brood/default/g21_ashford_crossing_s1",
+"t": 560,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+102,
+100
+],
+"goal": [
+32,
+40
+],
+"grid": [
+"W....................",
+"W...........#........",
+"B....u..####.#####...",
+"B...#GBB..........##.",
+"#..#..BB..........BB#",
+"###....u..BBBB....BB.",
+".#...u....BBBB.BB....",
+"#......uu.BBBB.BB.BB.",
+"..........u.u.....BB.",
+"......BBBB.BBBB......",
+".....uBBBB*BBBB..ffff",
+"......BBBB.BBBB..ffff",
+"...............u.fBBB",
+".......uu.BBBBB..fBBB",
+".....BBBB.BBBBB.uffff",
+".....BBBB.BBBBB..ffff",
+".....BBBB.BBBBB.BB...",
+"..........u.....BB.BB",
+".BB.BB.............BB",
+".BB.BB....ffffff...BB",
+".......BB.ffffff....."
+],
+"path_end": "(32, 40)"
+},
+{
+"src": "crown_brood/default/g23_cinder_steps_s1",
+"t": 910,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+91,
+45
+],
+"goal": [
+81,
+61
+],
+"grid": [
+".W..ffffff.          ",
+"..WW......u          ",
+"....WBBBBB.          ",
+"BBB..BBBBB.          ",
+"BBB..BBBBBu          ",
+"fff..BBBBB.          ",
+".......W...          ",
+"BBB....W...          ",
+"BBB.BB..Wu.          ",
+"BBB.BB.uG..          ",
+"......u.Gu*          ",
+"........W..          ",
+"........W..          ",
+"........W..          ",
+"..u...BBW..          ",
+"......BBW.#          ",
+"#GBB####...          ",
+"..BB....###          ",
+"..........#          ",
+"....BBB.BB.          ",
+".BB.BBB.BB.          "
+],
+"path_end": "(81, 61)"
+},
+{
+"src": "crown_brood/default/g24_greenhold_s0",
+"t": 720,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+14,
+14
+],
+"goal": [
+14,
+12
+],
+"grid": [
+"..BB.ffffff.BB.BB....",
+"B.BB.ffffff.BB.BB....",
+"B....................",
+"B....................",
+"......BBBBB.BBBB.....",
+"fff...BBBBB.BBBB.....",
+"fff...BBBBB.BBBB.....",
+"BBf...BBBBB...u......",
+"BBf...........BBBB...",
+"fff...BBBB.BBuBBBB...",
+"fff...BBBB*BB.BBBB..#",
+"......BBBB..........#",
+"BBB..........BBB...#.",
+"BBB.BB.......BBB..#..",
+"fff.BB.......fff##...",
+"..........BB..##.....",
+"###.......BBG#...#...",
+"...#######........##.",
+"..................##.",
+"................#....",
+"BB..............#..BB"
+],
+"path_end": "(14, 12)"
+},
+{
+"src": "crown_brood/default/g24_greenhold_s0",
+"t": 1090,
+"kind": "cannon",
+"order": "amove",
+"at": [
+12,
+37
+],
+"goal": [
+97,
+71
+],
+"grid": [
+"BBBB..BB.....BB..BBB.",
+"......BBBBBB.BB..fff.",
+"fffff...BBBB...uWWW..",
+"fffff...BBBB....W....",
+"BBBBf.....u.G..G....#",
+"BBBBf.......G..G.....",
+"fffff.....u..WW......",
+"fffff.BBBB..u.W.....#",
+"......BBBB..uWuW.....",
+"BBB...BBBB..W...WW...",
+"BBB.......*Wu....uWW.",
+"BBB.......W..BBBB...W",
+"........BB..uBBBB....",
+".....WWWBB...BBBB....",
+"WWWWWu...............",
+".......BBBB..........",
+"BBBBBB.BBBB..........",
+"BBBBBB.BBBB.....##...",
+"BBBB.............##..",
+".....................",
+"....................."
+],
+"path_end": "(97, 68)"
+},
+{
+"src": "crown_brood/default/g25_dune_sea_s0",
+"t": 640,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+14,
+14
+],
+"goal": [
+14,
+12
+],
+"grid": [
+"..BB.ffffff..........",
+"B.BB.ffffff.BB.BB....",
+"B.......u...BB.BB....",
+"B........uu......u...",
+"......BBBBB.BBBB.BBBB",
+"fff...BBBBB.BBBB.BBBB",
+"fff...BBBBB.BBBB.BBBB",
+"BBf...BBBBB..........",
+"BBf........u.........",
+"fff...BBBB.BBBB......",
+"fff...BBBB*BBBB.....#",
+"......BBBB.BBBB.....#",
+"BB.BB..............#.",
+"BB.BB.BB......u...#..",
+"......BB........##..f",
+"...BB.....BB..##....f",
+"###BB.....BBG#...Wu.f",
+"...#######..u....Wu.f",
+".................BB.f",
+"...BBB...........BB.f",
+"BB.BBB..............."
+],
+"path_end": "(14, 12)"
+},
+{
+"src": "crown_brood/default/g25_dune_sea_s0",
+"t": 940,
+"kind": "cannon",
+"order": "move",
+"at": [
+15,
+17
+],
+"goal": [
+18,
+14
+],
+"grid": [
+"........uu...........",
+".....BBBBB.BBBB.BBBB.",
+"ff...BBBBBuBBBB.BBBB.",
+"ff...BBBBB.BBBB.BBBB.",
+"Bf...BBBBB..u........",
+"Bf.........u...BBBB.#",
+"ff...BBBB.BBBBuBBBB.#",
+"ff...BBBB.BBBBuBBBB#.",
+".....BBBB.BBBB..uu.#W",
+"B.BB...u...u...BB.#..",
+"B.BB.BB..u*.BB.BB#...",
+".....BB.....BB.##..ff",
+"..BB.....BB..##.W..ff",
+"##BB.....BBG#...W..fB",
+"B.#######.......W..fB",
+"B..........u....BB.ff",
+"..BBB...........BB.ff",
+"B.BBB...........W....",
+"B.fff.........BBBBB..",
+"B.............BBBBB..",
+"B..ffffffuBBB.BBBBB.."
+],
+"path_end": "(19, 14)"
+},
+{
+"src": "crown_brood/default/g26_frostfang_s0",
+"t": 1020,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+20,
+15
+],
+"goal": [
+15,
+11
+],
+"grid": [
+"fffff.BB.BB.BB.#.....",
+"......BB.BB.....#....",
+"................#....",
+"BBBBB.BBBB.BBBB.#....",
+"BBBBB.BBBB.BBBB.#....",
+"BBBBB.BBBB.BBBB.#....",
+"BBBBB.u.u.......#....",
+"..........BBBB.#W....",
+"BBBBuBBBB.BBBB.#W....",
+"BBBB.BBBB.BBBB#.W....",
+"BBBB.BBBB.*...#.W....",
+"....u.u......#...W...",
+"BB..u..BB...#....W...",
+"BB.....BB.##......W..",
+"....BB..##.W.......W.",
+"....BBG#...W.......W.",
+"####..u....W........W",
+".....uu....W.........",
+"...uuuu....W.........",
+"....uuuu...W.........",
+".....u.....W........."
+],
+"path_end": "(15, 11)"
+},
+{
+"src": "crown_brood/default/g27_ashford_crossing_s0",
+"t": 820,
+"kind": "cannon",
+"order": "move",
+"at": [
+8,
+16
+],
+"goal": [
+17,
+28
+],
+"grid": [
+"  .BBBB...ffffff....B",
+"  .BBBB..u..........B",
+"  .BBBB.BBu....u.....",
+"  ......BB.BBBBB.BBBB",
+"  .ffffff..BBBBB.BBBB",
+"  .ffffff.uBBBBB.BBBB",
+"  .fBBBBf..BBBBB...u.",
+"  .fBBBBf..u.u......u",
+"  .ffffff..BBBB.BBBB.",
+"  .ffffff..BBBB.BBBB.",
+"  ........*BBBBuBBBB.",
+"  .BB.BB.......u....u",
+"  .BB.BB.BB.BB.BB....",
+"  #......BB.BB.BB....",
+"  .#..BB.............",
+"  ..##BB.BB.......BB.",
+"  ....##.BB.......BB.",
+"  ......#####.####...",
+"  ...........#.......",
+"  ...................",
+"  ..BBBBB.ffffff....."
+],
+"path_end": "(17, 28)"
+},
+{
+"src": "crown_brood/default/g29_cinder_steps_s0",
+"t": 1040,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+0,
+28
+],
+"goal": [
+12,
+40
+],
+"grid": [
+"          .BB.BBB.BB.",
+"          .BB.fff....",
+"          #..........",
+"          ###....BB..",
+"          ...####BBG#",
+"          #.W......u.",
+"          ..W........",
+"          ..W........",
+"          ..W........",
+"          ..W....u...",
+"          *.G....u...",
+"          ..G..BBB...",
+"          .uW..BBB...",
+"          ...W.fff.u.",
+"          ...W.......",
+"          u.u.W....u.",
+"          .BBu.W.....",
+"          .BB..W.....",
+"          uu....W....",
+"          .......WW..",
+"          .BBBBB...W."
+],
+"path_end": "(12, 39)"
+},
+{
+"src": "crown_brood/nerf/g00_greenhold_s0",
+"t": 1040,
+"kind": "mortar",
+"order": "amove",
+"at": [
+15,
+18
+],
+"goal": [
+32,
+35
+],
+"grid": [
+".....BBBBB.BBBB.BBBB.",
+"ff...BBBBB.BBBB.BBBB.",
+"ff...BBBBB.BBBB.BBBB.",
+"Bf...BBBBB..uu.......",
+"Bf........uu...BBBB.#",
+"ff...BBBBuBBBB.BBBB.#",
+"ff...BBBB.BBBB.BBBB#.",
+".....BBBB.BBBB.....#W",
+"B.BB...........BB.#.W",
+"B.BB.BB.....BB.BB#...",
+".....BB...*.BB.##....",
+"..BB.....BB..##.W....",
+"##BB.....BBG#...W....",
+"..#######.......W....",
+"................BB...",
+"..BBB...........BB..#",
+"B.BBB...........W...#",
+"B.fff...........W...#",
+"B..............uW..##",
+"B..ffffff......uW....",
+"...ffffff......BBBBB."
+],
+"path_end": "(32, 35)"
+},
+{
+"src": "crown_brood/nerf/g00_greenhold_s0",
+"t": 1050,
+"kind": "cannon",
+"order": "amove",
+"at": [
+39,
+35
+],
+"goal": [
+32,
+35
+],
+"grid": [
+".........W...........",
+".........W...........",
+".........BB..........",
+".........BB..........",
+".........W...........",
+"........uW...........",
+"........uW...........",
+".........W...........",
+".........Wu..........",
+"..uu....uW...........",
+"........uW*u.........",
+"........Wuu..........",
+".......uWu...........",
+"......uWu...........#",
+"......Wuu............",
+".....uW..............",
+"....uW..............#",
+"...WW...#.....uu.....",
+"..W..................",
+"WW.....###.........##",
+"........##..........."
+],
+"path_end": "(32, 35)"
+},
+{
+"src": "crown_brood/nerf/g00_greenhold_s0",
+"t": 1060,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+39,
+33
+],
+"goal": [
+15,
+11
+],
+"grid": [
+"fff.....W............",
+"fff......W...........",
+".........W...........",
+".........W...........",
+".........BB..........",
+".........BB..........",
+".........W...........",
+".........W...........",
+".........W...........",
+".........W...........",
+".........W*..........",
+"..u......W...........",
+".......uuW...........",
+".......uWu...........",
+"u.u....uW.u..........",
+"...u..uWu...........#",
+".....uWu.u...........",
+".....uWu.............",
+"....uW..............#",
+"...WW...#............",
+"..W.................."
+],
+"path_end": "(15, 11)"
+},
+{
+"src": "crown_brood/nerf/g00_greenhold_s0",
+"t": 1120,
+"kind": "cannon",
+"order": "amove",
+"at": [
+38,
+36
+],
+"goal": [
+31,
+34
+],
+"grid": [
+"..........W..........",
+"..........BB.........",
+"..........BB.........",
+"..........W..........",
+"..........W..........",
+"..........W..........",
+"..u.......W..........",
+"..........W..........",
+"..........W..........",
+"....u....uW..........",
+".........W*..........",
+"........uWu..........",
+"......uuWu...........",
+".....u.Wu............",
+"......uW.............",
+".....uW.u............",
+"....WW...#...........",
+"...W.................",
+".WW.....###.........#",
+"W........##..........",
+"....................."
+],
+"path_end": "(31, 34)"
+},
+{
+"src": "crown_brood/nerf/g00_greenhold_s0",
+"t": 1120,
+"kind": "mortar",
+"order": "amove",
+"at": [
+36,
+39
+],
+"goal": [
+31,
+32
+],
+"grid": [
+"............W........",
+"............W........",
+"............W........",
+"....u.......W........",
+"............W........",
+"............W........",
+"......u....uW........",
+"...........Wu........",
+"..........uWu........",
+"........uuWu.........",
+".......u.W*..........",
+"........uW...........",
+".......uW.u..........",
+"......WW...#.........",
+".....W...............",
+"...WW.....###........",
+"WWW........##........",
+".....................",
+".....................",
+".....................",
+"....................."
+],
+"path_end": "(31, 32)"
+},
+{
+"src": "crown_brood/nerf/g01_dune_sea_s0",
+"t": 800,
+"kind": "mortar",
+"order": "move",
+"at": [
+8,
+15
+],
+"goal": [
+47,
+43
+],
+"grid": [
+"  .BBBB.BB.ffffff.BB.",
+"  .BBBB...........BB.",
+"  .BBBB..............",
+"  .....u....BBBBB.BBB",
+"  .ffffff...BBBBB.BBB",
+"  .ffffff...BBBBB.BBB",
+"  .fBBBBf...BBBBB....",
+"  .fBBBBf............",
+"  .ffffff...BBBB.BBBB",
+"  .ffffff...BBBB.BBBB",
+"  ........*.BBBB.BBBB",
+"  .BB.BB.............",
+"  .BB.BB..BBBB.....BB",
+"  ##......BBBB...u.BB",
+"  #.##....BBBB..BB..#",
+"  ....###.......BBG#.",
+"  #......#######.....",
+"  ...................",
+"  .......BBB.........",
+"  .BBBBB.BBB.........",
+"  .BBBBB.fff........."
+],
+"path_end": "(47, 43)"
+},
+{
+"src": "crown_brood/nerf/g01_dune_sea_s0",
+"t": 1090,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+19,
+41
+],
+"goal": [
+15,
+11
+],
+"grid": [
+"fffff...G..........ff",
+"fffff...G..ffffff....",
+".......W..uffffff....",
+"BBB....W.u.fBBBBf....",
+"BBB...W....fBBBBf.#..",
+"BBB..WW....ffffff.###",
+"....W..WW..ffffff..##",
+"...W...W.G...........",
+".WW.....W.WWu......WW",
+"W.......W...WWWWWWW..",
+".........W*uu........",
+".........G......u....",
+".........G...........",
+".........W.....u.....",
+"....u.u..W...........",
+".........#...........",
+".........#...........",
+"f.....u..W...........",
+"f.BBB...BBB.....##...",
+"f.BBB...BBB.....#....",
+"f.fff...BBB.........."
+],
+"path_end": "(15, 11)"
+},
+{
+"src": "crown_brood/nerf/g02_frostfang_s0",
+"t": 1060,
+"kind": "mortar",
+"order": "move",
+"at": [
+15,
+18
+],
+"goal": [
+11,
+33
+],
+"grid": [
+".....BBBBB.BBBB.BB...",
+"ff...BBBBB.BBBB....BB",
+"ff...BBBBB.BBBB....BB",
+"Bf...BBBBB..uu.......",
+"Bf.........uuu.BBBB.#",
+"ff...BBBB.BBBB.BBBB.#",
+"ff...BBBBuBBBB.BBBB#.",
+".....BBBB.BBBB.....#.",
+"BB.............BB.#.W",
+"BB.BBBB....uBB.BB#...",
+"ff.BBBB...*.BB.##....",
+"...BBBB..BB..##.BB...",
+"##.......BBG#...BB...",
+"B.#######.......W###.",
+"B..........u...####..",
+"................W....",
+"B...............W...#",
+"B...........u...W..##",
+"B......uu.......W...#",
+"B..ffffff.....BBBBB..",
+"...ffffff.....BBBBB.."
+],
+"path_end": "(11, 33)"
+},
+{
+"src": "crown_brood/nerf/g03_ashford_crossing_s0",
+"t": 700,
+"kind": "cannon",
+"order": "move",
+"at": [
+20,
+31
+],
+"goal": [
+32,
+37
+],
+"grid": [
+"......BB..#..###..fff",
+"......BBG#...W....fff",
+"#.####.......W....fBB",
+".#...........W....fBB",
+".............BB..#fff",
+"ffff.........BB...fff",
+"ffff.........W.......",
+"BBBfu........WBBBBB..",
+"BBBf.BBB..u..WBBBBB..",
+"ffff.BBB.uu..WBBBBB..",
+"ffff.fff..*WW.BBBBB..",
+"..u.....u.Gu.......u#",
+"B.BBBB....W.ffffff..#",
+"B.BBBB...W..ffffff...",
+"f.BBBB...W..fBBBBf...",
+"........W...fBBBBfu..",
+".......W....ffffff..u",
+"...u.u.W....ffffff...",
+"...u..#..............",
+"....WW.u.............",
+"...W....u............"
+],
+"path_end": "(32, 37)"
+},
+{
+"src": "crown_brood/nerf/g06_greenhold_s1",
+"t": 940,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+95,
+65
+],
+"goal": [
+94,
+68
+],
+"grid": [
+"...W...........BBB.BB",
+"B..W.......u...fff...",
+"B..W.....u...........",
+"B.BB....u..#######...",
+"B.BB...#GBB.....BB###",
+"...W.##.uBB.....BB...",
+"...##.BB.....BB......",
+"..#...BB.....BB.BB.BB",
+".#..............BB.BB",
+"#.....BBBBuBBBB......",
+"#BBBB.BBBB*BBBB...fff",
+".BBBB.BBBB.BBBB.u.fff",
+".BBBB...u.........fBB",
+".......u..BBBBB...fBB",
+"BBBB.BBBB.BBBBB...fff",
+"BBBB.BBBB.BBBBB...fff",
+"BBBB.BBBB.BBBBB......",
+"....................B",
+"....BB.BB...........B",
+".BB.BB.BB.ffffff.BB.B",
+".BB.......ffffff.BB.."
+],
+"path_end": "(94, 68)"
+},
+{
+"src": "crown_brood/nerf/g09_ashford_crossing_s1",
+"t": 860,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+102,
+99
+],
+"goal": [
+102,
+102
+],
+"grid": [
+"W.........ffffff.BBBB",
+"W.....u..............",
+"W...........#........",
+"B.......####.#####...",
+"B...#GBB.......BB.##.",
+"#..#.uBB.......BB.BB#",
+"###.u.....BBBB....BB.",
+".#...u....BBBB.BB....",
+"#....u....BBBB.BB.BB.",
+"..u........u......BB.",
+"......BBBB*BBBB......",
+"..BBB.BBBBuBBBB..ffff",
+"..BBB.BBBBuBBBB..ffff",
+"..fff.......u....fBBB",
+".......u..BBBBB..fBBB",
+".....BBBB.BBBBB..ffff",
+"..BB.BBBB.BBBBB..ffff",
+"..BB.BBBB.BBBBB.BB...",
+"................BB.BB",
+".BB.BB.............BB",
+".BB.BB....ffffff...BB"
+],
+"path_end": "(102, 102)"
+},
+{
+"src": "crown_brood/nerf/g12_greenhold_s0",
+"t": 950,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+14,
+14
+],
+"goal": [
+15,
+11
+],
+"grid": [
+"..BB.ffffff.u...BBBB.",
+"B.BB.ffffff.BB..BBBB.",
+"B...........BB..BBBB.",
+"B.........u..........",
+".u...uBBBBB.BBBB.BBBB",
+"fff...BBBBB.BBBB.BBBB",
+"fff...BBBBB.BBBB.BBBB",
+"BBf...BBBBB..........",
+"BBf.............BBBB.",
+"fff...BBBB.BBBB.BBBB.",
+"fff...BBBB*BBBB.BBBB#",
+"......BBBB.BBBB.....#",
+"BB.BB...........BB.#.",
+"BB.BB.BB...u.BB.BB#..",
+"......BB...u.BB.##...",
+"...BB.....BB..##.W...",
+"###BB.....BBG#...W...",
+"...#######.......W...",
+".................BB..",
+"...BBB...........BB..",
+"BB.BBB...........W..."
+],
+"path_end": "(15, 11)"
+},
+{
+"src": "crown_brood/nerf/g13_dune_sea_s0",
+"t": 890,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+14,
+14
+],
+"goal": [
+14,
+12
+],
+"grid": [
+"..BB.ffffff..........",
+"B.BB.ffffff.BB.BB....",
+"B...........BB.BB....",
+"B....................",
+"......BBBBB.BBBB.BBBB",
+"fff...BBBBB.BBBB.BBBB",
+"fff...BBBBB.BBBB.BBBB",
+"BBf...BBBBB.uu.......",
+"BBf.............BBBB.",
+"fff...BBBB.BBBB.BBBB.",
+"fff...BBBB*BBBB.BBBB#",
+"......BBBB.BBBB.....#",
+"BB.BB..............#.",
+"BB.BB.BB..........#..",
+"......BB........##...",
+"...BB.....BB..##.W...",
+"###BB.....BBG#...W...",
+"...#######.......W...",
+".................BB..",
+"...BBB...........BB..",
+"BB.BBB...........W..."
+],
+"path_end": "(14, 12)"
+},
+{
+"src": "crown_brood/nerf/g13_dune_sea_s0",
+"t": 940,
+"kind": "mortar",
+"order": "move",
+"at": [
+6,
+42
+],
+"goal": [
+12,
+31
+],
+"grid": [
+"    .fBBBBf.ffffff...",
+"    .ffffff.........W",
+"    .ffffff.BBBB....W",
+"    ........BBBB...W.",
+"    .BBBB...BBBB..W..",
+"    .BBBB........WW..",
+"    .BBBB.......WW.W.",
+"    ..........WW..W.G",
+"    .......WWW.....WG",
+"    WBBBBWW..........",
+"    .BBBB.*.BBB......",
+"    #BBBB...BBB......",
+"    ........fff......",
+"    ..BBBBB..........",
+"    #.BBBBB..#.......",
+"    ..BBBBB..###.....",
+"    ..BBBBB..#.......",
+"    #................",
+"    #.ffffff.ffffff..",
+"    ..ffffff.ffffff..",
+"    #.fBBBBf.fBBBBf.."
+],
+"path_end": "(12, 31)"
+},
+{
+"src": "crown_brood/nerf/g17_cinder_steps_s0",
+"t": 780,
+"kind": "cannon",
+"order": "move",
+"at": [
+26,
+33
+],
+"goal": [
+24,
+32
+],
+"grid": [
+"BBBBB.....BBBB....W..",
+"BBBBB.BBB.BBBB....W..",
+"BBBBB.BBB.BBBB....W..",
+"BBBBB.fff.........W..",
+"..................W..",
+"fff...###.........W..",
+"fff..#...#........W..",
+"BBf.#BB...#.......W..",
+"BBf.#BB...#.u....W...",
+"fff.#.#...#......W...",
+"fff.u#...#*.u...W....",
+"......###u.....W....u",
+"......u.u.u....W.....",
+"..............W..uuu.",
+"......u.....WW...uu..",
+"...........W....u....",
+".........WW....u.....",
+"......WWW.......u....",
+"BBBBBW.........u.....",
+"BBBBB................",
+"BBB.................."
+],
+"path_end": "(26, 33)"
+},
+{
+"src": "crown_brood/nerf/g17_cinder_steps_s0",
+"t": 780,
+"kind": "mortar",
+"order": "move",
+"at": [
+26,
+33
+],
+"goal": [
+24,
+32
+],
+"grid": [
+"BBBBB.....BBBB....W..",
+"BBBBB.BBB.BBBB....W..",
+"BBBBB.BBB.BBBB....W..",
+"BBBBB.fff.........W..",
+"..................W..",
+"fff...###.........W..",
+"fff..#...#........W..",
+"BBf.#BB...#.......W..",
+"BBf.#BB...#.u....W...",
+"fff.#.#...#......W...",
+"fff.u#...#*.u...W....",
+"......###u.....W....u",
+"......u.u.u....W.....",
+"..............W..uuu.",
+"......u.....WW...uu..",
+"...........W....u....",
+".........WW....u.....",
+"......WWW.......u....",
+"BBBBBW.........u.....",
+"BBBBB................",
+"BBB.................."
+],
+"path_end": "(26, 33)"
+},
+{
+"src": "crown_brood/nerf/g17_cinder_steps_s0",
+"t": 920,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+0,
+31
+],
+"goal": [
+10,
+12
+],
+"grid": [
+"          ###....BB..",
+"          ...####BBG#",
+"          #.W........",
+"          ..W.u......",
+"          ..W.u......",
+"          ..W.uu...u.",
+"          uuW.u....uu",
+"          uuG......u.",
+"          u.G....u...",
+"          uuW.uuuuu..",
+"          *..Wuu.....",
+"          ...W.u.BBB.",
+"          .BBBBB.BBBu",
+"          .BBBBB.fff.",
+"          .BBBBB.....",
+"          .BBBBBW....",
+"          .......WW..",
+"          .........W.",
+"          ..........W",
+"          ...........",
+"          ..........."
+],
+"path_end": "(10, 12)"
+},
+{
+"src": "crown_brood/nerf/g17_cinder_steps_s0",
+"t": 930,
+"kind": "cannon",
+"order": "move",
+"at": [
+1,
+30
+],
+"goal": [
+6,
+26
+],
+"grid": [
+"         #...........",
+"         ###....BB...",
+"         ...####BBG##",
+"         #.W......u..",
+"         ..W.u.......",
+"         ..W.uu......",
+"         ..W.uu...uu.",
+"         uuW.u...uu.u",
+"         u.G.......uu",
+"         uuGu...u...u",
+"         u*W.uuu....u",
+"         u..W.uuu....",
+"         ...W.u.BBB..",
+"         .BBBBB.BBB..",
+"         .BBBBB.fff..",
+"         .BBBBB......",
+"         .BBBBBW.....",
+"         .......WW...",
+"         .........W..",
+"         ..........WW",
+"         ............"
+],
+"path_end": "(6, 26)"
+},
+{
+"src": "crown_brood/nerf/g17_cinder_steps_s0",
+"t": 930,
+"kind": "cannon",
+"order": "move",
+"at": [
+0,
+30
+],
+"goal": [
+6,
+24
+],
+"grid": [
+"          #..........",
+"          ###....BB..",
+"          ...####BBG#",
+"          #.W......u.",
+"          ..W.u......",
+"          ..W.uu.....",
+"          ..W.uu...uu",
+"          uuW.u...uu.",
+"          u.G.......u",
+"          uuGu...u...",
+"          *uW.uuu....",
+"          u..W.uuu...",
+"          ...W.u.BBB.",
+"          .BBBBB.BBB.",
+"          .BBBBB.fff.",
+"          .BBBBB.....",
+"          .BBBBBW....",
+"          .......WW..",
+"          .........W.",
+"          ..........W",
+"          ..........."
+],
+"path_end": "(6, 24)"
+},
+{
+"src": "crown_brood/nerf/g17_cinder_steps_s0",
+"t": 930,
+"kind": "cannon",
+"order": "move",
+"at": [
+0,
+28
+],
+"goal": [
+11,
+31
+],
+"grid": [
+"          .BB.BBB.BB.",
+"          .BB.fff....",
+"          #..........",
+"          ###....BB..",
+"          ...####BBG#",
+"          #.W......u.",
+"          ..W.u......",
+"          ..W.uu.....",
+"          ..W.uu...uu",
+"          uuW.u...uu.",
+"          *.G.......u",
+"          uuGu...u...",
+"          uuW.uuu....",
+"          u..W.uuu...",
+"          ...W.u.BBB.",
+"          .BBBBB.BBB.",
+"          .BBBBB.fff.",
+"          .BBBBB.....",
+"          .BBBBBW....",
+"          .......WW..",
+"          .........W."
+],
+"path_end": "(11, 31)"
+},
+{
+"src": "crown_brood/nerf/g17_cinder_steps_s0",
+"t": 930,
+"kind": "mortar",
+"order": "move",
+"at": [
+0,
+28
+],
+"goal": [
+9,
+36
+],
+"grid": [
+"          .BB.BBB.BB.",
+"          .BB.fff....",
+"          #..........",
+"          ###....BB..",
+"          ...####BBG#",
+"          #.W......u.",
+"          ..W.u......",
+"          ..W.uu.....",
+"          ..W.uu...uu",
+"          uuW.u...uu.",
+"          *.G.......u",
+"          uuGu...u...",
+"          uuW.uuu....",
+"          u..W.uuu...",
+"          ...W.u.BBB.",
+"          .BBBBB.BBB.",
+"          .BBBBB.fff.",
+"          .BBBBB.....",
+"          .BBBBBW....",
+"          .......WW..",
+"          .........W."
+],
+"path_end": "(9, 36)"
+},
+{
+"src": "crown_brood/nerf/g17_cinder_steps_s0",
+"t": 950,
+"kind": "mortar",
+"order": "move",
+"at": [
+1,
+29
+],
+"goal": [
+9,
+34
+],
+"grid": [
+"         .BB.fff.....",
+"         #....uu.....",
+"         ###....BB...",
+"         ...####BBG##",
+"         #.W......u..",
+"         ..W......u..",
+"         ..W.........",
+"         ..W.......uu",
+"         uuW...u...u.",
+"         u.G.........",
+"         u*G.........",
+"         uuW.........",
+"         ...W........",
+"         ...W........",
+"         .BBBBB......",
+"         .BBBBB......",
+"         .BBBBB......",
+"         .BBBBBW.....",
+"         .......WW...",
+"         .........W..",
+"         ..........WW"
+],
+"path_end": "(9, 34)"
+},
+{
+"src": "crown_brood/nerf/g17_cinder_steps_s0",
+"t": 950,
+"kind": "cannon",
+"order": "move",
+"at": [
+0,
+27
+],
+"goal": [
+11,
+33
+],
+"grid": [
+"          ....BBB.BB.",
+"          .BB.BBB.BB.",
+"          .BB.fffuu..",
+"          #....uu.u..",
+"          ###....BBu.",
+"          ...####BBG#",
+"          #.W......u.",
+"          ..W......u.",
+"          ..W........",
+"          ..W.......u",
+"          *uW...u...u",
+"          u.G........",
+"          uuG........",
+"          uuW........",
+"          ...W.......",
+"          ...W.......",
+"          .BBBBB.....",
+"          .BBBBB.....",
+"          .BBBBB.....",
+"          .BBBBBW....",
+"          .......WW.."
+],
+"path_end": "(11, 33)"
+},
+{
+"src": "crown_brood/nerf/g18_greenhold_s1",
+"t": 810,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+95,
+65
+],
+"goal": [
+94,
+68
+],
+"grid": [
+"...W...........BBB.BB",
+"...W....u......fff...",
+"...W....u............",
+"...W.......#######...",
+"...W...#GBB.....BB###",
+"GG.W.##..BB.....BB...",
+"...##........BB......",
+"u.#..........BB.BB.BB",
+".#.............uBB.BB",
+"#.....BBBB.BBBB......",
+"#.....BBBB*BBBB...fff",
+"......BBBB.BBBB...fff",
+"..................fBB",
+"..........BBBBB...fBB",
+".....BBBB.BBBBB...fff",
+".....BBBB.BBBBB...fff",
+".....BBBB.BBBBB......",
+"..........u.........B",
+"....BB.BB...........B",
+"....BB.BB.ffffff.BB.B",
+"..........ffffff.BB.."
+],
+"path_end": "(94, 68)"
+},
+{
+"src": "crown_brood/nerf/g19_dune_sea_s1",
+"t": 650,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+95,
+65
+],
+"goal": [
+95,
+67
+],
+"grid": [
+"...W....u......BBB.BB",
+"B..W...........fff...",
+"B..W.....u...........",
+"B.BB.......#######...",
+"B.BB...#GBB.....BB###",
+"...W.##..BB.....BB...",
+"...##....u...BB......",
+"..#......u...BB.BB.BB",
+".#.....u........BB.BB",
+"#..........BBBB......",
+"#..BBBB.BB*BBBB...fff",
+"...BBBB.BB.BBBB...fff",
+"...BBBB...u.......fBB",
+"..........BBBBB...fBB",
+"BBBB.BBBB.BBBBB...fff",
+"BBBB.BBBBuBBBBB...fff",
+"BBBB.BBBB.BBBBB......",
+"....................B",
+"....BB.BB.u.........B",
+"....BB.BB.ffffff.BB.B",
+"..........ffffff.BB.."
+],
+"path_end": "(95, 67)"
+},
+{
+"src": "crown_brood/nerf/g21_ashford_crossing_s1",
+"t": 590,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+102,
+100
+],
+"goal": [
+102,
+102
+],
+"grid": [
+"BBB..................",
+"............#........",
+"B.......####.#####...",
+"B...#GBB..........##.",
+"#..#..BB..........BB#",
+"###.......BBBB....BB.",
+".#....u...BBBB.BB....",
+"#.........BBBB.BB.BB.",
+"..................BB.",
+"...........BBBB..u...",
+"...BBBB.BB*BBBB..ffff",
+"...BBBB.BB.BBBB.uffff",
+"...BBBB........u.fBBB",
+"......u...BBBBB..fBBB",
+".....BBBB.BBBBB..ffff",
+"..BB.BBBB.BBBBB..ffff",
+"..BB.BBBBuBBBBB.BB...",
+"..........u.....BB.BB",
+".BB.BB.............BB",
+".BB.BB....ffffff...BB",
+".......BB.ffffff....."
+],
+"path_end": "(102, 102)"
+},
+{
+"src": "crown_brood/nerf/g29_cinder_steps_s0",
+"t": 1040,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+35,
+30
+],
+"goal": [
+11,
+11
+],
+"grid": [
+".........W...........",
+"..#......W...........",
+".........W...........",
+"BBBB.....W...........",
+"BBBB.....W...........",
+"BBBB.....W...........",
+".........W...........",
+"...BBBB..W...........",
+"...BBBBuuW..........#",
+"#..BBBBuuW..........#",
+".#......uW*.........#",
+".#......W...........#",
+".#......W..........##",
+"#.....uW...........##",
+"......W..............",
+".....uW..............",
+"....uW...............",
+"...WW................",
+"..W...............#..",
+"WW...............####",
+".................####"
+],
+"path_end": "(11, 11)"
+},
+{
+"src": "crown_brood/nerf/g29_cinder_steps_s0",
+"t": 1130,
+"kind": "cannon",
+"order": "amove",
+"at": [
+33,
+33
+],
+"goal": [
+29,
+30
+],
+"grid": [
+"..BBBB.....WuWW......",
+"..BBBB....uW.........",
+"..BBBB.....W.........",
+"...........W.........",
+".....BBBB.uW.........",
+"##...BBBB.uW.........",
+"..#..BBBB..Wu........",
+"...#..uuu.uWuu.......",
+"...#.....uWuu........",
+"...#.....uWu.........",
+"..#....uuW*u.........",
+"##......W.u..........",
+".......uW............",
+"......uW.............",
+".....WW..............",
+"....W...............#",
+"..WW...............##",
+"WW.................##",
+"...................##",
+"...................##",
+"..................###"
+],
+"path_end": "(29, 30)"
+},
+{
+"src": "crown_brood/nerf/g29_cinder_steps_s0",
+"t": 1130,
+"kind": "cannon",
+"order": "amove",
+"at": [
+34,
+32
+],
+"goal": [
+29,
+30
+],
+"grid": [
+"..........Wuuu.......",
+".BBBB.....WuWW.......",
+".BBBB....uW..........",
+".BBBB.....W..........",
+"..........W..........",
+"....BBBB.uW..........",
+"#...BBBB.uW..........",
+".#..BBBB..Wu.........",
+"..#..uuu.uWuu........",
+"..#.....uWuu.........",
+"..#.....uW*.........#",
+".#....uuWuu.........#",
+"#......W.u...........",
+"......uW.............",
+".....uW..............",
+"....WW...............",
+"...W...............#.",
+".WW...............###",
+"W.................###",
+"..................###",
+"..................###"
+],
+"path_end": "(29, 30)"
+},
+{
+"src": "crown_brood/nerf/g29_cinder_steps_s0",
+"t": 1130,
+"kind": "cannon",
+"order": "amove",
+"at": [
+33,
+34
+],
+"goal": [
+29,
+30
+],
+"grid": [
+"..BBBB....uW.........",
+"..BBBB.....W.........",
+"...........W.........",
+".....BBBB.uW.........",
+"##...BBBB.uW.........",
+"..#..BBBB..Wu........",
+"...#..uuu.uWuu.......",
+"...#.....uWuu........",
+"...#.....uWu.........",
+"..#....uuWuu.........",
+"##......W.*..........",
+".......uW............",
+"......uW.............",
+".....WW..............",
+"....W...............#",
+"..WW...............##",
+"WW.................##",
+"...................##",
+"...................##",
+"..................###",
+"..................###"
+],
+"path_end": "(29, 30)"
+},
+{
+"src": "crown_brood/nerf/g29_cinder_steps_s0",
+"t": 1130,
+"kind": "cannon",
+"order": "amove",
+"at": [
+34,
+31
+],
+"goal": [
+29,
+30
+],
+"grid": [
+"...#.....uW..........",
+"..........Wuuu.......",
+".BBBB.....WuWW.......",
+".BBBB....uW..........",
+".BBBB.....W..........",
+"..........W..........",
+"....BBBB.uW..........",
+"#...BBBB.uW..........",
+".#..BBBB..Wu.........",
+"..#..uuu.uWuu........",
+"..#.....uW*u.........",
+"..#.....uWu.........#",
+".#....uuWuu.........#",
+"#......W.u...........",
+"......uW.............",
+".....uW..............",
+"....WW...............",
+"...W...............#.",
+".WW...............###",
+"W.................###",
+"..................###"
+],
+"path_end": "(29, 30)"
+},
+{
+"src": "crown_brood/nerf/g29_cinder_steps_s0",
+"t": 1130,
+"kind": "cannon",
+"order": "amove",
+"at": [
+35,
+30
+],
+"goal": [
+29,
+30
+],
+"grid": [
+".........W...........",
+"..#.....uW...........",
+".........Wuuu........",
+"BBBB.....WuWW........",
+"BBBB....uW...........",
+"BBBB.....W...........",
+".........W...........",
+"...BBBB.uW...........",
+"...BBBB.uW..........#",
+"#..BBBB..Wu.........#",
+".#..uuu.uW*u........#",
+".#.....uWuu.........#",
+".#.....uWu.........##",
+"#....uuWuu.........##",
+"......W.u............",
+".....uW..............",
+"....uW...............",
+"...WW................",
+"..W...............#..",
+"WW...............####",
+".................####"
+],
+"path_end": "(29, 30)"
+},
+{
+"src": "crown_brood/nerf/g29_cinder_steps_s0",
+"t": 1140,
+"kind": "mortar",
+"order": "amove",
+"at": [
+35,
+29
+],
+"goal": [
+29,
+30
+],
+"grid": [
+"ffff.....W...........",
+".........W...........",
+"..#.....uW...........",
+".........W...........",
+"BBBB.....W.WW........",
+"BBBB....uW...........",
+"BBBB.....W...........",
+".........W...........",
+"u..BBBB.uW...........",
+"...BBBB.uW..........#",
+"#..BBBBu.W*.........#",
+".#...u.uuWuu........#",
+".#..u..uWuu.........#",
+".#....uuWu.........##",
+"#.....uWuuu........##",
+".....uW.u............",
+".....uW..............",
+"....uW...............",
+"...WW................",
+"..W...............#..",
+"WW...............####"
+],
+"path_end": "(29, 30)"
+},
+{
+"src": "crown_brood/nerf/g29_cinder_steps_s0",
+"t": 1140,
+"kind": "mortar",
+"order": "amove",
+"at": [
+35,
+33
+],
+"goal": [
+29,
+30
+],
+"grid": [
+"BBBB.....W.WW........",
+"BBBB....uW...........",
+"BBBB.....W...........",
+".........W...........",
+"...BBBB.uW...........",
+"...BBBB.uW..........#",
+"#..BBBBu.Wu.........#",
+".#...u.uuWuu........#",
+".#..u..uWuu.........#",
+".#....uuWu.........##",
+"#.....uWuu*........##",
+".....uW.u............",
+".....uW..............",
+"....uW...............",
+"...WW................",
+"..W...............#..",
+"WW...............####",
+".................####",
+".................####",
+".................####",
+"................#####"
+],
+"path_end": "(29, 30)"
+},
+{
+"src": "crown_brood/nerf/g29_cinder_steps_s0",
+"t": 1140,
+"kind": "cannon",
+"order": "amove",
+"at": [
+35,
+31
+],
+"goal": [
+29,
+30
+],
+"grid": [
+"..#.....uW...........",
+".........W...........",
+"BBBB.....W.WW........",
+"BBBB....uW...........",
+"BBBB.....W...........",
+".........W...........",
+"...BBBB.uW...........",
+"...BBBB.uW..........#",
+"#..BBBBu.Wu.........#",
+".#...u.uuWuu........#",
+".#..u..uWu*.........#",
+".#....uuWu.........##",
+"#.....uWuuu........##",
+".....uW.u............",
+".....uW..............",
+"....uW...............",
+"...WW................",
+"..W...............#..",
+"WW...............####",
+".................####",
+".................####"
+],
+"path_end": "(29, 30)"
+},
+{
+"src": "crown_clock/default/g00_greenhold_A",
+"t": 910,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+14,
+14
+],
+"goal": [
+15,
+11
+],
+"grid": [
+".....ffffff.BB.BBBB..",
+".....ffffff.BB.BBBB..",
+"...............BBBB.B",
+"fffff...............B",
+"fffff.BBBBB.BBBB.BB..",
+"BBBBf.BBBBB.BBBB.BB..",
+"BBBBf.BBBBB.BBBB.....",
+"fffff.BBBBB..........",
+"fffff...........BBu..",
+"......BBBB.BBBB.BB...",
+"B.BBB.BBBB*BBBB.....#",
+"B.BBB.BBBBuBBBB.BB..#",
+"B.fff..uu.......BB.#.",
+"......BB...u.BB...#..",
+"BB.BB.BB....uBB.##...",
+"BB.BB.....BB..##.....",
+"###.......BBG#.......",
+"...#######...........",
+"............u....BB..",
+"...BBB......u....BB..",
+"BB.BBB..............."
+],
+"path_end": "(15, 11)"
+},
+{
+"src": "crown_clock/default/g01_dune_sea_A",
+"t": 780,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+14,
+14
+],
+"goal": [
+15,
+11
+],
+"grid": [
+".....ffffff.BB.BBB.BB",
+".....ffffff.BB.BBB.BB",
+"...............BBB...",
+"fffff................",
+"fffff.BBBBB.BBBB.BBBB",
+"BBBBf.BBBBB.BBBB.BBBB",
+"BBBBf.BBBBB.BBBB.BBBB",
+"fffff.BBBBB.u........",
+"fffff...........BB.BB",
+"......BBBB.BBBB.BB.BB",
+"B.BBB.BBBB*BBBB.....#",
+"B.BBB.BBBBuBBBB.BB..#",
+"B.fff..uu.u.u...BBu#.",
+"......BB.....BB...#..",
+"BB.BB.BB...uuBB.##...",
+"BB.BB.....BBu.##.....",
+"###.......BBG#.......",
+"...#######...........",
+".....................",
+"...BBB......u........",
+"BB.BBB...........BB.."
+],
+"path_end": "(15, 11)"
+},
+{
+"src": "crown_clock/default/g03_ashford_crossing_A",
+"t": 820,
+"kind": "cannon",
+"order": "amove",
+"at": [
+9,
+18
+],
+"goal": [
+18,
+20
+],
+"grid": [
+" ..ffffff........BBBB",
+" ..ffffff.BBBBB..BBBB",
+" ..fBBBBf.BBBBB......",
+" ..fBBBBf.BBBBB..BBBB",
+" ..ffffff.BBBBB..BBBB",
+" ..ffffff........BBBB",
+" ...........BB...u.u.",
+" .BB...BBBB.BB.BBBBuB",
+" .BB...BBBB....BBBBuB",
+" ......BBBB.BB.BBBBuB",
+" .BB......*.BB.uuuuuu",
+" #BB.BB.BB.BBBB.....B",
+" .#..BB.BB.BBBB...u.B",
+" ..##......BBBB..BB..",
+" ....##..........BBG#",
+" ......#####.####..u.",
+" ...........#........",
+" ....................",
+" ..BBBBB.ffffff......",
+" ..BBBBB.ffffff......",
+" #.BBBBB.fBBBBf......"
+],
+"path_end": "(18, 20)"
+},
+{
+"src": "crown_clock/default/g03_ashford_crossing_A",
+"t": 840,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+18,
+16
+],
+"goal": [
+14,
+12
+],
+"grid": [
+"ffffff..........#....",
+"........BBBB.....#BBB",
+"........BBBB.....#BBB",
+".BBBBB..BBBB.BBBB#fff",
+".BBBBB.......BBBB#...",
+".BBBBB..BBBB.BBBB.#..",
+".BBBBB..BBBB.....#.##",
+"........BBBB.....#.#.",
+"...BB...uuu......#...",
+"BB.BB.BBBBuBBBB..#...",
+"BB....BBBB*BBBB.#....",
+"BB.BB.BBBBuBBBB.#....",
+"uu.BB.uuuuuuuuu#.BBBB",
+"B.BBBBu....BBu#.#BBBB",
+"B.BBBB...u.BB####BBBB",
+"..BBBB..BB..#..###...",
+"........BBG#...W.....",
+"###.####.............",
+"...#.................",
+"...............BB..#.",
+"ffffff....u...uBB.fff"
+],
+"path_end": "(14, 12)"
+},
+{
+"src": "crown_clock/default/g04_hollowfen_A",
+"t": 780,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+17,
+13
+],
+"goal": [
+14,
+11
+],
+"grid": [
+".fBBBBf........#...BB",
+".ffffff.BB.BB...#..BB",
+".ffffff.BB.BB...#..BB",
+"....u.........BBB#...",
+"f.......BB.BB.BBB#...",
+"f.BBBBB.BB.BB.BBB#...",
+"f.BBBBB..........#...",
+"f.BBBBB..BBBB....#...",
+"f.BBBBB..BBBB...BB...",
+"f........BBBB...BB...",
+"....BBBB..*......G.u.",
+"BBB.BBBB.BBBB.BB.#...",
+"BBB.BBBB.BBBB.BB#....",
+"BBB......BBBB...#....",
+"....BBBB.......#....B",
+"BB..BBBB.BB...#.....B",
+"BB..BBBB.BB..#.....#f",
+"...........##....#..#",
+".........##....ffffff",
+"###.#####......ffffff",
+"...#...........fBBBBf"
+],
+"path_end": "(14, 11)"
+},
+{
+"src": "crown_clock/default/g06_greenhold_B",
+"t": 860,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+95,
+65
+],
+"goal": [
+94,
+68
+],
+"grid": [
+".BBBBB.........BBB.BB",
+"...............fff...",
+"...................BB",
+"f.BB.......#######.BB",
+"f.BB...#GBB.......###",
+"f....##..BB.....BB.BB",
+"f..##.BBuu...BB.BB.BB",
+"f.#BB.BB...u.BB......",
+"f#.BB....u.uuuuuBBB.B",
+"#...u.BBBBuBBBB.BBB.B",
+"#.BBB.BBBB*BBBB.fff.B",
+"..BBB.BBBBuBBBB......",
+"..BBB...........fffff",
+"..........BBBBB.fffff",
+"B....BBBB.BBBBB.fBBBB",
+"B.BB.BBBB.BBBBB.fBBBB",
+"..BB.BBBB.BBBBBufffff",
+"B...............fffff",
+"B.BBBB....u..........",
+"..BBBB.BB.ffffff.....",
+"..BBBB.BB.ffffff....."
+],
+"path_end": "(94, 68)"
+},
+{
+"src": "crown_clock/default/g07_dune_sea_B",
+"t": 1030,
+"kind": "cannon",
+"order": "amove",
+"at": [
+88,
+64
+],
+"goal": [
+50,
+72
+],
+"grid": [
+"........u..BB........",
+"........u....u.......",
+"..uBBBBB...BBu.u.....",
+"...BBBBBu.#BBu..u....",
+"BBuBBBBB.#.#......###",
+"BB.BBBBBu...u.#GBB...",
+"ff..u.......##..BB...",
+".........u##.BBuu...B",
+"ffffff...#BB.BB.....B",
+"ffffffu.#.BB.........",
+"fBBBBf.#..*..BBBB.BBB",
+"fBBBBf.#.BBB.BBBB.BBB",
+"ffffff#..BBB.BBBB.BBB",
+"ffffff#..BBB.........",
+"..BBB#...........BBBB",
+"..BBB#.BBBB.BBBB.BBBB",
+"..fff#.BBBB.BBBB.BBBB",
+".....#.BBBB.BBBB.BBBB",
+".....#...............",
+".....#...BBBB........",
+"......#..BBBB.BB.ffff"
+],
+"path_end": "(50, 72)"
+},
+{
+"src": "crown_clock/default/g08_frostfang_B",
+"t": 490,
+"kind": "cannon",
+"order": "amove",
+"at": [
+92,
+52
+],
+"goal": [
+54,
+32
+],
+"grid": [
+".......fBBBBf........",
+".......fBBBBf........",
+".......ffffff........",
+".......ffffff........",
+".....................",
+"..............ffffff.",
+"........BBBB..ffffff.",
+"........BBBB..fBBBBf.",
+"........BBBB..fBBBBf.",
+"........u.....ffffff.",
+"....BBBBB.*...ffffff.",
+"....BBBBB............",
+"fff.BBBBB.uu......BBB",
+"fff.BBBBB.........BBB",
+"BBf...............fff",
+"BBf..................",
+"fff..BB.......#######",
+"fff..BB...#GBB.......",
+"........##..BB.....BB",
+".BBB..##........BB.BB",
+".BBB.#..........BB..."
+],
+"path_end": "(54, 32)"
+},
+{
+"src": "crown_clock/default/g11_cinder_steps_B",
+"t": 790,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+63,
+41
+],
+"goal": [
+80,
+62
+],
+"grid": [
+"BBBB.............BBBB",
+".................BBBB",
+".....................",
+"ffffff....BBB........",
+"ffffff....BBB.BBBB...",
+"fBBBBf....BBB.BBBB.BB",
+"fBBBBf........BBBB.BB",
+"ffffff.............BB",
+"ffffff........###....",
+".............#...#..f",
+".BBBBB....*.#...#.#.f",
+".BBBBB......#...BB#.f",
+".BBBBB.BBBB.#...BB#.f",
+".BBBBB.BBBB..#...#..f",
+".......BBBB...###...f",
+"ffffff...............",
+"ffffff.BBBB...BBB.BBB",
+"fBBBBf.BBBB...BBB.BBB",
+"fBBBBf.BBBB...fff.BBB",
+"ffffff............BBB",
+"ffffff..........#...."
+],
+"path_end": "(80, 62)"
+},
+{
+"src": "crown_clock/default/g12_greenhold_A",
+"t": 870,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+14,
+14
+],
+"goal": [
+14,
+12
+],
+"grid": [
+".....ffffff.BB.BBB.BB",
+".....ffffff.BB.BBB.BB",
+"...............BBB...",
+"fffff................",
+"fffff.BBBBB.BBBB.BBBB",
+"BBBBf.BBBBB.BBBB.BBBB",
+"BBBBf.BBBBB.BBBB.BBBB",
+"fffff.BBBBB..........",
+"fffff...u.......BBBB.",
+"......BBBB.BBBB.BBBB.",
+"BuBBB.BBBB*BBBB.BBBB#",
+"B.BBB.BBBBuBBBB..u..#",
+"B.fff..uu.......BB.#.",
+"......BB.....BB.BB#..",
+"BB.BB.BB.....BB.##...",
+"BB.BB.....BB..##.....",
+"###.......BBG#......B",
+"BB.#######..........B",
+"BB...............BB.B",
+"...BBB...........BB.B",
+"BB.BBB...........BB.."
+],
+"path_end": "(14, 12)"
+},
+{
+"src": "crown_clock/default/g14_frostfang_A",
+"t": 740,
+"kind": "mortar",
+"order": "amove",
+"at": [
+18,
+16
+],
+"goal": [
+22,
+16
+],
+"grid": [
+"...........BBB....#..",
+"f....u..........BB#..",
+"f.BBBBBuBBBB.BB.BB#..",
+"f.BBBBB.BBBB.BB...#BB",
+"f.BBBBB.BBBB......#BB",
+"f.BBBBB...........#ff",
+"f......u...uBBBB.#fff",
+"..BBBB.BBBBuBBBB.#fff",
+"B.BBBB.BBBBuBBBB#.fBB",
+"BuBBBB.BBBBuuuuu#.fBB",
+"f........u*uBBu#..fff",
+"..BB.....BBuBB#...fff",
+"B.BB.....BBu##.......",
+"B.....BB..##.u.......",
+"......BBG#......BBBBB",
+"######..........BBBBB",
+"................BBBBB",
+"BB........u.....BBBBB",
+"BB...................",
+"ff...........BB.fffff",
+".............BB.fffff"
+],
+"path_end": "(22, 16)"
+},
+{
+"src": "crown_clock/default/g14_frostfang_A",
+"t": 830,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+20,
+15
+],
+"goal": [
+15,
+11
+],
+"grid": [
+"fffff.BB.BBB.BB#..BBB",
+".........BBB....#....",
+"...u..u.......BB#....",
+"BBBBB.BBBB.BB.BB#....",
+"BBBBB.BBBB.BB...#BBB.",
+"BBBBB.BBBB......#BBB.",
+"BBBBB.....u.....#fff.",
+"........uuBBBB.#fffff",
+"BBBB.BBBB.BBBB.#fffff",
+"BBBB.BBBB.BBBB#.fBBBB",
+"BBBB.BBBB.*u..#.fBBBB",
+"..u...u...BB.#..fffff",
+"BB.....BB.BB#BB.fffff",
+"BB.....BB.##.BB......",
+"....BB..##...u.......",
+"....BBG#.BB...BBBBB.B",
+"####.....BB...BBBBB.B",
+"......u.......BBBBB.B",
+"..............BBBBB..",
+"...........uuu.......",
+"...........BB.ffffff."
+],
+"path_end": "(15, 11)"
+},
+{
+"src": "crown_clock/default/g14_frostfang_A",
+"t": 910,
+"kind": "cannon",
+"order": "amove",
+"at": [
+15,
+18
+],
+"goal": [
+34,
+8
+],
+"grid": [
+"ffff.BBBBB.BBBB.BB.BB",
+"BBBf.BBBBB.BBBB.BB...",
+"BBBf.BBBBB.BBBB......",
+"ffff.BBBBB...........",
+"ffff.....u.....BBBB.#",
+"....uBBBBuBBBB.BBBB.#",
+".BBB.BBBB.BBBB.BBBB#.",
+".BBB.BBBB.BBBB.....#.",
+".fffu.u.....u..BB.#.u",
+".....BB.....BB.BB#BB.",
+"B.BB.BB...*.BB.##.BB.",
+"B.BB.....BB..##.uu.uu",
+"##.......BBG#.BB..uBB",
+"..#######..u..BB...BB",
+"..................uBB",
+"..BBB............u.BB",
+"..BBB................",
+"B.fff...........BB.ff",
+"B...............BB.ff",
+"B..ffffff.BB....BB.fB",
+"B..ffffff.BB....BB.fB"
+],
+"path_end": "(34, 8)"
+},
+{
+"src": "crown_clock/default/g15_ashford_crossing_A",
+"t": 1010,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+20,
+35
+],
+"goal": [
+17,
+30
+],
+"grid": [
+".............W...#...",
+"ffff.......BBW.......",
+"ffff.......BBW.......",
+"BBBf........uW.......",
+"BBBf.BBB..BBBBB......",
+"ffff.BBB..BBBBB......",
+"ffff.fff..BBBBB......",
+"......u.u.BBBBB.....#",
+"B.BBBB.uuuWu........#",
+"B.BBBB.uuWffffff.....",
+"f.BBBB.uuW*fffff.....",
+"......uuW.fBBBBf.....",
+"BB.BB.uWu.fBBBBf.....",
+"BB.BB.uW..ffffff.....",
+"BB...u#...ffffff.....",
+"...uWWu..............",
+"..uW.................",
+".WW.uBBBB.......u....",
+"B....BBBB......###...",
+"B....BBBB............",
+"B.............##....."
+],
+"path_end": "(18, 30)"
+},
+{
+"src": "crown_clock/default/g16_hollowfen_A",
+"t": 750,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+18,
+17
+],
+"goal": [
+19,
+19
+],
+"grid": [
+"............BB..#BB..",
+".BBBBB.BBBB.BB..#BB..",
+".BBBBB.BBBB.....#....",
+".BBBBB.BBBB.BB..#....",
+".BBBBB.....uBB.BB....",
+"........BBBu...BB....",
+"...BBBB.BBBuBB.uG.uuu",
+"BB.BBBB.BBB.BB..#....",
+"BB.BBBB...uuu..#.....",
+"BB........uBB..#..BBB",
+"...BB.BBBB*BB.#...BBB",
+"B..BB.BBBB..u#....BBB",
+"B.....BBBB.u#.....#..",
+"..BB......##....#..#.",
+"..BB....##BBB.......B",
+"##.#####..BBB.BBBBBuB",
+"..#ffffff.fffuBBBBB.B",
+"...ffffff...u.BBBBB..",
+"...fBBBBf...u.BBBBB..",
+"...fBBBBf...........#",
+"...ffffff.ffffff....."
+],
+"path_end": "(19, 19)"
+},
+{
+"src": "crown_clock/default/g17_cinder_steps_A",
+"t": 460,
+"kind": "cannon",
+"order": "amove",
+"at": [
+14,
+14
+],
+"goal": [
+18,
+11
+],
+"grid": [
+".ffffff.....u...#....",
+".ffffff.BBB.BB...#...",
+"........BBB.BB...#..B",
+"B.......fff......#..B",
+"B.BBBBB..........#..B",
+"B.BBBBB.BBBB.....#..B",
+"..BBBBB.BBBB.....#...",
+"..BBBBB.BBBB.....#...",
+"........uuu......#...",
+"fffff.BBBB.BBBB..#...",
+"fffff.BBBB*BBBB..#..u",
+"BBBBf.BBBBuBBBB.#....",
+"BBBBf..u...uu..#.....",
+"fffff.BBBB.....#..BBB",
+"fffff.BBBB....#...BBB",
+"......BBBB..##....BBB",
+"B.........##.........",
+"B..BB...##...........",
+"###BBG##..........#..",
+".....u......BBBBB....",
+"..........u.BBBBB.BBB"
+],
+"path_end": "(18, 11)"
+},
+{
+"src": "crown_clock/default/g17_cinder_steps_A",
+"t": 780,
+"kind": "cannon",
+"order": "move",
+"at": [
+11,
+10
+],
+"goal": [
+17,
+12
+],
+"grid": [
+"....ffffff......#...#",
+"BB..ffffff.BBBB..#...",
+"BB..fBBBBf.BBBB.BB#..",
+"....fBBBBf.BBBB.BB#..",
+"BB..ffffff.........#.",
+"BB..ffffff.BBB.BB.BB#",
+"...........BBB.BB.BB#",
+"BBBB.......fff......#",
+"BBBB.BBBBB......BB..#",
+"BBBB.BBBBBuBBBB.BB..#",
+".....BBBBB*BBBBuu...#",
+".....BBBBB.BBBBuu...#",
+"........uuu.uuu.uu..#",
+"..ffffff.BBBB.BBBB..#",
+"..ffffff.BBBBuBBBB..#",
+"..fBBBBf.BBBBuBBBB.#.",
+"..fBBBBfu..uuuuuu.#..",
+"..ffffff.BBBB.BB..#..",
+"..ffffff.BBBB.BB.#...",
+".........BBBB..##....",
+"..BB.........##......"
+],
+"path_end": "(17, 12)"
+},
+{
+"src": "crown_clock/default/g17_cinder_steps_A",
+"t": 830,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+11,
+9
+],
+"goal": [
+15,
+12
+],
+"grid": [
+"                     ",
+"....ffffff......#...#",
+"BB..ffffff.BBBB..#...",
+"BB..fBBBBf.BBBB.BB#..",
+"....fBBBBf.BBBB.BB#..",
+"BB..ffffff.........#.",
+"BB..ffffff.BBB.BB.BB#",
+"...........BBB.BB.BB#",
+"BBBB.......fff......#",
+"BBBB.BBBBB......BB..#",
+"BBBB.BBBBB*BBBB.BB..#",
+".....BBBBBuBBBB..u..#",
+".....BBBBB.BBBBuuu..#",
+"........u..u.uuuuu..#",
+"..ffffff.BBBBuBBBB..#",
+"..ffffff.BBBBuBBBB..#",
+"..fBBBBf.BBBBuBBBB.#.",
+"..fBBBBf...uuuuu..#..",
+"..ffffff.BBBB.BB..#..",
+"..ffffff.BBBB.BB.#...",
+".........BBBB..##...."
+],
+"path_end": "(15, 12)"
+},
+{
+"src": "crown_clock/default/g18_greenhold_B",
+"t": 820,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+95,
+65
+],
+"goal": [
+94,
+68
+],
+"grid": [
+".BBBBB.........BBB.BB",
+"...............fff...",
+"...................BB",
+"..BB.......#######.BB",
+"..BB...#GBB.......###",
+".....##..BB.....BB.BB",
+"B..##.BB.....BB.BB.BB",
+"B.#BB.BB....uBB......",
+"f#.BB........u..BBB.B",
+"#.....BBBBuBBBB.BBB.B",
+"#BBBB.BBBB*BBBB.fff.B",
+".BBBBuBBBB.BBBB......",
+".BBBB...........fffff",
+".......u..BBBBB.fffff",
+"BBBB.BBBB.BBBBB.fBBBB",
+"BBBB.BBBB.BBBBB.fBBBB",
+"BBBB.BBBB.BBBBB.fffff",
+"................fffff",
+"...BBB...............",
+"BB.BBB.BB.ffffff.....",
+"BB.BBB.BB.ffffff....."
+],
+"path_end": "(94, 68)"
+},
+{
+"src": "crown_clock/default/g19_dune_sea_B",
+"t": 630,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+92,
+60
+],
+"goal": [
+95,
+67
+],
+"grid": [
+"BBBf...BBBB...fBBBBf.",
+"BBBf.u........ffffff.",
+"ffff..........ffffff.",
+"ffff#u...............",
+"....#.............BBB",
+"....u.............BBB",
+"..................fff",
+".....................",
+".....BB.......#######",
+".....BB...#GBB.......",
+".u......##*.BB.....BB",
+"......##uBB.....BB.BB",
+".....#BBuBB.....BB...",
+"....#uBBuuu........BB",
+"...#uu.uuBBBB.BBBB.BB",
+"...#BBBBuBBBB.BBBB.ff",
+"..#.BBBBuBBBB.BBBBu..",
+"..#.BBBB...........ff",
+".#...........BBBBB.ff",
+".#.BBBB.BBBB.BBBBB.fB",
+".#.BBBB.BBBB.BBBBB.fB"
+],
+"path_end": "(95, 67)"
+},
+{
+"src": "crown_clock/default/g20_frostfang_B",
+"t": 580,
+"kind": "cannon",
+"order": "amove",
+"at": [
+102,
+62
+],
+"goal": [
+16,
+33
+],
+"grid": [
+"....ffffff..BBBBB.   ",
+"............BBBBB.   ",
+"........BBB.BBBBB.   ",
+"........BBB.......   ",
+"........fff......#   ",
+"..................   ",
+".u..#######......#   ",
+"#GBB.......###...#   ",
+".uBB.....BB.BB##..   ",
+"Buu...BB.BB.BB..##   ",
+"B.u...BB..*.......   ",
+"...uuuu..BBB.BBBB.   ",
+"BBB.BBBB.BBB.BBBB.   ",
+"BBB.BBBB.fff.BBBB.   ",
+"BBB.BBBB..........   ",
+".....u...ffffff...   ",
+"...BBBBB.ffffff...   ",
+"BB.BBBBB.fBBBBf...   ",
+"BB.BBBBB.fBBBBf...   ",
+"BB.BBBBB.ffffff...   ",
+".........ffffff...   "
+],
+"path_end": "(18, 33)"
+},
+{
+"src": "crown_clock/default/g20_frostfang_B",
+"t": 700,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+103,
+62
+],
+"goal": [
+102,
+59
+],
+"grid": [
+"...ffffff..BBBBB.    ",
+"...........BBBBB.    ",
+".......BBB.BBBBB.    ",
+".......BBB.......    ",
+".......fff......#    ",
+".................    ",
+"...#######......#    ",
+"GBB.......###...#    ",
+".BB.....BB.BB##..    ",
+"..u..BB.BB.BB..##    ",
+"uu...BB..u*......    ",
+"u.......BBB.BBBB.    ",
+"BB.BBBB.BBB.BBBB.    ",
+"BB.BBBB.fff.BBBB.    ",
+"BB.BBBBuu........    ",
+"........ffffff...    ",
+"..BBBBB.ffffff...    ",
+"B.BBBBB.fBBBBf...    ",
+"B.BBBBB.fBBBBf...    ",
+"B.BBBBB.ffffff...    ",
+"........ffffff...    "
+],
+"path_end": "(102, 59)"
+},
+{
+"src": "crown_clock/default/g22_hollowfen_B",
+"t": 880,
+"kind": "cannon",
+"order": "amove",
+"at": [
+108,
+78
+],
+"goal": [
+61,
+68
+],
+"grid": [
+"#.....ffffff.......BB",
+"##.................ff",
+"#..BBBBB.............",
+"#..BBBBB...BBBBB.....",
+"...BBBBB...BBBBB...#.",
+"BB.BBBBB...fff#####.#",
+"BB..........##.......",
+"BB#..#....##.........",
+"...#.....#..BBBB.BBBB",
+".....u..#...BBBB.BBBB",
+".......#..*.BBBB.BBBB",
+"u.....#BBBB.uu.......",
+"......#BBBB.BBBBuBBBB",
+".....#.BBBB.BBBBuBBBB",
+"...u.G......BBBB.BBBB",
+".....BB............u.",
+".....BB.BB......BBBBB",
+".....#..BBuBBBB.BBBBB",
+".....#..u..BBBB.BBBBB",
+"...BB#BBBB.BBBB.BBBBB",
+"...BB#BBBB..........."
+],
+"path_end": "(61, 68)"
+},
+{
+"src": "crown_clock/default/g22_hollowfen_B",
+"t": 920,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+114,
+81
+],
+"goal": [
+114,
+83
+],
+"grid": [
+"BB...BBBBB...........",
+"BB...BBBBB...#.......",
+"BB...fff#####.#####..",
+"......##.........BB##",
+"....##...........BB..",
+"...#..BBBB.BBBB......",
+"..#...BBBB.BBBB...BB.",
+".#.u..BBBB.BBBB...BB.",
+"#BBBBu...............",
+"#BBBBuBBBB.BBBB...BB.",
+"uBBBBuBBBB*BBBB...BB.",
+"uu...uBBBBuBBBB......",
+"Buuu.........u..fffff",
+"B.BB.....uBBBBB.fffff",
+"..BB.BBBB.BBBBBufBBBB",
+".....BBBB.BBBBB.fBBBB",
+"BBBB.BBBB.BBBBB.fffff",
+"BBBB............fffff",
+"BBBB.BBBB............",
+"#....BBBB.ffffff.BB..",
+"#....BBBB.ffffff.BB.."
+],
+"path_end": "(114, 83)"
+},
+{
+"src": "crown_clock/default/g23_cinder_steps_B",
+"t": 480,
+"kind": "cannon",
+"order": "amove",
+"at": [
+80,
+63
+],
+"goal": [
+44,
+58
+],
+"grid": [
+"......##.........BB..",
+"....##...............",
+"...#......BB.ffffff..",
+"..#.......BB.ffffff..",
+"..#.......u..fBBBBf..",
+".#......BBBB.fBBBBf..",
+"#..BBBB.BBBB.ffffff..",
+"#..BBBB.BBBB.ffffff..",
+"#..BBBB..............",
+"#..u...uu.uBBBBB.....",
+"#BBBB.BBBB*BBBBB.BBBB",
+"#BBBB.BBBBuBBBBBuBBBB",
+"#BBBB.BBBB.BBBBB.BBBB",
+"#..........u.........",
+"#....BBuBB......u.BBB",
+"#....BB.BB.ffffff.BBB",
+".#.........ffffff.fff",
+"..#BB.BBBB.fBBBBf....",
+"..#BB.BBBB.fBBBBf..BB",
+"...#..BBBB.ffffff..BB",
+"#...#......ffffff...."
+],
+"path_end": "(44, 58)"
+},
+{
+"src": "crown_clock/default/g23_cinder_steps_B",
+"t": 630,
+"kind": "cannon",
+"order": "amove",
+"at": [
+80,
+64
+],
+"goal": [
+32,
+21
+],
+"grid": [
+"BBBB##.u.............",
+"...#..uBB.BB.ffffff..",
+"..#.BB.BB.BB.ffffff..",
+"..#.BB.......fBBBBf..",
+".#......BBBB.fBBBBf..",
+"#..BBBB.BBBB.ffffff..",
+"#..BBBB.BBBB.ffffff..",
+"#..BBBB..u...........",
+"#......u...BBBBB.....",
+"#BBBB.BBBBuBBBBB.BBBB",
+"#BBBB.BBBB*BBBBB.BBBB",
+"#BBBB.BBBB.BBBBB.BBBB",
+"#....................",
+"#.BB.BB.BB........BBB",
+"#.BB.BB.BB.ffffff.BBB",
+".#.........ffffff.fff",
+"..#BB.BBBB.fBBBBf....",
+"..#BB.BBBB.fBBBBf..BB",
+"...#..BBBB.ffffff..BB",
+"#...#......ffffff....",
+"                     "
+],
+"path_end": "(30, 21)"
+},
+{
+"src": "crown_clock/default/g25_dune_sea_A",
+"t": 1100,
+"kind": "cannon",
+"order": "amove",
+"at": [
+15,
+17
+],
+"goal": [
+20,
+15
+],
+"grid": [
+"ffff.................",
+"ffff.BBBBB.BBBB.BBBB.",
+"BBBf.BBBBB.BBBB.BBBB.",
+"BBBf.BBBBB.BBBB.BBBB.",
+"ffff.BBBBBu.uuu......",
+"ffff.......uuuuBBBB.#",
+".....BBBB.BBBBuBBBB.#",
+".BBB.BBBB.BBBBuBBBB#.",
+".BBB.BBBB.BBBBuuuuu#.",
+".fff.......uuuuBBu#BB",
+".....BB...*.BBuBB#.BB",
+"B.BB.BB.....BBu##..ff",
+"B.BB.....BB.u##....u.",
+"##.......BBG#......BB",
+"B.#######..........BB",
+"B...............BB.BB",
+"..BBB...........BB.BB",
+"B.BBB................",
+"B.fff.............fff",
+"B.................fff",
+"B..ffffff.........fBB"
+],
+"path_end": "(20, 15)"
+},
+{
+"src": "crown_clock/default/g25_dune_sea_A",
+"t": 1100,
+"kind": "cannon",
+"order": "amove",
+"at": [
+17,
+16
+],
+"goal": [
+20,
+15
+],
+"grid": [
+"............BBB....#.",
+"ff.................#.",
+"ff.BBBBB.BBBB.BBBB.#f",
+"Bf.BBBBB.BBBB.BBBB.#f",
+"Bf.BBBBB.BBBB.BBBB.#f",
+"ff.BBBBBu.uuu......#f",
+"ff.......uuuuBBBB.#.f",
+"...BBBB.BBBBuBBBB.#.f",
+"BB.BBBB.BBBBuBBBB#...",
+"BB.BBBB.BBBBuuuuu#..#",
+"ff.......u*uuBBu#BBB.",
+"...BB...u.BBuBB#.BBB.",
+"BB.BB.....BBu##..fff.",
+"BB.....BB.u##....u...",
+".......BBG#......BBBB",
+"#######..........BBBB",
+"..............BB.BBBB",
+"BBB...........BB.BBBB",
+"BBB..................",
+"fff.............fffff",
+"................fffff"
+],
+"path_end": "(20, 15)"
+},
+{
+"src": "crown_clock/default/g26_frostfang_A",
+"t": 660,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+15,
+12
+],
+"goal": [
+21,
+16
+],
+"grid": [
+"BB..fBBBBf.BB.BB...#.",
+"ff..fBBBBf.........#.",
+"....ffffff.BB.BBB.BB#",
+"....ffffff.BB.BBB.BB#",
+"..............BBB....",
+"ffff.................",
+"ffff.BBBBB.BBBB.BBBB.",
+"BBBf.BBBBB.BBBB.BBBB.",
+"BBBf.BBBBB.BBBB.BBBB.",
+"ffffuBBBBB....u......",
+"ffff......*BBBB.BB..#",
+"......BBBB.BBBBuBB..#",
+".BBBB.BBBB.BBBBuu..#.",
+".BBBB.BBBBu.u..u.u.#.",
+".BBBBu....uBB.BBuu#..",
+"......BB...BB.BBu#u..",
+"B.BB..BB.......##ffff",
+"B.BB.....BBu.##..ffff",
+"##.......BBG#....fBBB",
+"B.#######..u.....fBBB",
+"B.........u......ffff"
+],
+"path_end": "(21, 16)"
+},
+{
+"src": "crown_mirror/default/g02_frostfang_A",
+"t": 780,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+19,
+21
+],
+"goal": [
+21,
+19
+],
+"grid": [
+".BBBBB.BBBB......#...",
+"....u..BBBB.BB..#....",
+".BBBB.......BB..#....",
+".BBBB..BBBB....#.....",
+".BBBB..BBBB.BB.#.....",
+".......BBBB.BB#......",
+".............#.......",
+"BBB........##........",
+"BBB..BB..##.BB.......",
+"BBB..BBG#...BB.......",
+"#####.....*..###.....",
+"...........####......",
+"B.....u...BB.BB......",
+"B.........BB.BB.#....",
+"f.........uu...###...",
+"............BB..#....",
+"fffff.BB....BB.u...u.",
+"fffff.BB.BBBB..BBBB..",
+"BBBBf....BBBB..BBBB..",
+"BBBBf.BB.BBBB.uBBBB..",
+"fffff.BB............."
+],
+"path_end": "(20, 19)"
+},
+{
+"src": "crown_mirror/default/g03_ashford_crossing_A",
+"t": 670,
+"kind": "cannon",
+"order": "move",
+"at": [
+21,
+29
+],
+"goal": [
+22,
+31
+],
+"grid": [
+"BBBB.......#.#..fffff",
+"BBBB......####..fBBBB",
+".....BB..#..###.fBBBB",
+".....BBG#...W..ufffff",
+".####.u.....W...fffff",
+"#...........W......u.",
+"........u...BB..#.u..",
+"fff.........BB.......",
+"fff.u....u..BBuBBBBB.",
+"BBfu....uu..BB.BBBBB.",
+"BBf......u*.BB.BBBBB.",
+"fff....u..uuBB.BBBBB.",
+"fff......GWW.uu......",
+"......uu.G..uu.....#.",
+".........W.........##",
+"........W............",
+"........W............",
+".......W.......u.....",
+"......W..............",
+"......W..............",
+".....#..............."
+],
+"path_end": "(22, 30)"
+},
+{
+"src": "crown_mirror/default/g03_ashford_crossing_A",
+"t": 710,
+"kind": "cannon",
+"order": "move",
+"at": [
+20,
+31
+],
+"goal": [
+23,
+32
+],
+"grid": [
+"......BB..#..###.fBBB",
+"......BBG#...W...ffff",
+"#.####.......W...ffff",
+".#...........W.......",
+".............BB..#uu.",
+"ffff....u....BBu.....",
+"ffffu........BBuBBBBB",
+"BBBf........uBBuBBBBB",
+"BBBf......uuuBB.BBBBB",
+"ffff......uuuBBuBBBBB",
+"ffff.....u*WWuuu.....",
+"..........Guu.......#",
+"B.........W.uffffff.#",
+"B........W...ffffff..",
+"f........W...fBBBBf..",
+"........W....fBBBBf..",
+".......W..u..ffffff..",
+".......W.....ffffff..",
+"......#..............",
+"....WW...............",
+"...W................."
+],
+"path_end": "(23, 32)"
+},
+{
+"src": "crown_mirror/default/g08_frostfang_B",
+"t": 910,
+"kind": "cannon",
+"order": "move",
+"at": [
+24,
+12
+],
+"goal": [
+25,
+6
+],
+"grid": [
+"f.BBB.BB..#BB.BBBBB..",
+"f.BBB.....#...BBBBB..",
+"f.BBBu..u..#uuBBBBB..",
+"f.......u..#..BBBBB..",
+"..BBBB.uuuuu#........",
+"..BBBBu.u.u.#........",
+"B.BBBB.BBBBu#........",
+"B.uuuu.BBBB.#........",
+"BuBBBB.BBBB.#........",
+"B.BBBB..u.u.#........",
+"..BBBB.BB.*#.........",
+".......BB..#.........",
+"uuBBBB....#..........",
+"u.BBBB.BB.#..........",
+"..BBBB.BB#...........",
+".....u..#............",
+"..u..u##.............",
+"BBuu##...............",
+"BBG#..........u......",
+".....................",
+"....................."
+],
+"path_end": "(25, 6)"
+},
+{
+"src": "crown_mirror/default/g08_frostfang_B",
+"t": 1060,
+"kind": "cannon",
+"order": "move",
+"at": [
+20,
+15
+],
+"goal": [
+21,
+17
+],
+"grid": [
+"fffff......BB..#..BBB",
+"......BBBB..u...#....",
+"......BBBB......#.fff",
+"BBBBB.BBBB.BBBB.#.fff",
+"BBBBB...u..BBBB.#.fBB",
+"BBBBB.BBBB.BBBB.#.fBB",
+"BBBBB.BBBBu.u...#.fff",
+".uu.uuBBBB.BB..#..fff",
+"BBBBuu.uu.uBBu.#.....",
+"BBBB..BBBBuuu.#......",
+"BBBB..BBBB*BB.#......",
+"..uu..BBBBuBB#.......",
+".BBu......u.#........",
+".BB.......##.........",
+"....BB..##...........",
+"....BBG#.............",
+"####.................",
+".....................",
+".....................",
+".....................",
+"....................."
+],
+"path_end": "(21, 17)"
+},
+{
+"src": "crown_mirror/default/g08_frostfang_B",
+"t": 1060,
+"kind": "cannon",
+"order": "move",
+"at": [
+18,
+9
+],
+"goal": [
+20,
+17
+],
+"grid": [
+"                     ",
+".ffffff.......#.#.#..",
+".ffffff.....BB.#.BB..",
+".fBBBBf.BBB.BB..#BB.B",
+".fBBBBf.BBB.....#...B",
+".ffffff.BBB..BB..#..B",
+".ffffff......BB..#..B",
+"........BBBB..u...#.u",
+"fuu.....BBBB......#uf",
+"fuBBBBB.BBBB.BBBB.#.f",
+"f.BBBBB...*..BBBB.#.f",
+"f.BBBBB.BBBB.BBBB.#.f",
+"f.BBBBB.BBBBu.u...#.f",
+"f..uu.uuBBBB.BB..#..f",
+"..BBBBuu.uu.uBBu.#...",
+"B.BBBB..BBBBuuu.#....",
+"B.BBBB..BBBBuBB.#....",
+"B...uu..BBBBuBB#.....",
+"...BBu......u.#......",
+"BB.BB.......##.......",
+"BB....BB..##........."
+],
+"path_end": "(20, 17)"
+},
+{
+"src": "crown_mirror/default/g08_frostfang_B",
+"t": 1060,
+"kind": "cannon",
+"order": "move",
+"at": [
+22,
+6
+],
+"goal": [
+20,
+16
+],
+"grid": [
+"                     ",
+"                     ",
+"                     ",
+"                     ",
+"fff.......#.#.#......",
+"fff.....BB.#.BB......",
+"BBf.BBB.BB..#BB.BBBBB",
+"BBf.BBB.....#...BBBBB",
+"fff.BBB..BB..#..BBBBB",
+"fff......BB..#..BBBBB",
+"....BBBB..*...#.uuu..",
+"....BBBB......#ufffff",
+"BBB.BBBB.BBBB.#.fffff",
+"BBB...u..BBBB.#.fBBBB",
+"BBB.BBBB.BBBB.#.fBBBB",
+"BBB.BBBBu.u...#.fffff",
+"..uuBBBB.BB..#..fffff",
+"BBuu.uu.uBBu.#.......",
+"BB..BBBBuuu.#........",
+"BB..BBBBuBB.#........",
+"....BBBBuBB#........."
+],
+"path_end": "(20, 16)"
+},
+{
+"src": "crown_mirror/default/g08_frostfang_B",
+"t": 1080,
+"kind": "mortar",
+"order": "move",
+"at": [
+20,
+14
+],
+"goal": [
+20,
+18
+],
+"grid": [
+"fffff.BBB..BB..#..BBB",
+"fffff......BB..#..BBB",
+"......BBBB..u...#....",
+".....uBBBB......#.fff",
+"BBBBB.BBBB.BBBB.#.fff",
+"BBBBB...u..BBBB.#.fBB",
+"BBBBB.BBBB.BBBB.#.fBB",
+"BBBBB.BBBBu.u...#.fff",
+".u.uu.BBBB.BB..#..fff",
+"BBBB.u....uBBu.#....u",
+"BBBB.uBBBB*uu.#......",
+"BBBBu.BBBBuBB.#......",
+".u..u.BBBBuBB#.......",
+".BB..u......#........",
+".BB.......##.....u...",
+"....BBu.##...........",
+"....BBG#.............",
+"####.................",
+".....................",
+".....................",
+"....................."
+],
+"path_end": "(20, 17)"
+},
+{
+"src": "crown_mirror/default/g08_frostfang_B",
+"t": 1080,
+"kind": "mortar",
+"order": "move",
+"at": [
+20,
+13
+],
+"goal": [
+19,
+17
+],
+"grid": [
+"BBBBf.BBB.....#...BBB",
+"fffff.BBB..BB..#..BBB",
+"fffff......BB..#..BBB",
+"......BBBB..u...#....",
+".....uBBBB......#.fff",
+"BBBBB.BBBB.BBBB.#.fff",
+"BBBBB...u..BBBB.#.fBB",
+"BBBBB.BBBB.BBBB.#.fBB",
+"BBBBB.BBBBu.u...#.fff",
+".u.uu.BBBB.BB..#..fff",
+"BBBB.u....*BBu.#....u",
+"BBBB.uBBBBuuu.#......",
+"BBBBu.BBBBuBB.#......",
+".u..u.BBBBuBB#.......",
+".BB..u......#........",
+".BB.......##.....u...",
+"....BBu.##...........",
+"....BBG#.............",
+"####.................",
+".....................",
+"....................."
+],
+"path_end": "(19, 17)"
+},
+{
+"src": "crown_mirror/default/g15_ashford_crossing_A",
+"t": 650,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+20,
+31
+],
+"goal": [
+33,
+37
+],
+"grid": [
+"......BB..#..###.fBBB",
+"......BBG#...W...ffff",
+"#.####.......W...ffff",
+".#...........W.......",
+".............BB..#...",
+"ffff.........BB......",
+"ffff.........BB.BBBBB",
+"BBBf.........BB.BBBBB",
+"BBBf.....u...W..BBBBB",
+"ffff..u...u.uW..BBBBB",
+"ffff......*WW.......u",
+"..........G.........#",
+"B.........Wuuffffff.#",
+"B.BBB....W...ffffff.u",
+"f.BBB.u..W...fBBBBf..",
+"..BBB...W...ufBBBBf..",
+".......WW....ffffff..",
+"B......W.W...ffffff..",
+"B.....#...W..........",
+"B...WW.....W.........",
+"...W........GGW......"
+],
+"path_end": "(33, 37)"
+},
+{
+"src": "crown_mirror/default/g17_cinder_steps_A",
+"t": 660,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+91,
+46
+],
+"goal": [
+80,
+62
+],
+"grid": [
+"..WW.......          ",
+"....W.u....          ",
+".....Wuu...          ",
+".....W.u...          ",
+"BBBB..W....          ",
+"BBBB...W...          ",
+"BBBB...Wu.u          ",
+"........Wu.          ",
+"......u.G.u          ",
+"........G.u          ",
+"........W.*          ",
+"........W..          ",
+"........W..          ",
+"........W..          ",
+"........W.#          ",
+"#GBB####...          ",
+"..BB..BB###          ",
+"......BB..#          ",
+"...........          ",
+"..ffffff...          ",
+"..ffffff...          "
+],
+"path_end": "(80, 62)"
+},
+{
+"src": "crown_mirror/default/g18_greenhold_B",
+"t": 800,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+20,
+16
+],
+"goal": [
+34,
+30
+],
+"grid": [
+"......BBBB.BBBB.#.fff",
+"......BBBB......#.fff",
+"BBBBB.BBBB.BBBB.#.fBB",
+"BBBBB..u...BBBB.#.fBB",
+"BBBBB.BBBB.BBBB.#.fff",
+"BBBBB.BBBB......#.fff",
+"......BBBB.BB..#.....",
+"BBBB.u.....BB..#.....",
+"BBBB..BBBB.BB.#......",
+"BBBB..BBBB.BB.#......",
+".u.u..BBBB*..#.......",
+"............#........",
+"BB........##.........",
+"BB..BB..##.......#...",
+"BB..BBG#......u......",
+"####..............#..",
+"...........BB....#...",
+"...........BB........",
+"...........BB...u....",
+"...........BB........",
+"...........BB........"
+],
+"path_end": "(34, 30)"
+},
+{
+"src": "crown_mirror/default/g20_frostfang_B",
+"t": 1150,
+"kind": "cannon",
+"order": "move",
+"at": [
+92,
+47
+],
+"goal": [
+75,
+69
+],
+"grid": [
+"#............BBBBB.ff",
+"#..........uuBBBBB...",
+"#...........u........",
+"G.................WWW",
+"BBBB.............W...",
+"BBBB............W....",
+"BBBBBB.........W.BBBB",
+"....BB........W..BBBB",
+"......W......W...BBBB",
+"ff.....WW..BB........",
+"ff.#.....W*BB.ffffff.",
+"Bf......BBBB..ffffff.",
+"Bf......BBBB..fBBBBf.",
+"ff.....WBBBB..fBBBBf.",
+"ff.u.#W.....u.ffffff.",
+"...u#.G.......ffffff.",
+"BBBu#.G..........uu..",
+"BBBu..W...........BBB",
+"BBBu..W...........BBB",
+"BBB...W...........fff",
+"......W....u........."
+],
+"path_end": "(75, 69)"
+},
+{
+"src": "crown_mirror/default/g23_cinder_steps_B",
+"t": 590,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+91,
+44
+],
+"goal": [
+73,
+47
+],
+"grid": [
+"W..........          ",
+".W.........          ",
+"..WW.......          ",
+"....W......          ",
+".....W.....          ",
+".....W.....          ",
+"BBBB..W....          ",
+"BBBB...W...          ",
+"BBBB...W...          ",
+"........W..          ",
+"........G.*          ",
+".....u..G..          ",
+"........W..          ",
+".uu.....W..          ",
+"........W..          ",
+"........W..          ",
+".u......W.#          ",
+"#GBB####...          ",
+"..BB..BB###          ",
+"......BB..#          ",
+"...........          "
+],
+"path_end": "(73, 46)"
+},
+{
+"src": "crown_mirror/default/g23_cinder_steps_B",
+"t": 740,
+"kind": "mortar",
+"order": "move",
+"at": [
+0,
+28
+],
+"goal": [
+16,
+15
+],
+"grid": [
+"          ...ffffff..",
+"          ...........",
+"          #..BB......",
+"          ###BB..BB..",
+"          ...####BBG#",
+"          #.W........",
+"          ..W......u.",
+"          ..W.u......",
+"          ..W...u...u",
+"          u.W........",
+"          *uG.....uu.",
+"          u.G........",
+"          u.W...u.u.u",
+"          ...W.u.....",
+"          ..uW....u..",
+"          ....W......",
+"          .....W.....",
+"          .....W.....",
+"          ......W....",
+"          ......uWW..",
+"          .........W."
+],
+"path_end": "(16, 15)"
+},
+{
+"src": "crown_mirror/default/g23_cinder_steps_B",
+"t": 750,
+"kind": "cannon",
+"order": "move",
+"at": [
+0,
+29
+],
+"goal": [
+17,
+17
+],
+"grid": [
+"          ...........",
+"          #..BB......",
+"          ###BB..BB..",
+"          ...####BBG#",
+"          #.W........",
+"          ..W........",
+"          ..W........",
+"          ..W........",
+"          u.W........",
+"          uuG........",
+"          *.G......u.",
+"          uuW........",
+"          ...W.......",
+"          ...W.u.....",
+"          ..uuW......",
+"          ...u.W.....",
+"          ...uuW.....",
+"          ......W....",
+"          .......WW..",
+"          .........W.",
+"          ..........W"
+],
+"path_end": "(16, 17)"
+},
+{
+"src": "crown_mirror/default/g23_cinder_steps_B",
+"t": 750,
+"kind": "cannon",
+"order": "move",
+"at": [
+0,
+27
+],
+"goal": [
+20,
+14
+],
+"grid": [
+"          ...ffffff..",
+"          ...ffffff..",
+"          ...........",
+"          #..BB......",
+"          ###BB..BB..",
+"          ...####BBG#",
+"          #.W........",
+"          ..W........",
+"          ..W........",
+"          ..W........",
+"          *.W........",
+"          uuG........",
+"          u.G......u.",
+"          uuW........",
+"          ...W.......",
+"          ...W.u.....",
+"          ..uuW......",
+"          ...u.W.....",
+"          ...uuW.....",
+"          ......W....",
+"          .......WW.."
+],
+"path_end": "(20, 14)"
+},
+{
+"src": "crown_mirror/default/g26_frostfang_A",
+"t": 920,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+19,
+17
+],
+"goal": [
+17,
+14
+],
+"grid": [
+".......BBBBu.u...#...",
+".BBBBB.BBBB.BBBB.#...",
+".BBBBB..u...BBBB.#...",
+".BBBBB.BBBB.BBBB.#...",
+".BBBBB.BBBB..u...#...",
+"...uu..BBBBuBB..#....",
+".BBBB.u.u...BB..#....",
+"uBBBBu.BBBB.u..#.....",
+".BBBBu.BBBB.BB.#.....",
+"...u.uuBBBB.BB#......",
+"..BBu..uuu*..#.......",
+"BuBBuu.....##........",
+"B....BB..##..........",
+".....BBG#............",
+"#####..u.............",
+".....................",
+"B....................",
+"B....................",
+"f.......u............",
+"......u..............",
+"fffff................"
+],
+"path_end": "(17, 13)"
+},
+{
+"src": "crown_mirror/default/g29_cinder_steps_A",
+"t": 600,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+0,
+28
+],
+"goal": [
+11,
+24
+],
+"grid": [
+"          ...ffffff..",
+"          ...........",
+"          #..BB......",
+"          ###BB..BB..",
+"          ...####BBG#",
+"          #.W........",
+"          ..W........",
+"          ..W........",
+"          ..W......u.",
+"          ..W........",
+"          *.G........",
+"          u.G........",
+"          ..W........",
+"          ...W.......",
+"          ...W.......",
+"          ....W......",
+"          .....W.....",
+"          .....W.....",
+"          ......W....",
+"          .......WW..",
+"          .........W."
+],
+"path_end": "(11, 24)"
+},
+{
+"src": "crown_mirror/default/g29_cinder_steps_A",
+"t": 780,
+"kind": "powder_wagon",
+"order": "move",
+"at": [
+91,
+45
+],
+"goal": [
+67,
+38
+],
+"grid": [
+".W...u.....          ",
+"..WWuu.....          ",
+"....W......          ",
+".....Wu....          ",
+".....W.....          ",
+"BBBB..W....          ",
+"BBBB...W...          ",
+"BBBB...Wuu.          ",
+"..uu....Wu.          ",
+"........Gu.          ",
+".u....u.G.*          ",
+"........W..          ",
+"........W..          ",
+"........W..          ",
+"........W..          ",
+"........W.#          ",
+"#GBB####...          ",
+"..BB..BB###          ",
+"......BB..#          ",
+"...........          ",
+"..ffffff...          "
+],
+"path_end": "(67, 38)"
+}
+]

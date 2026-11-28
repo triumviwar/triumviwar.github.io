@@ -101,10 +101,37 @@ func _wheels() -> void:
 					"goal": [int(u.order_point.x / Defs.TILE), int(u.order_point.y / Defs.TILE)], "len": 10}
 				if qa != null and qa.has_method("_stuck_dbg"):
 					rec["dbg"] = qa._stuck_dbg(u)
+				rec["why"] = _why(u)
 				runs.append(rec)
 				u.set_meta("afb_run", runs.size() - 1)
 		else:
 			_end_run(u, id)
+
+
+## What a gun stuck 10 s stands in, for finding the cause: its heading, the next waypoint, whether its body and team are
+## clear where it stands and toward the waypoint, the units pressing on it.
+func _why(u: Unit) -> Dictionary:
+	var wp: Vector2 = u.path[u.path_i] if u.path_i < u.path.size() else u.path_goal
+	var to: Vector2 = (wp - u.position).normalized() if wp != Vector2.INF and wp.distance_to(u.position) > 0.5 else Vector2.ZERO
+	var own := 0
+	var foe := 0
+	for o in g.units_near(u.position, u.radius + 70.0):
+		if o == u or o.dead or o.is_air():
+			continue
+		if o.team == u.team:
+			own += 1
+		else:
+			foe += 1
+	var towed: bool = u._towed()
+	return {"face": [snappedf(u.facing.x, 0.01), snappedf(u.facing.y, 0.01)], "to": [snappedf(to.x, 0.01), snappedf(to.y, 0.01)],
+		"vel": snappedf(u.velocity.length(), 0.1), "push": snappedf(u._push.length(), 0.1), "stuck_t": snappedf(u.stuck_t, 0.1),
+		"towed": towed, "horses": u.horse_count() if u.has_method("horse_count") else 0,
+		"clear_here": u._tow_clear(u.position, u.facing) if towed else g._clear_at(u.position, u.ground_r(), u.team),
+		"clear_turn": u._tow_clear(u.position, to) if towed and to != Vector2.ZERO else true,
+		"clear_ahead": u._tow_clear(u.position + to * 6.0, u.facing) if towed and to != Vector2.ZERO else true,
+		"own_near": own, "foe_near": foe, "path": u.path.size(), "path_i": u.path_i,
+		"wp": [int(wp.x / Defs.TILE), int(wp.y / Defs.TILE)] if wp != Vector2.INF else [], "work": String(u.work),
+		"supplying": bool(u.supplying) if "supplying" in u else false, "squeezed": u.squeezed}
 
 
 func _end_run(u: Unit, id: int) -> void:
