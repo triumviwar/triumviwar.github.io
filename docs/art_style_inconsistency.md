@@ -795,6 +795,16 @@ Drawn in code, to be painted later (stand-ins):
   sappers.
 - A Brood team's swamp past the first two teams is painted by the mission with the swamp tile (no edges or blending).
 
+## Act 3's engine step 0 (act3-engine0, 0.38.999; scripts/campaign/mission_act3.gd, docs/act3_engine0.md)
+
+Drawn in code, to be painted later (stand-ins):
+- THE FROST LINE: a pale blue wash over the frozen side and a ticked pale line along its edge (frost on the ground,
+  rime on the grass would be the painted version).
+- WARMTH: a faint orange disc and ring round each fire (a brazier's glow on snow is wanted with the ice biome, step 3).
+- THE STOP-WORK and THE MADE CALL: rings going out from the bell / the caller (gold / green).
+- THE FLIGHT: a dashed line ahead of the flyer, a gold ring round each marked thing.
+- THE CREDITS: the parchment war map dimmed under the names; the Rome hub's painting reused for the King's study.
+
 ## The war map's BRASS MAP and SPECIMEN CHART, and the BRAZIL view (code-drawn, act2-warmap, docs/war_map_act2.md)
 
 - The Clockmaker's BRASS MAP (scripts/campaign/war_map.gd SKINS "brass"): the plate's brushed sheen and lathe rings, the
