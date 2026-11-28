@@ -521,11 +521,8 @@ func crawl(root_name: String, show: Callable, max_depth := -1, max_pages := 30) 
 		return
 	_errs(root_name, "(show the page)")
 	var presses := 0
-	var seen := _part_seen          # (pages seen by an earlier root of this part are not walked again)
-	if seen.has(_sig()):
-		print("  (%s: seen already)" % root_name)
-		return
-	seen[_sig()] = true
+	# (every root is walked, even one that looks like a page seen before: a war map skin, another mission's card)
+	var seen := {_sig(): true}
 	await _visit(root_name)
 	var queue: Array = [[[], root_name]]
 	var pages := 1
@@ -1169,7 +1166,12 @@ func _audit(screen: String) -> void:
 				mx = st.get_margin(SIDE_LEFT) + st.get_margin(SIDE_RIGHT)
 			var icon_w := 0.0
 			if b.icon != null and not b.expand_icon:
-				icon_w = b.icon.get_width() + b.get_theme_constant("h_separation")
+				var iw := float(b.icon.get_width())
+				var imax := b.get_theme_constant("icon_max_width")
+				if imax > 0:
+					iw = minf(iw, imax)
+				iw = minf(iw, iw * (r.size.y / maxf(1.0, b.icon.get_height())))     # (an icon taller than the button is drawn smaller)
+				icon_w = iw + b.get_theme_constant("h_separation")
 			var w := 0.0
 			for ln in t.split("\n"):
 				w = maxf(w, f.get_string_size(ln, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x)
