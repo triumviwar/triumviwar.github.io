@@ -26,6 +26,14 @@
 
 ## Current work
 
+- QA SYSTEMS REVIEW (owner 2026-11-28 "all systems in general", ideas to add or change; job qa-systems-review, branch
+  qa-systems-review, docs only: docs/qa_systems_review.md): a section per system (economies, supply, combat, rosters,
+  research, the computer, control, campaign, world war, tournaments, online, replays, saving, maps, tutorial, audio,
+  performance, code health), a ranked top 15 (1: HOW TO PLAY > CLOCKWORK still teaches the shelved Line roster; 2: Esc
+  opens the match menu; 3: fair difficulty levels across factions), five things not to do, and the owner's decisions
+  worth revisiting kept apart. No code or number changed; no new matches (no engine on the machine; the 270 games of
+  2026-11-26 used).
+
 - MAP PREVIEWS (owner 2026-11-28: the picker showed FROSTFANG as a plain light box with spots 1 and 2; job map-previews,
   branch map-previews, docs/map_previews.md, pictures docs/shots/map_previews/): one shared widget MapPreview
   (scripts/ui/map_preview.gd; was Main.MapPreview) draws a map's REAL minimap (MapThumb, scripts/ui/map_thumb.gd: a Game
