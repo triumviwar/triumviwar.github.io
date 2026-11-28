@@ -398,8 +398,11 @@ func _english(t: String) -> bool:
 		if mt != null:
 			for v in mt.get_script_constant_map().get("TRACKS", {}).values():
 				_titles[String(v)] = true
+		for mid in MapGen.all_ids():
+			_titles[MapGen.display_name(String(mid))] = true
 		_titles["-"] = true
-	if _titles.has(t.trim_prefix("> ").strip_edges()):
+	var bare := t.trim_prefix("> ").strip_edges()
+	if _titles.has(bare) or _titles.has(bare.split(" (")[0]):
 		return false
 	if _en_words.is_empty():
 		var tab := Loc.table(lang)
