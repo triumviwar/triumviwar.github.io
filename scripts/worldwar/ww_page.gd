@@ -31,6 +31,7 @@ var card: PanelContainer
 var card_box: VBoxContainer
 var overlay: Control = null
 var busy := false                  # a computer's turn under way (the player's buttons wait)
+var _leave_wanted := false         # SAVE & LEAVE pressed while a computer moved: done after its move (qa-click-sweep)
 var _pending := {}                 # a battle waiting for the player's choice
 var _after_battle := Callable()
 
@@ -621,6 +622,12 @@ func _news() -> Array:
 
 
 func _ai_next() -> void:
+	if _leave_wanted and is_inside_tree() and overlay == null:
+		_leave_wanted = false
+		busy = false
+		war.save()
+		show_setup(main)
+		return
 	if not is_inside_tree() or String(war.d["winner"]) != "":
 		busy = false
 		refresh()
@@ -678,6 +685,11 @@ func _leave() -> void:
 		hp.queue_free()
 		return
 	if busy:
+		# (qa-click-sweep: it did nothing while a computer moved, and in a war of computers only it never worked: the
+		# page could not be left; now it leaves after the move under way)
+		if not _leave_wanted:
+			_leave_wanted = true
+			_toast(Loc.t("Leaving after this move..."))
 		return
 	war.save()
 	show_setup(main)
