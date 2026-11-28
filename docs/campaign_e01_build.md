@@ -134,26 +134,30 @@ Barracks; "late" does the same but slower to react; "passive" gives no order at 
 
 | run | road | difficulty | result | aboard | time | the fort at the end |
 | --- | --- | --- | --- | --- | --- | --- |
-| careful | south | NORMAL | WON, many | 18 of 19 | 5:38 | 3,000 |
-| careful | river | NORMAL | WON, many | 18 of 22 | 6:01 | 3,000 |
+| careful | south | NORMAL | WON, many | 18 of 19 | 5:40 | 3,000 |
+| careful | river | NORMAL | WON, many | 19 of 22 | 5:59 | 3,000 |
 | careful | south | EASY | WON, many | 18 of 19 | 5:41 | 3,000 |
 | careful | south | HARD | WON, many | 17 of 19 | 5:45 | 2,868 |
-| careful | river | HARD | WON, few | 10 of 22 | 5:56 | 3,000 |
+| careful | river | HARD | WON, some | 12 of 22 | 6:02 | 3,000 |
 | careful | river | BRUTAL | WON, some | 11 of 22 | 5:54 | 2,905 |
-| late | south | NORMAL | WON, some | 15 of 19 | 7:22 | 2,978 |
+| late | south | NORMAL | WON, many | 16 of 19 | 7:09 | 2,971 |
 | late | river | NORMAL | WON, some | 15 of 22 | 7:12 | 2,986 |
-| passive | south | NORMAL | LOST | 1 of 19 | 7:26 | 2,394 |
-| passive | river | NORMAL | LOST | 7 of 22 | 6:32 | 2,822 |
+| passive | south | NORMAL | LOST | 5 of 19 | 7:26 | 2,719 |
+| passive | river | NORMAL | LOST | 7 of 22 | 6:52 | 2,972 |
 | careful, jungle thin, Barra and fields burned | river | NORMAL | WON, some | 14 of 19 | 5:58 | 3,000 |
 | careful, families left, the valley fought | south | NORMAL | WON, many | 19 of 20 | 5:40 | 3,000 |
-| THE FIRE (a bot that waits out of the guns' reach, then goes for the people) | south | NORMAL | WON for the fire | 8 of 19 | 5:40 | 3,000 |
-| THE FIRE (the same) | river | NORMAL | WON for the fire | 9 of 22 | 5:47 | 3,000 |
+| THE FIRE (a bot that waits out of the guns' reach, then goes for the people) | south | NORMAL | WON for the fire | 5 of 19 | 5:42 | 3,000 |
+| THE FIRE (the same, families left) | south | NORMAL | WON for the fire | 9 of 20 | 5:33 | 3,000 |
+| THE FIRE (the same) | river | NORMAL | WON for the fire | 7 of 22 | 5:47 | 2,931 |
 | THE FIRE (a bot that throws itself at the ford) | south | NORMAL | LOST for the fire | 14 of 19 | 5:31 | 3,000 |
 | careful, saved at 2:30 and loaded (SIM LOAD SAME yes) | south | NORMAL | WON, many | 18 of 19 | 5:41 | 3,000 |
 | careful, saved at 4:20 and loaded (SIM LOAD SAME yes) | river | NORMAL | WON, many | 18 of 22 | 5:55 | 3,000 |
 
+(The rows with the flags, EASY, HARD south, BRUTAL and the save runs were run before the port's quarters were added: the
+quarters only let the army train at the port in Part 3, so those rows can only be better now.)
+
 The river road is the harder one at HARD (the swarm's Raptors run the column down on the road; the machines are slow):
-a careful player brings "few" there. Earlier runs found the harbour fort falling to one assault (1,600 health: now
+a careful player brings "some" there, about half. Earlier runs found the army unable to train at the port (no supply on the road: five Cottages, the army's quarters, now stand on each port's bluff), the harbour fort falling to one assault (1,600 health: now
 3,000), the passive player winning with a third aboard (the line now two in five), and the southern HARD army dying
 at the pass (its ambush made one Clock Soldier smaller, the HARD Pendulum gone).
 
@@ -161,7 +165,12 @@ The longest idle stretch in any run: 42 s (the passive run waiting for the ships
 
 ## Pictures (docs/shots/e01_brazil/, CHECK THE FEEL)
 
-PICTURES
+`tools/sim_campaign_e01.gd -- careful shots=docs/shots/e01_brazil` (under xvfb, 1280 x 720; `first=clockwork
+shots=docs/shots/e01_brazil/river` for the river road): 1_start (the army at the ford, the NEW card), 2_fall (the
+outposts fall back), 3_ford and 4_ford2 (the waves at the ford, canister), 5_drum / 6_break (the front breaks, the
+groups set out with the Drummer), 7_raid (a raid out of the woods on the column), 8_road / 9_road (the road, the
+pass), 9_port / 8_port (the port, its quarters, the Barracks training), 10_assault (the bluff), 11_quay (the people
+counted aboard), 12_sail (the ships sail: WON).
 
 ## Stills: the prompts for the owner (ChatGPT, one request each, at most 3 reference images; each prompt stands alone)
 
@@ -235,12 +244,25 @@ not drawn (the people walk onto the quay and are counted aboard).
     the army of 2781 has them).
 15. FORT CONSTANTINE'S MEN and THE VIRGINIA VOLUNTEERS march only if their flags allow; Fort Constantine's commander is
     named TEIXEIRA here (the d09 build left him unnamed; proposed).
-16. THE PLAN'S `colonists` names stay: few / some / many and `colonists_n`; THE FINALE'S LEDGER can read `colonists`
+16. THE PORT'S QUARTERS: five Cottages of the army's stand on each port's bluff from the start (40 supply + the fort's
+    10), so the army's 39 fit and the port's Barracks can train. Without them the HUD showed 39/10 in red all mission.
+17. THE MIRROR'S STRENGTH: the fire's own waves every 0:40 (8 Raptors and 3 Spitters on the river; 8 Clock Soldiers,
+    4 Springers and a Winder on the road south; from 3:20 a Tyrant Challenger or a Pendulum), its start army as the
+    plan's. A fire player who waits out of the guns' reach and goes for the people wins; one who throws itself at the
+    ford loses.
+18. THE PLAN'S `colonists` names stay: few / some / many and `colonists_n`; THE FINALE'S LEDGER can read `colonists`
     many as a mark.
 
 ## Looked at (CHECK THE FEEL)
 
-LOOKED_AT
+Every picture above. The scale is right (the people walk among the soldiers at their own size; the Cottages and the fort
+on the bluff read as a port's buildings); the swarm's Raptors and the Clock Soldiers come at the ford as one body. Found
+and fixed while looking: the supply read 39/10 in red all mission (the port's quarters added); the harbour fort's
+objective stayed unticked at the win (now done with the ships). Left as it is: in Part 2 the objective list grows long
+on a 1280 x 720 screen (seven lines; it folds as each is done, as in every mission); the river port's sea east of the
+quay is three columns wide, so the camera at the quay shows the map's edge; the Part 1 "fall" picture looks at the far
+bank where the outposts were, after they had come over. Dramatic lines for emotion (marked in the voice table): r_open1,
+r_end_few, r_end2, k_end1. Orders stick: the people keep their roads after a load (the save runs: SIM LOAD SAME yes).
 
 ## What is left
 
@@ -250,4 +272,12 @@ LOOKED_AT
 
 ## Tests run
 
-TESTS_RUN
+- `tools/test_campaign_e01.gd`: 93 checks, all pass (data, both versions' maps and areas, every flag above, the three
+  parts, the defeats, THE FIRE solo and versus, SAVE/LOAD in both versions on their own maps, ironman, the hubs).
+- `tools/test_campaign.gd`, `tools/test_roster_ladder.gd`, `tools/test_act3_engine0.gd`, `tools/test_map_previews.gd`,
+  `tools/test_i18n.gd` (pt and es: 0 of 428 untranslated): pass.
+- `tools/test_campaign_d10.gd`, `tools/test_campaign_d11.gd`: pass but one check, "the war map's data has no problem:
+  mission e01_brazil has no pin on the war map". The war map's files belong to the act3-warmap job (this job must not
+  touch them); its branch already has the e01 pins, so the check passes once both are merged.
+- Boot check (`godot --headless --path . --quit-after 120`): no SCRIPT ERROR, no Parse Error.
+- The sims in "Balance" above (16 runs at the end, more on the way).

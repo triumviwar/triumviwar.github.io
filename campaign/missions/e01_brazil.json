@@ -10035,6 +10035,12 @@
 						"id": "people_live",
 						"set": "done"
 					}
+				},
+				{
+					"objective": {
+						"id": "fort_live",
+						"set": "done"
+					}
 				}
 			]
 		},
@@ -10259,7 +10265,7 @@
 					"spawn": {
 						"team": "fire",
 						"kind": "clock_soldier",
-						"count": 6,
+						"count": 8,
 						"at": "edge",
 						"tag": "f_army",
 						"tags": [

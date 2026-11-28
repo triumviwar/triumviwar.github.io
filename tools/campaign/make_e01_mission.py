@@ -637,7 +637,7 @@ ASSAULT = {
 }
 REINF = {   # the fire played: its own waves (the player leads them)
     "river": [("raptor", 8, None), ("spitter", 3, None), ("tyrant_challenger", 1, {"time": 200})],
-    "south": [("clock_soldier", 6, None), ("springer", 4, None), ("winder", 1, None), ("pendulum", 1, {"time": 200})],
+    "south": [("clock_soldier", 8, None), ("springer", 4, None), ("winder", 1, None), ("pendulum", 1, {"time": 200})],
 }
 
 
@@ -835,7 +835,7 @@ TR_ += [
     # ============================================================ THE END
     # the column: two in five aboard at least (and the fort standing) = won; fewer = lost (the fire played: half)
     {"id": "sail_won", "when": {"all": [{"fired": "sail"}, NO_FIRE, {"flag": {"share": "saved"}}]}, "do": [
-        {"say": ["n_sail"]}, {"objective": {"id": "people_live", "set": "done"}}]},
+        {"say": ["n_sail"]}, {"objective": {"id": "people_live", "set": "done"}}, {"objective": {"id": "fort_live", "set": "done"}}]},
     {"id": "sail_lost", "when": {"all": [{"fired": "sail"}, NO_FIRE, {"not": {"flag": {"share": "saved"}}}]}, "do": [
         {"say": ["n_too_few"]}, {"objective": {"id": "people_live", "set": "failed"}}]},
     {"id": "the_end", "when": {"any": [{"fired": "sail_won"}, {"fired": "f_sail_lost"}]}, "delay": 6, "do": [{"win": "column"}]},
