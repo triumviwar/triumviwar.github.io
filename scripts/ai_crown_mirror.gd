@@ -147,8 +147,9 @@ func _spot_for(gu: Unit, hall: Building, rng: float) -> Vector2:
 				continue
 			if hall.edge_distance(p) > rng - 16.0 or hall.edge_distance(p) < float(gu.d.get("min_range", 0)) + 16.0:
 				continue
-			if _under_fire(p):
-				continue             # (out of reach of the shooters it sees: a gun under the cliff's muskets died, 8:30)
+			if _under_fire(p) and not (_screen_on() and CM20.screened(self, p)):
+				continue             # (out of reach of the shooters it sees: a gun under the cliff's muskets died, 8:30;
+				                     # crown-mirror-20 P2: unless the wave's line screens it)
 			var d: float = p.distance_to(gu.position)
 			if d < bd:
 				bd = d
@@ -157,6 +158,13 @@ func _spot_for(gu: Unit, hall: Building, rng: float) -> Vector2:
 
 
 const BOMBARD_GUNS := 2
+const CM20 = preload("res://scripts/ai_crown_mirror_20.gd")
+var _screen_until := -1.0         # (crown-mirror-20 P2) the guns' screen holds until this clock
+var screens := 0                  # (the report) screens formed
+
+
+func _screen_on() -> bool:
+	return CM20.guns_on and _screen_until > game.clock and bombarding()
 const BOMBARD_T := 40.0
 const BOMBARD_COOL := 120.0
 var _bomb_until := -1.0
@@ -196,6 +204,18 @@ func bombard(wave: Array, _piece: Building, back: Vector2, target: Vector2) -> b
 		var sp := _spot_for(gu, hall, float(gu.d["range"]))
 		if sp != Vector2.INF:
 			spots[gu] = sp
+	var screen := PackedVector2Array()
+	if spots.size() < BOMBARD_GUNS and CM20.guns_on:
+		# (crown-mirror-20 P2, `cm20guns:on`: no spot out of reach: the line stands before the guns and screens them)
+		var men: Array = wave.filter(func(u) -> bool: return is_instance_valid(u) and not u.dead and not GUN_KINDS.has(u.kind) \
+				and not u.is_air() and u.armed() and not u.is_worker())
+		spots = CM20.screen_spots(self, guns, men, hall, screen)
+		if not spots.is_empty():
+			_screen_until = game.clock + BOMBARD_T
+			screens += 1
+			for u in men:
+				u.siege_t = 0.0
+			game.line_move(men, screen, false)
 	if spots.size() < BOMBARD_GUNS:
 		_bomb_last[hall] = game.clock
 		return false
@@ -206,6 +226,10 @@ func bombard(wave: Array, _piece: Building, back: Vector2, target: Vector2) -> b
 	_bomb_until = game.clock + BOMBARD_T
 	_bomb_back = back
 	_until = -1.0                     # (no regroup meanwhile)
+	if not screen.is_empty():
+		_say("forms the guns' screen: a line of men before %d guns that shell the enemy hall under its cliff" % spots.size())
+		guns_at_hall(wave, hall.center(), true)
+		return true
 	for u in wave:
 		if is_instance_valid(u) and not u.dead and not GUN_KINDS.has(u.kind):
 			u.siege_t = 0.0
@@ -383,6 +407,7 @@ func press() -> void:
 	var guns := ready.filter(func(u) -> bool: return GUN_KINDS.has(u.kind)).size()
 	if not _open_hall() and guns < BOMBARD_GUNS:
 		return
+	_press_ok_t = game.clock           # (crown-mirror-20 P3: the side is ahead the press's way)
 	var sup: int = ai._army_supply(ready)
 	# (the shared rule counts fewer men than this: a new hall's guards (AI._guard_new_hall keeps two when the whole army
 	# meets the bar), riders on errands: the bar comes down to PRESS_BAR of the army, Dune Sea 1109 6:40-10:57 held)
@@ -505,10 +530,36 @@ func _held_by(ready: Array) -> String:
 		why.append("the cinder timing window")
 	if ai.blind_guard():
 		why.append("the blind guard")
+	if not ai._kit_ready(ready):
+		why.append("the kit")
+	if ai._sw() and ai.swm().hold_attack():
+		why.append("the swarm")
+	if not ai._wave_worth(ready):
+		why.append("the wave's worth")
 	var known: float = ai.ch.foe_known()
 	if known > 0.0 and _value(ready) < known * ai.CR_EDGE:
 		why.append("the edge (%d against %d known)" % [int(_value(ready)), int(known)])
 	return ", ".join(why) if not why.is_empty() else "nothing seen (riders' horses coming?)"
+
+
+## (crown-mirror-20 P3, `cm20gates:on`) the press sent its wave in the last PRESS_GO s and the bar is met: the wave goes past
+## the shared rule's other gates (the regroup, the timing, the kit, round 5, the edge, the defence's "a push is coming",
+## the screen riders): the press already weighed the enemy army it reckons. Not while a force is at our buildings (the
+## shared defence runs first: AI._threat), not for the Siege push (its own rule: AICrownSiege._maybe_go).
+const PRESS_GO := 12.0
+var gates_n := 0                  # (the report) waves sent past the gates
+var _press_ok_t := -1.0
+
+
+func press_go(ready: Array) -> bool:
+	if not CM20.gates_on or not press_on or _press_ok_t < 0.0 or game.clock - _press_ok_t > PRESS_GO or ai.siege != null:
+		return false
+	if ai._threat() != Vector2.INF or _value(ready) < p_min:
+		return false
+	var why := _held_by(ready)
+	gates_n += 1
+	_say("'s pressed wave goes past the gates (%s)" % why)
+	return true
 
 
 ## The enemy army we reckon: what was seen lately, but never under PRESS_FLOOR of the reckoning (AICrown.foe_reckon: the
