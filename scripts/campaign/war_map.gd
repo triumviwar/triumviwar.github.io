@@ -36,7 +36,7 @@ const SKINS := {
 	## enamel with brass rims, the machine's land a creeping ground of small gears, the pins small gears. Drawn in code;
 	## "paper_art" (the plate, screen space) and "base" (the land, the data's bounds) take the owner's paintings.
 	"brass": {
-		"style": "brass", "paintings": false, "paper_art": "res://campaign/warmap_art/brass_plate.jpg", "hill_art": false,
+		"style": "brass", "paintings": true, "paint_prefix": "brass_", "paper_art": "res://campaign/warmap_art/brass_plate.jpg", "hill_art": false,
 		"base": "",
 		"paper": Color(0.60, 0.44, 0.19), "paper_edge": Color(0.22, 0.13, 0.04, 0.85),
 		"sea": Color(0.50, 0.36, 0.15), "land": Color(0.86, 0.68, 0.33, 0.62), "sea_wash": Color(0.24, 0.15, 0.05, 0.22),
@@ -60,7 +60,7 @@ const SKINS := {
 	## and pencil, the rivers in blue ink, light watercolour washes, the creatures' land stippled in green ink by a careful
 	## hand, the pins pinned specimen labels, notes in the margins.
 	"chart": {
-		"style": "chart", "paintings": false, "paper_art": "res://campaign/warmap_art/chart_paper.jpg", "hill_art": false,
+		"style": "chart", "paintings": true, "paint_prefix": "chart_", "paper_art": "res://campaign/warmap_art/chart_paper.jpg", "hill_art": false,
 		"base": "",
 		"paper": Color(0.93, 0.90, 0.81), "paper_edge": Color(0.45, 0.38, 0.26, 0.45),
 		"sea": Color(0.91, 0.90, 0.84), "land": Color(0.82, 0.74, 0.56, 0.22), "sea_wash": Color(0.70, 0.80, 0.84, 0.14),
@@ -181,14 +181,22 @@ func sk() -> Dictionary:
 
 func _paint_ok(id: String) -> bool:
 	if not bool(sk().get("paintings", false)):
-		return false            # (the brass map and the chart are their owners' own: never the King's paintings)
+		return false
 	var pt: Dictionary = WarMapData.data().get("paintings", {}).get(id, {})
-	return not pt.is_empty() and ResourceLoader.exists(String(pt.get("file", "")))
+	return not pt.is_empty() and ResourceLoader.exists(_pfile(id))
+
+
+## The view's painted sheet for this skin: the King's (parchment) or the brass map's / the chart's own redraw of it
+## (owner 2026-11-28: painted_brass_<view>.jpg, painted_chart_<view>.jpg, the same coasts, so the same fit).
+func _pfile(id: String) -> String:
+	var f := String(WarMapData.data()["paintings"][id]["file"])
+	var pre := String(sk().get("paint_prefix", ""))
+	return f.replace("/painted_", "/painted_" + pre) if pre != "" else f
 
 
 func _set_painted(id: String) -> void:
 	painted = id
-	_ptex = load(String(WarMapData.data()["paintings"][id]["file"])) if id != "" else null
+	_ptex = load(_pfile(id)) if id != "" else null
 
 
 ## A place (lon/lat) where the map draws it: on the painted sheet (its pixels) or the drawn map (map units).

@@ -383,7 +383,7 @@ func _act2() -> void:
 				ok = false
 		check("skin %s: drawn, every holder has its colours" % sk, ok)
 		check("skin %s: a title (%s)" % [sk, WarMapData.skin_title(sk)], WarMapData.skin_title(sk) != "")
-	check("only the King's parchment shows the Catholic paintings", WarMap.SKINS["parchment"]["paintings"] and not WarMap.SKINS["brass"]["paintings"] and not WarMap.SKINS["chart"]["paintings"])
+	check("every skin shows its own painted sheets (the brass and chart with their own prefix)", WarMap.SKINS["parchment"]["paintings"] and WarMap.SKINS["brass"].get("paint_prefix", "") == "brass_" and WarMap.SKINS["chart"].get("paint_prefix", "") == "chart_")
 	check("no Brood skin (owner 2026-11-22: no Brood war map, ever)", not WarMap.SKINS.has("brood") and not WarMap.SKINS.has("nest"))
 	check("each line's hub reads its own skin", CampaignMenu.skin_for("prologue") == "parchment" and CampaignMenu.skin_for("clockmaker") == "brass" and CampaignMenu.skin_for("naturalist") == "chart")
 	# ---- the pins: every Act 2 mission, on land, with a place, a date and what it is about
@@ -532,8 +532,7 @@ func _ui_act2() -> void:
 	if wm == null:
 		return
 	await process_frame
-	check("the brass map opens on BRAZIL (drawn, no painting)", wm.painted == "" and _find("View_brazil") != null
-		and wm.world_rect().has_point(wm.center) and absf(wm.center.x - WarMapData.rect_of(WarMapData.data()["views"][1]["rect"]).get_center().x) < 1.0, str(wm.center))
+	check("the brass map opens on BRAZIL (its own engraved sheet)", wm.painted == "brazil" and _find("View_brazil") != null, wm.painted)
 	# a planned pin's card: what it is about; the clock
 	wm.tap(wm.pin_screen(WarMapData.pin_of("d05_aldeia")))
 	await process_frame

@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in es: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.231": ["Mapas de guerra: el mapa del Relojero ahora es una placa de latón grabada y el del Naturalista una carta de campo con dibujos de plantas y de criaturas de la Camada, en todas las vistas."],
 	"0.38.230": ["Las Crías de la Nidada ahora son un pequeño guiverno: verde oliva, alas de murciélago y una hilera de púas rojas, volando y mordiendo en todas las direcciones."],
 	"0.38.229": ["Una larva que carga, envuelve o guarda un capullo mantiene la misma piel oliva oscura que cuando camina (antes se volvía amarillenta)."],
 	"0.38.228": ["Los caballos pastan mirando hacia donde están (antes todos pastaban hacia abajo a la derecha), también en el corral; la Madre de la Camada en su segunda etapa camina de frente hacia ti; los nuevos fotogramas de pistola del Coracero aceptan todos los pelajes."],

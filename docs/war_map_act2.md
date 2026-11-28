@@ -241,3 +241,13 @@ stays drawn by the code (exact coasts at every zoom, as the parchment decided in
 - Boot `godot --headless --path . --quit-after 120`: no SCRIPT ERROR or Parse Error.
 - `python3 tools/i18n_build.py` (no errors), `python3 tools/i18n_patch_build.py` reports [].
 - (As before on this cloud machine every headless Godot run ends with "Aborted", exit 134, after its last line.)
+
+## Painted sheets for every skin (owner 2026-11-28)
+
+The Clockmaker's BRASS MAP and the Naturalist's SPECIMEN CHART now show their own painted sheets, like the King's
+parchment: campaign/warmap_art/painted_brass_<view>.jpg (an engraved brass plate with gears and a clock) and
+painted_chart_<view>.jpg (a field chart with plant and Brood specimen sketches; the creatures green and olive, never
+red). WarMap.SKINS carries "paint_prefix"; WarMap._pfile swaps it into the King's file name, so every sheet reuses the
+King's fit to longitude and latitude (the ChatGPT redraws keep his coasts; checked by overlay, Virginia about 3% off).
+Originals in art/campaign/warmap_skins/ (chart_*_plain_chatgpt.jpg are versions without the Brood). A missing sheet
+falls back to the code-drawn map.

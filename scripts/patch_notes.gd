@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.231", "items": [
+		"War maps: the Clockmaker's map is now an engraved brass plate and the Naturalist's a field chart with plant and Brood specimen drawings, in every view.",
+	]},
 	{"v": "0.38.230", "items": [
 		"The Brood's Hatchlings are now a small wyvern: olive green, bat wings and a row of red spines, flying and biting in every direction.",
 	]},

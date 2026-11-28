@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.231": ["Mapas de guerra: o mapa do Relojoeiro agora é uma placa de latão gravada e o do Naturalista uma carta de campo com desenhos de plantas e de criaturas da Ninhada, em todas as vistas."],
 	"0.38.230": ["Os Filhotes da Ninhada agora são uma pequena serpe: verde-oliva, asas de morcego e uma fileira de espinhos vermelhos, voando e mordendo em todas as direções."],
 	"0.38.229": ["Uma larva carregando, embrulhando ou guardando um casulo mantém a mesma pele oliva escura de quando anda (antes ficava amarelada)."],
 	"0.38.228": ["Os cavalos pastam virados para onde estão (antes todos pastavam para baixo à direita), também no cercado; a Mãe da Ninhada no segundo estágio caminha de frente para você; os novos quadros de pistola do Couraceiro aceitam todas as pelagens."],
