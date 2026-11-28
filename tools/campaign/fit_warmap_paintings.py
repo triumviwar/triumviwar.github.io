@@ -67,6 +67,24 @@ SHEETS = {
 #   Santa Catarina island [-48.5, -27.6]; the Rio de la Plata's mouth [-57.0, -35.0]; the Uruguay at the highlands [-52.0, -27.2].
 # The view's rect (campaign/warmap.json "views" brazil) is [-74, -34, -33, 6]: the painting should cover it.
 
+# ACT 3 (act3-warmap, docs/war_map_act3.md): five new views, drawn in code until painted. When the owner's sheet comes
+# (art/campaign/warmap_<view>_chatgpt.png), add it to SHEETS with at least 10 landmarks read off it, spread over the sheet:
+#   globe [-118, -48, 160, 62] (a whole-world sheet: split it at -25 lon like "world", "hemi"): Lisbon [-9.1, 38.7],
+#     Cape of Good Hope [18.5, -34.4], Cape Horn [-67.3, -55.9], Cape Sao Roque [-35.2, -5.4], the Horn of Africa
+#     [51.3, 11.8], Cape Comorin [77.5, 8.1], Singapore [103.8, 1.3], Nagasaki [129.9, 32.8], Cape York [142.5, -10.7],
+#     Sydney [151.2, -33.9], the Florida tip [-80.4, 25.1], the Yucatan's tip [-87.0, 21.5], Quebec [-71.2, 46.8].
+#   americas [-122, -40, -30, 54]: Quebec, the Florida tip, the Yucatan's tip, Panama [-79.5, 9.0], Cape Sao Roque,
+#     Rio de Janeiro [-43.2, -22.9], the Rio de la Plata's mouth [-57.0, -35.0], Lima [-77.0, -12.0], Veracruz [-96.1, 19.2],
+#     Chesapeake Bay's mouth [-76.0, 37.0].
+#   africa [-20, -37, 55, 20]: Cape Verde [-17.5, 14.7], the Gulf of Guinea's bend [9.5, 4.0], the Congo's mouth [12.3, -6.0],
+#     Luanda [13.2, -8.8], the Cape of Good Hope, Durban [31.0, -29.9], Mozambique Island [40.7, -15.0], the Horn of Africa,
+#     Zanzibar [39.2, -6.2], Madagascar's north [49.3, -12.0] and south [45.2, -25.6].
+#   indies [66, -12, 140, 40]: Goa [73.8, 15.5], Cape Comorin, Sri Lanka's south [80.6, 5.9], the Ganges' mouth [89.0, 22.0],
+#     Singapore, Manila Bay [120.9, 14.6], Nagasaki, Taiwan's south [120.8, 21.9], Hainan [109.6, 18.2], Ternate [127.4, 0.8].
+#   seas [104, -70, 180, -6]: Cape York, Sydney, Cape Leeuwin [115.1, -34.4], the Bight's head [131.0, -31.5], Tasmania's
+#     south [146.9, -43.6], Darwin [130.8, -12.5], New Zealand's north [173.0, -34.4] and south [167.5, -46.6], Java's east
+#     [114.4, -8.6], the ice's edge under the Cold Forge [110.6, -66.6].
+
 def feats(lon, lat, affine):
     return [1, lon, lat] if affine else [1, lon, lat, lon * lon, lon * lat, lat * lat]
 

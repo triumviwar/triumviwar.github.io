@@ -18,7 +18,9 @@ RIVERS = {"Amazonas", "Negro", "Rhine", "Rhein", "Rhône", "Seine", "Danube", "D
           "Ohio", "Mississippi", "Tejo", "Elbe", "Orinoco",
           # Act 2's Brazil (act2-warmap): the rivers its missions stand on
           "Tapajós", "São  Francisco", "São Francisco", "Madeira", "Xingu", "Tocantins", "Araguaia", "Paraná", "Uruguay",
-          "Grande", "Paranaíba", "Branco", "Japurá", "Purús", "Jequitinhonha"}
+          "Grande", "Paranaíba", "Branco", "Japurá", "Purús", "Jequitinhonha",
+          # Act 3's world (act3-warmap): the theatres' great rivers
+          "Congo", "Lualaba", "Zambezi", "Nile", "Ganges", "Indus", "Murray", "Darling"}
 TOL = 0.05          # simplification (degrees)
 MIN_AREA = 0.15     # smaller islands left out (square degrees)
 

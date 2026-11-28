@@ -272,10 +272,12 @@ def main():
     d = json.load(open(PATH, encoding="utf-8"))
     for key in ("regions", "marks", "pins", "rules", "notes"):
         d[key] = [x for x in d.get(key, []) if not x.get("act2")]
+    old = [v for v in d["views"] if v["id"] == "brazil"]
     d["views"] = [v for v in d["views"] if v["id"] != "brazil"]
-    d["views"].insert(1, VIEW)
+    d["views"].insert(1, dict(VIEW, **({"acts": old[0]["acts"]} if old and "acts" in old[0] else {})))
     d["holders"]["guild"] = "The free city (the guild's)"
-    d["acts"] = [{"if": {"done": "a07_council"}, "act": 2, "act_title": "Act 2: 2771-2780", "view": "brazil"}]
+    d["acts"] = [{"if": {"done": "a07_council"}, "act": 2, "act_title": "Act 2: 2771-2780", "view": "brazil"}] + \
+        [a for a in d.get("acts", []) if a.get("act3")]      # (Act 3's acts kept: tools/campaign/warmap_act3.py)
     d["skins"] = {"parchment": {"title": "THE WAR MAP"}, "brass": {"title": "THE BRASS MAP"}, "chart": {"title": "THE SPECIMEN CHART"}}
     d["about"] = d["about"].replace("the Clockmaker's brass map and the Naturalist's specimen chart later read the same",
                                     "the Clockmaker's brass map and the Naturalist's specimen chart read the same (docs/war_map_act2.md)")
@@ -283,7 +285,7 @@ def main():
     d["marks"] += tag(json.loads(json.dumps(MARKS)))
     d["pins"] += tag(json.loads(json.dumps(PINS)))
     d["rules"] += tag(json.loads(json.dumps(RULES)))
-    d["notes"] = tag(json.loads(json.dumps(NOTES)))
+    d["notes"] = tag(json.loads(json.dumps(NOTES))) + [n for n in d.get("notes", []) if n.get("act3")]
     # (keep "paintings" last, as the fit tool writes it)
     pt = d.pop("paintings", None)
     if pt is not None:

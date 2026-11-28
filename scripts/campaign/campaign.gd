@@ -607,6 +607,9 @@ static func record(id: String, mode: String, winner_side: String, my_side: Strin
 		e["mode"] = mode
 		e["side"] = my_side      # (the side this player led: the Fürth Line's machine player keeps the Machine's City hub)
 		e["played"] = int(e.get("played", 0)) + 1
+		if not e.has("seq"):          # (act3-warmap: the order of the wins, for THE CLOCK)
+			p["seq"] = int(p.get("seq", 0)) + 1
+			e["seq"] = int(p["seq"])
 		var nr := night_rank(id)          # (act3-engine0: THE NIGHT's ORDER kept as it was won, before this entry counts)
 		if nr >= 0 and not e.has("night_rank"):
 			e["night_rank"] = nr
@@ -617,6 +620,9 @@ static func record(id: String, mode: String, winner_side: String, my_side: Strin
 			p["ending"] = String(flags["ending"])      # (act3-engine0: the campaign's ending, for the credits and the hub)
 		if nxt != "" and not (p["reached"] as Array).has(nxt):
 			(p["reached"] as Array).append(nxt)
+		var cols := WarMapData.colonies(p)          # (act3-warmap: THE CLOCK's colonies, for the ledger's last mark)
+		if not cols.is_empty():
+			p["colonies"] = cols
 		save_progress(p)
 	return nxt
 

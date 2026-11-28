@@ -237,6 +237,11 @@ func shows(a: Array, key := "") -> bool:
 	return true
 
 
+## Is this pin, mark, region or note of an act the map has reached (its "act"; Act 3's world waits for Act 3)?
+func now(x: Dictionary) -> bool:
+	return int(x.get("act", 1)) <= int(act.get("act", 1))
+
+
 ## The map's whole area (the land is cut to it; the camera never shows past it).
 func world_rect() -> Rect2:
 	if painted != "" and _ptex:
@@ -348,7 +353,7 @@ func _build() -> void:
 			yy += ds * 0.87
 			row += 1
 		var lab: Array = rg.get("label_at", [])
-		_regions.append({"id": String(rg["id"]), "parts": out_parts, "hatch": hatch, "dots": dots, "dot_step": ds,
+		_regions.append({"id": String(rg["id"]), "act": int(rg.get("act", 1)), "parts": out_parts, "hatch": hatch, "dots": dots, "dot_step": ds,
 			"box": bx, "name": String(rg.get("name", "")), "label": bool(rg.get("label", true)),
 			"label_at": WarMapData.pt(lab) if lab.size() == 2 else bx.get_center()})
 
@@ -515,7 +520,7 @@ func tap(at: Vector2) -> void:
 	var best := ""
 	var bd := seal_r * 1.7
 	for pn in WarMapData.data().get("pins", []):
-		if not shows(pn["point"], String(pn["mission"])):
+		if not shows(pn["point"], String(pn["mission"])) or not now(pn):
 			continue
 		var dd := pin_screen(pn).distance_to(at)
 		if dd < bd:
@@ -670,7 +675,7 @@ func _draw() -> void:
 	var regs: Dictionary = st.get("regions", {})
 	for rg in _regions:
 		var h := String(regs.get(rg["id"], "empire"))
-		if h == "empire" or not (s["holders"] as Dictionary).has(h):
+		if h == "empire" or not (s["holders"] as Dictionary).has(h) or not now(rg):
 			continue
 		if not (rg["box"] as Rect2).intersects(vis):
 			continue
@@ -723,7 +728,7 @@ func _draw() -> void:
 		_draw_cartouche_text(s)
 	# region names (where there is room)
 	for rg in _regions:
-		if not bool(rg["label"]):
+		if not bool(rg["label"]) or not now(rg):
 			continue
 		var h := String(regs.get(rg["id"], "empire"))
 		var bw: float = (rg["box"] as Rect2).size.x * zoom
@@ -743,15 +748,15 @@ func _draw() -> void:
 	# marks
 	var mks: Dictionary = st.get("marks", {})
 	for mk in WarMapData.data().get("marks", []):
-		if bool(mks.get(String(mk["id"]), false)):
+		if bool(mks.get(String(mk["id"]), false)) and now(mk):
 			_draw_mark(mk, font)
 	# the skin's notes (the chart's margin notes, the brass map's engraved words)
 	_draw_notes(s, style, font)
 	# pins, then their labels where they fit
 	var placed: Array = []
-	var order: Array = (WarMapData.data().get("pins", []) as Array).duplicate()
+	var order: Array = (WarMapData.data().get("pins", []) as Array).filter(func(pn: Dictionary) -> bool: return now(pn))
 	order.sort_custom(func(a: Dictionary, b: Dictionary) -> bool: return String(a["mission"]) == selected and String(b["mission"]) != selected)
-	for pn in WarMapData.data().get("pins", []):
+	for pn in order:
 		_draw_pin(pn)
 	var seals := {}
 	for pn in order:
@@ -786,6 +791,7 @@ func _draw() -> void:
 		draw_string(font, r.position + Vector2(0, fs * 0.9), t1, HORIZONTAL_ALIGNMENT_CENTER, w, fs, s["ink"])
 		draw_string(font, r.position + Vector2(0, fs * 1.9), t2, HORIZONTAL_ALIGNMENT_CENTER, w, fs - 2, Color(s["ink"], 0.75))
 	_draw_frame(s, style)
+	_draw_clock_plate(s, style, font)
 
 
 ## The sheet under the map when there is no painted paper: the brass plate's brushed sheen, the chart's paper.
@@ -827,6 +833,8 @@ func _draw_notes(s: Dictionary, style: String, font: Font) -> void:
 		return               # (written small: they show once the map is zoomed past a whole country)
 	var fs := 13 if Settings.pc() else 16
 	for n in st.get("notes", []):
+		if not now(n):
+			continue
 		var p := to_screen(geo(n["point"]))
 		if p.x < -300 or p.y < -40 or p.x > size.x + 40 or p.y > size.y + 40:
 			continue
@@ -836,8 +844,10 @@ func _draw_notes(s: Dictionary, style: String, font: Font) -> void:
 			draw_string(font, p + Vector2(0, 1), txt, HORIZONTAL_ALIGNMENT_LEFT, 260, fs, Color(1, 0.9, 0.6, 0.45))
 			draw_string(font, p, txt, HORIZONTAL_ALIGNMENT_LEFT, 260, fs, Color(ink, 0.9))
 		else:
-			draw_line(p + Vector2(-14, -4), p + Vector2(-3, -4), Color(0.35, 0.38, 0.45, 0.6), 1.0, true)
-			draw_multiline_string(font, p, txt, HORIZONTAL_ALIGNMENT_LEFT, 230, fs, -1, Color(0.18, 0.22, 0.38, 0.85))
+			# (the chart after e06: Lindqvist's annotations, taken from him, in red ink)
+			var nc := Color(0.62, 0.10, 0.08, 0.9) if bool(n.get("red", false)) else Color(0.18, 0.22, 0.38, 0.85)
+			draw_line(p + Vector2(-14, -4), p + Vector2(-3, -4), Color(nc, 0.6), 1.0, true)
+			draw_multiline_string(font, p, txt, HORIZONTAL_ALIGNMENT_LEFT, 230, fs, -1, nc)
 
 
 ## The frame: the parchment's dark edge and compass rose; the brass plate's rim, rivets and turning rings; the
@@ -917,7 +927,7 @@ func _terr_build() -> Dictionary:
 	var uv := Vector2(1, 1).normalized()
 	for rg in _regions:
 		var h := String(regs.get(rg["id"], "empire"))
-		if h == "empire" or not (s["holders"] as Dictionary).has(h):
+		if h == "empire" or not (s["holders"] as Dictionary).has(h) or not now(rg):
 			continue
 		var hs: Dictionary = s["holders"][h]
 		var cols := _stripe_cols(h, hs)
@@ -1024,7 +1034,7 @@ func _draw_painted(s: Dictionary, font: Font) -> void:
 		# a flag steps aside from the seals and the flags already planted
 		var taken: Array = []
 		for pn in WarMapData.data().get("pins", []):
-			if shows(pn["point"], String(pn["mission"])):
+			if shows(pn["point"], String(pn["mission"])) and now(pn):
 				taken.append(pin_screen(pn))
 		for f in tc["flags"]:
 			var at := to_screen(f[0])
@@ -1041,11 +1051,11 @@ func _draw_painted(s: Dictionary, font: Font) -> void:
 			_draw_flag(at, String(f[1]), String(f[2]), s, font)
 	var mks: Dictionary = st.get("marks", {})
 	for mk in WarMapData.data().get("marks", []):
-		if bool(mks.get(String(mk["id"]), false)) and shows(mk["point"], String(mk["id"])):
+		if bool(mks.get(String(mk["id"]), false)) and shows(mk["point"], String(mk["id"])) and now(mk):
 			_draw_mark(mk, font)
 	var pins: Array = []
 	for pn in WarMapData.data().get("pins", []):
-		if shows(pn["point"], String(pn["mission"])):
+		if shows(pn["point"], String(pn["mission"])) and now(pn):
 			pins.append(pn)
 			_draw_pin(pn)
 	var order := pins.duplicate()
@@ -1078,6 +1088,7 @@ func _draw_painted(s: Dictionary, font: Font) -> void:
 	var cart: Array = WarMapData.data()["paintings"][painted].get("cart", [])
 	if cart.size() == 3:
 		_cartouche_words(s, to_screen(Vector2(float(cart[0]), float(cart[1]))), float(cart[2]) * zoom * 1.25)
+	_draw_clock_plate(s, String(s.get("style", "parchment")), font)
 
 
 func _draw_mark(mk: Dictionary, font: Font) -> void:
@@ -1150,6 +1161,28 @@ func _draw_mark(mk: Dictionary, font: Font) -> void:
 			draw_colored_polygon(star, s["lines"]["crown"])
 			star.append(star[0])
 			draw_polyline(star, Color(ink, 0.9), 1.2, true)
+		# act3-warmap's marks
+		"theatre":
+			_draw_theatre(mk, c, s)
+			return
+		"crown":
+			# an ally's crown: gold on a small disc of the Crown's purple
+			draw_circle(c, 8.0, Color(s["lines"]["crown"], 0.85))
+			draw_colored_polygon(PackedVector2Array([c + Vector2(-5, 3), c + Vector2(-5, -2), c + Vector2(-2.5, 0.5), c + Vector2(0, -5),
+				c + Vector2(2.5, 0.5), c + Vector2(5, -2), c + Vector2(5, 3)]), Color(0.98, 0.82, 0.30))
+			draw_arc(c, 8.0, 0, TAU, 18, Color(ink, 0.8), 1.0, true)
+		"ruin", "ruin_open":
+			# the old lab's ruin: a sealed stone, or an open book
+			if String(mk["kind"]) == "ruin":
+				draw_rect(Rect2(c - Vector2(7, 5), Vector2(14, 10)), Color(0.55, 0.52, 0.46))
+				draw_rect(Rect2(c - Vector2(7, 5), Vector2(14, 10)), Color(ink, 0.85), false, 1.2)
+				draw_line(c + Vector2(0, -4), c + Vector2(0, 4), Color(ink, 0.8), 1.4)
+				draw_line(c + Vector2(-3, -1), c + Vector2(3, -1), Color(ink, 0.8), 1.4)
+			else:
+				draw_colored_polygon(PackedVector2Array([c, c + Vector2(-8, -3), c + Vector2(-8, 6), c + Vector2(0, 8)]), Color(0.95, 0.92, 0.82))
+				draw_colored_polygon(PackedVector2Array([c, c + Vector2(8, -3), c + Vector2(8, 6), c + Vector2(0, 8)]), Color(0.92, 0.88, 0.78))
+				draw_polyline(PackedVector2Array([c + Vector2(-8, -3), c, c + Vector2(8, -3), c + Vector2(8, 6), c + Vector2(0, 8), c + Vector2(-8, 6), c + Vector2(-8, -3)]),
+					Color(0.62, 0.10, 0.08, 0.9), 1.2, true)
 		"siege":
 			# the siege lines: a purple ring round the city
 			var rr := maxf(16.0, 0.6 * zoom) if painted == "" else 18.0
@@ -1163,6 +1196,45 @@ func _draw_mark(mk: Dictionary, font: Font) -> void:
 		draw_string(font, c + Vector2(9, -6), lab, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Color(ink, 0.9))
 
 
+## A THEATRE's name (act3-warmap): large spaced letters on THE WORLD, and under them the clock's word for it: SETTLED,
+## the years it has been left alone, or the small clock when it is the next to lose a colony.
+func _draw_theatre(mk: Dictionary, c: Vector2, s: Dictionary) -> void:
+	var tid := String(mk.get("theatre", ""))
+	var ck: Dictionary = st.get("clock", {})
+	var ink: Color = s["ink"]
+	var tf := UiStyle.title_font()
+	var up := Loc.t(String(mk.get("label", ""))).to_upper()
+	var txt := ""
+	for i in up.length():
+		txt += up[i] + (" " if i < up.length() - 1 else "")
+	var fs := int(clampf(zoom * 3.2, 14, 30)) if painted == "" else 22
+	var tw := tf.get_string_size(txt, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x
+	if String(s.get("style", "")) == "brass":
+		draw_string(tf, c + Vector2(-tw * 0.5, 1), txt, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Color(1, 0.9, 0.6, 0.45))
+	draw_string(tf, c + Vector2(-tw * 0.5, 0), txt, HORIZONTAL_ALIGNMENT_LEFT, -1, fs, Color(ink, 0.72))
+	if not bool(ck.get("on", false)):
+		return
+	var sub := ""
+	var col := Color(ink, 0.8)
+	var fs2 := maxi(12, int(fs * 0.62))
+	if (ck.get("settled", []) as Array).has(tid):
+		sub = Loc.t("SETTLED")
+		col = Color(0.20, 0.42, 0.18)
+	else:
+		var n := int(ck.get("neglect", {}).get(tid, 0))
+		if n <= 0:
+			sub = Loc.t("Fought this year") if (ck.get("fought", []) as Array).has(tid) else Loc.t("Not fought yet")
+		else:
+			sub = Loc.t("Left alone %s years") % str(n) if n != 1 else Loc.t("Left alone 1 year")
+		if String(ck.get("risk", "")) == tid and not bool(ck.get("stopped", false)):
+			col = Color(0.62, 0.12, 0.08)
+			sub = Loc.t("NEXT TO FALL") + "  ·  " + sub
+	var sw := UiStyle.body_font().get_string_size(sub, HORIZONTAL_ALIGNMENT_LEFT, -1, fs2).x
+	draw_string(UiStyle.body_font(), c + Vector2(-sw * 0.5, fs2 + 6), sub, HORIZONTAL_ALIGNMENT_LEFT, -1, fs2, col)
+	if String(ck.get("risk", "")) == tid and not bool(ck.get("stopped", false)):
+		_draw_clock(c + Vector2(-sw * 0.5 - fs2, fs2 * 0.65 + 6), fs2 * 0.55, ink)
+
+
 ## A wax seal: the line's colour when open or done, grey when locked, a dashed ring when only planned; a crack across a
 ## broken one (a place lost); the line's sign pressed in it.
 func _draw_pin(pn: Dictionary) -> void:
@@ -1170,10 +1242,14 @@ func _draw_pin(pn: Dictionary) -> void:
 	var mid := String(pn["mission"])
 	var ps: Dictionary = st.get("pins", {}).get(mid, {"state": "planned", "seal": ""})
 	var state := String(ps["state"])
+	if bool(ps.get("closed", false)) and state != "planned":
+		state = "locked"          # (act3-warmap: an optional pin the night closed)
 	var c := pin_screen(pn)
 	var truep := to_screen(geo(pn["point"], mid))
 	var r := seal_r
 	var ink: Color = s["ink"]
+	if bool(pn.get("optional", false)):
+		_draw_ribbon(c + Vector2(0, r * 0.95), r, s, bool(ps.get("closed", false)))
 	if c.distance_to(truep) > 2.0:
 		draw_line(truep, c, Color(ink, 0.6), 1.2, true)
 		draw_circle(truep, 2.5, Color(ink, 0.8))
@@ -1229,6 +1305,75 @@ func _draw_pin(pn: Dictionary) -> void:
 	if state == "locked":
 		draw_rect(Rect2(c + Vector2(r * 0.35, r * 0.25), Vector2(r * 0.6, r * 0.5)), Color(0.2, 0.18, 0.15))
 		draw_arc(c + Vector2(r * 0.65, r * 0.25), r * 0.2, PI, TAU, 8, Color(0.2, 0.18, 0.15), 1.6)
+
+
+## THE OPTIONAL RIBBON (act3-warmap): a small gold ribbon under an optional pin's seal (greyed once the night closed it).
+func _draw_ribbon(c: Vector2, r: float, s: Dictionary, closed: bool) -> void:
+	var col := Color(0.55, 0.52, 0.48) if closed else (Color(0.92, 0.78, 0.36) if String(s.get("style", "")) != "chart" else Color(0.78, 0.62, 0.22))
+	var w := r * 1.1
+	var h := r * 0.34
+	draw_colored_polygon(PackedVector2Array([c + Vector2(-w, -h), c + Vector2(w, -h), c + Vector2(w * 0.8, 0), c + Vector2(w, h),
+		c + Vector2(-w, h), c + Vector2(-w * 0.8, 0)]), col)
+	draw_polyline(PackedVector2Array([c + Vector2(-w, -h), c + Vector2(w, -h), c + Vector2(w * 0.8, 0), c + Vector2(w, h),
+		c + Vector2(-w, h), c + Vector2(-w * 0.8, 0), c + Vector2(-w, -h)]), Color(s["ink"], 0.7), 1.0, true)
+
+
+## THE CLOCK's plate (act3-warmap, docs/war_map_act3.md): on screen, top middle, in every skin once Act 3 has opened:
+## the year, the colonies still held, and which theatre loses a colony when the year next turns (SAY IT PLAINLY).
+func _draw_clock_plate(s: Dictionary, style: String, font: Font) -> void:
+	var ck: Dictionary = st.get("clock", {})
+	if not bool(ck.get("on", false)):
+		return
+	var cd: Dictionary = WarMapData.data().get("clock", {})
+	var held := 0
+	var total := 0
+	for t in ck.get("held", {}):
+		held += (ck["held"][t] as Array).size()
+	for t in cd.get("theatres", []):
+		total += (t["colonies"] as Array).size()
+	var l1 := (Loc.t(String(cd.get("year", "The year %s"))) % str(ck["year"])).to_upper()
+	var l2 := Loc.t("Colonies held: %s of %s") % [str(held), str(total)]
+	var l3 := ""
+	var bad := false
+	if bool(ck.get("stopped", false)):
+		l3 = Loc.t("The night has come: the clock has stopped.")
+	elif String(ck.get("risk", "")) != "":
+		var th := WarMapData.theatre(String(ck["risk"]))
+		var rn := Loc.t(String(WarMapData.region_of(String(ck["risk_region"])).get("name", "")))
+		var wl := float(ck.get("to_turn", 0.0))
+		var wn := str(int(roundf(wl))) if absf(wl - roundf(wl)) < 0.01 else "%.1f" % wl
+		var key := "Next to fall, after 1 more win: %s (%s)" if wn == "1" else "Next to fall, after %s more wins: %s (%s)"
+		l3 = Loc.t(key) % ([Loc.t(String(th.get("name", ""))), rn] if wn == "1" else [wn, Loc.t(String(th.get("name", ""))), rn])
+		bad = true
+	else:
+		l3 = Loc.t("No colony is at risk at the next turn of the year.")
+	var fs := 16 if Settings.pc() else 19
+	var tf := UiStyle.title_font()
+	var w := maxf(tf.get_string_size(l1, HORIZONTAL_ALIGNMENT_LEFT, -1, fs + 4).x, maxf(font.get_string_size(l2, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x,
+		font.get_string_size(l3, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x)) + 56
+	w = minf(w, size.x - 20)
+	# (at the bottom middle: the top of THE WORLD holds Europe's crowded seals; the South Atlantic is empty sea)
+	var bh := fs * 3.9 + 10
+	var box := Rect2(Vector2((size.x - w) * 0.5, size.y - bh - 8), Vector2(w, bh))
+	var paper: Color = s["paper"]
+	var ink: Color = s["ink"]
+	match style:
+		"brass":
+			draw_rect(box, Color(paper.lightened(0.18), 0.92))
+			draw_rect(box, Color(0.22, 0.13, 0.04, 0.9), false, 2.0)
+			draw_rect(box.grow(-3), Color(1, 0.9, 0.6, 0.4), false, 1.0)
+		"chart":
+			draw_rect(box, Color(0.98, 0.97, 0.92, 0.94))
+			draw_rect(box, Color(ink, 0.5), false, 1.0)
+		_:
+			draw_rect(box, Color(paper, 0.93))
+			draw_rect(box, Color(ink, 0.75), false, 2.0)
+			draw_rect(box.grow(-4), Color(ink, 0.35), false, 1.0)
+	_draw_clock(box.position + Vector2(22, fs * 1.0 + 6), fs * 0.62, ink)
+	draw_string(tf, box.position + Vector2(40, fs * 1.25 + 4), l1, HORIZONTAL_ALIGNMENT_LEFT, w - 48, fs + 4, ink)
+	draw_string(font, box.position + Vector2(40, fs * 2.4 + 6), l2, HORIZONTAL_ALIGNMENT_LEFT, w - 48, fs, Color(ink, 0.85))
+	draw_string(font, box.position + Vector2(40, fs * 3.5 + 6), l3, HORIZONTAL_ALIGNMENT_LEFT, w - 48, fs,
+		Color(0.62, 0.12, 0.08) if bad else Color(ink, 0.85))
 
 
 ## THE BRASS MAP's pin: a small gear in brass with the line's enamel in its middle (a crack across it when broken).

@@ -10,7 +10,10 @@ const HOLDERS := ["empire", "crown", "contested", "machine", "brood", "unrest", 
 ## The skins (WarMap.SKINS): the King's parchment, the Clockmaker's brass map, the Naturalist's specimen chart
 ## (act2-warmap, docs/war_map_act2.md). Same data; a rule may name the skins it is for ("skins").
 const SKINS := ["parchment", "brass", "chart"]
-const MARK_KINDS := ["dot", "village", "town", "burnt", "question", "ship", "route", "gear", "queen", "church", "church_burnt", "fort", "siege"]
+const MARK_KINDS := ["dot", "village", "town", "burnt", "question", "ship", "route", "gear", "queen", "church", "church_burnt", "fort", "siege",
+	"theatre", "crown", "ruin", "ruin_open"]
+## Act 3's theatres (act3-warmap, docs/war_map_act3.md): THE CLOCK's four, in the data's "clock".
+const THEATRES := ["americas", "africa", "indies", "seas"]
 const PIN_STATES := ["planned", "locked", "open", "done"]
 
 static var _data := {}
@@ -270,11 +273,27 @@ static func state(p: Dictionary = {}, skin := "parchment") -> Dictionary:
 					v = int(v)          # (a count from the saved progress comes back as 34.0)
 				return "?" if v == null else str(v))
 			ledger.append({"text": String(r["ledger"]), "args": args, "missions": cond_missions(r.get("if", {}))})
+	# THE CLOCK (act3-warmap): the colonies it took, the ones taken back, the year; the optional pins closed by the night
+	var ck := clock(p)
+	if bool(ck["on"]):
+		for f in ck["fallen"]:
+			regions[String(f["region"])] = String(f["to"])
+			ledger.append({"text": String(d["clock"]["fell"][String(f["to"])]), "args": [str(f["year"]), String(region_of(String(f["region"])).get("name", ""))],
+				"loc_args": [1], "missions": [], "clock": true})
+		for b in ck["reclaimed"]:
+			regions[String(b["region"])] = "crown"
+			ledger.append({"text": String(d["clock"]["back"]), "args": [str(b["year"]), String(region_of(String(b["region"])).get("name", ""))],
+				"loc_args": [1], "missions": [String(b["mission"])], "clock": true})
+		if bool(ck["stopped"]):
+			for pn in d.get("pins", []):
+				var mid := String(pn["mission"])
+				if bool(pn.get("optional", false)) and pins.has(mid) and String(pins[mid]["state"]) != "done":
+					pins[mid]["closed"] = true
 	var notes: Array = []
 	for n in d.get("notes", []):
 		if (n.get("skins", SKINS) as Array).has(skin) and cond_ok(n.get("if", {}), p):
 			notes.append(n)
-	return {"regions": regions, "marks": marks, "pins": pins, "ledger": ledger, "notes": notes}
+	return {"regions": regions, "marks": marks, "pins": pins, "ledger": ledger, "notes": notes, "clock": ck}
 
 
 ## THE ACT the progress has reached (data "acts", a later one wins): {"act", "act_title", "view"} (the view the map
@@ -307,8 +326,207 @@ static func ledger_of(st: Dictionary, mid: String) -> Array:
 ## A ledger line in the player's language.
 static func ledger_text(e: Dictionary) -> String:
 	var t := Loc.t(String(e["text"]))
-	var args: Array = e.get("args", [])
+	var args: Array = (e.get("args", []) as Array).duplicate()
+	for i in e.get("loc_args", []):
+		args[int(i)] = Loc.t(String(args[int(i)]))
 	return t % args if not args.is_empty() and t.contains("%s") else t
+
+
+# ------------------------------------------------------------------ THE CLOCK (act3-warmap, docs/war_map_act3.md)
+
+## The views the act shows (a view's "acts"; none = every act): Act 3 swaps THE WORLD's painted sheet for the whole globe
+## and the four theatres.
+static func views_for(act_n: int) -> Array:
+	return (data().get("views", []) as Array).filter(func(v: Dictionary) -> bool:
+		return not v.has("acts") or (v["acts"] as Array).map(func(x) -> int: return int(x)).has(act_n))
+
+
+## A theatre's data ("clock" "theatres"), or {}.
+static func theatre(id: String) -> Dictionary:
+	for t in data().get("clock", {}).get("theatres", []):
+		if String(t["id"]) == id:
+			return t
+	return {}
+
+
+## The theatres a won mission keeps from neglect: its pin's "theatre" (core or optional), or the clock's "attention"
+## (e15, the Cold Forge, beyond every theatre: Africa and the Indies).
+static func attention_of(mid: String, ck: Dictionary = {}) -> Array:
+	if ck.is_empty():
+		ck = data().get("clock", {})
+	if (ck.get("attention", {}) as Dictionary).has(mid):
+		return ck["attention"][mid]
+	var t := String(pin_of(mid).get("theatre", ""))
+	return [t] if t != "" else []
+
+
+## The Act 3 wins in the order they were won: Campaign.record keeps "seq" on each mission it records (older saves without
+## it: the pins' order, after the numbered ones).
+static func won_order(p: Dictionary, ck: Dictionary) -> Array:
+	var done: Dictionary = p.get("done", {})
+	var rows: Array = []
+	var i := 0
+	for pn in data().get("pins", []):
+		var mid := String(pn["mission"])
+		i += 1
+		if done.has(mid) and not attention_of(mid, ck).is_empty():
+			var e: Dictionary = done[mid]
+			rows.append([float(e["seq"]) if e.has("seq") else 100000.0 + i, mid])
+	rows.sort_custom(func(a: Array, b: Array) -> bool: return float(a[0]) < float(b[0]))
+	return rows.map(func(r: Array) -> String: return String(r[1]))
+
+
+## THE CLOCK as the progress leaves it (`over` replaces any of the clock's numbers: tools/sim_war_clock.gd):
+## {"on" (Act 3 has opened), "stopped" (the night has begun), "year" (2781 + the turns), "turns", "fallen":
+## [{"region", "theatre", "to", "year"}], "reclaimed": [{"region", "theatre", "year", "mission"}], "settled": [theatres],
+## "neglect": {theatre: whole years since its last win}, "risk": the theatre that loses a colony at the next turn ("" none),
+## "risk_region", "fought": [theatres won in at least once], "wins" (the clock's count, optional ones counting their weight), "to_turn" (wins left to the next turn),
+## "held": {theatre: [regions standing]}}.
+static func clock(p: Dictionary, over: Dictionary = {}) -> Dictionary:
+	var ck: Dictionary = (data().get("clock", {}) as Dictionary).duplicate()
+	for k in over:
+		ck[k] = over[k]
+	var first := int(ck.get("first_year", 2781))
+	var out := {"on": false, "stopped": false, "year": first, "turns": 0, "fallen": [], "reclaimed": [], "settled": [], "fought": [],
+		"neglect": {}, "risk": "", "risk_region": "", "wins": 0.0, "to_turn": 0.0, "held": {}}
+	if ck.is_empty() or not cond_ok(ck.get("start", {}), p):
+		return out
+	out["on"] = true
+	var per := maxf(0.01, float(ck.get("per_year", 2)))
+	var ow := float(ck.get("optional_weight", 1.0))
+	var grace := int(ck.get("grace", 0))
+	var pass_on := bool(ck.get("pass_on", true))
+	var max_turns := int(ck.get("max_turns", 8))
+	var tie: Array = ck.get("tie", THEATRES)
+	var ths: Array = ck.get("theatres", [])
+	var last := {}
+	for t in ths:
+		var head := 0
+		for h in t.get("head", []):
+			if cond_ok(h.get("if", {}), p):
+				head += int(h.get("years", 0))
+		last[String(t["id"])] = -head
+	var night_seq := INF
+	var done: Dictionary = p.get("done", {})
+	for nm in ["e16_lisbon", "e17_goa", "e18_port"]:
+		if done.has(nm) and (done[nm] as Dictionary).has("seq"):
+			night_seq = minf(night_seq, float(done[nm]["seq"]))
+	out["stopped"] = cond_ok(ck.get("stop", {"any": []}), p) if ck.has("stop") else false
+	var seen := {}
+	var fallen: Array = []
+	var gone := {}            # regions fallen or safe (taken back): out of the clock's reach
+	var safe := {}
+	var turns := 0
+	var wins := 0.0
+	for mid in won_order(p, ck):
+		var e: Dictionary = done[mid]
+		if e.has("seq") and float(e["seq"]) > night_seq:
+			continue              # (an optional one played after the night began: the clock had stopped)
+		seen[mid] = true
+		var prev := wins
+		var opt := bool(pin_of(mid).get("optional", false))
+		wins += ow if opt else 1.0
+		for t in attention_of(mid, ck):
+			last[String(t)] = turns + 1
+			if not (out["fought"] as Array).has(String(t)):
+				out["fought"].append(String(t))
+		# a fallen colony taken back by the mission at its place (and safe from then on)
+		for t in ths:
+			for c in t["colonies"]:
+				var rc: Dictionary = c.get("reclaim", {})
+				if rc.is_empty() or not cond_missions(rc).has(mid) or not cond_ok(rc, p):
+					continue
+				var rid := String(c["region"])
+				safe[rid] = true
+				for f in fallen:
+					if String(f["region"]) == rid:
+						fallen.erase(f)
+						out["reclaimed"].append({"region": rid, "theatre": String(t["id"]), "year": first + turns, "mission": mid})
+						break
+		if floor(wins / per + 1e-6) > floor(prev / per + 1e-6) and turns < max_turns:
+			turns += 1
+			var pick := _clock_pick(ths, seen, last, fallen, safe, turns, grace, pass_on, tie, p)
+			if not pick.is_empty():
+				pick["year"] = first + turns
+				fallen.append(pick)
+	out["turns"] = turns
+	out["year"] = first + turns
+	out["wins"] = wins
+	out["to_turn"] = per - fmod(wins + 1e-6, per)
+	out["fallen"] = fallen
+	for t in ths:
+		var tid := String(t["id"])
+		out["neglect"][tid] = turns - int(last[tid])
+		if (t["core"] as Array).all(func(m) -> bool: return seen.has(String(m))):
+			out["settled"].append(tid)
+		var held: Array = []
+		for c in t["colonies"]:
+			if not fallen.any(func(f: Dictionary) -> bool: return String(f["region"]) == String(c["region"])):
+				held.append(String(c["region"]))
+		out["held"][tid] = held
+	if not bool(out["stopped"]):
+		var nxt := _clock_pick(ths, seen, last, fallen, safe, turns + 1, grace, pass_on, tie, p)
+		out["risk"] = String(nxt.get("theatre", ""))
+		out["risk_region"] = String(nxt.get("region", ""))
+	return out
+
+
+## The colony that falls at this turn: the unsettled theatre left alone longest (at least `grace` whole years), with a
+## colony left; ties to the one whose next colony goes to the creatures (the swarm is quicker than the machine), then the
+## `tie` order. `pass_on` false: only the longest-neglected theatre may lose (an emptied one loses nothing more).
+static func _clock_pick(ths: Array, seen: Dictionary, last: Dictionary, fallen: Array, safe: Dictionary, turn: int, grace: int,
+		pass_on: bool, tie: Array, p: Dictionary) -> Dictionary:
+	var cand: Array = []
+	for t in ths:
+		var tid := String(t["id"])
+		if (t["core"] as Array).all(func(m) -> bool: return seen.has(String(m))):
+			continue              # SETTLED: its fate is in its flags
+		var neg := turn - int(last[tid])
+		if neg < grace:
+			continue
+		var next := {}
+		for c in t["colonies"]:
+			var rid := String(c["region"])
+			if safe.has(rid) or fallen.any(func(f: Dictionary) -> bool: return String(f["region"]) == rid):
+				continue
+			next = c
+			break
+		if next.is_empty() and pass_on:
+			continue
+		var to := String(next.get("to", "brood"))
+		for ti in next.get("to_if", []):
+			if cond_ok(ti.get("if", {}), p):
+				to = String(ti["to"])
+		cand.append({"neg": neg, "brood": 0 if to == "brood" else 1, "tie": tie.find(tid), "theatre": tid,
+			"region": String(next.get("region", "")), "to": to})
+	if cand.is_empty():
+		return {}
+	cand.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
+		if int(a["neg"]) != int(b["neg"]):
+			return int(a["neg"]) > int(b["neg"])
+		if int(a["brood"]) != int(b["brood"]):
+			return int(a["brood"]) < int(b["brood"])
+		return int(a["tie"]) < int(b["tie"]))
+	var c0: Dictionary = cand[0]
+	if String(c0["region"]) == "":
+		return {}                 # (pass_on false: the longest-neglected theatre has nothing left to lose)
+	return {"theatre": c0["theatre"], "region": c0["region"], "to": c0["to"]}
+
+
+## The colonies as the clock leaves them, {region: holder} (Campaign.record writes it into the progress as "colonies":
+## the ledger's last mark, Campaign.colonies_share). {} before Act 3.
+static func colonies(p: Dictionary) -> Dictionary:
+	var ck := clock(p)
+	if not bool(ck["on"]):
+		return {}
+	var regs: Dictionary = state(p).get("regions", {})
+	var out := {}
+	for t in data().get("clock", {}).get("theatres", []):
+		for c in t["colonies"]:
+			var rid := String(c["region"])
+			var h := String(regs.get(rid, "crown"))
+			out[rid] = "crown" if h in ["crown", "contested", "empire"] else h
+	return out
 
 
 # ------------------------------------------------------------------ checks (tools/test_war_map.gd, test_campaign.gd)
@@ -399,6 +617,45 @@ static func problems() -> Array:
 			out.append("region %s: unknown holder" % rg["id"])
 		if region_outline(rg).size() < 3:
 			out.append("region %s: no outline" % rg["id"])
+	var ckd: Dictionary = d.get("clock", {})
+	if not ckd.is_empty():
+		_check_cond(ckd.get("start", {}), "clock start", pins, out)
+		_check_cond(ckd.get("stop", {}), "clock stop", pins, out)
+		for k in ["fell", "back", "year"]:
+			if not ckd.has(k):
+				out.append("clock: no %s" % k)
+		var tids: Array = []
+		for t in ckd.get("theatres", []):
+			tids.append(String(t["id"]))
+			for m in t.get("core", []) + t.get("optional", []):
+				if not pins.has(String(m)):
+					out.append("clock %s: %s has no pin" % [t["id"], m])
+				elif String(pins[String(m)].get("theatre", "")) != String(t["id"]):
+					out.append("clock %s: %s's pin names another theatre" % [t["id"], m])
+			for m in t.get("optional", []):
+				if pins.has(String(m)) and not bool(pins[String(m)].get("optional", false)):
+					out.append("clock %s: %s is not marked optional" % [t["id"], m])
+			for c in t.get("colonies", []):
+				if region_of(String(c.get("region", ""))).is_empty():
+					out.append("clock %s: unknown colony %s" % [t["id"], c.get("region", "")])
+				if not ["brood", "machine"].has(String(c.get("to", ""))):
+					out.append("clock %s: %s falls to %s" % [t["id"], c.get("region", ""), c.get("to", "")])
+				if c.has("reclaim"):
+					_check_cond(c["reclaim"], "clock reclaim %s" % c["region"], pins, out)
+				for ti in c.get("to_if", []):
+					_check_cond(ti.get("if", {}), "clock %s" % c["region"], pins, out)
+			for h in t.get("head", []):
+				_check_cond(h.get("if", {}), "clock head %s" % t["id"], pins, out)
+		for tid in THEATRES:
+			if not tids.has(tid):
+				out.append("clock: no theatre %s" % tid)
+		for tt in ckd.get("tie", []):
+			if not tids.has(String(tt)):
+				out.append("clock: unknown tie %s" % tt)
+	for v in d.get("views", []):
+		for a in v.get("acts", []):
+			if int(a) < 1 or int(a) > 4:
+				out.append("view %s: unknown act %s" % [v["id"], a])
 	var i := 0
 	for r in d.get("rules", []):
 		var w := "rule %d" % i
@@ -487,4 +744,10 @@ static func strings() -> Array:
 		out.append(String(d["skins"][k].get("title", "")))
 	for n in d.get("notes", []):
 		out.append(String(n.get("text", "")))
+	var ckd: Dictionary = d.get("clock", {})
+	for k in ckd.get("fell", {}):
+		out.append(String(ckd["fell"][k]))
+	out.append_array([String(ckd.get("back", "")), String(ckd.get("year", ""))])
+	for t in ckd.get("theatres", []):
+		out.append(String(t.get("name", "")))
 	return out.filter(func(s: String) -> bool: return s != "")

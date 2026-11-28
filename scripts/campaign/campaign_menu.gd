@@ -1135,8 +1135,8 @@ static func war_map(main: Node) -> void:
 	holder.add_child(wm)
 	var keep_cam := func() -> void:
 		map_cam = {"c": wm.center, "z": wm.zoom, "v": wm.painted}
-	# the views (THE WORLD, VIRGINIA, EUROPE, THE AMAZON)
-	for v in d.get("views", []):
+	# the views (THE WORLD, VIRGINIA, EUROPE, THE AMAZON; Act 3: the whole world and its four theatres: views_for)
+	for v in WarMapData.views_for(int(WarMapData.act().get("act", 1))):
 		var vid := String(v["id"])
 		var b: Button = main._button(String(v["label"]), func() -> void: wm.show_view(vid))
 		b.name = "View_" + vid
@@ -1237,6 +1237,28 @@ static func war_map(main: Node) -> void:
 			c.queue_free()
 		lv.add_child(UiStyle.text(Loc.t("THE LEDGER"), 22, UiStyle.TRIM, HORIZONTAL_ALIGNMENT_LEFT, true))
 		lv.add_child(_wrap(Loc.t(act_t), 15, UiStyle.MUTED))
+		# THE CLOCK (act3-warmap): the year, the colonies held, what falls next, and every colony by its theatre
+		var ckv: Dictionary = stt.get("clock", {})
+		if bool(ckv.get("on", false)):
+			var cdd: Dictionary = d.get("clock", {})
+			lv.add_child(UiStyle.text(Loc.t("THE CLOCK"), 18, UiStyle.TRIM, HORIZONTAL_ALIGNMENT_LEFT, true))
+			var ckl := _wrap((Loc.t(String(cdd.get("year", "The year %s"))) % str(ckv["year"])) + ".  " +
+				Loc.t("The year turns after every two wins; the theatre left alone longest then loses a colony."), 15 if pc else 17, UiStyle.MUTED)
+			ckl.name = "LedgerClock"
+			ckl.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+			lv.add_child(ckl)
+			for th0 in cdd.get("theatres", []):
+				var tid := String(th0["id"])
+				var word := Loc.t("settled") if (ckv["settled"] as Array).has(tid) else (Loc.t("next to fall") if String(ckv.get("risk", "")) == tid else "")
+				var names: Array = []
+				for c in th0["colonies"]:
+					var rid := String(c["region"])
+					var fell := (ckv["fallen"] as Array).any(func(f: Dictionary) -> bool: return String(f["region"]) == rid)
+					names.append(Loc.t(String(WarMapData.region_of(rid).get("name", rid))) + (" (" + Loc.t("fallen") + ")" if fell else ""))
+				var tl := _wrap(Loc.t(String(th0["name"])) + (("  ·  " + word) if word != "" else "") + ":  " + ", ".join(names), 15 if pc else 17,
+					UiStyle.BAD if String(ckv.get("risk", "")) == tid else UiStyle.TEXT)
+				tl.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+				lv.add_child(tl)
 		var ls: Array = stt.get("ledger", [])
 		if ls.is_empty():
 			lv.add_child(_wrap(Loc.t("Nothing yet: the ledger fills as the missions are played."), 16, UiStyle.MUTED))
@@ -1309,6 +1331,10 @@ static func war_map(main: Node) -> void:
 	bot.add_child(hint)
 
 
+static func cond_names(c: Dictionary) -> Array:
+	return WarMapData.cond_missions(c)
+
+
 ## A pin's card: the mission (or the one still being written), its line, place and date, its state, what came of it
 ## (the ledger's lines of that mission) and the buttons to play it.
 static func _pin_card(main: Node, card: PanelContainer, mid: String, stt: Dictionary, pc: bool, keep_cam: Callable) -> void:
@@ -1372,6 +1398,28 @@ static func _pin_card(main: Node, card: PanelContainer, mid: String, stt: Dictio
 		var ab := _wrap(Loc.t(String(pn["about"])), 16 if pc else 18)
 		ab.name = "CardAbout"
 		v.add_child(ab)
+	# Act 3 (act3-warmap): the theatre, OPTIONAL, closed by the night, and the colony at its place if the clock took it
+	if String(pn.get("theatre", "")) != "" or bool(pn.get("optional", false)):
+		var tparts: Array = []
+		if String(pn.get("theatre", "")) != "":
+			tparts.append(Loc.t(String(WarMapData.theatre(String(pn["theatre"])).get("name", ""))))
+		if bool(pn.get("optional", false)):
+			tparts.append(Loc.t("OPTIONAL: it holds its theatre, and turns half a year"))
+		var tl := _wrap("  ·  ".join(tparts), 15 if pc else 17, UiStyle.TRIM)
+		tl.name = "CardTheatre"
+		tl.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
+		v.add_child(tl)
+	if bool(ps.get("closed", false)):
+		var cl0 := _wrap(Loc.t("Closed: the night came before it was fought."), 16 if pc else 18, UiStyle.BAD)
+		cl0.name = "CardClosed"
+		v.add_child(cl0)
+	for f in (stt.get("clock", {}) as Dictionary).get("fallen", []):
+		for t in WarMapData.data().get("clock", {}).get("theatres", []):
+			for c in t["colonies"]:
+				if String(c["region"]) == String(f["region"]) and cond_names(c.get("reclaim", {})).has(mid):
+					var rl := _wrap(Loc.t("The clock took this colony: winning here takes it back."), 16 if pc else 18, UiStyle.BAD)
+					rl.name = "CardReclaim"
+					v.add_child(rl)
 	if String(ps.get("clock", "")) != "":
 		# the diamond's clock (d09's choice): the front not chosen waits, and grows
 		var ck := _wrap(Loc.t(String(ps["clock"])), 16 if pc else 18, UiStyle.BAD)
