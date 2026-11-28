@@ -437,9 +437,17 @@ func _loc_clear() -> void:
 	Loc.shown.clear()
 
 
+func _has_anim_viewer(n: Node) -> bool:
+	for c in n.get_children():
+		if c is AnimViewer or _has_anim_viewer(c):
+			return true
+	return false
+
+
 func _en_misses(screen: String) -> int:
 	var n := 0
-	if lang != "en":
+	# (the animation viewer is a tool: its lists are the art's ids, English by design)
+	if lang != "en" and not _has_anim_viewer(main.ui_layer):
 		for k in Loc.shown:
 			if not _english(String(k)):
 				continue
