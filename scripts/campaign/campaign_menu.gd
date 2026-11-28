@@ -689,10 +689,16 @@ static func show(main: Node) -> void:
 	var top := HBoxContainer.new()
 	top.add_theme_constant_override("separation", 8)
 	box.add_child(top)
-	var t := UiStyle.heading(String(rv["title"]), 36, UiStyle.TRIM)
+	var title_s := String(rv["title"])
+	var t := UiStyle.heading(title_s, 36 if title_s.length() <= 26 else 28, UiStyle.TRIM)
 	t.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
 	t.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	t.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	# (qa-click-sweep: a long room title, "Los Aposentos de Valadares en la Barra", pushed the storyline buttons and the
+	# GO TO panel off the right of a 1280-wide screen; now it gets smaller, and "…" if it still doesn't fit)
+	t.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
+	t.tooltip_text = title_s
+	t.mouse_filter = Control.MOUSE_FILTER_PASS
 	top.add_child(t)
 	for s in Campaign.storylines():
 		var open := Campaign.storyline_open(s, p)
