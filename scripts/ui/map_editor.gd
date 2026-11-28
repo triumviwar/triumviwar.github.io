@@ -9,6 +9,7 @@ extends Control
 ## (MapCheck); undo; save it (user://maps/, with a picture for the lobby) and play it.
 
 signal back_requested
+var back_button: Button = null      # (main makes it Esc / the phone's back: qa-click-sweep)
 signal play_requested(map_id: String, starts: int)
 ## Start over on a map of another size (a new map, or one loaded from disk): the main scene
 ## builds a fresh world of data["size"] and hands it back to load_from(data).
@@ -333,9 +334,10 @@ func _build_ui() -> void:
 	top.position = Vector2(8, 6)
 	top.add_theme_constant_override("separation", 5)
 	_ui.add_child(top)
-	top.add_child(_btn("BACK", 74, func() -> void:
+	back_button = _btn("BACK", 74, func() -> void:
 		if not _unsaved() or _confirm("back", "Not saved. Press BACK again to leave without saving."):
-			back_requested.emit()))
+			back_requested.emit())
+	top.add_child(back_button)
 	_name_edit = LineEdit.new()
 	_name_edit.text = map_name
 	_name_edit.custom_minimum_size = Vector2(170, 44)

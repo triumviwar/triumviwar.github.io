@@ -769,9 +769,14 @@ func menu_back() -> bool:
 		_list_shade.queue_free()
 		_list_shade = null
 		return true
-	if game != null or not is_instance_valid(_esc_button) or not _esc_button.is_visible_in_tree() or _esc_button.disabled:
+	var eb: Button = _esc_button
+	if game != null and game.edit_mode and is_instance_valid(_editor) and is_instance_valid(_editor.back_button):
+		eb = _editor.back_button      # (the map editor runs a Game, but it is a page: its BACK answers Esc and the phone's back; qa-click-sweep)
+	elif game != null:
 		return false
-	_esc_button.pressed.emit()
+	if not is_instance_valid(eb) or not eb.is_visible_in_tree() or eb.disabled:
+		return false
+	eb.pressed.emit()
 	return true
 
 
