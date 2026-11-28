@@ -4,6 +4,10 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.251", "items": [
+		"Field Cannons, Mortars and Powder Wagons no longer stand stuck for good at a gate in a diagonal palisade, in a one-cell lane between buildings or by a staircase cliff edge: stuck there, the horse team draws in toward the gun so it can turn, and lets out again when there is room (ai-fixes-b).",
+		"The Crown computer goes down to defend its own Town Hall below its high ground when its army at home is worth as much as the force there (it waited for a clear edge before and could watch the hall burn), and it gathers first and goes in together instead of man by man (ai-fixes-b).",
+	]},
 	{"v": "0.38.250", "items": [
 		"Against the Crown, the Clockwork computer no longer turns its whole army round for a few raiders in its base: a raid worth less than a third of the army at home (and under 500) is met by a group worth twice it, the nearest units, and the rest stays where it was; its next push may still go out while that group is busy. A real attack still brings the whole army. (ai-fixes-a; the Brood computer's Normal pace was measured and left as it was.)",
 	]},

@@ -20,6 +20,8 @@ var t := 0.0
 var next_min := 60.0
 var next_s5 := 5.0
 var next_s10 := 10.0
+var next_s1 := 1.0
+var afb = null              # (ai-fixes-b: the wheels' stuck time and the Crown's fights at its halls below, tools/afb_watch.gd)
 var minutes: Array = []
 var events: Array = []
 var n := 0
@@ -110,6 +112,11 @@ func _process(delta: float) -> bool:
 		g.spectator.process_mode = Node.PROCESS_MODE_DISABLED
 	if g.controls and g.controls.process_mode != Node.PROCESS_MODE_DISABLED:
 		g.controls.process_mode = Node.PROCESS_MODE_DISABLED
+	if g.clock >= next_s1:
+		next_s1 += 1.0
+		if afb == null:
+			afb = load("res://tools/afb_watch.gd").new(g, self, n)
+		afb.tick()
 	if g.clock >= next_s5:
 		next_s5 += 5.0
 		_every5()
@@ -754,6 +761,7 @@ func _finish() -> void:
 		"brood_linger": _linger_counters(),
 		"brood_micro": AIBroodMicro.counts.duplicate(true),      # (brood-micro: its parts' counters, a side each)
 		"bench": _bench_report(),
+		"afb": afb.report() if afb != null else {},
 		"slots": slots, "end": int(round(g.clock)), "over": g.over,
 		"winner": g.winner if g.over else -1, "winner_side": (g.sides[g.winner] if g.over and g.winner >= 0 else -1),
 		"minutes": minutes, "final": endl, "events": events, "reads": reads, "riders_seen": _riders_count(), "tech_at": _tech_at,

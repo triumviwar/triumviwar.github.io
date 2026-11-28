@@ -163,6 +163,7 @@ func _run_map() -> void:
 		if far != Vector2.INF:
 			await _case("%s/crowd40" % map, [["musketeer", 30], ["raptor", 10]], far, mid, "move")
 	await _base_case("%s/base/crown" % map)
+	await _wheel_cases(map)          # (ai-fixes-b: the wheels' stuck spots of the study games)
 	# across the map: from one start to the other (through whatever passes lie between)
 	var a: Vector2 = Vector2(g.starts[0]) * g.T
 	var b: Vector2 = Vector2(g.starts[1]) * g.T
@@ -640,6 +641,237 @@ func _base_case(name: String) -> void:
 		await _case(name, CROWN, from, to, "move")
 		await _case(name.replace("crown", "brood"), BROOD, to, from, "move")
 	await _clear([])
+
+
+# ------------------------------------------------------------------ the wheels' stuck spots (ai-fixes-b)
+
+## Spots where a limbered Field Cannon, Mortar or Powder Wagon stood stuck in the study games (docs/ai_fixes_b.md, kept by
+## tools/qa_match.gd's watch, all of them replayed by tools/test_wheels_replay.gd): the 21 x 21 cells round it as they
+## were (B building, W wall, G our gate, # cliff or rock, f field; the other units left out), laid on open ground. The
+## gun or wagon with a team of three horses starts at the middle facing four ways in turn and goes where it was sent.
+const WHEEL_SPOTS := {
+	"lane": {"kind": "powder_wagon", "goal": Vector2i(6, 10), "src": "ck_g00_greenhold_s0 465s", "grid": [
+		".BBB..fBBBBf.BB......",
+		".fff..fBBBBf.........",
+		"......ffffff.BB......",
+		"......ffffff.BB......",
+		".....................",
+		"ffffff.......BB......",
+		"ffffff.BBBBB.BB......",
+		"fBBBBf.BBBBB.........",
+		"fBBBBf.BBBBB.BBBB....",
+		"ffffff.BBBBB.BBBB....",
+		"ffffff....*..BBBB....",
+		"........BBBB.........",
+		"...BBBB.BBBB.........",
+		"...BBBB.BBBB.........",
+		"...BBBB.............#",
+		"...................##",
+		".BB.BB...........##..",
+		"#BB.BB.....BB..##....",
+		".###.......BBG#......",
+		"....#######..........",
+		"..................BB.",
+	]},
+	"lane_bend": {"kind": "cannon", "goal": Vector2i(9, 2), "src": "crown_clock/default/g03_ashford_crossing_A 820s", "grid": [
+		" ..ffffff........BBBB",
+		" ..ffffff.BBBBB..BBBB",
+		" ..fBBBBf.BBBBB......",
+		" ..fBBBBf.BBBBB..BBBB",
+		" ..ffffff.BBBBB..BBBB",
+		" ..ffffff........BBBB",
+		" ...........BB.......",
+		" .BB...BBBB.BB.BBBB.B",
+		" .BB...BBBB....BBBB.B",
+		" ......BBBB.BB.BBBB.B",
+		" .BB......*.BB.......",
+		" #BB.BB.BB.BBBB.....B",
+		" .#..BB.BB.BBBB.....B",
+		" ..##......BBBB..BB..",
+		" ....##..........BBG#",
+		" ......#####.####....",
+		" ...........#........",
+		" ....................",
+		" ..BBBBB.ffffff......",
+		" ..BBBBB.ffffff......",
+		" #.BBBBB.fBBBBf......",
+	]},
+	"palisade_gate": {"kind": "powder_wagon", "goal": Vector2i(-4, -10), "src": "crown_brood/nerf/g01_dune_sea_s0 1090s", "grid": [
+		"fffff...G..........ff",
+		"fffff...G..ffffff....",
+		".......W...ffffff....",
+		"BBB....W...fBBBBf....",
+		"BBB...W....fBBBBf.#..",
+		"BBB..WW....ffffff.###",
+		"....W..WW..ffffff..##",
+		"...W...W.G...........",
+		".WW.....W.WW.......WW",
+		"W.......W...WWWWWWW..",
+		".........W*..........",
+		".........G...........",
+		".........G...........",
+		".........W...........",
+		".........W...........",
+		".........#...........",
+		".........#...........",
+		"f........W...........",
+		"f.BBB...BBB.....##...",
+		"f.BBB...BBB.....#....",
+		"f.fff...BBB..........",
+	]},
+	"cliff_base": {"kind": "powder_wagon", "goal": Vector2i(3, 7), "src": "crown_clock/default/g19_dune_sea_B 630s", "grid": [
+		"BBBf...BBBB...fBBBBf.",
+		"BBBf..........ffffff.",
+		"ffff..........ffffff.",
+		"ffff#................",
+		"....#.............BBB",
+		"..................BBB",
+		"..................fff",
+		".....................",
+		".....BB.......#######",
+		".....BB...#GBB.......",
+		"........##*.BB.....BB",
+		"......##.BB.....BB.BB",
+		".....#BB.BB.....BB...",
+		"....#.BB...........BB",
+		"...#.....BBBB.BBBB.BB",
+		"...#BBBB.BBBB.BBBB.ff",
+		"..#.BBBB.BBBB.BBBB...",
+		"..#.BBBB...........ff",
+		".#...........BBBBB.ff",
+		".#.BBBB.BBBB.BBBBB.fB",
+		".#.BBBB.BBBB.BBBBB.fB",
+	]},
+}
+
+
+func _wheel_cases(map: String) -> void:
+	var c := _wheel_area()
+	if c.x < 0:
+		lines.append("%s: no open ground for the wheels' spots" % map)
+		return
+	for key in WHEEL_SPOTS:
+		var sp: Dictionary = WHEEL_SPOTS[key]
+		var name := "%s/wheels_%s/%s" % [map, key, sp["kind"]]
+		if only != "" and not name.contains(only):
+			continue
+		var laid := _wheel_lay(c, sp["grid"])
+		await physics_frame
+		for k in 4:
+			var u: Unit = g._add_unit(String(sp["kind"]), 0, g.cell_center(c))
+			u.facing = Vector2.RIGHT.rotated(TAU * float(k) / 4.0)
+			for i in 2:
+				u.team_horses.append({"coat": u.coat, "hp": 1.0, "m": 0.0})
+			await physics_frame
+			var to: Vector2 = g.cell_center(c + (sp["goal"] as Vector2i))
+			var ideal := _ideal([u], to)
+			u.cmd_move(to)
+			var m := await _watch("%s f%d" % [name, k], [u], to, ideal, 40.0, null)
+			_report("%s f%d" % [name, k], m)
+			await _clear([u])
+		_wheel_unlay(laid)
+		await physics_frame
+	await _walled_case(map, c)
+
+
+## WALLED OUT BY ITS OWN PALISADE (ai-fixes-b): a closed ring of our own palisade (no gate), a gun and a wagon outside
+## sent to its middle. A soldier walled out walks up to an ENEMY wall to break it; a limbered gun or wagon breaks no wall,
+## and was sent up to its own palisade and pressed at it for good. Now it walks to the nearest place it can reach and
+## stops: the case fails when either stands still more than 3 s of 20 s outside the ring with its move order still on.
+func _walled_case(map: String, c: Vector2i) -> void:
+	var name := "%s/wheels_walled_out/guns" % map
+	if only != "" and not name.contains(only):
+		return
+	var ring: Array = []
+	for d in range(-3, 4):
+		for q in [c + Vector2i(d, -3), c + Vector2i(d, 3), c + Vector2i(-3, d), c + Vector2i(3, d)]:
+			if not ring.has(q):
+				ring.append(q)
+	for q in ring:
+		made_buildings.append(g._add_building("wall", 0, q, true))
+	await physics_frame
+	var us: Array = []
+	for k in [["cannon", Vector2(-1, 0)], ["powder_wagon", Vector2(1, 0)]]:
+		var u: Unit = g._add_unit(k[0], 0, g.cell_center(c) + (k[1] as Vector2) * 8.0 * g.T)
+		u.facing = -(k[1] as Vector2)
+		us.append(u)
+	await physics_frame
+	for u in us:
+		u.cmd_move(g.cell_center(c))
+	var pressed := {}
+	var last := {}
+	for f in 20 * 30:
+		await physics_frame
+		for u in us:
+			# (still on its way, short of the middle, and not moving: pressed at the wall)
+			if u.order != "idle" and u.position.distance_to(g.cell_center(c)) > 96.0 and u.position.distance_to(last.get(u, Vector2.INF)) < 0.5:
+				pressed[u] = float(pressed.get(u, 0.0)) + 1.0 / 30.0
+			last[u] = u.position
+	var worst := 0.0
+	for u in us:
+		if float(pressed.get(u, 0.0)) > 3.0 and u.order != "idle":
+			worst = maxf(worst, float(pressed[u]))
+	var ok := worst == 0.0
+	if not ok:
+		fails += 1
+	for u in us:
+		print("   %s order %s at %s path %d/%d pressed %.1f s" % [u.kind, u.order, str(g.cell_of(u.position) - c), u.path_i, u.path.size(), float(pressed.get(u, 0.0))])
+	var l := "%-6s %-42s pressed at its own wall still going: %.1f s%s" % ["ok" if ok else "FAIL", name, worst, "" if ok else "  <- pressed"]
+	print(l)
+	lines.append(l)
+	results.append({"name": name, "ok": ok, "pressed": worst})
+	await _clear(us)
+
+
+## Open level ground 25 x 25 cells (trees and rocks may stand on it: the picture lays its own), away from the starts.
+func _wheel_area() -> Vector2i:
+	var n := 25
+	for y in range(4, g.H - n - 4):
+		for x in range(4, g.W - n - 4):
+			var c := Vector2i(x, y)
+			var h0: int = g.height[g.idx(c)]
+			var ok := true
+			for yy in n:
+				for xx in n:
+					var q := c + Vector2i(xx, yy)
+					var i: int = g.idx(q)
+					if g.solid[i] > 1 or g.ramp[i] != 0 or g.cliff[i] != 0 or g.height[i] != h0:
+						ok = false
+						break
+				if not ok:
+					break
+			if ok and not _near_start(g.cell_center(c + Vector2i(12, 12)), 600.0):
+				return c + Vector2i(12, 12)
+	return Vector2i(-1, -1)
+
+
+func _wheel_lay(c: Vector2i, grid: Array) -> Dictionary:
+	var old := {}
+	for y in grid.size():
+		var row: String = grid[y]
+		for x in row.length():
+			var v := 0
+			match row[x]:
+				"B": v = 2
+				"W", "w", "g": v = 4
+				"G": v = 3
+				"#", " ": v = 1
+				"f": v = 5
+			var q: Vector2i = c + Vector2i(x - 10, y - 10)
+			var i: int = g.idx(q)
+			if int(g.solid[i]) == v:
+				continue
+			old[q] = int(g.solid[i])
+			g._mark(q, Vector2i.ONE, v)
+			if v == 3:
+				g.gate_team[i] = 0
+	return old
+
+
+func _wheel_unlay(old: Dictionary) -> void:
+	for q in old:
+		g.gate_team.erase(g.idx(q))
+		g._mark(q, Vector2i.ONE, int(old[q]))
 
 
 # ------------------------------------------------------------------ finding places on the map

@@ -862,7 +862,8 @@ func hold_top(army: Array, spots: Array) -> bool:
 	if gate_live():
 		# (7. THE GATE POST: the army's home is the natural's palisade: a force it beats is met the usual way (AI._defend
 		# sizes it); against more it holds the gate, and the labourers run in behind the line)
-		if mine >= foe * _beat():
+		if mine >= foe * _beat(spots):
+			_low_note(spots, mine, foe)
 			return false
 		if mine >= foe * INSIDE_BEAT and _inside_natural(spots):
 			# (crown-v-brood-coach: the force is already INSIDE the natural's wall, at its Mill and Farms: Hollowfen 1188, 8:39,
@@ -875,7 +876,7 @@ func hold_top(army: Array, spots: Array) -> bool:
 		if game.clock - _hold_said > 30.0:
 			_hold_said = game.clock
 			holds += 1
-			_say("holds its natural's gate: the force outside (%d) is too strong to go out to with its army at home (%d), out at %d; the labourers run in behind the line" % [int(foe), int(mine), int(ceil(foe * _beat()))])
+			_say("holds its natural's gate: the force outside (%d) is too strong to go out to with its army at home (%d), out at %d; the labourers run in behind the line" % [int(foe), int(mine), int(ceil(foe * _beat(spots)))])
 		if not ai._det.is_empty():
 			ai._end_defence()
 		var rest_g := place(home)
@@ -883,7 +884,8 @@ func hold_top(army: Array, spots: Array) -> bool:
 			if u.order == "idle" and u.position.distance_to(_gate_back) > 160.0:
 				u.cmd_move(_gate_back, true)
 		return true
-	if mine >= foe * _beat():
+	if mine >= foe * _beat(spots):
+		_low_note(spots, mine, foe)
 		# (5. THE CLIFF EDGE: a force it could beat below, but the edge covers where it is: it shoots from the high ground
 		# instead of going down; the claws below cannot climb to it)
 		if not edge_on:
@@ -898,7 +900,7 @@ func hold_top(army: Array, spots: Array) -> bool:
 	if game.clock - _hold_said > 30.0:
 		_hold_said = game.clock
 		holds += 1
-		_say("holds the top of its ramp: the force below (%d) is more than its army at home (%d) can beat, down at %d; the labourers there run up" % [int(foe), int(mine), int(ceil(foe * _beat()))])
+		_say("holds the top of its ramp: the force below (%d) is more than its army at home (%d) can beat, down at %d; the labourers there run up" % [int(foe), int(mine), int(ceil(foe * _beat(spots)))])
 	if not ai._det.is_empty():
 		ai._end_defence()
 	_edge_plan(home, spots)
@@ -911,9 +913,60 @@ func hold_top(army: Array, spots: Array) -> bool:
 
 
 ## BEAT, or what the computer's own plan says (AICrown.hold_beat: against a melee swarm in the open the value count flatters
-## a musket line, so it goes down only with a bigger edge).
-func _beat() -> float:
-	return float(ai.hold_beat()) if ai.has_method("hold_beat") else BEAT
+## a musket line, so it goes down only with a bigger edge). Against a force at one of its own halls below the main: at most
+## HALL_BEAT (ai-fixes-b, low_hall).
+func _beat(spots: Array = []) -> float:
+	var b: float = float(ai.hold_beat()) if ai.has_method("hold_beat") else BEAT
+	if not spots.is_empty() and low_hall(spots) != null:
+		b = minf(b, HALL_BEAT)
+	return b
+
+
+## ITS OWN HALL BELOW (ai-fixes-b, docs/ai_fixes_b.md; `-- afbhome:off` plays as before). The ramp post and the gate post
+## go down only with an edge (BEAT 1.3, against the Brood 2.0: a musket line in the open flatters its value count), and
+## that is right for a force walking about below. But at one of its own Town Halls below the main (the natural, the third,
+## a walled hall at its gate) the force is razing what the army is there to keep: the AI opponent review saw the Hard Crown
+## watch 1,520 of the novice's take a hall below from the top of its ramp with 1,863 ("goes down only at 1,978"), and in
+## the winrate games of 0.38.221 it held the top or the gate while bigger than the force below in 79 of 228 lines (a hall
+## lost within two minutes in 26 of them). Against a force at such a hall (any threat spot within HALL_R of it, its
+## buildings round it) the army goes down when it is worth as much as the force (HALL_BEAT), and goes down AS ONE BODY:
+## the muster (AICrownDefence.muster) gathers it out of the enemy's reach and sends it in together up to HALL_BODY times the
+## force (AI._defend's detachments walked down the ramp each from where he stood, the nearest first: a trickle). The cliff
+## edge post (5) still shoots from above where it covers the hall.
+const HALL_BEAT := 1.0
+const HALL_BODY := 1.6          # (AI.DEF_MARGIN 1.5 and a little: below it AI._defend sends every man from where he stands)
+const HALL_R := 12.0            # (tiles) a threat this near one of our halls below the main is at that hall
+var low_on := not OS.get_cmdline_user_args().has("afbhome:off")
+var low_goes := 0               # (the study) times the army went down to a hall below it would have watched from above
+var _low_said := -999.0
+
+
+## (the study and the log) the army goes down to its hall below where the old bar would have held it at the top.
+func _low_note(spots: Array, mine: float, foe: float) -> void:
+	var b0: float = float(ai.hold_beat()) if ai.has_method("hold_beat") else BEAT
+	if mine >= foe * b0 or low_hall(spots) == null:
+		return
+	if game.clock - _low_said > 30.0:
+		_low_said = game.clock
+		low_goes += 1
+		_say("goes down to its hall below as one body: the force there (%d) razes what it holds, its army at home (%d) is worth as much" % [int(foe), int(mine)])
+
+
+## The Town Hall of ours below the main that this threat is at (null: none, or the rule is off).
+func low_hall(spots: Array) -> Building:
+	if not low_on or _bc == Vector2.INF:
+		return null
+	var best: Building = null
+	var bd := HALL_R * float(Defs.TILE)
+	for b in ai._halls():
+		if b.dead or not b.built or on_main(b.center()) or game.level_of(b.center()) > _home_h:
+			continue
+		for sp in spots:
+			var d: float = b.edge_distance(sp)
+			if d < bd:
+				bd = d
+				best = b
+	return best
 
 
 ## The enemy force at these spots: the armed enemies in sight (or seen a moment ago) within FORCE_R of any of them, each
@@ -946,7 +999,7 @@ func refuge(w: Unit, centre: Vector2) -> Vector2:
 	if not active() or _bc == Vector2.INF or on_main(w.position):
 		return Vector2.INF
 	var foe: float = force_at([centre])
-	if home_value() >= foe * _beat():
+	if home_value() >= foe * _beat([centre]):
 		return Vector2.INF
 	if gate_live() and _gate_back != Vector2.INF:
 		return _gate_back           # (7. THE GATE POST: in behind the line at the natural's gate)
