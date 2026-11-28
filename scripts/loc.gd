@@ -102,6 +102,14 @@ static func _build_patterns() -> void:
 			_pats_any.append(entry)
 
 
+## How much of a key is its own words (not placeholders): the longer, the more specific.
+static func _literal_len(key: String) -> int:
+	if _ph == null:
+		_ph = RegEx.new()
+		_ph.compile("%[-+0#]*\\d*(?:\\.\\d+)?[sdfxXc]")
+	return _ph.sub(key, "", true).length()
+
+
 static func _esc(s: String) -> String:
 	var out := ""
 	for ch in s:
@@ -123,6 +131,23 @@ static func title(s: String) -> String:
 
 ## English text in, the chosen language out.
 static func t(s: String) -> String:
+	if not track:
+		return _t(s)
+	_depth += 1
+	var r := _t(s)
+	_depth -= 1
+	if _depth == 0 and r.length() >= 3:
+		shown[r] = true          # (what the player is shown: the click sweep looks for English left in it)
+	return r
+
+
+## (tools only, while track is on: every text a top-level t() gave out, whole; misses holds every piece that found no
+## translation, pieces of a text that was translated another way too)
+static var shown := {}
+static var _depth := 0
+
+
+static func _t(s: String) -> String:
 	if _dict.is_empty() or s.length() < 2:
 		return s
 	var hit: Variant = _dict.get(s)
@@ -160,6 +185,10 @@ static func _pattern(s: String) -> String:
 	var pieces := s.contains(" · ") or s.contains("\n") or s.contains("  ")
 	var bare_r := ""
 	for group in [cands, _pats_any]:
+		# the most specific key that fits wins ("Powder %d/%d shots" over "Powder %d/%d%s", whose "%s" took " shots"
+		# untranslated: qa-click-sweep); before, the first one listed did
+		var best: Array = []
+		var best_m: RegExMatch = null
 		for e in group:
 			var m: RegExMatch = e[0].search(s)
 			if m == null:
@@ -168,7 +197,11 @@ static func _pattern(s: String) -> String:
 				if bare_r == "":
 					bare_r = _fill(_dict[e[1]], e[2], m)
 				continue
-			return _fill(_dict[e[1]], e[2], m)
+			if best.is_empty() or _literal_len(e[1]) > _literal_len(best[1]):
+				best = e
+				best_m = m
+		if not best.is_empty():
+			return _fill(_dict[best[1]], best[2], best_m)
 	if bare_r != "":
 		var split_r := _split_t(s)
 		return split_r if _english_left(s, split_r) < _english_left(s, bare_r) else bare_r

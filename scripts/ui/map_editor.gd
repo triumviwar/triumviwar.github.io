@@ -9,6 +9,7 @@ extends Control
 ## (MapCheck); undo; save it (user://maps/, with a picture for the lobby) and play it.
 
 signal back_requested
+var back_button: Button = null      # (main makes it Esc / the phone's back: qa-click-sweep)
 signal play_requested(map_id: String, starts: int)
 ## Start over on a map of another size (a new map, or one loaded from disk): the main scene
 ## builds a fresh world of data["size"] and hands it back to load_from(data).
@@ -333,9 +334,10 @@ func _build_ui() -> void:
 	top.position = Vector2(8, 6)
 	top.add_theme_constant_override("separation", 5)
 	_ui.add_child(top)
-	top.add_child(_btn("BACK", 74, func() -> void:
+	back_button = _btn("BACK", 74, func() -> void:
 		if not _unsaved() or _confirm("back", "Not saved. Press BACK again to leave without saving."):
-			back_requested.emit()))
+			back_requested.emit())
+	top.add_child(back_button)
 	_name_edit = LineEdit.new()
 	_name_edit.text = map_name
 	_name_edit.custom_minimum_size = Vector2(170, 44)
@@ -796,7 +798,10 @@ func _build_palette(vp: Vector2) -> void:
 	pl.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	pl.custom_minimum_size = Vector2(w - 28, 36)
 	v.add_child(pl)
-	v.add_child(_small_label("Red frame: blocks like a rock. Plain: looks only."))
+	var rf := _small_label("Red frame: blocks like a rock. Plain: looks only.")
+	rf.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART      # (pt / es: one line pushed the panel off the screen; qa-click-sweep)
+	rf.custom_minimum_size.x = w - 28
+	v.add_child(rf)
 	var scroll := ScrollContainer.new()
 	scroll.name = "PropScroll"
 	scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED

@@ -911,10 +911,28 @@ func menu_back() -> bool:
 		_list_shade.queue_free()
 		_list_shade = null
 		return true
-	if game != null or not is_instance_valid(_esc_button) or not _esc_button.is_visible_in_tree() or _esc_button.disabled:
+	var eb: Button = _esc_button
+	if game != null and game.edit_mode and is_instance_valid(_editor) and is_instance_valid(_editor.back_button):
+		eb = _editor.back_button      # (the map editor runs a Game, but it is a page: its BACK answers Esc and the phone's back; qa-click-sweep)
+	elif game != null:
 		return false
-	_esc_button.pressed.emit()
+	if not is_instance_valid(eb) or not eb.is_visible_in_tree():
+		eb = _page_back(ui_layer)      # (a page that builds itself again marks its BACK: meta "page_back")
+	if not is_instance_valid(eb) or not eb.is_visible_in_tree() or eb.disabled:
+		return false
+	eb.pressed.emit()
 	return true
+
+
+## The BACK a page marked with the meta "page_back" (pages that rebuild their buttons: the layout editor).
+func _page_back(n: Node) -> Button:
+	for c in n.get_children():
+		if c is Button and c.has_meta("page_back") and (c as Button).is_visible_in_tree() and not c.is_queued_for_deletion():
+			return c
+		var r := _page_back(c)
+		if r != null:
+			return r
+	return null
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -1652,6 +1670,8 @@ func show_anim_viewer() -> AnimViewer:
 	var av := AnimViewer.new()
 	av.back_pressed.connect(func() -> void: show_settings())
 	root.add_child(av)
+	if av.back_button != null:
+		_set_back(av.back_button)       # (qa-click-sweep: Esc did nothing; the phone's back asked to quit the game)
 	return av
 
 
@@ -1817,6 +1837,7 @@ func show_music() -> void:
 	var back := _button("BACK", func() -> void:
 		Music.me.menu()
 		show_settings())
+	_set_back(back)          # (qa-click-sweep: Esc did nothing here and the phone's back asked to quit the game)
 	back.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
 	back.custom_minimum_size.x = 220
 	v.add_child(back)
