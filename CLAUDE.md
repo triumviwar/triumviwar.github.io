@@ -112,6 +112,13 @@
   (10/15, t 2.3), within noise at 20:00 (won or led 5/15 v 3/15). VERDICT: the remaining gap is NOT fighting: the Brood
   out-earns it from ~10:00, Musketeers dry, pushes into the Brood base with guns not set. test_cav_micro's stub: fixed in
   ai-lessons.
+- ACT 3 ANSWERED (owner 2026-11-28 00:34 "Do all": every one of the 15 as recommended, docs/campaign_act3_plan.md "OWNER
+  ANSWERS"; build step 1, act3-engine0, started). OLDER DECISIONS (same message, all as Claude picked): the Crown mirror
+  measured to 20:00 (job crown-mirror-20); the music MIX PASS only (job music-mix-pass) + God Save the King as the Crown's
+  victory music; the computer fixes (Normal Brood pace, Clockwork whole-army recall v small raids: job ai-fixes-a; the
+  Hard Crown's hall below its high ground, stuck guns/wagons: job ai-fixes-b), no balance numbers; Crown guns before
+  fights v the Brood ON (already, ai-lessons); the Springer and the battle-matrix unit numbers WAIT for the Rootmaw
+  decision; the HATCHLINGS become the small WYVERN (art/redraws/ideas/hatchlings_wyvern_se_chatgpt.png) in every view.
 - ACT 3 PLANNED (owner 2026-11-25 "write act 3 so we have a clear view of the choice"; job campaign-act3-plan, branch
   campaign-act3-plan, docs only: docs/campaign_act3_plan.md): THE FALL OF THE COLONIES 2781-2790 + THE FINALE (2795, the
   present), 20 missions e01-e20 (15 core, 5 optional): four theatres free of each other on the WORLD war map with a

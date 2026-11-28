@@ -1218,6 +1218,15 @@ Inácio = campaign/portraits/inacio.png.
 19. LINDQVIST LEARNS THE TRUTH IN e06 (the ruin): his error ends there; what he does with the truth is the ruin choice.
 20. e14 IS THE NATURALIST LINE's LAST BROOD PLAY (optional), told from Valadares' chart; no creature has a will.
 
+## OWNER ANSWERS (2026-11-28 00:34: "Do all")
+
+ALL FIFTEEN AS RECOMMENDED: the final choice HOLD ROME / SAVE THE FLOCK; no canon for Act 3's choices; the King alive
+when Rome holds, holding the bridge at Sant'Angelo when it falls; the heir PRINCE ALESSANDRO; 20 missions (15 + 5
+optional); the clock (one colony a year from the theatre left alone longest); the ruin's choice (e06) and the
+stop-work's choice (e09) kept; only Varenne, Fairleigh and Lindqvist may fall, the tellers live; the night's order
+(first fresh, last grown); the guild's last hands as a blue Clockwork side; the Cold Forge optional; the deserters'
+choice in e19; the allies as Crown reskins first; the credits over the war map, then the King's study.
+
 ## OWNER QUESTIONS
 
 Each has Claude's recommendation. The plan is written as if it is taken.
