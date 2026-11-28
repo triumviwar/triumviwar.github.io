@@ -66,7 +66,8 @@ var pages: Array = []            # {id, route, keys, shot}
 var flags: Array = []            # {kind, screen, detail}
 var _flag_seen := {}
 var _shot_done := {}
-var _page_sets: Array = []       # [[id, keyset Dictionary]]
+var _page_sets: Array = []
+var _cur_page_size := 0       # [[id, keyset Dictionary]]
 var _match_starts := {}          # what a press started -> count (one look a kind)
 var _cfg0 := ""
 var t_start := 0
@@ -651,6 +652,11 @@ func _hooked(b: BaseButton) -> bool:
 	return b is OptionButton or b is MenuButton or b is CheckBox or b is CheckButton or b.get_script() != null
 
 
+## A match (or a lesson, a mission, a replay) under way; the map editor, though it runs a Game, is a page to walk.
+func _in_match() -> bool:
+	return main.game != null and not main.game.edit_mode
+
+
 func _leave_match() -> void:
 	if main.game != null:
 		paused = false
@@ -713,7 +719,7 @@ func _goto(seed: Callable, route: Array) -> bool:
 			return false
 		_emit(bs[i])
 		await _frames(3)
-		if main.game != null:
+		if _in_match():
 			return false
 	return true
 
@@ -766,7 +772,7 @@ func _esc_works() -> bool:
 	Input.flush_buffered_events()
 	await _frames(4)
 	var m1: int = main.menu.get_instance_id() if is_instance_valid(main.menu) else 0
-	var left := main.game != null or m1 != m0 or not _same(set0, _page_set())
+	var left := _in_match() or m1 != m0 or not _same(set0, _page_set())
 	_take_errs()
 	return left
 
@@ -847,7 +853,7 @@ func _crawl(prefix: String, seeds: Array) -> void:
 		# no way back?
 		var is_root := route.is_empty() and seed_name in ["menu", "device"]     # (the device page is the first start's own choice)
 		var esc_leaves := false
-		if not is_root and main.game == null:
+		if not is_root and not _in_match():
 			esc_leaves = await _esc_works()
 			if not esc_leaves:
 				var has_back := false
@@ -859,6 +865,7 @@ func _crawl(prefix: String, seeds: Array) -> void:
 				_flag("NOBACK", pid, ("Esc / the phone's back does nothing, though it has a %s button" if has_back else "no BACK button and Esc / the phone's back does nothing") % ("BACK-like" if has_back else ""))
 			if not await _goto(seed, route):
 				continue
+		_cur_page_size = ks.size()       # (a long page's own pages are not walked: a tool's list, the music's songs)
 		var n := mini(ks.size(), MAX_PRESSES_PAGE)
 		if ks.size() > 60:
 			n = 30        # (a long list of the same kind of button: the map picker, the animation viewer's units, the
@@ -869,6 +876,8 @@ func _crawl(prefix: String, seeds: Array) -> void:
 				break
 			var key: String = ks[i]
 			var label := key.split("#")[0]
+			if int(key.split("#")[1]) >= 2:
+				continue        # (a third WATCH, EXPORT, a third row's same button: the first two stand for the rest)
 			if _skip(label) or (is_root and seed_name == "menu" and label.to_upper() in QUIT_WORDS):
 				presses.append({"screen": pid, "button": key, "result": "skipped (leaves the program / the browser / wipes saves)", "flags": []})
 				continue
@@ -923,7 +932,7 @@ func _press_menu_button(prefix: String, pid: String, seed_name: String, seed: Ca
 		result = "switches the language / device (put back)"
 		_restore_settings()
 		await _goto(seed, route)
-	elif main.game != null:
+	elif _in_match():
 		var what := "a match"
 		if main.game.mission != null:
 			what = "mission " + String(main.game.mission.id)
@@ -959,7 +968,7 @@ func _press_menu_button(prefix: String, pid: String, seed_name: String, seed: Ca
 			if p2[1]:
 				_page_sets.pop_back()          # (named and walked when it comes out of the queue)
 			result = "opens " + (String(p2[0]) if known else "a new page")
-			if not known and route.size() < MAX_DEPTH:
+			if not known and route.size() < MAX_DEPTH and _cur_page_size <= 40:
 				var r2 := route.duplicate()
 				r2.append(key)
 				queue.append([seed_name, seed, r2])
