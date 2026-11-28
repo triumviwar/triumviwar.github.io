@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"The Crown mirror measured to 20:00 (crown-mirror-20): 110 computer games, tools and data only; three measuring switches for the Crown computer in the mirror, all off, so nothing in play changes.",
+	]},
 	{"v": "0.38.229", "items": [
 		"A grub carrying, wrapping or guarding a cocoon keeps the same dark olive skin as when it walks (it turned a lighter yellow before).",
 	]},

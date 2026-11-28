@@ -14,6 +14,7 @@ Arms (each the same seeds; "base" 30 games, the others N_ARM):
     p3     `cm20gates:on`  a pressed wave goes past the shared rule's other gates (what holds it now)
     p4     `cm20fade:on`   the defender's advantage fades (a BALANCE change: measured only, never on by default)
     p23    p2 + p3
+    base2  the branch with every switch off, the first N_ARM seeds again: how far two runs of the same play differ
 
     python3 tools/study/crown_mirror_20.py list [ARM]
     python3 tools/study/crown_mirror_20.py run ARM[,ARM] [--jobs 2] [--root DIR] [--push] [--n N]
@@ -33,7 +34,7 @@ DATA = os.path.join(qm.ROOT, "docs/crown_mirror_20/data")
 N = 30
 N_ARM = 20
 CUT = 1200
-ARMS = {"base": [], "p2": ["cm20guns:on"], "p3": ["cm20gates:on"], "p4": ["cm20fade:on"], "p23": ["cm20guns:on", "cm20gates:on"]}
+ARMS = {"base": [], "p2": ["cm20guns:on"], "p3": ["cm20gates:on"], "p4": ["cm20fade:on"], "p23": ["cm20guns:on", "cm20gates:on"], "base2": []}
 KEEP = ("presses", "pressed wave", "shell", "past the gates", "the guns' screen", "fades", "beaten", "hunt", "finisher", "pulls back", "Siege push", "wave goes", "attacks")
 LOGS = "/tmp/claude-0/cm20_logs"
 
@@ -185,7 +186,7 @@ def f1(v, fmt="%.1f"):
 
 
 TITLE = {"base": "main as it is", "p2": "P2 guns' screen (cm20guns:on)", "p3": "P3 past the gates (cm20gates:on)",
-         "p4": "P4 fading defence (cm20fade:on)", "p23": "P2 + P3"}
+         "p4": "P4 fading defence (cm20fade:on)", "p23": "P2 + P3", "base2": "the same play again (switches off)"}
 
 
 def report(arms):

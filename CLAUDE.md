@@ -26,6 +26,17 @@
 
 ## Current work
 
+- CROWN MIRROR TO 20:00 (owner 2026-11-28 "Do all"; job crown-mirror-20, branch crown-mirror-20, docs/crown_mirror_20.md,
+  scripts/ai_crown_mirror_20.gd AICm20, tools/study/crown_mirror_20.py, data docs/crown_mirror_20/data/): 110 Hard OPTIMAL
+  mirror games to 20:00, winrate-2026-11-26's seeds, spots split 15/15 by `spotswap`. Main: 12 of 30 decided (median
+  18:30), a 12:00 leader finished 9 of 15 and lost it 2; the same code twice agreed on decided/not in only 6 of 20 (noise).
+  crown-mirror-coach's P2 `cm20guns:on` (guns shell from behind the line), P3 `cm20gates:on` (a pressed wave past the
+  shared gates; the old P3, the hall's guards, is gone: doctrine clears them), P4 `cm20fade:on` (BALANCE: palisades/gates
+  take up to 1.75x damage 12:00-16:00): 9 / 8 / 5 decided of 20 v 7 and 9: NONE KEPT, all off. FOUND: a SPOT B EDGE
+  (main 20 v 7, p 0.02; all 110 + winrate-1126 77 v 52, p 0.03): spot B's 4th hall at 10:00 v 13:00 on 5 of 6 maps
+  (the Crown's hall spot pick); proposed a crown spot study. 7 Claude's choices. Tests: test_crown* pass but dragoon_raid
+  [plan] (fails on main too).
+
 - CLOCKWORK LATE MACRO (owner 2026-11-27 "Why does the Clockwork stop expanding?"; job clockwork-late-macro, branch
   clockwork-late-macro, docs/clockwork_late_macro.md, tables docs/clockwork_late_macro/tables.md, scripts/ai_cw_late.gd
   AICwLate, tools/study/clockwork_late_macro.py, data docs/clockwork_late_macro/data/): CAUSE (traced, tools/cw_trace.gd now
