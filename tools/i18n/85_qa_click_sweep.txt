@@ -55,3 +55,16 @@ es PRENSA %d/%d
 > MAINSPRING %d/%d
 pt MOLA REAL %d/%d
 es MUELLE REAL %d/%d
+
+# the Hatchlings' stats page (one Hatchling selected)
+> BITE
+pt MORDIDA
+es MORDISCO
+
+> HATCHLING
+pt FILHOTE
+es CRÍA
+
+> Hatchling
+pt Filhote
+es Cría
