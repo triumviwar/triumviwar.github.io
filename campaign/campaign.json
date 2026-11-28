@@ -16,7 +16,8 @@
 				"d05_aldeia",
 				"d09_crossroads",
 				"d10_jungle",
-				"d11_siege"
+				"d11_siege",
+				"e01_brazil"
 			],
 			"hub": {
 				"title": "The King's Study",
@@ -299,6 +300,33 @@
 								"lines": [
 									"Ferrer held the road a whole year before that wall. Behind it the city went on building."
 								]
+							},
+							{
+								"after": "e01_brazil",
+								"flag": {
+									"e01_brazil.colonists": "many"
+								},
+								"lines": [
+									"Ruggieri brought most of Brazil's people to the ships. He sent me the number, not a guess."
+								]
+							},
+							{
+								"after": "e01_brazil",
+								"flag": {
+									"e01_brazil.colonists": "some"
+								},
+								"lines": [
+									"Ruggieri brought some of Brazil's people out. The rest are on that road still."
+								]
+							},
+							{
+								"after": "e01_brazil",
+								"flag": {
+									"e01_brazil.colonists": "few"
+								},
+								"lines": [
+									"Ruggieri brought too few of Brazil's people out. He has not forgiven himself, and I have not asked him to."
+								]
 							}
 						],
 						"portrait": "res://campaign/hub/rome_king_face.png"
@@ -519,6 +547,12 @@
 								},
 								"lines": [
 									"Concórdia, the siege. The great sortie held. The road is ours, the city still its own."
+								]
+							},
+							{
+								"after": "e01_brazil",
+								"lines": [
+									"Aboard, off the coast of Brazil. The army is at sea with the people it could carry. The guns are spiked on the bluff."
 								]
 							}
 						]
