@@ -1,0 +1,2 @@
+1 error lines
+    1  ERROR: Parse JSON failed. Error at line 0: Expected 'EOF'  at: parse_string (core/io/json.cpp:629)
