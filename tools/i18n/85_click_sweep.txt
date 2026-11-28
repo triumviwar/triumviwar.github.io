@@ -119,3 +119,20 @@ es Conectando...
 > BITE
 pt MORDIDA
 es MORDISCO
+
+# the building card's chips (card_tips.gd: their titles in small letters)
+> Soil
+pt Solo
+es Suelo
+
+> Saltpetre
+pt Salitre
+es Salitre
+
+> Brass
+pt Latão
+es Latón
+
+> Haulers
+pt Carregadores
+es Porteadores
