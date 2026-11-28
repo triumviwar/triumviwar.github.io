@@ -136,3 +136,12 @@ es Latón
 > Haulers
 pt Carregadores
 es Porteadores
+
+# the words put into the unit card's lines (hud.gd: "Set up: %s loaded...", the Dragoon's "reload %s")
+> canister
+pt metralha
+es metralla
+
+> ready
+pt pronta
+es lista
