@@ -151,6 +151,17 @@ func _engine0() -> void:
 		var pm := Campaign.mission(pid)
 		check("engine0: %s has its difficulty" % pid, pm.has("difficulty") and float(Campaign.diff_mult(pm, "easy")["spawns"]) < 1.0 and float(Campaign.diff_mult(pm, "hard")["spawns"]) > 1.0 and is_equal_approx(float(Campaign.diff_mult(pm, "normal")["spawns"]), 1.0))
 	check("engine0: c01's countdown is longer on easy", float(Campaign.diff_mult(Campaign.mission("c01_thirteenth"), "easy")["clocks"]) > 1.0)
+	# BRUTAL (the owner 2026-11-28): HARD's numbers and a little more, the mission's rules read "hard", the foes cheat
+	var c01 := Campaign.mission("c01_thirteenth")
+	var hm := Campaign.diff_mult(c01, "hard")
+	var bm := Campaign.diff_mult(c01, "brutal")
+	check("brutal: shorter clocks and more foes than hard", float(bm["clocks"]) < float(hm["clocks"]) and float(bm["spawns"]) > float(hm["spawns"]), "%s v %s" % [bm, hm])
+	check("brutal: a mission's rules read it as hard", Campaign.level("brutal") == "hard" and Campaign.cond_before({"difficulty": "hard"}, "", "brutal"))
+	Campaign.set_difficulty("brutal")
+	var bc := Campaign.make_cfg("b01_specimen", "solo")
+	var ai_slots: Array = bc["slots"].filter(func(s): return not ["you", "script", "remote"].has(String(s["who"])))
+	check("brutal: kept, and every computer foe cheats", Campaign.difficulty() == "brutal" and not ai_slots.is_empty() and ai_slots.all(func(s): return float(s.get("cheat", 1.0)) > 1.0), str(bc["slots"]))
+	Campaign.set_difficulty("easy")
 	# ---------------------------------------------------------------- play it on EASY, as the Crown
 	main._to_menu()
 	main.start(Campaign.make_cfg(E0, "solo"))

@@ -15,10 +15,21 @@ static var _cache := {}
 ## CAMPAIGN DIFFICULTY (act1-engine0, docs/act1_engine0.md): picked on the briefing, kept in the progress file. A mission
 ## reads it with the {"difficulty": ...} condition and through its "difficulty" multipliers: "clocks" (countdowns the
 ## player races: longer is easier) and "spawns" (how many units the sides no person plays get).
-const DIFFICULTIES := ["easy", "normal", "hard"]
-const DIFF_LABEL := {"easy": "EASY", "normal": "NORMAL", "hard": "HARD"}
+## BRUTAL (the owner 2026-11-28: "add brutal difficulty, on top of hard the ai cheats"): the mission plays as on HARD
+## (its conditions, tables and own HARD numbers read "hard": Campaign.level), the clocks a little shorter and the foes a
+## little more (BRUTAL_EXTRA over HARD's), and every computer foe cheats like the skirmish's BRUTAL AI (+50% income).
+const DIFFICULTIES := ["easy", "normal", "hard", "brutal"]
+const DIFF_LABEL := {"easy": "EASY", "normal": "NORMAL", "hard": "HARD", "brutal": "BRUTAL"}
 const DIFF_DEFAULT := {"easy": {"clocks": 1.25, "spawns": 0.75}, "normal": {"clocks": 1.0, "spawns": 1.0},
 	"hard": {"clocks": 0.85, "spawns": 1.25}}
+const MISSION_LEVELS := ["easy", "normal", "hard"]      # (what a mission may name: BRUTAL plays as "hard")
+const BRUTAL_EXTRA := {"clocks": 0.9, "spawns": 1.15}
+const BRUTAL_INCOME := 1.5
+
+
+## The level a mission's own rules read: BRUTAL plays as HARD (its extras come on top).
+static func level(d: String) -> String:
+	return "hard" if d == "brutal" else d
 
 
 ## Tests and the hub pictures (tools/shot_hub.gd): every storyline opens, so the Clockwork and Brood hubs can be
@@ -413,12 +424,16 @@ static func set_ironman() -> void:
 
 ## A mission's multipliers at a difficulty: {"clocks", "spawns"} (the mission's "difficulty": {level: {...}} over
 ## DIFF_DEFAULT).
-static func diff_mult(m: Dictionary, level: String) -> Dictionary:
-	var out: Dictionary = (DIFF_DEFAULT.get(level, DIFF_DEFAULT["normal"]) as Dictionary).duplicate()
-	var own: Variant = (m["difficulty"] as Dictionary).get(level, {}) if m.get("difficulty") is Dictionary else {}
+static func diff_mult(m: Dictionary, lv: String) -> Dictionary:
+	var base := level(lv)
+	var out: Dictionary = (DIFF_DEFAULT.get(base, DIFF_DEFAULT["normal"]) as Dictionary).duplicate()
+	var own: Variant = (m["difficulty"] as Dictionary).get(base, {}) if m.get("difficulty") is Dictionary else {}
 	if own is Dictionary:
 		for k in own:
 			out[String(k)] = float(own[k])
+	if lv == "brutal":
+		for k in BRUTAL_EXTRA:
+			out[k] = float(out.get(k, 1.0)) * float(BRUTAL_EXTRA[k])
 	return out
 
 
@@ -492,8 +507,10 @@ static func make_cfg(id: String, mode: String, host_seat := "p1", online := fals
 			# (campaign-fixes-1121: a computer foe may play stronger at the campaign's NORMAL / HARD: "ai_by_difficulty":
 			# {"normal": "easy", "hard": "normal"}; the owner: the campaign has an AI level, chosen in the hub)
 			var abd: Variant = tm.get("ai_by_difficulty", {})
-			if abd is Dictionary and (abd as Dictionary).has(difficulty()):
-				slot["who"] = String(abd[difficulty()])
+			if abd is Dictionary and (abd as Dictionary).has(level(difficulty())):
+				slot["who"] = String(abd[level(difficulty())])
+			if difficulty() == "brutal":
+				slot["cheat"] = BRUTAL_INCOME      # (BRUTAL: every computer foe cheats, +50% income)
 		else:
 			slot["who"] = "script"
 		slots.append(slot)
@@ -683,7 +700,7 @@ static func cond_before(c: Variant, side: String, diff: String) -> bool:
 			"won":
 				ok = ok and (progress()["done"] as Dictionary).has(String(v))      # (act3-engine0: that mission won)
 			"difficulty":
-				ok = ok and (v if v is Array else [v]).map(func(x) -> String: return String(x)).has(diff)
+				ok = ok and (v if v is Array else [v]).map(func(x) -> String: return String(x)).has(level(diff))
 			"playing":
 				ok = ok and String(v) == side
 			"heir":
@@ -924,8 +941,8 @@ static func problems(m: Dictionary) -> Array:
 			out.append("difficulty: must be {level: {clocks, spawns}}")
 		else:
 			for lv in m["difficulty"]:
-				if not DIFFICULTIES.has(String(lv)):
-					out.append("difficulty: unknown level %s" % lv)
+				if not MISSION_LEVELS.has(String(lv)):
+					out.append("difficulty: unknown level %s (BRUTAL reads HARD's)" % lv)
 				elif m["difficulty"][lv] is Dictionary:
 					for k in m["difficulty"][lv]:
 						if not String(k) in ["clocks", "spawns"]:
@@ -1121,8 +1138,8 @@ static func _check_cond(c: Variant, where: String, out: Array, sides: Array, tea
 			# act1-engine0: the difficulty, who is played, STAY, NEAR, SEEN
 			"difficulty":
 				for lv in (c[k] if c[k] is Array else [c[k]]):
-					if not DIFFICULTIES.has(String(lv)):
-						out.append("%s: unknown difficulty %s" % [where, lv])
+					if not MISSION_LEVELS.has(String(lv)):
+						out.append("%s: unknown difficulty %s (BRUTAL reads HARD's)" % [where, lv])
 			"playing":
 				if not sides.has(String(c[k])):
 					out.append("%s: unknown side %s" % [where, c[k]])

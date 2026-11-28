@@ -402,9 +402,8 @@ static func briefing(main: Node, mid: String) -> void:
 		if lv == dnow:
 			UiStyle.chosen(b)
 		drow.add_child(b)
-	var dabout := {"easy": "More time on the clock and fewer enemies.", "normal": "The mission as it was written.",
-		"hard": "Less time on the clock and more enemies."}
-	pv.add_child(_wrap(Loc.t(dabout[dnow]), 15, UiStyle.MUTED))
+	if DIFF_ABOUT.has(dnow):      # (NORMAL says nothing: the owner 2026-11-28)
+		pv.add_child(_wrap(Loc.t(DIFF_ABOUT[dnow]), 15, UiStyle.BAD if dnow == "brutal" else UiStyle.MUTED))
 	var row := HBoxContainer.new()
 	row.alignment = BoxContainer.ALIGNMENT_CENTER
 	row.add_theme_constant_override("separation", 16)
@@ -502,7 +501,7 @@ static func opening_now(m: Dictionary, pages: Array) -> Array:
 	var tmp := MissionRun.new()
 	tmp.data = m
 	tmp.id = String(m.get("id", ""))
-	tmp.difficulty = Campaign.difficulty()
+	tmp.difficulty = Campaign.level(Campaign.difficulty())
 	var out := tmp.pages_now(pages)
 	tmp.free()
 	return out
@@ -844,6 +843,12 @@ static func show(main: Node) -> void:
 	list.add_child(back)
 
 
+## A line under the difficulty buttons (none for NORMAL: "the mission as it was written" sounded off, the owner 2026-11-28).
+const DIFF_ABOUT := {"easy": "More time on the clock and fewer enemies.",
+	"hard": "Less time on the clock and more enemies.",
+	"brutal": "Harder than HARD, and the enemy cheats: half again as much income."}
+
+
 ## THE CAMPAIGN'S DIFFICULTY on the hub (campaign-fixes-1121, the owner 2026-11-21: "campaign has AI level as well in
 ## the hub"): EASY / NORMAL / HARD for every mission of every line, the side you lead and the mirrors alike (the clocks,
 ## the foe's numbers, the computer's level); the briefing shows the same choice.
@@ -852,8 +857,10 @@ static func _hub_difficulty(main: Node, list: VBoxContainer) -> void:
 	var cap := UiStyle.text(Loc.t("DIFFICULTY:") + " " + Loc.t(Campaign.DIFF_LABEL[dnow]), 15, UiStyle.TRIM, HORIZONTAL_ALIGNMENT_LEFT, true)
 	cap.name = "HubDifficulty"
 	list.add_child(cap)
-	var row := HBoxContainer.new()
-	row.add_theme_constant_override("separation", 4)
+	var row := GridContainer.new()      # (two by two: four buttons in a row were too narrow for the list)
+	row.columns = 2
+	row.add_theme_constant_override("h_separation", 4)
+	row.add_theme_constant_override("v_separation", 4)
 	list.add_child(row)
 	for lv in Campaign.DIFFICULTIES:
 		var b: Button = main._button(Campaign.DIFF_LABEL[lv], func() -> void:
@@ -863,12 +870,13 @@ static func _hub_difficulty(main: Node, list: VBoxContainer) -> void:
 		b.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		b.custom_minimum_size = Vector2(0, 44 if Settings.pc() else 56)
 		b.add_theme_font_size_override("font_size", 13)
+		if lv == "brutal":
+			b.add_theme_color_override("font_color", UiStyle.BAD)
 		if lv == dnow:
 			UiStyle.chosen(b)
 		row.add_child(b)
-	var about := {"easy": "More time on the clock and fewer enemies.", "normal": "The mission as it was written.",
-		"hard": "Less time on the clock and more enemies."}
-	list.add_child(_wrap(Loc.t(about[dnow]), 13, UiStyle.MUTED))
+	if DIFF_ABOUT.has(dnow):
+		list.add_child(_wrap(Loc.t(DIFF_ABOUT[dnow]), 13, UiStyle.BAD if dnow == "brutal" else UiStyle.MUTED))
 	_hub_ironman(main, list)
 
 

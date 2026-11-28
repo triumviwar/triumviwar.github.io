@@ -63,7 +63,8 @@ var shows: Array = []                # (a07) every MID-MATCH SHOW played, its pa
 var fires_out := 0                   # (a07) fires put out (dousing men, rain, `douse`)
 # ACT 1's ENGINE STEP 0 (act1-engine0, docs/act1_engine0.md): the campaign's DIFFICULTY, the SOLO SIDE PICK, STAY timers,
 # ROUTE and FOLLOW orders, SLEEP / WAKE, the MIST, CAPTURE
-var difficulty := "normal"           # "easy" / "normal" / "hard" (the campaign's, from the match setup)
+var difficulty := "normal"           # "easy" / "normal" / "hard" (the campaign's, from the match setup; BRUTAL reads "hard")
+var brutal := false                  # the campaign's BRUTAL (plays as "hard", its extras in `mult`, the foes cheat)
 var mult := {"clocks": 1.0, "spawns": 1.0}      # this mission's multipliers at that difficulty (Campaign.diff_mult)
 var solo_side := ""                  # solo: the side the player picked on the briefing
 var _stay := {}                      # a STAY condition's key -> [game clock it began to hold, game clock last checked]
@@ -125,6 +126,8 @@ func setup(m: Dictionary, md: String, cfg: Dictionary, guest := false) -> void:
 	if not Campaign.DIFFICULTIES.has(difficulty):
 		difficulty = "normal"
 	mult = Campaign.diff_mult(m, difficulty)
+	brutal = difficulty == "brutal"
+	difficulty = Campaign.level(difficulty)
 	solo_side = String(camp.get("side", "")) if md == "solo" else ""
 	if m.get("mist") is Dictionary:
 		set_mist(m["mist"], false)      # (the picture of it comes in _ready)

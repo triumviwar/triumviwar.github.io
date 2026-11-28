@@ -3089,7 +3089,7 @@ func start(cfg: Dictionary = {}) -> void:
 		cols.append(int(sl["colour"]))
 		sides.append(int(sl["side"]))
 		var lvl := LEVELS.find(sl["who"])
-		mult.append(1.5 if lvl == 3 else 1.0)
+		mult.append(1.5 if lvl == 3 else float(sl.get("cheat", 1.0)))      # (the campaign's BRUTAL: "cheat")
 		if sl["who"] == "you" and human < 0:
 			human = i
 		top = maxi(top, lvl)

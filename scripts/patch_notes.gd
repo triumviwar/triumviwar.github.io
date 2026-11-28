@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.243", "items": [
+		"Campaign: a new BRUTAL difficulty: harder than HARD (shorter clocks, more foes) and every computer enemy cheats with half again as much income. NORMAL no longer has a line under it. Every long list now shows a clearer scroll bar you can drag.",
+	]},
 	{"v": "0.38.242", "items": [
 		"Voices: 717 campaign lines recorded (the prologues, all of Act 1 and all of Act 2). The Brood's recoloured spines in the paintings now use the same green the painters gave the Brood.",
 	]},

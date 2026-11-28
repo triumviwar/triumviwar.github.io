@@ -108,12 +108,28 @@ static func theme() -> Theme:
 	t.set_color("font_color", "Label", TEXT)
 	t.set_stylebox("panel", "PanelContainer", box(PANEL, TRIM_DIM, 2, 14, 22.0))
 	t.set_stylebox("panel", "Panel", box(PANEL, TRIM_DIM, 2, 14))
+	# the scroll bar of a list too long for its box (the owner 2026-11-28, the hub's GO TO list: a bar to slide): a
+	# groove with a rim and a trim-coloured grip, wide enough to see and to take with a finger; it shows only when the
+	# list is longer than the box
 	var grab := StyleBoxFlat.new()
-	grab.bg_color = TRIM_DIM
-	grab.set_corner_radius_all(4)
+	grab.bg_color = TRIM_DIM.lightened(0.15)
+	grab.set_corner_radius_all(5)
+	grab.content_margin_left = 5
+	grab.content_margin_right = 5
+	var grab_h: StyleBoxFlat = grab.duplicate()
+	grab_h.bg_color = TRIM
 	t.set_stylebox("grabber", "VScrollBar", grab)
-	t.set_stylebox("grabber_highlight", "VScrollBar", grab)
-	t.set_stylebox("scroll", "VScrollBar", StyleBoxEmpty.new())
+	t.set_stylebox("grabber_highlight", "VScrollBar", grab_h)
+	t.set_stylebox("grabber_pressed", "VScrollBar", grab_h)
+	var track := StyleBoxFlat.new()
+	track.bg_color = Color(0.06, 0.05, 0.04, 0.8)
+	track.border_color = Color(TRIM_DIM, 0.6)
+	track.set_border_width_all(1)
+	track.set_corner_radius_all(5)
+	track.content_margin_left = 6
+	track.content_margin_right = 6
+	t.set_stylebox("scroll", "VScrollBar", track)
+	t.set_stylebox("scroll_focus", "VScrollBar", track)
 	# the sliders' track (playtest 2026-11-21): the engine's own track is a dark line that vanished on the dark panels,
 	# so a bar showed only its filled part (the music player's seek bar looked a few pixels long, a muted volume like
 	# nothing at all); a groove with a rim, the filled part in the trim colour
