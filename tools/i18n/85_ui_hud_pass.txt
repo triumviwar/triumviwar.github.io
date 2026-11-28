@@ -89,3 +89,15 @@ es La vista F%d está vacía: Mayús+F%d guarda esta vista.
 > View %d
 pt Vista %d
 es Vista %d
+
+> Researching %s · %d s
+pt Pesquisando %s · %d s
+es Investigando %s · %d s
+
+> Making %s · %d s
+pt Fazendo %s · %d s
+es Haciendo %s · %d s
+
+> (+%d waiting)
+pt (+%d esperando)
+es (+%d esperando)

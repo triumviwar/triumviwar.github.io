@@ -4,6 +4,15 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.999", "items": [
+		"HOTKEYS WITH UNITS AND A BUILDING SELECTED (a Barracks and its Musketeers): the units' card comes first and its letters win (A attacks); the building's training and research follow on the same card, marked with a blue edge, and keep their own letter only when no unit command has it (else click them). The building alone keeps all its keys.",
+		"INCOME A MINUTE: rest the mouse on a resource in the top bar (tap it on a phone): the first line says what came in and what was spent over the last minute. SUPPLY BLOCKED: when a production waits for supply (an automatic one too), the supply number flashes red and one short line with the announcer says so, once.",
+		"JUMP TO LAST ALERT: the Home key (Space still centres on the selection) or the small ALERT button above the minimap moves the view to the newest alert (under attack, a building finished, a research done); press again within 4 s for the one before. The quick buttons glow: IDLE while a worker is idle, ARMY (red) while some of your army is fighting, MAKE (blue) while every production building is idle.",
+		"SHOW APM (Settings > GAMEPLAY): the APM counter beside the match clock can be hidden (shown by default).",
+		"PRODUCTION SHOWN: a building's card says what it is making, the seconds left and what waits, with a long bar; the first picture in its queue shows the seconds left too.",
+		"TOOLTIPS, SHORT FIRST: every tooltip starts with the name and its cost (or health) on one line, then one line of what it does; all the detail follows below a thin rule, nothing taken out.",
+		"Small ones: a long command card shows its page (1/2 Tab); SACRIFICE on a group asks for a second press; a new campaign objective pings the minimap where it is; campaign replays are listed by their mission's title; on a phone the camera tabs say 1-6, not F4-F9.",
+	]},
 	{"v": "0.38.240", "items": [
 		"THE MUSIC IS MIXED AGAIN (music-mix-pass), no note changed: every generated piece breathes more, the quiet parts quieter and the climaxes standing out (a loudness range of 8 to 10 LU, about 7 before), the deep bass of the battle pieces cut back to what phones and laptops can play, and every piece as loud as the others (about -12.8 LUFS). The old mastering squashed the pieces with a saturator and a compressor; the new one rides the faders instead.",
 		"GOD SAVE THE KING: when the Crown wins a match, the marching band (pipes, fifes and drums) plays God Save the King, its drum roll under the herald's \"Victory! God save the King!\".",

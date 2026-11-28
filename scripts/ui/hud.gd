@@ -172,8 +172,8 @@ func _draw_alert_btn() -> void:
 ## A glowing frame (IDLE, ARMY, MAKE, the ALERT button): a pulse in col.
 func _glow_frame(ci: CanvasItem, r: Rect2, col: Color) -> void:
 	var ph := 0.5 + 0.5 * sin(Time.get_ticks_msec() / 220.0)
-	ci.draw_rect(r.grow(2), Color(col.r, col.g, col.b, 0.25 + 0.35 * ph), false, 3.0)
-	ci.draw_rect(r.grow(-1), Color(col.r, col.g, col.b, 0.10 + 0.14 * ph))
+	ci.draw_rect(r.grow(2), Color(col.r, col.g, col.b, 0.5 + 0.45 * ph), false, 3.0)
+	ci.draw_rect(r.grow(-1), Color(col.r, col.g, col.b, 0.16 + 0.2 * ph))
 
 
 var _redraw_t := 0.0
@@ -720,8 +720,8 @@ func _on_input(event: InputEvent) -> void:
 				get_viewport().set_input_as_handled()
 				return
 			if not Settings.pc() and Settings.tooltips and not paused and not game.spectating():
-				for pr in _pill_rects:          # phone: a tap on the supply pill shows the workers / army split
-					if int(pr[1]) == 2 and (pr[0] as Rect2).has_point(e.position):
+				for pr in _pill_rects:          # phone: a tap on a resource pill shows its tooltip (income a minute first; ui-hud-pass)
+					if (pr[0] as Rect2).has_point(e.position):
 						_help_tap(e.position)
 						get_viewport().set_input_as_handled()
 						return
@@ -4390,6 +4390,25 @@ func _draw_panel(font: Font) -> void:
 					_text(UiStyle.bold_font(), Vector2(qr.get_center().x, qr.end.y - 2), lt, 11, Color(1, 0.92, 0.6), 1)
 				if Building.is_research(q[i]):
 					_ci.draw_rect(qr, Color(0.75, 0.55, 1.0, 0.9), false, 1.5)     # research: a violet frame
+			# PRODUCTION SHOWN (ui-hud-pass, review 5.7): what it makes now, the time left and what waits, with a long bar,
+			# in the panel's empty middle (the queue's icons stay at the right: a click cancels one)
+			var q0 := String(q[0])
+			var pr_x0 := r.position.x + 90.0 + 170.0 + 120.0
+			var pr_x1 := r.end.x - 44.0 - (q.size() - 1) * 40.0 - 14.0
+			if pr_x1 - pr_x0 >= 140.0:
+				var pf: float = clampf(float(shq[2]) / Building.entry_time(q0), 0.0, 1.0)
+				var pleft := maxf(0.0, Building.entry_time(q0) - float(shq[2]))
+				var pname := Loc.t(String(Defs.RESEARCH[q0.substr(1)]["name"])) if Building.is_research(q0) else Loc.t(Defs.train_name(q0))
+				var ptxt := (Loc.t("Researching %s · %d s") if Building.is_research(q0) else Loc.t("Making %s · %d s")) % [pname, int(ceil(pleft))]
+				if q.size() > 1:
+					ptxt += "  " + Loc.t("(+%d waiting)") % (q.size() - 1)
+				var pbr := Rect2(pr_x0, r.position.y + 38, pr_x1 - pr_x0, 12)
+				_ci.draw_rect(pbr, Color(0, 0, 0, 0.6))
+				_ci.draw_rect(Rect2(pbr.position, Vector2(pbr.size.x * pf, pbr.size.y)), Color(0.75, 0.55, 1.0) if Building.is_research(q0) else Color(0.4, 0.75, 1))
+				_ci.draw_rect(pbr, UiStyle.TRIM_DIM, false, 1.0)
+				while ptxt.length() > 4 and UiStyle.bold_font().get_string_size(ptxt, HORIZONTAL_ALIGNMENT_LEFT, -1, 13).x > pbr.size.x:
+					ptxt = ptxt.substr(0, ptxt.length() - 2) + "…"
+				_text(UiStyle.bold_font(), Vector2(pr_x0, r.position.y + 31), ptxt, 13, Color(1, 0.92, 0.7))
 	else:
 		var per_row := int((r.size.x - 20) / 38)
 		var men: Array = sel.filter(func(x: Entity) -> bool: return x is Unit and Defs.ARMOURED.has(x.kind) and x.team == game.human)
@@ -5275,8 +5294,8 @@ func _draw_card(font: Font) -> void:
 		if pushed:
 			_ci.draw_rect(br, Color(0, 0, 0, 0.22))
 		if _sec_for.has(card_label(it)):
-			# (ui-hud-pass: a selected building's button on the units' card: a blue band along its top)
-			_ci.draw_rect(Rect2(br.position.x + 2, br.position.y + 1, br.size.x - 4, 3), Color(0.45, 0.75, 1.0, 0.85))
+			# (ui-hud-pass: a selected building's button on the units' card: a blue band down its left edge)
+			_ci.draw_rect(Rect2(br.position.x + 1, br.position.y + 20, 3, br.size.y - 40), Color(0.45, 0.75, 1.0, 0.9))
 		if ic:
 			_ci.draw_texture_rect(ic, br.grow(-3), false, Color.WHITE if enabled else Color(0.4, 0.4, 0.4, 0.8))
 		_ci.draw_rect(Rect2(br.position.x + 2, br.end.y - 17, br.size.x - 4, 15), Color(0, 0, 0, 0.62))
@@ -5599,6 +5618,11 @@ func _res_tip(i: int) -> Dictionary:
 	if i < 2 and not (game.faction_of(game.human) == "clockwork" and not Defs.gear_mode and i == 1):
 		var rs := alerts().rates(game.human, i)
 		t["sum"] = Loc.t("+%d a minute in · %d a minute spent (the last minute)") % [int(round(rs.x)), int(round(rs.y))]
+		# (the body's own income line said the same as the new first line: moved up, not said twice)
+		var bl := String(t.get("body", "")).split("\n")
+		if bl.size() > 1 and String(bl[bl.size() - 1]).begins_with(Loc.t("Income: about %d a minute (over the last minute).").get_slice("%", 0)):
+			bl.remove_at(bl.size() - 1)
+			t["body"] = "\n".join(bl)
 	elif i == 2:
 		var sp := _supply_split(game.human)
 		t["sum"] = Loc.t("Workers %d · Army %d · In production %d") % [sp["workers"], sp["army"], sp["queued"]]
@@ -5978,11 +6002,15 @@ static func _first_sentence(body: String) -> int:
 	if first.length() <= 110:
 		return first.length() if nl < 0 else nl + 1
 	var best := -1
-	for mark in [". ", "! ", "? ", ": "]:
+	for mark in [". ", "! ", "? "]:
 		var at := first.find(mark, 12)
 		if at >= 0 and (best < 0 or at < best):
 			best = at
-	if best >= 0 and best < 160:
+	if best < 0 or best >= 160:
+		var colon := first.find(": ", 40)          # (no sentence end soon: a colon far enough in, not "[Light] Light line infantry:")
+		if colon >= 0 and colon < 160:
+			best = colon
+	if best >= 0 and best < 200:
 		return best + 1
 	return first.length() if nl < 0 else nl + 1
 
