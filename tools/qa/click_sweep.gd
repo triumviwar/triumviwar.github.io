@@ -1202,8 +1202,49 @@ func _audit(screen: String) -> void:
 				flag("OVERLAP", screen, "", "'%s' x '%s'" % [_shown(a).replace("\n", " ").substr(0, 40), _shown(b).replace("\n", " ").substr(0, 40)])
 	if lang != "en":
 		for k in Loc.misses:
-			flag("EN", screen, "", "'%s'" % String(k).replace("\n", "\\n").substr(0, 90))
+			if _english(String(k)):
+				flag("EN", screen, "", "'%s'" % String(k).replace("\n", "\\n").substr(0, 90))
 	Loc.misses.clear()
+
+
+## Loc.misses holds every text that went through Loc.t with no entry, also texts already translated (auto-translate
+## runs on them again), names and numbers. A miss counts when it reads as English: more of its words are words of the
+## English keys than of the translations, and it is not a map's name.
+var _en_words := {}
+var _tr_words := {}
+var _tr_values := {}
+var _names := {}
+
+
+func _english(t: String) -> bool:
+	if _en_words.is_empty():
+		var rx := RegEx.create_from_string("[A-Za-zÀ-ÿ]{3,}")
+		var tab: Dictionary = Loc.table(lang)
+		for k in tab:
+			for m in rx.search_all(String(k)):
+				_en_words[m.get_string().to_lower()] = true
+			var v := String(tab[k])
+			_tr_values[v.strip_edges()] = true
+			for m in rx.search_all(v):
+				_tr_words[m.get_string().to_lower()] = true
+		for id in MapGen.all_ids():
+			_names[String(MapGen.display_name(id)).to_lower()] = true
+	var st := t.strip_edges()
+	if st == "" or _tr_values.has(st) or _names.has(st.to_lower()) or st.contains("://"):
+		return false
+	if RegEx.create_from_string("^[a-z0-9_ !]+$").search(st) != null and (st.contains("_") or not st.contains(" ")):
+		return false      # (an id: a unit kind, an animation's name)
+	var en := 0
+	var tr := 0
+	for m in RegEx.create_from_string("[A-Za-zÀ-ÿ]{3,}").search_all(st):
+		var w := m.get_string().to_lower()
+		var in_en := _en_words.has(w)
+		var in_tr := _tr_words.has(w)
+		if in_en and not in_tr:
+			en += 1
+		elif in_tr and not in_en:
+			tr += 1
+	return en > 0 and en > tr
 
 
 ## A script error stops _run where it is: never hang (wall-clock time).
