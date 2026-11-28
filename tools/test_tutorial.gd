@@ -354,6 +354,7 @@ func _practice(id: String, worker: String, more_workers: Callable) -> void:
 
 func _menu_checks() -> void:
 	main.show_menu()
+	main.menu_open("tutorial")       # (under OFFLINE since menu-groups)
 	await process_frame
 	await process_frame
 	var b: Dictionary = main.menu_buttons

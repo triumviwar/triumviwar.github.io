@@ -39,7 +39,7 @@ func play() -> void:
 			if not menu_up():
 				find("BUG", c, "no main menu after the start (buttons: %s)" % str(button_texts()).substr(0, 200))
 				return
-			await tap(main.menu_buttons["settings"])
+			await tap(main.menu_open("settings"))
 			await wait(0.4)
 			await look("settings_" + c)
 			if find_button("BACK") == null:
@@ -48,7 +48,7 @@ func play() -> void:
 
 
 func menu_up() -> bool:
-	return main != null and main.menu_buttons.has("settings") and is_instance_valid(main.menu_buttons["settings"]) and (main.menu_buttons["settings"] as Control).is_visible_in_tree()
+	return main != null and main.on_menu()      # (any level: menu-groups)
 
 
 func row_button(id: String) -> BaseButton:
@@ -80,7 +80,7 @@ func tab(t: String) -> void:
 func set_by_clicks() -> void:
 	if Settings.device == "":
 		await press("COMPUTER")
-	await tap(main.menu_buttons["settings"])
+	await tap(main.menu_open("settings"))
 	await wait(0.4)
 	await tap(row_button("grid_keys"))
 	await wait(0.2)
@@ -118,9 +118,9 @@ func set_by_clicks() -> void:
 	await wait(0.4)
 	if not menu_up():
 		find("BUG", "set", "Esc did not bring the menu back")
-	if main.menu_buttons.has("exit"):
+	if main.menu_open("exit") != null:
 		print("PT PRESS EXIT")
-		await tap(main.menu_buttons["exit"])
+		await tap(main.menu_open("exit"))
 		await wait(1.0)
 		find("BUG", "set", "EXIT did not close the game")
 	else:
@@ -139,7 +139,7 @@ func check_back() -> void:
 		find("BUG", "check", "narrator speed %.1f after the restart, set to 1.6" % Settings.narrator_rate)
 	if absf(Music.me.get_volume("music") - 0.3) > 0.06:
 		find("BUG", "check", "music volume %.2f after the restart, set to 0.30" % Music.me.get_volume("music"))
-	var mb: Button = main.menu_buttons.get("settings")
+	var mb: Button = main.menu_open("settings")
 	if mb != null and not mb.atr(mb.text).to_upper().begins_with("CONFIGURA"):
 		find("BUG", "check", "the menu is not in Portuguese after the restart")
 	print("PT CHECK done ", got)

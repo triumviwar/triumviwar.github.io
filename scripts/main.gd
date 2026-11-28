@@ -354,18 +354,27 @@ func show_crash(report: String) -> void:
 
 
 ## THE MAIN MENU (the owner's drawn layout, 2026-10-31): the painting covers the whole screen; the title on ONE line
-## in a box at the top-left (x 0.5%..53%, y 0.5%..9.5% of the screen) and under it a FLAT grid of 4 x 3 slots (3 x 3
-## until the TUTORIAL came, 0.30: the owner, 2026-11-04, "a TUTORIAL button and a CAMPAIGN button"), every one inside
-## the painting's empty top-left sky:
-##   TUTORIAL  CAMPAIGN  SKIRMISH (primary)  ONLINE
-##   REPLAYS   EDITOR    SETTINGS            EXIT (not on the web: the slot stays empty)
-##   CONTINUE (only with a save of this version, else empty)
-## HOW TO PLAY is a button on the TUTORIAL page (the owner, 2026-11-22 21:18: "join the how to play and tutorial in only
-## 1 button, tutorial takes priority", EXIT up into the two main rows).
-## No levels, no submenus: each page's BACK comes back here. MATCH LOGS is on the REPLAYS page. Esc does nothing
-## here (the phone's back saves and quits, as before). Flags small top-right, the version small bottom-right.
-## The grid's slot ids, row by row ("" = an empty slot).
-const MENU_SLOTS := ["tutorial", "campaign", "skirmish", "online", "replays", "editor", "settings", "exit", "continue", "worldwar", "tournament", ""]
+## in a box at the top-left (x 0.5%..53%, y 0.5%..9.5% of the screen) and under it a grid of buttons, 4 to a row, in
+## the painting's empty top-left sky.
+## GROUPS (menu-groups, the owner 2026-11-28: "too many buttons", they hid the CROSS in the painting; docs/menu_groups.md):
+##   the top level   OFFLINE (primary)  ONLINE  REPLAYS  EDITOR / SETTINGS  EXIT (not on the web)  CONTINUE (with a save)
+##   OFFLINE opens   TUTORIAL  CAMPAIGN  SKIRMISH (primary)  WORLD WAR / BACK
+##   ONLINE opens    PLAY ONLINE (the online rooms; RANKED is on that page)  TOURNAMENTS / BACK
+## A group's BACK, Esc, the phone's and the browser's back go up a level; a page opened from a group comes back to that
+## group (menu_group), a match ends on the top level. HOW TO PLAY is on the TUTORIAL page, MATCH LOGS on REPLAYS.
+## The grid never covers the cross: the cells over it (menu_keepout) are skipped and the buttons flow round it.
+## The grid's slot ids by group, in reading order (a slot with no button this time takes no cell).
+const MENU_GROUPS := {
+	"": ["g_offline", "g_online", "replays", "editor", "settings", "exit", "continue"],
+	"offline": ["tutorial", "campaign", "skirmish", "worldwar", "back"],
+	"online": ["online", "tournament", "back"],
+}
+## The group shown ("" = the top level; "offline", "online").
+var menu_group := ""
+## THE CROSS in the menu painting (assets/menu/battle.jpg, 1672 x 941): the gold processional cross from its top to the
+## bearer's hand, with its glow, in the picture's pixels (measured for menu-groups). No button may cover it.
+const MENU_PAINT := Vector2(1672, 941)
+const MENU_CROSS := Rect2(150, 305, 140, 240)
 const MENU_COLS := 4
 ## Fractions of the screen (the owner's mock-up, 1455 x 819): button size, first column / row, the gaps.
 ## (Four columns since the TUTORIAL: each button 8.2% wide instead of 10.5%, the grid as wide as before plus a little.)
@@ -425,11 +434,23 @@ func show_menu() -> void:
 		old.add_theme_color_override("font_outline_color", Color(0, 0, 0, 0.85))
 		root.add_child(old)
 		_menu_note = old
-	for id in MENU_SLOTS:
+	if not MENU_GROUPS.has(menu_group):
+		menu_group = ""
+	for id in MENU_GROUPS[menu_group]:
 		var b := _menu_button(id, save, pc)
 		if b != null:
 			menu_buttons[id] = b
 			_menu_grid.add_child(b)
+	if menu_group != "":
+		_set_back(menu_buttons.get("back"))      # (Esc / the phone's back / the browser's back: up to the top level)
+	if _menu_kbd:
+		# (opened with the keyboard: the first button has the focus, so the arrows and Enter go on working)
+		_menu_kbd = false
+		var first: Button = menu_buttons.get(MENU_GROUPS[menu_group][0])
+		if menu_group == "" and menu_buttons.has(_menu_from):
+			first = menu_buttons[_menu_from]
+		if first != null:
+			first.grab_focus.call_deferred()
 	# top-right: the flags, small
 	# A NEW VERSION (the Windows program and the Android app; scripts/update_check.gd): asked once a run, the box comes
 	# up when the answer is in
@@ -516,6 +537,16 @@ func show_menu() -> void:
 func _menu_button(id: String, save: Dictionary, pc: bool) -> Button:
 	var b: Button
 	match id:
+		"g_offline":
+			b = _button("OFFLINE", func() -> void: _menu_enter("offline"))
+			UiStyle.primary(b)
+			b.set_meta("fs", 24 if pc else 26)
+			b.tooltip_text = Loc.t("Tutorial, campaign, skirmish and the world war")
+		"g_online":
+			b = _button("ONLINE", func() -> void: _menu_enter("online"))
+			b.tooltip_text = Loc.t("Play with friends online, and tournaments")
+		"back":
+			b = _button("BACK", func() -> void: _menu_enter(""))
 		"tutorial":
 			b = _button("TUTORIAL", func() -> void: show_tutorial())
 		"campaign":
@@ -525,7 +556,7 @@ func _menu_button(id: String, save: Dictionary, pc: bool) -> Button:
 			UiStyle.primary(b)
 			b.set_meta("fs", 24 if pc else 26)
 		"online":
-			b = _button("ONLINE", func() -> void: show_online())
+			b = _button("PLAY ONLINE", func() -> void: show_online())
 		"help":
 			b = _button("HOW TO PLAY", func() -> void: show_help())
 		"replays":
@@ -562,10 +593,63 @@ func _menu_button(id: String, save: Dictionary, pc: bool) -> Button:
 			b = _button("EXIT", func() -> void:
 				ask("Quit the game?", "YES, QUIT", func() -> void: quit_game()))      # (asked first: player-comforts)
 	if b == null:
-		return null       # (an empty "" slot of MENU_SLOTS: nothing to make)
+		return null       # (an unknown slot id: nothing to make)
 	b.name = "Menu_" + id
 	b.clip_text = false
 	return b
+
+
+## Opened with the keyboard (Enter / Space on a focused button, Esc): the next level's first button takes the focus.
+var _menu_kbd := false
+## Was the last press a key or a pad button (not a click or a touch)? (_input)
+var _last_kbd := false
+## The group just left (BACK): its button takes the focus on the top level.
+var _menu_from := ""
+
+
+## Show a group of the main menu ("" = the top level).
+func _menu_enter(group: String) -> void:
+	_menu_kbd = _last_kbd
+	_menu_from = "g_" + menu_group if group == "" else ""
+	menu_group = group
+	show_menu()
+
+
+## The main menu's button `id` on screen, its group opened first (tests and playtest drivers: the buttons of
+## OFFLINE and ONLINE are a level down since menu-groups). Null when there is no such button this time.
+func menu_open(id: String) -> Button:
+	if menu_buttons.has(id) and is_instance_valid(menu_buttons[id]) and (menu_buttons[id] as Control).is_visible_in_tree():
+		return menu_buttons[id]
+	for g in MENU_GROUPS:
+		if id in MENU_GROUPS[g]:
+			menu_group = g
+			show_menu()
+			return menu_buttons.get(id)
+	return null
+
+
+## The playtest drivers find the menu's buttons by node name ("Menu_campaign") or label ("CAMPAIGN"): when the main
+## menu is up and `what` names a button of another group, that group is opened (true). Labels in English or shown.
+const MENU_LABELS := {"tutorial": "TUTORIAL", "campaign": "CAMPAIGN", "skirmish": "SKIRMISH", "worldwar": "WORLD WAR",
+	"online": "PLAY ONLINE", "tournament": "TOURNAMENTS", "replays": "REPLAYS", "editor": "EDITOR", "settings": "SETTINGS",
+	"exit": "EXIT", "continue": "CONTINUE"}
+
+func menu_reveal(what: String) -> bool:
+	if not on_menu():
+		return false
+	var w := what.strip_edges().to_upper()
+	for id in MENU_LABELS:
+		var en: String = MENU_LABELS[id]
+		if w == ("MENU_" + id).to_upper() or w == en or w == Loc.t(en).to_upper():
+			if menu_buttons.has(id) and is_instance_valid(menu_buttons[id]) and (menu_buttons[id] as Control).is_visible_in_tree():
+				return false
+			return menu_open(id) != null
+	return false
+
+
+## Is the main menu on screen (any level)?
+func on_menu() -> bool:
+	return game == null and is_instance_valid(_menu_grid) and _menu_grid.is_visible_in_tree()
 
 
 ## A question over the page (player-comforts: EXIT asks first): the words, YES (its label) and NO. Esc or the phone's
@@ -678,19 +762,55 @@ func _layout_menu() -> void:
 		_menu_title.add_theme_font_size_override("font_size", maxi(sz, 16))
 		_menu_title.position = tr.position
 		_menu_title.size = tr.size
-	for i in MENU_SLOTS.size():
-		var id: String = MENU_SLOTS[i]
-		if not menu_buttons.has(id):
-			continue
-		var b: Button = menu_buttons[id]
+	var ids: Array = []
+	for id in MENU_GROUPS.get(menu_group, []):
+		if menu_buttons.has(id):
+			ids.append(id)
+	var cells := menu_cells(vs, pc, ids.size())
+	var bottom := o.y
+	for i in ids.size():
+		var b: Button = menu_buttons[ids[i]]
 		b.custom_minimum_size = Vector2.ZERO
 		_fit_button_font(b, bs, pc)
-		b.position = o + Vector2(i % MENU_COLS, i / MENU_COLS) * (bs + gap)
+		b.position = cells[i]
 		b.size = bs
+		bottom = maxf(bottom, cells[i].y + bs.y + gap.y)
 	if is_instance_valid(_menu_note):
-		_menu_note.position = o + Vector2(0, 3.0 * (bs.y + gap.y))
-		_menu_note.size = Vector2(MENU_COLS * bs.x + (MENU_COLS - 1) * gap.x, 0)
-		_menu_note.custom_minimum_size.x = _menu_note.size.x
+		# (under the grid; moved right of the cross when it would lie over it)
+		var w := MENU_COLS * bs.x + (MENU_COLS - 1) * gap.x
+		var nr := Rect2(Vector2(o.x, bottom), Vector2(w, 60))
+		var ko := menu_keepout(vs)
+		if nr.intersects(ko):
+			nr.position.x = ko.end.x + gap.x
+			nr.size.x = maxf(w - (nr.position.x - o.x), 240.0)
+		_menu_note.position = nr.position
+		_menu_note.size = Vector2(nr.size.x, 0)
+		_menu_note.custom_minimum_size.x = nr.size.x
+
+
+## Where the cross of the painting is on a screen of size `vs` (the backdrop covers the screen, centred: MenuBackdrop
+## _draw), with a margin round it.
+static func menu_keepout(vs: Vector2) -> Rect2:
+	var sc := maxf(vs.x / MENU_PAINT.x, vs.y / MENU_PAINT.y)
+	var off := (vs - MENU_PAINT * sc) * 0.5
+	return Rect2(off + MENU_CROSS.position * sc, MENU_CROSS.size * sc).grow(6.0)
+
+
+## The corners of the first `n` grid cells in reading order (MENU_COLS a row) that don't touch the cross.
+static func menu_cells(vs: Vector2, pc: bool, n: int) -> Array[Vector2]:
+	var geo := menu_geometry(vs, pc)
+	var bs: Vector2 = geo[0]
+	var gap: Vector2 = geo[1]
+	var o: Vector2 = geo[2]
+	var ko := menu_keepout(vs)
+	var out: Array[Vector2] = []
+	var i := 0
+	while out.size() < n and i < 64:
+		var p := o + Vector2(i % MENU_COLS, i / MENU_COLS) * (bs + gap)
+		if not Rect2(p, bs).intersects(ko):
+			out.append(p)
+		i += 1
+	return out
 
 
 ## The grid on a screen of size `vs`: [button size, gap, first button's corner] (slot i at o + (i % MENU_COLS,
@@ -3061,6 +3181,7 @@ var last_cfg := {}
 ## "faction": name|"random", "colour": palette index, "side": n}, ...]} (2-4 slots).
 ## With no "you" slot the computer plays every side and you watch.
 func start(cfg: Dictionary = {}) -> void:
+	menu_group = ""          # (after a match the main menu opens on its top level: menu-groups)
 	_clear_ui()
 	if game:
 		game.queue_free()
@@ -3621,6 +3742,11 @@ func _web_leave_fullscreen() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if event.is_pressed() and not event.is_echo():
+		if event is InputEventKey or event is InputEventJoypadButton or event is InputEventAction:
+			_last_kbd = true
+		elif event is InputEventMouseButton or event is InputEventScreenTouch:
+			_last_kbd = false
 	# the desktop program: F11 or Alt+Enter switches full screen (in a browser F11 is the browser's own)
 	if event is InputEventKey and event.pressed and not event.echo and not OS.has_feature("web") and Settings.can_window_full():
 		var ke := event as InputEventKey

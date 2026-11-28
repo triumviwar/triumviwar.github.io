@@ -15,7 +15,7 @@ func play() -> void:
 		write_bad(c)
 	await start_main()
 	await look("menu_" + c)
-	var cont: Button = main.menu_buttons.get("continue")
+	var cont: Button = main.menu_open("continue")
 	print("PT %s CONTINUE shown: %s  (%s)" % [c, cont != null, shown(cont).replace("\n", " ") if cont else ""])
 	check_errors(c)
 	match c:
@@ -122,7 +122,7 @@ func quit_to_menu(where: String) -> void:
 
 
 func start_skirmish() -> void:
-	await tap(main.menu_buttons["skirmish"])
+	await tap(main.menu_open("skirmish"))
 	await wait(0.6)
 	await look("lobby")
 	if not await press("START", 0.2, true):
@@ -165,7 +165,7 @@ func play_and_continue() -> void:
 	print("PT left at %.1f s, %d units, %d buildings" % [clock0, units0, builds0])
 	await quit_to_menu("first")
 	await wait(0.6)
-	var cont: Button = main.menu_buttons.get("continue")
+	var cont: Button = main.menu_open("continue")
 	await look("menu_with_continue")
 	if cont == null:
 		find("BUG", "play", "no CONTINUE on the menu after QUIT TO MENU")
@@ -179,15 +179,15 @@ func play_and_continue() -> void:
 	await wait(0.5)
 	var before := FileAccess.get_file_as_string(SaveGame.PATH)
 	print("PT save size %d bytes" % before.length())
-	if main.menu_buttons.has("exit"):
+	if main.menu_open("exit") != null:
 		print("PT PRESS EXIT")
-		await tap(main.menu_buttons["exit"])
+		await tap(main.menu_open("exit"))
 		await wait(1.0)
 		find("BUG", "play", "EXIT did not close the game")
 
 
 func continue_and_check(where: String, clock0 := -1.0, units0 := -1, builds0 := -1) -> void:
-	var cont: Button = main.menu_buttons.get("continue")
+	var cont: Button = main.menu_open("continue")
 	await tap(cont)
 	for i in 120:
 		await wait(0.25)

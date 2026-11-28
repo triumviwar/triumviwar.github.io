@@ -22,7 +22,15 @@ func _initialize() -> void:
 	main = load("res://scenes/main.tscn").instantiate()
 	root.add_child(main)
 	pages = {
-		"menu": func() -> void: main.show_menu(),
+		"menu": func() -> void:
+			main.menu_group = ""
+			main.show_menu(),
+		"menu_offline": func() -> void:       # (menu-groups: the two groups a level down)
+			main.menu_group = "offline"
+			main.show_menu(),
+		"menu_online": func() -> void:
+			main.menu_group = "online"
+			main.show_menu(),
 		"device": func() -> void: main.show_device(),
 		"settings_gameplay": func() -> void: main.show_settings("GAMEPLAY"),
 		"settings_display": func() -> void: main.show_settings("DISPLAY"),

@@ -279,6 +279,7 @@ func _norm(s: String) -> String:
 
 ## a visible button whose text (as shown, translated) starts with `text` (or equals it when exact)
 func find_button(text: String, exact := false, under: Node = null) -> BaseButton:
+	preload("res://tools/playtest/menu_reveal.gd").reveal(root, text)      # (menu-groups)
 	var want := _norm(text)
 	var want_tr := _norm(Loc.t(text))      # (some pages set their text already translated)
 	var best: BaseButton = null

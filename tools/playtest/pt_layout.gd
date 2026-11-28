@@ -10,7 +10,7 @@ var ed: Control
 
 func play() -> void:
 	await start_main()
-	await tap(main.menu_buttons["settings"])
+	await tap(main.menu_open("settings"))
 	await wait(0.4)
 	for c in all_controls():
 		if (c as Control).has_meta("setting") and String((c as Control).get_meta("setting")) == "layout":
@@ -71,7 +71,7 @@ func play() -> void:
 	await key_tap(KEY_ESCAPE)
 	await wait(0.5)
 	# a skirmish with this layout
-	await tap(main.menu_buttons["skirmish"])
+	await tap(main.menu_open("skirmish"))
 	await wait(0.6)
 	await press("START", 0.3, true)
 	for i in 120:

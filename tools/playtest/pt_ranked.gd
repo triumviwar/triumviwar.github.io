@@ -16,7 +16,7 @@ func play() -> void:
 	tag = role + "_" + tag
 	DirAccess.make_dir_recursive_absolute(sync)
 	await start_main()
-	await tap(main.menu_buttons["online"])
+	await tap(main.menu_open("online"))
 	await wait(0.5)
 	await look("online_entry")
 	if not await press("RANKED"):
@@ -102,7 +102,7 @@ func play() -> void:
 	await wait(6.0)
 	await look("report_later")
 	if await press("MENU", 1.0, true):
-		await tap(main.menu_buttons["online"])
+		await tap(main.menu_open("online"))
 		await wait(0.5)
 		await press("RANKED", 1.5)
 		await look("ranked_after")
