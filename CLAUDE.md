@@ -26,6 +26,20 @@
 
 ## Current work
 
+- MAP PREVIEWS (owner 2026-11-28: the picker showed FROSTFANG as a plain light box with spots 1 and 2; job map-previews,
+  branch map-previews, docs/map_previews.md, pictures docs/shots/map_previews/): one shared widget MapPreview
+  (scripts/ui/map_preview.gd; was Main.MapPreview) draws a map's REAL minimap (MapThumb, scripts/ui/map_thumb.gd: a Game
+  object never put in the tree, MapGen lays the map out, painted with the in-game minimap's colours; high ground lighter,
+  cliffs dark, ramps light, every hall spot ringed gold; Game.W/H put back) with the start spots numbered on top; a random
+  pool = four of its maps under "?". Pictures: memory, BUNDLED assets/maps/<id>.png for every built-in map (classic ones
+  also <id>_4p, one fixed layout, seed 7) and every campaign map (campaign_<name>.png), the editor's saved picture, the
+  cache user://map_previews/<id>__<version>.png, else queued one a frame (MapThumbWorker, no threads). RERUN
+  tools/make_map_previews.gd (then --import) after changing a map or MapGen: tools/test_map_previews.gd fails on a map
+  with no bundled picture. Shown in: skirmish lobby, online room, tournament ban/pick buttons, map editor LOAD list,
+  replay list (not classic maps), campaign briefing. NOT in: the tournament's pool check boxes (tournament-formats owns
+  that form: MapPreview.new() + map_id there), world war battles (the map is drawn only at FIGHT IT).
+  tools/shot_map_previews.gd makes the contact sheets. 5 Claude's choices in the doc.
+
 - ROOTMAW AT 1.1 (owner 2026-11-27 "What if we nerfed the Rootmaw from 1.2 to 1.1?"; job winrate-rootmaw-1-1, branch
   winrate-rootmaw-1-1, docs/winrate_rootmaw_1_1.md, tables docs/winrate_rootmaw_1_1/tables.md, data
   docs/winrate_rootmaw_1_1/data/, tools/study/winrate_rootmaw_11.py): 270 games on 0.38.222 to 20:00, 30 a cell, new seeds

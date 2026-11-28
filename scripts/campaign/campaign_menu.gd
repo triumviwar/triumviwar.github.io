@@ -345,6 +345,15 @@ static func briefing(main: Node, mid: String) -> void:
 	v.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	bsc.add_child(v)
 	v.add_child(UiStyle.text(Loc.t("You lead: %s") % Loc.t(Campaign.side_name(m, side)), 20, _side_col(m, side).lightened(0.35), HORIZONTAL_ALIGNMENT_LEFT, true))
+	# THE MAP (job map-previews): the battlefield's small picture (the mission places its own sides: no start spots)
+	var bmap := String(m.get("map", ""))
+	if bmap != "" and MapThumb.drawable(bmap):
+		var mp := MapPreview.new()
+		mp.name = "Briefing_Map"
+		mp.map_id = bmap
+		mp.show_starts = false
+		mp.custom_minimum_size = Vector2(0, 150)
+		v.add_child(mp)
 	for t in br.get("text", []):
 		v.add_child(_wrap(Loc.t(String(t)), 18))
 	v.add_child(UiStyle.text(Loc.t("OBJECTIVES"), 18, UiStyle.TRIM, HORIZONTAL_ALIGNMENT_LEFT, true))

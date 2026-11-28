@@ -1,6 +1,8 @@
 extends SceneTree
-## The lobby's pictures of the named maps: builds each map (MapData.NAMED) and saves its
-## minimap to assets/maps/<id>.png. Run again after changing a map or the map generator:
+## The map pictures that come with the game (job map-previews, docs/map_previews.md): every built-in map's
+## and every campaign map's minimap made by MapThumb.render and saved to assets/maps/<id>.png (campaign_<name>.png) (the classic maps also <id>_4p.png, their
+## four-corner layout). Run again after changing a map or the map generator, then import (godot --headless
+## --import) so the new pictures get their .import files:
 ##   godot --headless --script res://tools/make_map_previews.gd [-- ids...]
 
 
@@ -10,40 +12,22 @@ func _initialize() -> void:
 
 func _run(ids: Array) -> void:
 	if ids.is_empty():
-		ids = MapData.NAMED.keys()
-	DirAccess.make_dir_recursive_absolute("res://assets/maps")
+		ids = MapGen.all_ids()
+		var d := DirAccess.open("res://campaign/maps")
+		for f in d.get_files():
+			if f.ends_with(".json"):
+				ids.append("campaign:" + f.trim_suffix(".json"))
+	DirAccess.make_dir_recursive_absolute(MapThumb.BUNDLE_DIR)
 	for id in ids:
-		var n := MapGen.max_players(id)
-		var g := Game.new()
-		g.map_id = id
-		g.demo = true
-		g.edit_mode = true            # just the ground: no players, fog or log
-		var facs: Array = []
-		var sides: Array = []
-		for i in n:
-			facs.append("crown")
-			sides.append(0 if i < n / 2 else 1)
-		g.factions = facs
-		g.sides = sides
-		root.add_child(g)
-		await process_frame
-		var img: Image = g.minimap_img.duplicate()
-		# high ground a touch lighter, its cliffs dark and the ramps light, so the
-		# plateaus read at a glance
-		for y in Game.H:
-			for x in Game.W:
-				var i := y * Game.W + x
-				var col := img.get_pixel(x, y)
-				if g.cliff[i] == 1:
-					col = col.darkened(0.6)
-				elif g.ramp[i] == 1:
-					col = col.lightened(0.35)
-				elif g.height[i] == 1:
-					col = col.lightened(0.18)
-				img.set_pixel(x, y, col)
-		img.resize(Game.W * 2, Game.H * 2, Image.INTERPOLATE_NEAREST)
-		img.save_png("res://assets/maps/%s.png" % id)
-		print("preview ", id, " ", Game.W, "x", Game.H)
-		g.queue_free()
+		var counts: Array = [2, 4] if MapGen.MAPS.has(id) else [2]
+		for n in counts:
+			var t0 := Time.get_ticks_msec()
+			var img := MapThumb.render(String(id), n)
+			if img == null:
+				print("preview ", id, " FAILED")
+				continue
+			var out := "%s/%s.png" % [MapThumb.BUNDLE_DIR, MapThumb.bundle_name(String(id), n)]
+			img.save_png(out)
+			print("preview %s %dx%d %d ms" % [MapThumb.pic_id(String(id), n), img.get_width(), img.get_height(), Time.get_ticks_msec() - t0])
 		await process_frame
 	quit()

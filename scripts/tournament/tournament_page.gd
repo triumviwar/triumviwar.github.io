@@ -1101,9 +1101,16 @@ func _map_buttons(ids: Array, cb: Callable) -> Control:
 	fr.add_theme_constant_override("h_separation", 8)
 	fr.add_theme_constant_override("v_separation", 8)
 	for id in ids:
+		var cell := VBoxContainer.new()          # (the map's picture over its button: MapPreview, job map-previews)
+		cell.add_theme_constant_override("separation", 2)
+		var pv := MapPreview.new()
+		pv.map_id = String(id)
+		pv.custom_minimum_size = Vector2(210, 120)
+		cell.add_child(pv)
 		var b := _btn(MapGen.display_name(String(id)), func() -> void: cb.call(String(id)), 210)
 		b.auto_translate_mode = Node.AUTO_TRANSLATE_MODE_DISABLED
-		fr.add_child(b)
+		cell.add_child(b)
+		fr.add_child(cell)
 	return fr
 
 

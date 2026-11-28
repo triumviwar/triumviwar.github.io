@@ -4,6 +4,9 @@ extends RefCounted
 ## the running version first). Add an entry for every pushed version (see CLAUDE.md).
 
 const NOTES := [
+	{"v": "0.38.236", "items": [
+		"Every map is shown as a small picture of the real map wherever you pick one: the ground's colours as on the minimap, high ground and cliffs, ramps, water, woods and every hall spot ringed in gold, with the start spots numbered on top. The classic maps (Frostfang, Greenhold...) were plain coloured boxes before. The pictures are in the skirmish lobby, the online room, the tournaments' ban and pick buttons, the map editor's LOAD list, the replay list and the campaign briefing.",
+	]},
 	{"v": "0.38.235", "items": [
 		"The main menu has fewer buttons and no longer hides the cross in the painting. OFFLINE opens the tutorial, the campaign, skirmish and the world war; ONLINE opens the online rooms and tournaments; REPLAYS, EDITOR, SETTINGS, EXIT and CONTINUE stay on the first level. BACK, Esc, the phone's back and the browser's back go up a level, and a page opened from a group comes back to it. On every screen shape the buttons flow round the cross.",
 	]},

@@ -4,6 +4,7 @@ extends RefCounted
 ## Patch notes in pt: version -> items in the order of scripts/patch_notes.gd ('' = show the English).
 
 const N := {
+	"0.38.236": ["Cada mapa aparece como um pequeno desenho do mapa de verdade onde quer que você escolha um: as cores do chão como no minimapa, terreno alto e penhascos, rampas, água, matas e cada lugar de prefeitura com um anel dourado, com os pontos de início numerados por cima. Os mapas clássicos (Frostfang, Greenhold...) eram antes caixas de uma cor só. Os desenhos estão na sala de escaramuça, na sala online, nos botões de banir e escolher dos torneios, na lista CARREGAR do editor de mapas, na lista de replays e no briefing da campanha."],
 	"0.38.235": ["O menu principal tem menos botões e já não esconde a cruz da pintura. OFFLINE abre o tutorial, a campanha, a escaramuça e a guerra mundial; ONLINE abre as salas online e os torneios; REPLAYS, EDITOR, CONFIGURAÇÕES, SAIR e CONTINUAR ficam no primeiro nível. VOLTAR, Esc, o voltar do celular e o voltar do navegador sobem um nível, e uma página aberta de um grupo volta para ele. Em qualquer formato de tela os botões contornam a cruz."],
 	"0.38.234": ["Taxas de vitória nos três confrontos da Ninhada com o Bocarraiz distante a x2,2 (hoje), x2,1 e x2,0, em 270 partidas com os pontos de partida divididos por igual (só ferramentas e dados; nenhum número mudou)."],
 	"0.38.233": ["Os Filhotes serpe estão prontos: a mordida vista de costas e a queda em todas as direções foram desenhadas, e os dois ícones agora mostram a pequena serpe."],
