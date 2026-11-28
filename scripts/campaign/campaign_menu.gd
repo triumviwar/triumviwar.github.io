@@ -1090,6 +1090,14 @@ static func war_map(main: Node) -> void:
 	t.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	t.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	t.clip_text = true
+	# (laid out, still too wide for its room: a point smaller until it fits, 14 at least; es "LA CARTA DE LOS ESPECÍMENES")
+	t.resized.connect(func() -> void:
+		var f: Font = t.get_theme_font("font")
+		var fs := t.get_theme_font_size("font_size")
+		while fs > 14 and t.size.x > 1.0 and f.get_string_size(t.text, HORIZONTAL_ALIGNMENT_LEFT, -1, fs).x > t.size.x:
+			fs -= 1
+		if fs != t.get_theme_font_size("font_size"):
+			t.add_theme_font_size_override("font_size", fs))
 	top.add_child(t)
 	var holder := Control.new()
 	holder.name = "WarMapHolder"
