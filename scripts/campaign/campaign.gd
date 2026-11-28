@@ -267,6 +267,120 @@ static func hub_flag(name: String) -> Variant:
 	return (progress().get("hub_flags", {}) as Dictionary).get(name, null)
 
 
+# ------------------------------------------------------------------ act3-engine0 (docs/act3_engine0.md)
+
+## The mission a condition decided before the match is asked for (THE NIGHT's ORDER needs it): set by
+## MissionAct2.version_of and by the briefing; "" when nobody said.
+static var asking := ""
+
+## THE NIGHT's ORDER (campaign.json "nights": {group: [missions]}: the third crossing's three ports, played in any
+## order): the first played FRESH, the second NORMAL, the last GROWN (owner question 10). The rank is how many of the
+## group were won before this one; once won, the rank it was won at is kept (a replay plays the same night).
+const NIGHT_RANKS := ["fresh", "normal", "grown"]
+
+
+static func night_group(mid: String) -> Array:
+	var ng: Dictionary = index().get("nights", {})
+	for g in ng:
+		if (ng[g] as Array).has(mid):
+			return ng[g]
+	return []
+
+
+## 0 fresh .. the group's size - 1 grown (-1: not a night mission).
+static func night_rank(mid: String) -> int:
+	var grp := night_group(mid)
+	if grp.is_empty():
+		return -1
+	var done: Dictionary = progress()["done"]
+	if (done.get(mid, {}) as Dictionary).has("night_rank"):
+		return int(done[mid]["night_rank"])
+	var n := 0
+	for o in grp:
+		if String(o) != mid and done.has(String(o)):
+			n += 1
+	return n
+
+
+static func night_word(mid: String) -> String:
+	var r := night_rank(mid)
+	var n := night_group(mid).size()
+	if r < 0:
+		return ""
+	if r == 0:
+		return "fresh"
+	return "grown" if r >= n - 1 else "normal"
+
+
+static func night_is(v: Variant, mid: String) -> bool:
+	var want: Array = (v if v is Array else [v]).map(func(x) -> String: return String(x))
+	return want.has(night_word(mid))
+
+
+## THE LEDGER (campaign.json "ledger": {"marks": [{"id", "label", "if": a condition decided before the match}],
+## "bands": {"strong": 10, "middle": 5}, "lines": {band: the King's words}}): one mark for each thing the player's
+## campaign brought to Rome (docs/campaign_act3_plan.md "THE LEDGER"); the count's BAND (STRONG / MIDDLE / WEAK) sets
+## how hard e20 is or how many are saved. Every mark is a real thing in the mission, never a hidden number.
+const LEDGER_BANDS := ["strong", "middle", "weak"]
+
+
+static func ledger_ids() -> Array:
+	return (index().get("ledger", {}).get("marks", []) as Array).map(func(mk: Dictionary) -> String: return String(mk.get("id", "")))
+
+
+## {"marks": [{"id", "label", "held"}], "count", "band", "line"} counted from the progress now.
+static func ledger() -> Dictionary:
+	var lg: Dictionary = index().get("ledger", {})
+	var out: Array = []
+	var n := 0
+	for mk in lg.get("marks", []):
+		var held := cond_before(mk.get("if", {}), "", difficulty())
+		if held:
+			n += 1
+		out.append({"id": String(mk.get("id", "")), "label": String(mk.get("label", "")), "held": held})
+	var b: Dictionary = lg.get("bands", {"strong": 10, "middle": 5})
+	var band := "strong" if n >= int(b.get("strong", 10)) else ("middle" if n >= int(b.get("middle", 5)) else "weak")
+	return {"marks": out, "count": n, "band": band, "line": String((lg.get("lines", {}) as Dictionary).get(band, ""))}
+
+
+## {"ledger": {"band": "strong" (or a list), "mark": id, "at_least", "below"}} against a counted ledger.
+static func ledger_holds(v: Variant, lg: Dictionary) -> bool:
+	if not (v is Dictionary):
+		return false
+	var ok: bool = (not v.has("at_least") or int(lg["count"]) >= int(v["at_least"])) and (not v.has("below") or int(lg["count"]) < int(v["below"]))
+	if v.has("band"):
+		ok = ok and (v["band"] if v["band"] is Array else [v["band"]]).map(func(x) -> String: return String(x)).has(String(lg["band"]))
+	if v.has("mark"):
+		ok = ok and (lg["marks"] as Array).any(func(mk: Dictionary) -> bool: return String(mk["id"]) == String(v["mark"]) and bool(mk["held"]))
+	return ok
+
+
+## THE COLONIES (the war map's clock, build order step 2, keeps progress "colonies": {region: holder}): the share of
+## them still the Crown's ({"colonies": {"share": 0.5}} holds at that share or more). No clock yet: no colonies, false.
+static func colonies_share() -> float:
+	var c: Variant = progress().get("colonies", null)
+	if not (c is Dictionary) or (c as Dictionary).is_empty():
+		return -1.0
+	var n := 0
+	for k in c:
+		if String(c[k]) == "crown":
+			n += 1
+	return float(n) / float((c as Dictionary).size())
+
+
+## THE ENDING (e20: Campaign.record keeps the mission's flag "ending"): "" until the campaign is finished.
+const ENDINGS := ["rome_holds", "rome_falls", "hard_way"]
+
+
+static func ending() -> String:
+	return String(progress().get("ending", ""))
+
+
+## THE CREDITS (campaign.json "credits": {"sections": [{"title", "names": [...]}], "last": {ending: line}, "end": line}).
+static func credits() -> Dictionary:
+	return index().get("credits", {})
+
+
 static func set_hub_flag(name: String, value: Variant) -> void:
 	var p := progress()
 	if not (p.get("hub_flags") is Dictionary):
@@ -476,9 +590,14 @@ static func record(id: String, mode: String, winner_side: String, my_side: Strin
 		e["mode"] = mode
 		e["side"] = my_side      # (the side this player led: the Fürth Line's machine player keeps the Machine's City hub)
 		e["played"] = int(e.get("played", 0)) + 1
+		var nr := night_rank(id)          # (act3-engine0: THE NIGHT's ORDER kept as it was won, before this entry counts)
+		if nr >= 0 and not e.has("night_rank"):
+			e["night_rank"] = nr
 		if not flags.is_empty():
 			e["flags"] = flags.duplicate()      # (the story's choices, for the missions after it: flag())
 		done[id] = e
+		if String(flags.get("ending", "")) != "":
+			p["ending"] = String(flags["ending"])      # (act3-engine0: the campaign's ending, for the credits and the hub)
 		if nxt != "" and not (p["reached"] as Array).has(nxt):
 			(p["reached"] as Array).append(nxt)
 		save_progress(p)
@@ -526,6 +645,14 @@ static func pages_before(pages: Array, side: String, diff := "") -> Array:
 	return out
 
 
+## A kept flag against the value asked: one value, or a list of values any of which will do (act3-engine0: the ledger's
+## "some or many").
+static func past_is(have: Variant, want: Variant) -> bool:
+	if want is Array:
+		return (want as Array).any(func(x) -> bool: return str(have) == str(x))
+	return str(have) == str(want)
+
+
 static func cond_before(c: Variant, side: String, diff: String) -> bool:
 	if not (c is Dictionary):
 		return false
@@ -546,7 +673,15 @@ static func cond_before(c: Variant, side: String, diff: String) -> bool:
 			"past":
 				for fk in v:
 					var pr := String(fk).split(".")
-					ok = ok and pr.size() == 2 and str(flag(pr[0], pr[1])) == str(v[fk])
+					ok = ok and pr.size() == 2 and past_is(flag(pr[0], pr[1]), v[fk])
+			"night":
+				ok = ok and night_is(v, asking)          # (act3-engine0: THE NIGHT's ORDER)
+			"ledger":
+				ok = ok and ledger_holds(v, ledger())     # (act3-engine0: THE LEDGER)
+			"colonies":
+				ok = ok and colonies_share() >= float(v.get("share", 0.5)) if v is Dictionary else false
+			"won":
+				ok = ok and (progress()["done"] as Dictionary).has(String(v))      # (act3-engine0: that mission won)
 			"difficulty":
 				ok = ok and (v if v is Array else [v]).map(func(x) -> String: return String(x)).has(diff)
 			"playing":
@@ -587,6 +722,15 @@ static func index_strings() -> Array:
 					out.append(String(o.get("label", "")))          # (act2-engine0: the frame's answers)
 					for ln in o.get("lines", []):
 						out.append(String(ln))
+	for mk in index().get("ledger", {}).get("marks", []):
+		out.append(String(mk.get("label", "")))          # (act3-engine0: THE LEDGER's marks and the King's words)
+	for bk in index().get("ledger", {}).get("lines", {}):
+		out.append(String(index()["ledger"]["lines"][bk]))
+	for sec in credits().get("sections", []):
+		out.append(String(sec.get("title", "")))         # (act3-engine0: THE CREDITS' headings and last lines)
+	for ek in credits().get("last", {}):
+		out.append(String(credits()["last"][ek]))
+	out.append(String(credits().get("end", "")))
 	for k in index().get("rooms", {}):
 		out.append_array([String(index()["rooms"][k].get("title", "")), String(index()["rooms"][k].get("text", ""))])
 	return out.filter(func(s: String) -> bool: return s != "")
@@ -660,7 +804,13 @@ static func roster_denied(m: Dictionary, tm: Dictionary) -> Array:
 	var r: Dictionary = tm.get("roster", {})
 	var out: Array = []
 	if r.has("allow"):
-		var allow: Array = r["allow"]
+		var allow: Array = (r["allow"] as Array).duplicate()
+		# (act3-engine0: THE LADDER IN ANY ORDER: "if_won": {mission: [pieces]}: a rung of Act 3 the player has already
+		# won elsewhere is in the kit too, whichever theatre came first)
+		var done: Dictionary = progress()["done"]
+		for mk in r.get("if_won", {}):
+			if done.has(String(mk)):
+				allow.append_array(r["if_won"][mk])
 		for k in roster_items(engine_faction(m, String(tm.get("faction", "crown")))):
 			if not allow.has(k):
 				out.append(k)
@@ -737,6 +887,7 @@ static func problems(m: Dictionary) -> Array:
 			out.append("granaries: needs a tag")
 		if gr.has("counter") and not (m.get("counters", {}) as Dictionary).has(String(gr["counter"])):
 			out.append("granaries: unknown counter %s" % gr["counter"])
+	out.append_array(MissionAct3.problems(m, sides, teams, areas))      # (act3-engine0: the climate)
 	var vids: Array = []
 	if m.has("versions"):
 		var vs: Variant = m["versions"]
@@ -862,6 +1013,10 @@ static func problems(m: Dictionary) -> Array:
 			for k in tm.get("roster", {}).get(key, []):
 				if not roster_known(String(k)):
 					out.append("team %s: roster %s of unknown kind %s" % [tm["id"], key, k])
+		for mk in tm.get("roster", {}).get("if_won", {}):
+			for k in tm["roster"]["if_won"][mk]:
+				if not roster_known(String(k)):
+					out.append("team %s: roster if_won %s of unknown kind %s" % [tm["id"], mk, k])
 		for k in tm.get("roster", {}).get("new", []):
 			if tm.get("roster", {}).has("allow") and not (tm["roster"]["allow"] as Array).has(k):
 				out.append("team %s: roster new %s is not on its allow-list" % [tm["id"], k])
@@ -1011,7 +1166,11 @@ static func _check_cond(c: Variant, where: String, out: Array, sides: Array, tea
 				if not trig.has(String(c[k])):
 					out.append("%s: unknown trigger %s" % [where, c[k]])
 			_:
-				out.append("%s: unknown condition %s" % [where, k])
+				var r3 := MissionAct3.check_cond(String(k), c[k], sides, teams)      # (act3-engine0)
+				if not bool(r3[0]):
+					out.append("%s: unknown condition %s" % [where, k])
+				elif String(r3[1]) != "":
+					out.append("%s: %s" % [where, r3[1]])
 
 
 static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, sides: Array, teams: Array, areas: Dictionary, lines: Dictionary, objs: Array) -> void:
@@ -1248,7 +1407,11 @@ static func _check_action(a: Variant, where: String, out: Array, m: Dictionary, 
 			if v is Dictionary and v.has("kind") and not (Defs.UNITS.has(String(v["kind"])) or Defs.BUILDINGS.has(String(v["kind"]))):
 				out.append("%s: point at unknown kind %s" % [where, v["kind"]])
 		_:
-			out.append("%s: unknown action %s" % [where, k])
+			var r3 := MissionAct3.check_action(k, v, sides, teams, areas, m.get("counters", {}))      # (act3-engine0)
+			if not bool(r3[0]):
+				out.append("%s: unknown action %s" % [where, k])
+			elif String(r3[1]) != "":
+				out.append("%s: %s" % [where, r3[1]])
 
 
 static func _check_mist(v: Variant, where: String, out: Array, sides: Array, teams: Array) -> void:

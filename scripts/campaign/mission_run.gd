@@ -91,6 +91,12 @@ var heroes: MissionHeroes = null
 # mission_act2.gd (MissionAct2); its state is this dictionary, saved with the rest
 var act2 := {}
 var a2: MissionAct2 = null
+# act3-engine0: Act 3's pieces (the climate and its frost line, the stop-work, the made call, warmth, the flight part,
+# the ledger, the night's order, the final choice, the ending): scripts/campaign/mission_act3.gd (MissionAct3); its
+# state is this dictionary, saved with the rest. `climate_pace`: a faction's walking pace in the heat (Unit reads it).
+var act3 := {}
+var a3: MissionAct3 = null
+var climate_pace := {}
 # Act 2's d05_aldeia (docs/campaign_d05_build.md): THE VÁRZEA. Mission "wade": {"pace": 0.5, "free": [factions]}: a
 # ground unit standing on a ford cell (the flooded forest's shallow water) walks at `pace` (Unit's speed), except the
 # factions in `free` (the Brood: the creatures go through the flood at their own pace); nothing is built on a ford cell
@@ -102,6 +108,7 @@ var wade_free := {}
 func setup(m: Dictionary, md: String, cfg: Dictionary, guest := false) -> void:
 	data = m
 	id = String(m.get("id", ""))
+	Campaign.asking = id          # (act3-engine0: THE NIGHT's ORDER, read by the conditions decided before the match)
 	mode = md
 	remote = guest
 	team_ids = (m.get("teams", []) as Array).map(func(t: Dictionary) -> String: return String(t["id"]))
@@ -126,6 +133,7 @@ func setup(m: Dictionary, md: String, cfg: Dictionary, guest := false) -> void:
 		for fac in m["wade"].get("free", ["brood"]):
 			wade_free[String(fac)] = true
 	a2 = MissionAct2.new(self)
+	a3 = MissionAct3.new(self)
 	if m.get("versions") is Dictionary:
 		# (act2-engine0: the mission's VERSION, FRESH / GROWN, picked once before anything is placed)
 		flags["version"] = MissionAct2.version_of(m, solo_side, difficulty)
@@ -472,6 +480,8 @@ func _process(_delta: float) -> void:
 		_carry_cages()
 		if a2 != null:
 			a2.frame(_delta)
+		if a3 != null:
+			a3.frame(_delta)
 
 
 func _physics_process(delta: float) -> void:
@@ -488,6 +498,9 @@ func _physics_process(delta: float) -> void:
 	if a2 == null:
 		a2 = MissionAct2.new(self)
 	a2.tick(TICK)
+	if a3 == null:
+		a3 = MissionAct3.new(self)
+	a3.tick(TICK)
 	_tick_turning()
 	_tick_exits()
 	_tick_carts()
@@ -608,7 +621,7 @@ func cond(c: Variant) -> bool:
 				# {"past": {"<mission>.<flag>": value}}: a flag kept from a mission played before (Campaign.flag)
 				for fk in v:
 					var pr := String(fk).split(".")
-					ok = ok and pr.size() == 2 and str(Campaign.flag(pr[0], pr[1])) == str(v[fk])
+					ok = ok and pr.size() == 2 and Campaign.past_is(Campaign.flag(pr[0], pr[1]), v[fk])      # (a list: any of them)
 			"counter":
 				# {"counter": {"name", "at_least", "below"}}: a mission number (townsfolk saved, seeds burnt)
 				var n := int(counters.get(String(v.get("name", "")), 0))
@@ -682,6 +695,8 @@ func cond(c: Variant) -> bool:
 			_:
 				# (act2-engine0: Act 2's conditions, MissionAct2.cond)
 				var r2: Array = a2.cond(String(k), v) if a2 != null else [false, false]
+				if not bool(r2[0]) and a3 != null:
+					r2 = a3.cond(String(k), v)          # (act3-engine0: Act 3's conditions, MissionAct3.cond)
 				ok = bool(r2[0]) and bool(r2[1])
 		if not ok:
 			return false
@@ -973,8 +988,8 @@ func act(a: Dictionary) -> void:
 						elif e.has_meta("mission_root"):
 							e.remove_meta("mission_root")
 			_:
-				if a2 != null:
-					a2.act(String(k), v)          # (act2-engine0: Act 2's actions, MissionAct2.act)
+				if a2 != null and not a2.act(String(k), v) and a3 != null:
+					a3.act(String(k), v)          # (act2-engine0 / act3-engine0: MissionAct2.act, then MissionAct3.act)
 
 
 ## (act2-engine0) Game._update_vis asks after its own loop: a HIDDEN unit stays off the screen of the side it hides from,
@@ -982,6 +997,8 @@ func act(a: Dictionary) -> void:
 func after_vis(ft: int) -> void:
 	if a2 != null:
 		a2.after_vis(ft)
+	if a3 != null:
+		a3.after_vis(ft)          # (act3-engine0: what a flight marked stays on its side's screen)
 
 
 ## (act2-engine0) Game._update_swamp asks: the mission's spreading swamp of a team ([centre in tiles, radius]).
@@ -1144,7 +1161,11 @@ func offer_choice(ch: Dictionary) -> void:
 		choose(String(ch["id"]), String(ch.get("default", "")))
 		return
 	choice_open = ch.duplicate()
-	choice_open["until"] = game.clock + float(ch.get("time", 90.0))
+	# (act3-engine0: "time": 0 or THE FINAL CHOICE ("final": true) has no timer: nobody's default is taken for them)
+	var no_timer := bool(ch.get("final", false)) or float(ch.get("time", 90.0)) <= 0.0
+	choice_open["until"] = 1e18 if no_timer else game.clock + float(ch.get("time", 90.0))
+	if bool(ch.get("final", false)) and mode == "solo" and game.net == null:
+		game.get_tree().paused = true          # (THE FINAL CHOICE holds the match: the heir is given the time to think)
 	if game.mlog:
 		game.mlog.add("(mission) choice %s offered" % ch.get("id", ""))
 	choice_offered.emit(choice_open)
@@ -1168,6 +1189,8 @@ func choose(cid: String, opt_id: String) -> void:
 	if opt.is_empty() and not opts.is_empty():
 		opt = opts[0]
 	flags[cid] = String(opt.get("id", opt_id))
+	if bool(ch.get("final", false)) and game and game.get_tree() and mode == "solo" and game.net == null:
+		game.get_tree().paused = false          # (act3-engine0: the final choice let go of the match)
 	if String(choice_open.get("id", "")) == cid:
 		choice_open = {}
 	if game and game.mlog:
@@ -2613,7 +2636,7 @@ func stamp_reveals() -> void:
 const SAVE_KEYS := ["obj", "fired", "_met", "reveals", "said_ids", "winner_side", "_side_had", "flags", "choice_open",
 	"light_name", "counters", "clocks", "deny", "_next", "_times", "_turning", "_caged", "_burning", "out_sides", "fires_out",
 	"_stay", "route_done", "_routes", "_follows", "sleeping", "woke", "mist_sight", "mist_teams", "captured", "weather_name",
-	"_disguised", "unmasked", "_carts", "tags", "checkpoints", "act2"]
+	"_disguised", "unmasked", "_carts", "tags", "checkpoints", "act2", "act3"]
 ## The metas the mission puts on a unit or building that a save keeps (object metas, "on_cart" / "cage_cargo", come back
 ## from the carts' list).
 const SAVE_METAS := ["mission_tag", "mission_name", "rebel_role", "torch_burning", "torch_t", "disguise_team", "disguise",
@@ -2758,6 +2781,8 @@ func load_state(d: Dictionary, mu: Array, mb: Array) -> void:
 			set(k, unpack(st[k], mu, mb))
 	a2 = MissionAct2.new(self)      # (act2-engine0: its state was loaded; the marks it keeps on units put back)
 	a2.after_load()
+	a3 = MissionAct3.new(self)      # (act3-engine0: its state was loaded too)
+	a3.after_load()
 	# the cages on the carts: their bars and ties back
 	for it in _carts:
 		var u = it.get("u")

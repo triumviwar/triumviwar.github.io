@@ -1746,5 +1746,273 @@
 			"title": "ARMOURY",
 			"text": "Upgrades between missions will be bought here. (Not decided yet: a placeholder.)"
 		}
+	},
+	"nights": {
+		"the_night": [
+			"e16_lisbon",
+			"e17_goa",
+			"e18_port"
+		]
+	},
+	"ledger": {
+		"marks": [
+			{
+				"id": "lisbon",
+				"label": "Lisbon held: the fleet in the Tiber's mouth",
+				"if": {
+					"past": {
+						"e16_lisbon.lisbon": "held"
+					}
+				}
+			},
+			{
+				"id": "goa",
+				"label": "Goa held: the Indies' men on the road",
+				"if": {
+					"past": {
+						"e17_goa.goa_night": "held"
+					}
+				}
+			},
+			{
+				"id": "atlantic",
+				"label": "The Atlantic port held: Kongo's musketeers or New Spain's lancers",
+				"if": {
+					"past": {
+						"e18_port.atlantic": "held"
+					}
+				}
+			},
+			{
+				"id": "kongo",
+				"label": "The King of Kongo stood: his own guard",
+				"if": {
+					"past": {
+						"e04_kongo.kongo": "stood"
+					}
+				}
+			},
+			{
+				"id": "ethiopia",
+				"label": "Ethiopia held: the highland pikemen",
+				"if": {
+					"past": {
+						"e07_highlands.ethiopia": "held"
+					}
+				}
+			},
+			{
+				"id": "volunteers",
+				"label": "The Virginia Volunteers: sons of the families you saved",
+				"if": {
+					"all": [
+						{
+							"past": {
+								"p01_leaf.families": "save"
+							}
+						},
+						{
+							"past": {
+								"e03_virginia.virginia": [
+									"some",
+									"many"
+								]
+							}
+						}
+					]
+				}
+			},
+			{
+				"id": "fairleigh",
+				"label": "Fairleigh alive: he rode with them",
+				"if": {
+					"past": {
+						"e03_virginia.fairleigh": "rode_with"
+					}
+				}
+			},
+			{
+				"id": "stopwork",
+				"label": "The stop-work kept: Hollweg can ring the bells of Rome",
+				"if": {
+					"past": {
+						"e09_nagasaki.stopwork": "kept"
+					}
+				}
+			},
+			{
+				"id": "ruin",
+				"label": "The ruin opened: Lindqvist knows the made call",
+				"if": {
+					"past": {
+						"e06_taken.ruin": "opened"
+					}
+				}
+			},
+			{
+				"id": "exiles",
+				"label": "The exiles pardoned: Varenne's men hold a gate",
+				"if": {
+					"past": {
+						"e12_exiles.exiles": "pardon"
+					}
+				}
+			},
+			{
+				"id": "forge",
+				"label": "The Cold Forge broken: the Machine's northern column is smaller",
+				"if": {
+					"past": {
+						"e15_forge.forge": "broken"
+					}
+				}
+			},
+			{
+				"id": "veterans",
+				"label": "Brazil's veterans: Ruggieri's battery",
+				"if": {
+					"past": {
+						"e01_brazil.colonists": [
+							"some",
+							"many"
+						]
+					}
+				}
+			},
+			{
+				"id": "jakob",
+				"label": "Jakob alive: he marks the Machine's weak points",
+				"if": {
+					"past": {
+						"d11_siege.jakob": "alive"
+					}
+				}
+			},
+			{
+				"id": "inacio",
+				"label": "Father Inácio: the balloon over Rome",
+				"if": {
+					"past": {
+						"d10_jungle.inacio": "joined"
+					}
+				}
+			},
+			{
+				"id": "deserters",
+				"label": "The deserters spared: they hold a gate",
+				"if": {
+					"past": {
+						"e19_tiber.deserters": "spared"
+					}
+				}
+			},
+			{
+				"id": "campagna",
+				"label": "The Campagna's people: more militia on the walls",
+				"if": {
+					"past": {
+						"e19_tiber.campagna": [
+							"some",
+							"many"
+						]
+					}
+				}
+			},
+			{
+				"id": "colonies",
+				"label": "The colonies standing: half or more still the Crown's",
+				"if": {
+					"colonies": {
+						"share": 0.5
+					}
+				}
+			}
+		],
+		"bands": {
+			"strong": 10,
+			"middle": 5
+		},
+		"lines": {
+			"strong": "Lisbon's ships are in the river mouth and Goa's men are on the road. We are not alone.",
+			"middle": "Some are coming. Not all I wrote to.",
+			"weak": "I wrote to everyone. Two answered."
+		}
+	},
+	"credits": {
+		"sections": [
+			{
+				"title": "TRIUMVIWAR",
+				"names": [
+					"A game by Salgarellius"
+				]
+			},
+			{
+				"title": "THE STORY",
+				"names": [
+					"Salgarellius",
+					"Written with Claude"
+				]
+			},
+			{
+				"title": "THE PEOPLE OF THE STORY",
+				"names": [
+					"The King",
+					"Father Tomasz Wierzbicki",
+					"Meister Hollweg",
+					"Father Ferrer",
+					"Valadares",
+					"Lindqvist",
+					"Lord Edmund Fairleigh",
+					"Matteo Ruggieri",
+					"Etienne Varenne",
+					"Father Inácio Lourenço",
+					"Captain Rui Amaral",
+					"Jakob",
+					"Sergeant Will Hollins",
+					"Prince Alessandro"
+				]
+			},
+			{
+				"title": "PAINTINGS",
+				"names": [
+					"Salgarellius, with ChatGPT"
+				]
+			},
+			{
+				"title": "MUSIC",
+				"names": [
+					"Salgarellius, with ElevenLabs",
+					"Music written in code by Claude"
+				]
+			},
+			{
+				"title": "VOICES",
+				"names": [
+					"Salgarellius, with Chatterbox"
+				]
+			},
+			{
+				"title": "MAPS",
+				"names": [
+					"Natural Earth (public domain)"
+				]
+			},
+			{
+				"title": "MADE WITH",
+				"names": [
+					"Godot Engine"
+				]
+			},
+			{
+				"title": "THANK YOU FOR PLAYING",
+				"names": []
+			}
+		],
+		"last": {
+			"rome_holds": "They will come over the Alps again next spring, and the marsh will hatch again in the heat. Tomorrow I write to Lisbon for powder.",
+			"rome_falls": "Peter was a fisherman. He will know what to do with a boat. Say Mass the moment you are past the bar.",
+			"hard_way": "Peter was a fisherman. He will know what to do with a boat. Say Mass the moment you are past the bar."
+		},
+		"end": "The King knocks out his pipe."
 	}
 }
