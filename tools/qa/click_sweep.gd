@@ -7,7 +7,7 @@ extends SceneTree
 ##   tools/qa/click_sweep.sh --parts menus,settings --lang pt --size phone
 ## or by hand (one language, one size a run):
 ##   xvfb-run -a godot --rendering-driver opengl3 --resolution 1600x900 --script res://tools/qa/click_sweep.gd -- \
-##       out=docs/shots/qa_click_sweep lang=en size=pc parts=menus,settings [depth=2] [budget=400] [shots=all|flags|none]
+##       out=docs/shots/qa_click_sweep lang=en size=pc parts=menus,settings [depth=2] [budget=250 a root page] [shots=all|flags|none]
 ##
 ## PARTS (each runs alone): menus, settings, campaign, skirmish (the setup page), skirmish_crown, skirmish_clockwork,
 ## skirmish_brood (a real match each), editor, worldwar, tournaments, online, replays.
@@ -51,7 +51,7 @@ var size := "pc"
 var tag := ""
 var parts: Array = []
 var depth := 2
-var budget := 400
+var budget := 250
 var shots := "all"
 var errlog: ErrLog
 var rows: Array = []
@@ -61,6 +61,7 @@ var screens_n := 0
 var shot_n := 0
 var part := ""
 var _part_presses := 0
+var _part_seen := {}
 var slowest: Array = []
 var saved_cfg := ""
 
@@ -147,6 +148,7 @@ func _run() -> void:
 	for p in parts:
 		part = p
 		_part_presses = 0
+		_part_seen = {}
 		print("== PART ", p)
 		var t0 := Time.get_ticks_msec()
 		match p:
@@ -173,6 +175,8 @@ func _finish() -> void:
 	slowest.sort_custom(func(a: Array, b: Array) -> bool: return a[0] > b[0])
 	for s in slowest.slice(0, 8):
 		print("SWEEP-SLOWEST %d ms %s" % [s[0], s[1]])
+	if is_instance_valid(main):
+		main.release_cursor_art()     # (Input held the cursor's picture past the renderer: the engine's abort at exit)
 	print("SWEEP-SUMMARY %s screens %d presses %d %s" % [tag, screens_n, pressed_n, JSON.stringify(counts)])
 	var f := FileAccess.open("%s/sweep_%s.json" % [out, tag], FileAccess.WRITE)
 	if f:
@@ -515,7 +519,12 @@ func crawl(root_name: String, show: Callable, max_depth := -1, max_pages := 30) 
 	if not await _goto(show, []):
 		return
 	_errs(root_name, "(show the page)")
-	var seen := {_sig(): true}
+	var presses := 0
+	var seen := _part_seen          # (pages seen by an earlier root of this part are not walked again)
+	if seen.has(_sig()):
+		print("  (%s: seen already)" % root_name)
+		return
+	seen[_sig()] = true
 	await _visit(root_name)
 	var queue: Array = [[[], root_name]]
 	var pages := 1
@@ -535,8 +544,8 @@ func crawl(root_name: String, show: Callable, max_depth := -1, max_pages := 30) 
 				plan.append([i, t, _label(b)])
 		print("  page %s: %d buttons, %d presses" % [where, bs.size(), plan.size()])
 		for step in plan:
-			if _part_presses >= budget:
-				print("  (budget of %d presses reached)" % budget)
+			if presses >= budget:
+				print("  (budget of %d presses reached on %s)" % [budget, root_name])
 				return
 			if not await _goto(show, path):
 				break
@@ -558,6 +567,7 @@ func crawl(root_name: String, show: Callable, max_depth := -1, max_pages := 30) 
 			var ms := Time.get_ticks_msec() - t0
 			pressed_n += 1
 			_part_presses += 1
+			presses += 1
 			var new_page := false
 			var popup := false
 			for w in root.get_children():
