@@ -10315,7 +10315,9 @@ func set_selection(list: Array) -> void:
 			e.selected = false
 	selection = []
 	for e in list:
-		if e is Unit and is_instance_valid(e) and (e as Unit).crew_of != null and is_instance_valid((e as Unit).crew_of):
+		if not is_instance_valid(e):
+			continue      # (a freed entity in the list, e.g. a control group whose unit is gone: 'is' on it is an error)
+		if e is Unit and (e as Unit).crew_of != null and is_instance_valid((e as Unit).crew_of):
 			e = (e as Unit).crew_of      # (a Spring Ballista's crewman is part of it: picking him picks the machine)
 		if e is Unit and is_instance_valid(e) and (e as Unit).kind == "gun_crewman":
 			if not is_instance_valid((e as Unit).fetch_home):
@@ -10328,6 +10330,10 @@ func set_selection(list: Array) -> void:
 	# left open: the HUD shuts any card page when the selection changes; selection_epoch tells it so)
 	if before.size() != selection.size() or before.any(func(e) -> bool: return not selection.has(e)):
 		selection_epoch += 1
+		# (qa-click-sweep-2, docs/qa_ui_review.md 7.6: a selection made without a click, key or touch (a unit dying, a tool,
+		# a scripted pick) left the old card drawn and clickable for up to a quarter of a second: rebuild it at the next look)
+		if hud:
+			hud._card_fresh = true
 
 
 ## APM (actions per minute) of the player at this screen: every click, tap and key press

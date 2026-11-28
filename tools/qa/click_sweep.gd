@@ -662,8 +662,15 @@ func _gstate() -> String:
 	for e in g.selection:
 		if is_instance_valid(e):
 			sel.append(str(e.get_instance_id()) + str(e.get("order")) + str(e.get("state")) + str(e.get("queue")))
-	return "%s|%s|%s|%s|%s|%d|%d|%s|%s|%s" % [p["gold"], p["res2"], p.get("tension", 0), g.hud.page, g.controls.mode,
-		g.units.size(), g.buildings.size(), ",".join(sel), g.hud._msg, _card_sig()]
+	var orders: PackedStringArray = []
+	for u in g.units:
+		if is_instance_valid(u) and u.team == 0:
+			orders.append(str(u.get("order")) + str(u.get("target")) + str(u.get("work_at")))
+	for b in g.buildings:
+		if is_instance_valid(b) and b.team == 0:
+			orders.append(str(b.get("crew")) + str(b.get("queue")) + str(b.get("rally")) + str(b.get("auto")))
+	return "%s|%s|%s|%s|%s|%d|%d|%s|%s|%s|%d" % [p["gold"], p["res2"], p.get("tension", 0), g.hud.page, g.controls.mode,
+		g.units.size(), g.buildings.size(), ",".join(sel), g.hud._msg, _card_sig(), hash("|".join(orders))]
 
 
 func _part_match(fac: String) -> void:
@@ -800,11 +807,13 @@ func _card_of(e: Node, fac: String, sub := "", depth_left := 1) -> void:
 				g.controls.cancel_mode()
 			await process_frame
 			_errs(screen, lab + " (cancel)")
+		var ms := Time.get_ticks_msec() - t0
+		if mode != "":
+			pass
 		elif g.hud.page != page0 and depth_left > 0:
 			await _card_of(e, fac, g.hud.page, depth_left - 1)
 		elif _gstate() == s0:
-			flag("NOOP", screen, lab, "nothing changed (money, page, mode, queue, orders, message, card)")
-		var ms := Time.get_ticks_msec() - t0
+			flag("NOOP", screen, lab, "nothing changed (money, page, mode, queue, orders, crews, message, card)")
 		if ms > SLOW_MS:
 			flag("SLOW", screen, lab, "%d ms" % ms)
 	if g.hud.page != "":
@@ -814,41 +823,54 @@ func _card_of(e: Node, fac: String, sub := "", depth_left := 1) -> void:
 ## 7.6 of docs/qa_ui_review.md: select the whole army, then a production building within 0.4 s; the card must be the
 ## building's.
 func _stale_card_check(fac: String) -> void:
-	var army: Array = []
 	var prod: Node = null
-	for u in g.units:
-		if u.team == 0 and not u.dead and is_instance_valid(u):
-			army.append(u)
 	for b in g.buildings:
-		if b.team == 0 and not b.dead and b.kind != g.faction_hall(0) and not (Defs.BUILDINGS.get(b.kind, {}).get("trains", []) as Array).is_empty():
+		if is_instance_valid(b) and b.team == 0 and not b.dead and b.kind != g.faction_hall(0) and not (Defs.BUILDINGS.get(b.kind, {}).get("trains", []) as Array).is_empty():
 			prod = b
 			break
 	if prod == null:
 		for b in g.buildings:
-			if b.team == 0 and not b.dead:
+			if is_instance_valid(b) and b.team == 0 and not b.dead:
 				prod = b
 				break
-	if prod == null or army.is_empty():
-		return
 	for delay in [0.0, 0.05, 0.2, 0.4]:
+		var army: Array = []
+		for u in g.units:
+			if is_instance_valid(u) and u.team == 0 and not u.dead:
+				army.append(u)
+		if prod == null or not is_instance_valid(prod) or army.is_empty():
+			return
 		g.set_selection(army)
-		await process_frame
-		var army_card := _card_sig()
+		await create_timer(0.4).timeout
 		if delay > 0.0:
 			await create_timer(delay).timeout
 		g.set_selection([prod])
-		await process_frame
-		var c1 := _card_sig()
-		await _frames(3)
-		var c2 := _card_sig()
-		# what the HUD actually holds for its buttons (drawn from _card_buttons)
-		var shown: PackedStringArray = []
-		for x in g.hud._card_buttons:
-			shown.append(String(x.get("label", x.get("item", [null, ""])[1] if x.has("item") else "")))
-		print("  7.6 check delay %.2f: card %s / after 3 frames %s" % [delay, "same as army" if c1 == army_card else "building's", "same as army" if c2 == army_card else "building's"])
-		if c2 == army_card and army_card != "":
-			flag("STALE", "match_" + fac, "army -> %s (%.2f s)" % [prod.kind, delay], "the card still shows the army's buttons")
+		# frames until the drawn card is the building's (its buttons as a set: the drawing orders them its own way)
+		var want := _card_set(_card_sig())
+		var n := 0
+		while n < 30 and not _card_set(_drawn_card()).all(func(x: String) -> bool: return want.has(x)):
+			await process_frame
+			n += 1
+		print("  7.6 check delay %.2f: the drawn card was the building's after %d frames" % [delay, n])
+		if n >= 4:
+			flag("STALE", "match_" + fac, "army -> %s (%.2f s)" % [prod.kind, delay], "the old card stayed drawn and clickable %d frames" % n)
 	_errs("match_" + fac, "7.6 check")
+
+
+func _card_set(sig: String) -> Array:
+	var out_s: Array = []
+	for x in sig.split("|", false):
+		out_s.append(String(x).trim_prefix("> ").trim_prefix("~ "))
+	return out_s
+
+
+## The card as the HUD last drew it (its clickable buttons).
+func _drawn_card() -> String:
+	var ls: PackedStringArray = []
+	for x in g.hud._card_buttons:
+		var it = x.get("item")
+		ls.append(String(it[1]) if it is Array and (it as Array).size() > 1 else "?")
+	return "|".join(ls)
 
 
 func _key(code: int, ctrl := false, shift := false) -> void:
