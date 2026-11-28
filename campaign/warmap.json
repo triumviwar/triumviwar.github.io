@@ -480,6 +480,269 @@
 			]
 		},
 		{
+			"id": "lower_amazon",
+			"name": "The lower Amazon",
+			"label_at": [
+				-55.2,
+				-0.6
+			],
+			"poly": [
+				-58.6,
+				-0.6,
+				-55.5,
+				-0.2,
+				-52.8,
+				-0.4,
+				-51.6,
+				-1.2,
+				-52.0,
+				-3.0,
+				-54.0,
+				-3.15,
+				-57.0,
+				-3.0,
+				-58.7,
+				-2.4
+			],
+			"act2": true
+		},
+		{
+			"id": "island",
+			"name": "Lindqvist's island",
+			"label": false,
+			"circle": [
+				-55.35,
+				-2.0,
+				0.32
+			],
+			"act2": true
+		},
+		{
+			"id": "tapajos",
+			"name": "The Tapajós",
+			"label_at": [
+				-55.8,
+				-5.6
+			],
+			"poly": [
+				-57.6,
+				-3.25,
+				-54.0,
+				-3.25,
+				-53.6,
+				-5.5,
+				-54.5,
+				-7.6,
+				-57.0,
+				-7.3,
+				-58.1,
+				-5.0
+			],
+			"act2": true
+		},
+		{
+			"id": "barra_rio_negro",
+			"name": "The Barra",
+			"label_at": [
+				-60.7,
+				-4.4
+			],
+			"poly": [
+				-62.6,
+				-1.6,
+				-60.6,
+				-1.8,
+				-58.8,
+				-2.5,
+				-58.9,
+				-3.9,
+				-60.8,
+				-4.1,
+				-62.8,
+				-3.2
+			],
+			"act2": true
+		},
+		{
+			"id": "minas",
+			"name": "Minas Gerais",
+			"label_at": [
+				-45.0,
+				-18.2
+			],
+			"poly": [
+				-48.2,
+				-15.6,
+				-44.0,
+				-15.2,
+				-41.0,
+				-16.0,
+				-40.6,
+				-18.2,
+				-41.6,
+				-21.4,
+				-44.6,
+				-22.6,
+				-47.6,
+				-21.6,
+				-49.2,
+				-18.6
+			],
+			"act2": true
+		},
+		{
+			"id": "bahia",
+			"name": "Bahia",
+			"label_at": [
+				-40.0,
+				-13.6
+			],
+			"poly": [
+				-40.4,
+				-10.2,
+				-37.2,
+				-10.6,
+				-37.7,
+				-12.6,
+				-38.9,
+				-15.9,
+				-41.0,
+				-15.4,
+				-41.8,
+				-13.4
+			],
+			"act2": true
+		},
+		{
+			"id": "sertao",
+			"name": "The sertão",
+			"label_at": [
+				-44.2,
+				-9.6
+			],
+			"poly": [
+				-46.8,
+				-8.4,
+				-41.2,
+				-8.5,
+				-40.4,
+				-10.2,
+				-41.8,
+				-13.4,
+				-45.6,
+				-14.0,
+				-47.2,
+				-11.2
+			],
+			"act2": true
+		},
+		{
+			"id": "sao_paulo",
+			"name": "São Paulo",
+			"label_at": [
+				-48.6,
+				-22.6
+			],
+			"poly": [
+				-50.6,
+				-20.6,
+				-47.6,
+				-21.6,
+				-44.6,
+				-22.6,
+				-46.2,
+				-24.2,
+				-48.3,
+				-25.3,
+				-51.2,
+				-24.0,
+				-52.6,
+				-22.2
+			],
+			"act2": true
+		},
+		{
+			"id": "highlands",
+			"name": "The southern highlands",
+			"label_at": [
+				-50.6,
+				-25.6
+			],
+			"poly": [
+				-52.3,
+				-25.9,
+				-49.6,
+				-25.9,
+				-49.0,
+				-27.0,
+				-49.4,
+				-28.4,
+				-50.6,
+				-28.9,
+				-52.3,
+				-28.5
+			],
+			"act2": true
+		},
+		{
+			"id": "valley",
+			"name": "The valley",
+			"label_at": [
+				-53.1,
+				-26.4
+			],
+			"poly": [
+				-54.0,
+				-26.7,
+				-52.3,
+				-26.8,
+				-52.3,
+				-28.5,
+				-53.9,
+				-28.4
+			],
+			"act2": true
+		},
+		{
+			"id": "concordia",
+			"name": "Concórdia",
+			"label": false,
+			"circle": [
+				-51.6,
+				-27.3,
+				0.42
+			],
+			"act2": true
+		},
+		{
+			"id": "luanda",
+			"name": "Luanda",
+			"label_at": [
+				14.6,
+				-9.6
+			],
+			"circle": [
+				13.9,
+				-9.0,
+				0.9
+			],
+			"act2": true
+		},
+		{
+			"id": "goa",
+			"name": "Goa",
+			"label_at": [
+				74.9,
+				14.6
+			],
+			"circle": [
+				74.1,
+				15.3,
+				0.7
+			],
+			"act2": true
+		},
+		{
 			"id": "caribbean",
 			"name": "The Caribbean",
 			"label_at": [
@@ -884,269 +1147,6 @@
 			],
 			"act": 3,
 			"act3": true
-		},
-		{
-			"id": "lower_amazon",
-			"name": "The lower Amazon",
-			"label_at": [
-				-55.2,
-				-0.6
-			],
-			"poly": [
-				-58.6,
-				-0.6,
-				-55.5,
-				-0.2,
-				-52.8,
-				-0.4,
-				-51.6,
-				-1.2,
-				-52.0,
-				-3.0,
-				-54.0,
-				-3.15,
-				-57.0,
-				-3.0,
-				-58.7,
-				-2.4
-			],
-			"act2": true
-		},
-		{
-			"id": "island",
-			"name": "Lindqvist's island",
-			"label": false,
-			"circle": [
-				-55.35,
-				-2.0,
-				0.32
-			],
-			"act2": true
-		},
-		{
-			"id": "tapajos",
-			"name": "The Tapajós",
-			"label_at": [
-				-55.8,
-				-5.6
-			],
-			"poly": [
-				-57.6,
-				-3.25,
-				-54.0,
-				-3.25,
-				-53.6,
-				-5.5,
-				-54.5,
-				-7.6,
-				-57.0,
-				-7.3,
-				-58.1,
-				-5.0
-			],
-			"act2": true
-		},
-		{
-			"id": "barra_rio_negro",
-			"name": "The Barra",
-			"label_at": [
-				-60.7,
-				-4.4
-			],
-			"poly": [
-				-62.6,
-				-1.6,
-				-60.6,
-				-1.8,
-				-58.8,
-				-2.5,
-				-58.9,
-				-3.9,
-				-60.8,
-				-4.1,
-				-62.8,
-				-3.2
-			],
-			"act2": true
-		},
-		{
-			"id": "minas",
-			"name": "Minas Gerais",
-			"label_at": [
-				-45.0,
-				-18.2
-			],
-			"poly": [
-				-48.2,
-				-15.6,
-				-44.0,
-				-15.2,
-				-41.0,
-				-16.0,
-				-40.6,
-				-18.2,
-				-41.6,
-				-21.4,
-				-44.6,
-				-22.6,
-				-47.6,
-				-21.6,
-				-49.2,
-				-18.6
-			],
-			"act2": true
-		},
-		{
-			"id": "bahia",
-			"name": "Bahia",
-			"label_at": [
-				-40.0,
-				-13.6
-			],
-			"poly": [
-				-40.4,
-				-10.2,
-				-37.2,
-				-10.6,
-				-37.7,
-				-12.6,
-				-38.9,
-				-15.9,
-				-41.0,
-				-15.4,
-				-41.8,
-				-13.4
-			],
-			"act2": true
-		},
-		{
-			"id": "sertao",
-			"name": "The sertão",
-			"label_at": [
-				-44.2,
-				-9.6
-			],
-			"poly": [
-				-46.8,
-				-8.4,
-				-41.2,
-				-8.5,
-				-40.4,
-				-10.2,
-				-41.8,
-				-13.4,
-				-45.6,
-				-14.0,
-				-47.2,
-				-11.2
-			],
-			"act2": true
-		},
-		{
-			"id": "sao_paulo",
-			"name": "São Paulo",
-			"label_at": [
-				-48.6,
-				-22.6
-			],
-			"poly": [
-				-50.6,
-				-20.6,
-				-47.6,
-				-21.6,
-				-44.6,
-				-22.6,
-				-46.2,
-				-24.2,
-				-48.3,
-				-25.3,
-				-51.2,
-				-24.0,
-				-52.6,
-				-22.2
-			],
-			"act2": true
-		},
-		{
-			"id": "highlands",
-			"name": "The southern highlands",
-			"label_at": [
-				-50.6,
-				-25.6
-			],
-			"poly": [
-				-52.3,
-				-25.9,
-				-49.6,
-				-25.9,
-				-49.0,
-				-27.0,
-				-49.4,
-				-28.4,
-				-50.6,
-				-28.9,
-				-52.3,
-				-28.5
-			],
-			"act2": true
-		},
-		{
-			"id": "valley",
-			"name": "The valley",
-			"label_at": [
-				-53.1,
-				-26.4
-			],
-			"poly": [
-				-54.0,
-				-26.7,
-				-52.3,
-				-26.8,
-				-52.3,
-				-28.5,
-				-53.9,
-				-28.4
-			],
-			"act2": true
-		},
-		{
-			"id": "concordia",
-			"name": "Concórdia",
-			"label": false,
-			"circle": [
-				-51.6,
-				-27.3,
-				0.42
-			],
-			"act2": true
-		},
-		{
-			"id": "luanda",
-			"name": "Luanda",
-			"label_at": [
-				14.6,
-				-9.6
-			],
-			"circle": [
-				13.9,
-				-9.0,
-				0.9
-			],
-			"act2": true
-		},
-		{
-			"id": "goa",
-			"name": "Goa",
-			"label_at": [
-				74.9,
-				14.6
-			],
-			"circle": [
-				74.1,
-				15.3,
-				0.7
-			],
-			"act2": true
 		}
 	],
 	"marks": [
@@ -1239,6 +1239,236 @@
 			],
 			"label": "Lindqvist's fazenda",
 			"shown": false
+		},
+		{
+			"id": "exodus_route",
+			"kind": "route",
+			"point": [
+				9.99,
+				53.55
+			],
+			"label": "",
+			"points": [
+				[
+					9.99,
+					53.55
+				],
+				[
+					7.0,
+					54.3
+				],
+				[
+					3.0,
+					52.6
+				],
+				[
+					-1.5,
+					50.3
+				],
+				[
+					-7.0,
+					48.2
+				],
+				[
+					-14.0,
+					40.0
+				],
+				[
+					-22.0,
+					18.0
+				],
+				[
+					-29.0,
+					2.0
+				],
+				[
+					-33.0,
+					-10.0
+				],
+				[
+					-41.0,
+					-22.5
+				],
+				[
+					-48.2,
+					-26.2
+				]
+			],
+			"act2": true
+		},
+		{
+			"id": "hamburg",
+			"kind": "town",
+			"point": [
+				9.99,
+				53.55
+			],
+			"label": "Hamburg",
+			"act2": true
+		},
+		{
+			"id": "varenne_route",
+			"kind": "route",
+			"point": [
+				-14.0,
+				33.0
+			],
+			"label": "",
+			"points": [
+				[
+					-14.0,
+					33.0
+				],
+				[
+					-24.0,
+					12.0
+				],
+				[
+					-31.0,
+					-6.0
+				],
+				[
+					-38.0,
+					-20.0
+				],
+				[
+					-47.6,
+					-26.6
+				],
+				[
+					-51.3,
+					-27.2
+				]
+			],
+			"act2": true
+		},
+		{
+			"id": "ramos_road",
+			"kind": "route",
+			"point": [
+				-43.5,
+				-20.39
+			],
+			"label": "",
+			"points": [
+				[
+					-43.5,
+					-20.39
+				],
+				[
+					-46.0,
+					-22.6
+				],
+				[
+					-49.0,
+					-25.0
+				],
+				[
+					-51.3,
+					-27.1
+				]
+			],
+			"act2": true
+		},
+		{
+			"id": "concordia_city",
+			"kind": "gear",
+			"point": [
+				-51.6,
+				-27.3
+			],
+			"label": "Concórdia",
+			"act2": true
+		},
+		{
+			"id": "crates_mine",
+			"kind": "dot",
+			"point": [
+				-51.15,
+				-27.0
+			],
+			"label": "The old mine: the crates of 2767",
+			"act2": true
+		},
+		{
+			"id": "honest_coast",
+			"kind": "village",
+			"point": [
+				-49.0,
+				-26.4
+			],
+			"label": "The honest masters, at the coast",
+			"act2": true
+		},
+		{
+			"id": "sao_rafael",
+			"kind": "church",
+			"point": [
+				-55.7,
+				-4.6
+			],
+			"label": "São Rafael",
+			"act2": true
+		},
+		{
+			"id": "sao_rafael_burnt",
+			"kind": "church_burnt",
+			"point": [
+				-55.7,
+				-4.6
+			],
+			"label": "São Rafael, its fields burned",
+			"act2": true
+		},
+		{
+			"id": "fazenda_burnt",
+			"kind": "burnt",
+			"point": [
+				-55.5,
+				-1.95
+			],
+			"label": "The fazenda, fallen",
+			"act2": true
+		},
+		{
+			"id": "queen",
+			"kind": "queen",
+			"point": [
+				-57.4,
+				0.6
+			],
+			"label": "The Queen: where nobody has been",
+			"act2": true
+		},
+		{
+			"id": "fort",
+			"kind": "fort",
+			"point": [
+				-43.14,
+				-11.09
+			],
+			"label": "Fort Constantine",
+			"act2": true
+		},
+		{
+			"id": "salvador",
+			"kind": "town",
+			"point": [
+				-38.9,
+				-12.9
+			],
+			"label": "Salvador",
+			"act2": true
+		},
+		{
+			"id": "siege_ring",
+			"kind": "siege",
+			"point": [
+				-51.6,
+				-27.3
+			],
+			"label": "The siege lines",
+			"act2": true
 		},
 		{
 			"id": "theatre_americas",
@@ -1643,7 +1873,7 @@
 			"kind": "burnt",
 			"point": [
 				110.6,
-				-66.3
+				-66.6
 			],
 			"label": "The Cold Forge, broken",
 			"act": 3,
@@ -1653,8 +1883,8 @@
 			"id": "lisbon_town",
 			"kind": "town",
 			"point": [
-				-9.14,
-				38.72
+				-9.0,
+				38.8
 			],
 			"label": "Lisbon",
 			"act": 3,
@@ -1703,236 +1933,6 @@
 			"label": "The fleet off the Tiber's mouth",
 			"act": 3,
 			"act3": true
-		},
-		{
-			"id": "exodus_route",
-			"kind": "route",
-			"point": [
-				9.99,
-				53.55
-			],
-			"label": "",
-			"points": [
-				[
-					9.99,
-					53.55
-				],
-				[
-					7.0,
-					54.3
-				],
-				[
-					3.0,
-					52.6
-				],
-				[
-					-1.5,
-					50.3
-				],
-				[
-					-7.0,
-					48.2
-				],
-				[
-					-14.0,
-					40.0
-				],
-				[
-					-22.0,
-					18.0
-				],
-				[
-					-29.0,
-					2.0
-				],
-				[
-					-33.0,
-					-10.0
-				],
-				[
-					-41.0,
-					-22.5
-				],
-				[
-					-48.2,
-					-26.2
-				]
-			],
-			"act2": true
-		},
-		{
-			"id": "hamburg",
-			"kind": "town",
-			"point": [
-				9.99,
-				53.55
-			],
-			"label": "Hamburg",
-			"act2": true
-		},
-		{
-			"id": "varenne_route",
-			"kind": "route",
-			"point": [
-				-14.0,
-				33.0
-			],
-			"label": "",
-			"points": [
-				[
-					-14.0,
-					33.0
-				],
-				[
-					-24.0,
-					12.0
-				],
-				[
-					-31.0,
-					-6.0
-				],
-				[
-					-38.0,
-					-20.0
-				],
-				[
-					-47.6,
-					-26.6
-				],
-				[
-					-51.3,
-					-27.2
-				]
-			],
-			"act2": true
-		},
-		{
-			"id": "ramos_road",
-			"kind": "route",
-			"point": [
-				-43.5,
-				-20.39
-			],
-			"label": "",
-			"points": [
-				[
-					-43.5,
-					-20.39
-				],
-				[
-					-46.0,
-					-22.6
-				],
-				[
-					-49.0,
-					-25.0
-				],
-				[
-					-51.3,
-					-27.1
-				]
-			],
-			"act2": true
-		},
-		{
-			"id": "concordia_city",
-			"kind": "gear",
-			"point": [
-				-51.6,
-				-27.3
-			],
-			"label": "Concórdia",
-			"act2": true
-		},
-		{
-			"id": "crates_mine",
-			"kind": "dot",
-			"point": [
-				-51.15,
-				-27.0
-			],
-			"label": "The old mine: the crates of 2767",
-			"act2": true
-		},
-		{
-			"id": "honest_coast",
-			"kind": "village",
-			"point": [
-				-49.0,
-				-26.4
-			],
-			"label": "The honest masters, at the coast",
-			"act2": true
-		},
-		{
-			"id": "sao_rafael",
-			"kind": "church",
-			"point": [
-				-55.7,
-				-4.6
-			],
-			"label": "São Rafael",
-			"act2": true
-		},
-		{
-			"id": "sao_rafael_burnt",
-			"kind": "church_burnt",
-			"point": [
-				-55.7,
-				-4.6
-			],
-			"label": "São Rafael, its fields burned",
-			"act2": true
-		},
-		{
-			"id": "fazenda_burnt",
-			"kind": "burnt",
-			"point": [
-				-55.5,
-				-1.95
-			],
-			"label": "The fazenda, fallen",
-			"act2": true
-		},
-		{
-			"id": "queen",
-			"kind": "queen",
-			"point": [
-				-57.4,
-				0.6
-			],
-			"label": "The Queen: where nobody has been",
-			"act2": true
-		},
-		{
-			"id": "fort",
-			"kind": "fort",
-			"point": [
-				-43.14,
-				-11.09
-			],
-			"label": "Fort Constantine",
-			"act2": true
-		},
-		{
-			"id": "salvador",
-			"kind": "town",
-			"point": [
-				-38.9,
-				-12.9
-			],
-			"label": "Salvador",
-			"act2": true
-		},
-		{
-			"id": "siege_ring",
-			"kind": "siege",
-			"point": [
-				-51.6,
-				-27.3
-			],
-			"label": "The siege lines",
-			"act2": true
 		}
 	],
 	"pins": [
@@ -2126,6 +2126,208 @@
 			"after": [
 				"a07_council"
 			]
+		},
+		{
+			"mission": "d01_minas",
+			"line": "crown",
+			"place": "Vila Rica",
+			"date": "2772",
+			"point": [
+				-43.5,
+				-20.39
+			],
+			"title": "The Gold of Vila Rica",
+			"after": [
+				"a07_council"
+			],
+			"about": "Tomasz, a missionary in Brazil now, and the garrison stop the Free Assembly's rising in the gold town.",
+			"act2": true
+		},
+		{
+			"mission": "d04_concordia",
+			"line": "clockmaker",
+			"place": "The southern highlands",
+			"date": "2773",
+			"point": [
+				-51.6,
+				-27.3
+			],
+			"nudge": [
+				-18,
+				-12
+			],
+			"title": "The City of Gears",
+			"after": [
+				"d02_exodus"
+			],
+			"about": "The guild founds a free city over an old mine; the valley below fears it from the first day.",
+			"act2": true
+		},
+		{
+			"mission": "d05_aldeia",
+			"line": "crown",
+			"place": "São Rafael, on the Tapajós",
+			"date": "Wet season 2776",
+			"point": [
+				-55.7,
+				-4.6
+			],
+			"title": "The Mission of São Rafael",
+			"after": [
+				"d01_minas"
+			],
+			"about": "The swarm comes out of the flooded forest at Tomasz's mission: bring the people to the river fort.",
+			"act2": true
+		},
+		{
+			"mission": "d06_queen",
+			"line": "naturalist",
+			"place": "The island",
+			"date": "Wet season 2775",
+			"point": [
+				-55.5,
+				-1.95
+			],
+			"nudge": [
+				-16,
+				14
+			],
+			"title": "The Queen",
+			"after": [
+				"d03_fazenda"
+			],
+			"about": "The flood comes to Lindqvist's island; in the pens the strongest Mother grows into a Queen.",
+			"act2": true
+		},
+		{
+			"mission": "d07_spring",
+			"line": "clockmaker",
+			"place": "Concórdia",
+			"date": "2777",
+			"point": [
+				-51.6,
+				-27.3
+			],
+			"nudge": [
+				18,
+				-12
+			],
+			"title": "The Council of Gears",
+			"after": [
+				"d04_concordia"
+			],
+			"about": "The city's machines begin to vote through the masters who wind them. Hollweg at the great spring.",
+			"act2": true
+		},
+		{
+			"mission": "d08_rivers",
+			"line": "naturalist",
+			"place": "The Barra do Rio Negro",
+			"date": "2778",
+			"point": [
+				-60.0,
+				-3.1
+			],
+			"nudge": [
+				0,
+				0
+			],
+			"title": "Down the Rivers",
+			"after": [
+				"d06_queen"
+			],
+			"about": "Valadares holds the Barra against the swarm in the floods and brings the people of Nazaré out.",
+			"act2": true
+		},
+		{
+			"mission": "d09_crossroads",
+			"line": "all",
+			"place": "The São Francisco",
+			"date": "Dry season 2780",
+			"point": [
+				-43.14,
+				-11.09
+			],
+			"title": "Between Two Fires",
+			"after": [
+				"d05_aldeia",
+				"d07_spring",
+				"d08_rivers"
+			],
+			"about": "The army of Brazil marches to the fort at the crossroads; both fires find it. The Crown chooses which first.",
+			"act2": true
+		},
+		{
+			"mission": "d10_jungle",
+			"line": "all",
+			"place": "Óbidos",
+			"date": "2780",
+			"point": [
+				-55.52,
+				-1.9
+			],
+			"nudge": [
+				14,
+				-16
+			],
+			"title": "The Jungle Front",
+			"after": [
+				"d09_crossroads"
+			],
+			"about": "The army's jungle column breaks the swarm's nests on the river, Valadares leading it.",
+			"act2": true
+		},
+		{
+			"mission": "d11_siege",
+			"line": "all",
+			"place": "Concórdia's outer works",
+			"date": "2780",
+			"point": [
+				-51.6,
+				-27.3
+			],
+			"nudge": [
+				0,
+				16
+			],
+			"title": "The Siege of Concórdia",
+			"after": [
+				"d09_crossroads"
+			],
+			"about": "The army's southern column lays siege to the city of gears, Father Ferrer as Rome's witness.",
+			"act2": true
+		},
+		{
+			"mission": "d12_luanda",
+			"line": "naturalist",
+			"place": "Luanda",
+			"date": "2777",
+			"point": [
+				13.23,
+				-8.84
+			],
+			"title": "The Hold",
+			"after": [
+				"d06_queen"
+			],
+			"about": "Optional. Eggs found in a Brazilian ship's hold at Luanda: hunt what hatched before the tide takes it.",
+			"act2": true
+		},
+		{
+			"mission": "d13_goa",
+			"line": "clockmaker",
+			"place": "Goa",
+			"date": "2779",
+			"point": [
+				74.0,
+				15.4
+			],
+			"title": "The Mining Machines",
+			"after": [
+				"d04_concordia"
+			],
+			"about": "Optional. Concórdia's mining machines wake in the Viceroy's arsenal at Goa, Father Ferrer arriving.",
+			"act2": true
 		},
 		{
 			"mission": "e01_brazil",
@@ -2360,8 +2562,8 @@
 			"place": "The Moluccas",
 			"date": "2787",
 			"point": [
-				127.37,
-				0.79
+				127.6,
+				0.9
 			],
 			"title": "The Spice Islands",
 			"after": [
@@ -2451,7 +2653,7 @@
 			"optional": true,
 			"point": [
 				110.6,
-				-66.3
+				-66.6
 			],
 			"title": "The Cold Forge",
 			"after": [
@@ -2473,8 +2675,8 @@
 			"place": "Lisbon",
 			"date": "Pentecost eve 2790",
 			"point": [
-				-9.14,
-				38.72
+				-9.0,
+				38.8
 			],
 			"title": "Lisbon (the night)",
 			"after": [
@@ -2602,208 +2804,6 @@
 			"about": "The siege of Rome, the Machine from the north and the creatures from the marshes. The final choice.",
 			"act": 3,
 			"act3": true
-		},
-		{
-			"mission": "d01_minas",
-			"line": "crown",
-			"place": "Vila Rica",
-			"date": "2772",
-			"point": [
-				-43.5,
-				-20.39
-			],
-			"title": "The Gold of Vila Rica",
-			"after": [
-				"a07_council"
-			],
-			"about": "Tomasz, a missionary in Brazil now, and the garrison stop the Free Assembly's rising in the gold town.",
-			"act2": true
-		},
-		{
-			"mission": "d04_concordia",
-			"line": "clockmaker",
-			"place": "The southern highlands",
-			"date": "2773",
-			"point": [
-				-51.6,
-				-27.3
-			],
-			"nudge": [
-				-18,
-				-12
-			],
-			"title": "The City of Gears",
-			"after": [
-				"d02_exodus"
-			],
-			"about": "The guild founds a free city over an old mine; the valley below fears it from the first day.",
-			"act2": true
-		},
-		{
-			"mission": "d05_aldeia",
-			"line": "crown",
-			"place": "São Rafael, on the Tapajós",
-			"date": "Wet season 2776",
-			"point": [
-				-55.7,
-				-4.6
-			],
-			"title": "The Mission of São Rafael",
-			"after": [
-				"d01_minas"
-			],
-			"about": "The swarm comes out of the flooded forest at Tomasz's mission: bring the people to the river fort.",
-			"act2": true
-		},
-		{
-			"mission": "d06_queen",
-			"line": "naturalist",
-			"place": "The island",
-			"date": "Wet season 2775",
-			"point": [
-				-55.5,
-				-1.95
-			],
-			"nudge": [
-				-16,
-				14
-			],
-			"title": "The Queen",
-			"after": [
-				"d03_fazenda"
-			],
-			"about": "The flood comes to Lindqvist's island; in the pens the strongest Mother grows into a Queen.",
-			"act2": true
-		},
-		{
-			"mission": "d07_spring",
-			"line": "clockmaker",
-			"place": "Concórdia",
-			"date": "2777",
-			"point": [
-				-51.6,
-				-27.3
-			],
-			"nudge": [
-				18,
-				-12
-			],
-			"title": "The Council of Gears",
-			"after": [
-				"d04_concordia"
-			],
-			"about": "The city's machines begin to vote through the masters who wind them. Hollweg at the great spring.",
-			"act2": true
-		},
-		{
-			"mission": "d08_rivers",
-			"line": "naturalist",
-			"place": "The Barra do Rio Negro",
-			"date": "2778",
-			"point": [
-				-60.0,
-				-3.1
-			],
-			"nudge": [
-				0,
-				0
-			],
-			"title": "Down the Rivers",
-			"after": [
-				"d06_queen"
-			],
-			"about": "Valadares holds the Barra against the swarm in the floods and brings the people of Nazaré out.",
-			"act2": true
-		},
-		{
-			"mission": "d09_crossroads",
-			"line": "all",
-			"place": "The São Francisco",
-			"date": "Dry season 2780",
-			"point": [
-				-43.14,
-				-11.09
-			],
-			"title": "Between Two Fires",
-			"after": [
-				"d05_aldeia",
-				"d07_spring",
-				"d08_rivers"
-			],
-			"about": "The army of Brazil marches to the fort at the crossroads; both fires find it. The Crown chooses which first.",
-			"act2": true
-		},
-		{
-			"mission": "d10_jungle",
-			"line": "all",
-			"place": "Óbidos",
-			"date": "2780",
-			"point": [
-				-55.52,
-				-1.9
-			],
-			"nudge": [
-				14,
-				-16
-			],
-			"title": "The Jungle Front",
-			"after": [
-				"d09_crossroads"
-			],
-			"about": "The army's jungle column breaks the swarm's nests on the river, Valadares leading it.",
-			"act2": true
-		},
-		{
-			"mission": "d11_siege",
-			"line": "all",
-			"place": "Concórdia's outer works",
-			"date": "2780",
-			"point": [
-				-51.6,
-				-27.3
-			],
-			"nudge": [
-				0,
-				16
-			],
-			"title": "The Siege of Concórdia",
-			"after": [
-				"d09_crossroads"
-			],
-			"about": "The army's southern column lays siege to the city of gears, Father Ferrer as Rome's witness.",
-			"act2": true
-		},
-		{
-			"mission": "d12_luanda",
-			"line": "naturalist",
-			"place": "Luanda",
-			"date": "2777",
-			"point": [
-				13.23,
-				-8.84
-			],
-			"title": "The Hold",
-			"after": [
-				"d06_queen"
-			],
-			"about": "Optional. Eggs found in a Brazilian ship's hold at Luanda: hunt what hatched before the tide takes it.",
-			"act2": true
-		},
-		{
-			"mission": "d13_goa",
-			"line": "clockmaker",
-			"place": "Goa",
-			"date": "2779",
-			"point": [
-				74.0,
-				15.4
-			],
-			"title": "The Mining Machines",
-			"after": [
-				"d04_concordia"
-			],
-			"about": "Optional. Concórdia's mining machines wake in the Viceroy's arsenal at Goa, Father Ferrer arriving.",
-			"act2": true
 		}
 	],
 	"rules": [
@@ -3429,708 +3429,6 @@
 			"mark": "fazenda",
 			"show": true,
 			"ledger": "Valadares' commission destroyed half of Lindqvist's stock."
-		},
-		{
-			"if": {
-				"done": [
-					"d10_jungle",
-					"d11_siege"
-				]
-			},
-			"regions": [
-				"caribbean",
-				"brazil_interior",
-				"potosi",
-				"virginia_interior",
-				"luanda_hinterland",
-				"mozambique",
-				"cape",
-				"moluccas",
-				"malacca",
-				"manila_lake",
-				"gold_fields",
-				"northern_shore",
-				"kongo",
-				"ethiopia",
-				"quebec",
-				"new_spain",
-				"nagasaki",
-				"sydney"
-			],
-			"to": "crown",
-			"marks": [
-				"theatre_americas",
-				"theatre_africa",
-				"theatre_indies",
-				"theatre_seas",
-				"crown_kongo",
-				"crown_ethiopia",
-				"crown_goa",
-				"crown_manila",
-				"crown_new_spain",
-				"forge_question",
-				"lisbon_town"
-			],
-			"show": true,
-			"ledger": "2781: the dangers left Brazil by the Crown's own sea roads. Four theatres burn; the year turns as you fight.",
-			"act3": true
-		},
-		{
-			"if": {
-				"done": [
-					"d10_jungle",
-					"d11_siege"
-				],
-				"any": [
-					{
-						"not_done": "d12_luanda"
-					},
-					{
-						"flag": {
-							"d12_luanda.luanda": "escaped"
-						}
-					}
-				]
-			},
-			"mark": "road_eggs",
-			"show": true,
-			"region": "luanda",
-			"to": "contested",
-			"ledger": "The eggs that got away at Luanda hatched inland: Africa starts a year behind.",
-			"act3": true
-		},
-		{
-			"if": {
-				"done": [
-					"d10_jungle",
-					"d11_siege"
-				],
-				"any": [
-					{
-						"not_done": "d13_goa"
-					},
-					{
-						"flag": {
-							"d13_goa.goa_seed": "shipped"
-						}
-					}
-				]
-			},
-			"mark": "road_machines",
-			"show": true,
-			"region": "goa",
-			"to": "contested",
-			"ledger": "The machines shipped on from Goa woke in the east: the Indies start a year behind.",
-			"act3": true
-		},
-		{
-			"if": {
-				"done": "e01_brazil"
-			},
-			"mark": "refugees_brazil",
-			"show": true,
-			"ledger": "Ruggieri brought the interior's colonists down to the coast.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e01_brazil.colonists": "many"
-				}
-			},
-			"ledger": "Most of the colonists came aboard the ships.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e01_brazil.colonists": "some"
-				}
-			},
-			"ledger": "Some of the colonists came aboard the ships.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e01_brazil.colonists": "few"
-				}
-			},
-			"ledger": "Few of the colonists came aboard the ships.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e02_potosi.potosi": "held"
-				}
-			},
-			"ledger": "The silver mountain was cleared of its machines.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e02_potosi.potosi": "lost"
-				}
-			},
-			"region": "potosi",
-			"to": "machine",
-			"ledger": "The silver mountain is the machines' now.",
-			"act3": true
-		},
-		{
-			"if": {
-				"done": "e03_virginia"
-			},
-			"mark": "refugees_virginia",
-			"show": true,
-			"region": "virginia",
-			"to": "contested",
-			"ledger": "Virginia's people crossed the river to the north, to Quebec.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e03_virginia.fairleigh": "rode_out"
-				}
-			},
-			"ledger": "Fairleigh rode out with the old troopers to buy the column its hour.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e03_virginia.fairleigh": "rode_with"
-				}
-			},
-			"ledger": "Fairleigh rode with his people to the river and over it.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e03_virginia.virginia": "many"
-				}
-			},
-			"ledger": "Most of Virginia came over the river.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e03_virginia.virginia": "some"
-				}
-			},
-			"ledger": "Some of Virginia came over the river.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e03_virginia.virginia": "few"
-				}
-			},
-			"ledger": "Few of Virginia came over the river.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e04_kongo.kongo": "stood"
-				}
-			},
-			"ledger": "The King of Kongo stood in his city with the Crown.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e04_kongo.kongo": "fell"
-				}
-			},
-			"region": "kongo",
-			"to": "brood",
-			"mark": "crown_kongo",
-			"show": false,
-			"ledger": "São Salvador fell; the King of Kongo went down the river with his people.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e04_kongo.kongo": "fell"
-				}
-			},
-			"mark": "kongo_fallen",
-			"show": true,
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e05_river.nests": "found"
-				}
-			},
-			"ledger": "From the balloon Father Inácio found the swarm's nests on the river.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e05_river.nests": "blind"
-				}
-			},
-			"ledger": "The column went up the river blind: the nests were found by their bite.",
-			"act3": true
-		},
-		{
-			"if": {
-				"done": "e06_taken"
-			},
-			"ledger": "Lindqvist was taken at his new pen in the forest, and sent to the King.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e06_taken.ruin": "sealed"
-				}
-			},
-			"mark": "ruin_sealed",
-			"show": true,
-			"ledger": "The old ruin of the labs was sealed, as the Church asked.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e06_taken.ruin": "opened"
-				}
-			},
-			"mark": "ruin_open",
-			"show": true,
-			"ledger": "The ruin's records were opened: the Brood was made, not born. Lindqvist read it himself.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e07_highlands.ethiopia": "held"
-				}
-			},
-			"ledger": "Ethiopia held its highland passes against the swarm.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e07_highlands.ethiopia": "lost"
-				}
-			},
-			"region": "ethiopia",
-			"to": "contested",
-			"ledger": "The swarm came up into Ethiopia's valleys.",
-			"act3": true
-		},
-		{
-			"if": {
-				"done": "e08_arsenal"
-			},
-			"ledger": "The arsenal of Goa was burned with the Machine's seed in it.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e08_arsenal.matthias": "alive"
-				}
-			},
-			"ledger": "Matthias came out of the arsenal alive.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e09_nagasaki.stopwork": "rung"
-				}
-			},
-			"ledger": "The stop-work was rung at Nagasaki: the city was saved, and its secret spent.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e09_nagasaki.stopwork": "kept"
-				}
-			},
-			"region": "nagasaki",
-			"to": "contested",
-			"ledger": "The stop-work was kept secret for the night it is needed most. Nagasaki paid for it.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e09_nagasaki.nagasaki": "many"
-				}
-			},
-			"ledger": "Most of Nagasaki's Christians came through.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e09_nagasaki.nagasaki": "some"
-				}
-			},
-			"ledger": "Some of Nagasaki's Christians came through.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e09_nagasaki.nagasaki": "few"
-				}
-			},
-			"ledger": "Few of Nagasaki's Christians came through.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e10_manila.manila": "held"
-				}
-			},
-			"ledger": "Manila's militia took the lake's foundries back.",
-			"mark": "road_manila",
-			"show": true,
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e10_manila.manila": "lost"
-				}
-			},
-			"region": "manila_lake",
-			"to": "machine",
-			"ledger": "The lake's foundries cast for the machines.",
-			"act3": true
-		},
-		{
-			"if": {
-				"done": "e11_spice"
-			},
-			"mark": "road_spice_eggs",
-			"show": true,
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e11_spice.spice": "cleared"
-				}
-			},
-			"ledger": "The spice islands were cleared of both dangers.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e11_spice.spice": "burning"
-				}
-			},
-			"region": "moluccas",
-			"to": "contested",
-			"ledger": "The spice islands burn: machines on one, the swarm on the next.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e12_exiles.exiles": "canister"
-				}
-			},
-			"region": "sydney",
-			"to": "contested",
-			"ledger": "The exiles' rising was ended with canister. Sydney is quiet and uneasy.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e12_exiles.exiles": "pardon"
-				}
-			},
-			"ledger": "The exiles were pardoned in the King's name, and took up the Crown's muskets.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e13_gold.goldfields": "held"
-				}
-			},
-			"ledger": "The gold fields were cleared of the Manila ship's machines.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e13_gold.goldfields": "lost"
-				}
-			},
-			"region": "gold_fields",
-			"to": "machine",
-			"ledger": "The machines dig the gold fields still.",
-			"act3": true
-		},
-		{
-			"if": {
-				"done": "e14_shore"
-			},
-			"mark": "road_hulk",
-			"show": true,
-			"ledger": "A drifting hulk came ashore in the north: the ship that left Luanda years ago.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e14_shore.shore": "green"
-				}
-			},
-			"region": "northern_shore",
-			"to": "brood",
-			"ledger": "The creatures took the mangroves of the northern shore.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e14_shore.shore": "burned"
-				}
-			},
-			"ledger": "The rangers burned the nests on the northern shore.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e15_forge.forge": "broken"
-				}
-			},
-			"mark": "forge_broken",
-			"show": true,
-			"ledger": "The Cold Forge was broken in the ice.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e15_forge.forge": "broken"
-				}
-			},
-			"mark": "forge_question",
-			"show": false,
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e15_forge.forge": "standing"
-				}
-			},
-			"ledger": "The Cold Forge still works in the long night.",
-			"act3": true
-		},
-		{
-			"if": {
-				"any": [
-					{
-						"done": "e16_lisbon"
-					},
-					{
-						"done": "e17_goa"
-					},
-					{
-						"done": "e18_port"
-					}
-				]
-			},
-			"ledger": "2790, the vigil of Pentecost: the night the world caught fire. The clock has stopped.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e16_lisbon.lisbon": "held"
-				}
-			},
-			"ledger": "Lisbon held through the night; the fleet sailed for the Tiber.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e16_lisbon.lisbon": "burning"
-				}
-			},
-			"marks": [
-				"lisbon_burning"
-			],
-			"show": true,
-			"ledger": "Lisbon burned through the night.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e17_goa.goa_night": "held"
-				}
-			},
-			"ledger": "Goa held through the night. Father Ferrer died there, beside the man he warned in 2767.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e17_goa.goa_night": "lost"
-				}
-			},
-			"region": "goa",
-			"to": "machine",
-			"mark": "goa_fallen",
-			"show": true,
-			"ledger": "Goa was lost on the night. Father Ferrer died there, beside the man he warned in 2767.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e18_port.atlantic": "held"
-				}
-			},
-			"ledger": "The Atlantic port held: its men are on the sea to Rome.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e18_port.atlantic": "lost"
-				}
-			},
-			"ledger": "The Atlantic port was lost on the night.",
-			"act3": true
-		},
-		{
-			"if": {
-				"done": "e19_tiber"
-			},
-			"marks": [
-				"siege_rome",
-				"fleet_rome"
-			],
-			"show": true,
-			"ledger": "2795: the heir took his first command at the Tiber.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e19_tiber.deserters": "spared"
-				}
-			},
-			"ledger": "The heir spared the deserters who asked to fight for Rome.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e19_tiber.deserters": "hanged"
-				}
-			},
-			"ledger": "The heir hanged the deserters at the bridge.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e20_rome.ending": "holds"
-				}
-			},
-			"ledger": "Rome holds.",
-			"act3": true
-		},
-		{
-			"if": {
-				"flag": {
-					"e20_rome.ending": "falls"
-				}
-			},
-			"region": "papal_states",
-			"to": "contested",
-			"ledger": "Rome falls. The faith carries on, at sea.",
-			"act3": true
-		},
-		{
-			"if": {
-				"done": [
-					"e01_brazil",
-					"e03_virginia",
-					"e04_kongo",
-					"e05_river",
-					"e06_taken",
-					"e08_arsenal",
-					"e09_nagasaki",
-					"e11_spice",
-					"e12_exiles",
-					"e13_gold"
-				]
-			},
-			"pin": "e16_lisbon",
-			"clock": "The night: three ports burn at once. The first you fight is the freshest; the last has grown.",
-			"act3": true
-		},
-		{
-			"if": {
-				"done": [
-					"e01_brazil",
-					"e03_virginia",
-					"e04_kongo",
-					"e05_river",
-					"e06_taken",
-					"e08_arsenal",
-					"e09_nagasaki",
-					"e11_spice",
-					"e12_exiles",
-					"e13_gold"
-				]
-			},
-			"pin": "e17_goa",
-			"clock": "The night: three ports burn at once. The first you fight is the freshest; the last has grown.",
-			"act3": true
-		},
-		{
-			"if": {
-				"done": [
-					"e01_brazil",
-					"e03_virginia",
-					"e04_kongo",
-					"e05_river",
-					"e06_taken",
-					"e08_arsenal",
-					"e09_nagasaki",
-					"e11_spice",
-					"e12_exiles",
-					"e13_gold"
-				]
-			},
-			"pin": "e18_port",
-			"clock": "The night: three ports burn at once. The first you fight is the freshest; the last has grown.",
-			"act3": true
 		},
 		{
 			"if": {
@@ -4905,6 +4203,708 @@
 			"to": "contested",
 			"ledger": "Some of the mining machines were shipped on from Goa: the first seed in Asia.",
 			"act2": true
+		},
+		{
+			"if": {
+				"done": [
+					"d10_jungle",
+					"d11_siege"
+				]
+			},
+			"regions": [
+				"caribbean",
+				"brazil_interior",
+				"potosi",
+				"virginia_interior",
+				"luanda_hinterland",
+				"mozambique",
+				"cape",
+				"moluccas",
+				"malacca",
+				"manila_lake",
+				"gold_fields",
+				"northern_shore",
+				"kongo",
+				"ethiopia",
+				"quebec",
+				"new_spain",
+				"nagasaki",
+				"sydney"
+			],
+			"to": "crown",
+			"marks": [
+				"theatre_americas",
+				"theatre_africa",
+				"theatre_indies",
+				"theatre_seas",
+				"crown_kongo",
+				"crown_ethiopia",
+				"crown_goa",
+				"crown_manila",
+				"crown_new_spain",
+				"forge_question",
+				"lisbon_town"
+			],
+			"show": true,
+			"ledger": "2781: the dangers left Brazil by the Crown's own sea roads. Four theatres burn; the year turns as you fight.",
+			"act3": true
+		},
+		{
+			"if": {
+				"done": [
+					"d10_jungle",
+					"d11_siege"
+				],
+				"any": [
+					{
+						"not_done": "d12_luanda"
+					},
+					{
+						"flag": {
+							"d12_luanda.luanda": "escaped"
+						}
+					}
+				]
+			},
+			"mark": "road_eggs",
+			"show": true,
+			"region": "luanda",
+			"to": "contested",
+			"ledger": "The eggs that got away at Luanda hatched inland: Africa starts a year behind.",
+			"act3": true
+		},
+		{
+			"if": {
+				"done": [
+					"d10_jungle",
+					"d11_siege"
+				],
+				"any": [
+					{
+						"not_done": "d13_goa"
+					},
+					{
+						"flag": {
+							"d13_goa.goa_seed": "shipped"
+						}
+					}
+				]
+			},
+			"mark": "road_machines",
+			"show": true,
+			"region": "goa",
+			"to": "contested",
+			"ledger": "The machines shipped on from Goa woke in the east: the Indies start a year behind.",
+			"act3": true
+		},
+		{
+			"if": {
+				"done": "e01_brazil"
+			},
+			"mark": "refugees_brazil",
+			"show": true,
+			"ledger": "Ruggieri brought the interior's colonists down to the coast.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e01_brazil.colonists": "many"
+				}
+			},
+			"ledger": "Most of the colonists came aboard the ships.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e01_brazil.colonists": "some"
+				}
+			},
+			"ledger": "Some of the colonists came aboard the ships.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e01_brazil.colonists": "few"
+				}
+			},
+			"ledger": "Few of the colonists came aboard the ships.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e02_potosi.potosi": "held"
+				}
+			},
+			"ledger": "The silver mountain was cleared of its machines.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e02_potosi.potosi": "lost"
+				}
+			},
+			"region": "potosi",
+			"to": "machine",
+			"ledger": "The silver mountain is the machines' now.",
+			"act3": true
+		},
+		{
+			"if": {
+				"done": "e03_virginia"
+			},
+			"mark": "refugees_virginia",
+			"show": true,
+			"region": "virginia",
+			"to": "contested",
+			"ledger": "Virginia's people crossed the river to the north, to Quebec.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e03_virginia.fairleigh": "rode_out"
+				}
+			},
+			"ledger": "Fairleigh rode out with the old troopers to buy the column its hour.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e03_virginia.fairleigh": "rode_with"
+				}
+			},
+			"ledger": "Fairleigh rode with his people to the river and over it.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e03_virginia.virginia": "many"
+				}
+			},
+			"ledger": "Most of Virginia came over the river.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e03_virginia.virginia": "some"
+				}
+			},
+			"ledger": "Some of Virginia came over the river.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e03_virginia.virginia": "few"
+				}
+			},
+			"ledger": "Few of Virginia came over the river.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e04_kongo.kongo": "stood"
+				}
+			},
+			"ledger": "The King of Kongo stood in his city with the Crown.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e04_kongo.kongo": "fell"
+				}
+			},
+			"region": "kongo",
+			"to": "brood",
+			"mark": "crown_kongo",
+			"show": false,
+			"ledger": "São Salvador fell; the King of Kongo went down the river with his people.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e04_kongo.kongo": "fell"
+				}
+			},
+			"mark": "kongo_fallen",
+			"show": true,
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e05_river.nests": "found"
+				}
+			},
+			"ledger": "From the balloon Father Inácio found the swarm's nests on the river.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e05_river.nests": "blind"
+				}
+			},
+			"ledger": "The column went up the river blind: the nests were found by their bite.",
+			"act3": true
+		},
+		{
+			"if": {
+				"done": "e06_taken"
+			},
+			"ledger": "Lindqvist was taken at his new pen in the forest, and sent to the King.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e06_taken.ruin": "sealed"
+				}
+			},
+			"mark": "ruin_sealed",
+			"show": true,
+			"ledger": "The old ruin of the labs was sealed, as the Church asked.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e06_taken.ruin": "opened"
+				}
+			},
+			"mark": "ruin_open",
+			"show": true,
+			"ledger": "The ruin's records were opened: the Brood was made, not born. Lindqvist read it himself.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e07_highlands.ethiopia": "held"
+				}
+			},
+			"ledger": "Ethiopia held its highland passes against the swarm.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e07_highlands.ethiopia": "lost"
+				}
+			},
+			"region": "ethiopia",
+			"to": "contested",
+			"ledger": "The swarm came up into Ethiopia's valleys.",
+			"act3": true
+		},
+		{
+			"if": {
+				"done": "e08_arsenal"
+			},
+			"ledger": "The arsenal of Goa was burned with the Machine's seed in it.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e08_arsenal.matthias": "alive"
+				}
+			},
+			"ledger": "Matthias came out of the arsenal alive.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e09_nagasaki.stopwork": "rung"
+				}
+			},
+			"ledger": "The stop-work was rung at Nagasaki: the city was saved, and its secret spent.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e09_nagasaki.stopwork": "kept"
+				}
+			},
+			"region": "nagasaki",
+			"to": "contested",
+			"ledger": "The stop-work was kept secret for the night it is needed most. Nagasaki paid for it.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e09_nagasaki.nagasaki": "many"
+				}
+			},
+			"ledger": "Most of Nagasaki's Christians came through.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e09_nagasaki.nagasaki": "some"
+				}
+			},
+			"ledger": "Some of Nagasaki's Christians came through.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e09_nagasaki.nagasaki": "few"
+				}
+			},
+			"ledger": "Few of Nagasaki's Christians came through.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e10_manila.manila": "held"
+				}
+			},
+			"ledger": "Manila's militia took the lake's foundries back.",
+			"mark": "road_manila",
+			"show": true,
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e10_manila.manila": "lost"
+				}
+			},
+			"region": "manila_lake",
+			"to": "machine",
+			"ledger": "The lake's foundries cast for the machines.",
+			"act3": true
+		},
+		{
+			"if": {
+				"done": "e11_spice"
+			},
+			"mark": "road_spice_eggs",
+			"show": true,
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e11_spice.spice": "cleared"
+				}
+			},
+			"ledger": "The spice islands were cleared of both dangers.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e11_spice.spice": "burning"
+				}
+			},
+			"region": "moluccas",
+			"to": "contested",
+			"ledger": "The spice islands burn: machines on one, the swarm on the next.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e12_exiles.exiles": "canister"
+				}
+			},
+			"region": "sydney",
+			"to": "contested",
+			"ledger": "The exiles' rising was ended with canister. Sydney is quiet and uneasy.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e12_exiles.exiles": "pardon"
+				}
+			},
+			"ledger": "The exiles were pardoned in the King's name, and took up the Crown's muskets.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e13_gold.goldfields": "held"
+				}
+			},
+			"ledger": "The gold fields were cleared of the Manila ship's machines.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e13_gold.goldfields": "lost"
+				}
+			},
+			"region": "gold_fields",
+			"to": "machine",
+			"ledger": "The machines dig the gold fields still.",
+			"act3": true
+		},
+		{
+			"if": {
+				"done": "e14_shore"
+			},
+			"mark": "road_hulk",
+			"show": true,
+			"ledger": "A drifting hulk came ashore in the north: the ship that left Luanda years ago.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e14_shore.shore": "green"
+				}
+			},
+			"region": "northern_shore",
+			"to": "brood",
+			"ledger": "The creatures took the mangroves of the northern shore.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e14_shore.shore": "burned"
+				}
+			},
+			"ledger": "The rangers burned the nests on the northern shore.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e15_forge.forge": "broken"
+				}
+			},
+			"mark": "forge_broken",
+			"show": true,
+			"ledger": "The Cold Forge was broken in the ice.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e15_forge.forge": "broken"
+				}
+			},
+			"mark": "forge_question",
+			"show": false,
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e15_forge.forge": "standing"
+				}
+			},
+			"ledger": "The Cold Forge still works in the long night.",
+			"act3": true
+		},
+		{
+			"if": {
+				"any": [
+					{
+						"done": "e16_lisbon"
+					},
+					{
+						"done": "e17_goa"
+					},
+					{
+						"done": "e18_port"
+					}
+				]
+			},
+			"ledger": "2790, the vigil of Pentecost: the night the world caught fire. The clock has stopped.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e16_lisbon.lisbon": "held"
+				}
+			},
+			"ledger": "Lisbon held through the night; the fleet sailed for the Tiber.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e16_lisbon.lisbon": "burning"
+				}
+			},
+			"marks": [
+				"lisbon_burning"
+			],
+			"show": true,
+			"ledger": "Lisbon burned through the night.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e17_goa.goa_night": "held"
+				}
+			},
+			"ledger": "Goa held through the night. Father Ferrer died there, beside the man he warned in 2767.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e17_goa.goa_night": "lost"
+				}
+			},
+			"region": "goa",
+			"to": "machine",
+			"mark": "goa_fallen",
+			"show": true,
+			"ledger": "Goa was lost on the night. Father Ferrer died there, beside the man he warned in 2767.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e18_port.atlantic": "held"
+				}
+			},
+			"ledger": "The Atlantic port held: its men are on the sea to Rome.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e18_port.atlantic": "lost"
+				}
+			},
+			"ledger": "The Atlantic port was lost on the night.",
+			"act3": true
+		},
+		{
+			"if": {
+				"done": "e19_tiber"
+			},
+			"marks": [
+				"siege_rome",
+				"fleet_rome"
+			],
+			"show": true,
+			"ledger": "2795: the heir took his first command at the Tiber.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e19_tiber.deserters": "spared"
+				}
+			},
+			"ledger": "The heir spared the deserters who asked to fight for Rome.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e19_tiber.deserters": "hanged"
+				}
+			},
+			"ledger": "The heir hanged the deserters at the bridge.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e20_rome.ending": "holds"
+				}
+			},
+			"ledger": "Rome holds.",
+			"act3": true
+		},
+		{
+			"if": {
+				"flag": {
+					"e20_rome.ending": "falls"
+				}
+			},
+			"region": "papal_states",
+			"to": "contested",
+			"ledger": "Rome falls. The faith carries on, at sea.",
+			"act3": true
+		},
+		{
+			"if": {
+				"done": [
+					"e01_brazil",
+					"e03_virginia",
+					"e04_kongo",
+					"e05_river",
+					"e06_taken",
+					"e08_arsenal",
+					"e09_nagasaki",
+					"e11_spice",
+					"e12_exiles",
+					"e13_gold"
+				]
+			},
+			"pin": "e16_lisbon",
+			"clock": "The night: three ports burn at once. The first you fight is the freshest; the last has grown.",
+			"act3": true
+		},
+		{
+			"if": {
+				"done": [
+					"e01_brazil",
+					"e03_virginia",
+					"e04_kongo",
+					"e05_river",
+					"e06_taken",
+					"e08_arsenal",
+					"e09_nagasaki",
+					"e11_spice",
+					"e12_exiles",
+					"e13_gold"
+				]
+			},
+			"pin": "e17_goa",
+			"clock": "The night: three ports burn at once. The first you fight is the freshest; the last has grown.",
+			"act3": true
+		},
+		{
+			"if": {
+				"done": [
+					"e01_brazil",
+					"e03_virginia",
+					"e04_kongo",
+					"e05_river",
+					"e06_taken",
+					"e08_arsenal",
+					"e09_nagasaki",
+					"e11_spice",
+					"e12_exiles",
+					"e13_gold"
+				]
+			},
+			"pin": "e18_port",
+			"clock": "The night: three ports burn at once. The first you fight is the freshest; the last has grown.",
+			"act3": true
 		}
 	],
 	"notes": [

@@ -1,0 +1,750 @@
+# THE WAR MAP's ACT 3 (job act3-warmap, docs/war_map_act3.md): the world and theatre views, Act 3's regions, marks,
+# pins, rules, notes and THE CLOCK's words. EVERY LINE IS A PLACEHOLDER for the owner.
+
+> THE WORLD
+pt O MUNDO
+es EL MUNDO
+
+> THE AMERICAS
+pt AS AMÉRICAS
+es LAS AMÉRICAS
+
+> AFRICA
+pt ÁFRICA
+es ÁFRICA
+
+> THE INDIES
+pt AS ÍNDIAS
+es LAS INDIAS
+
+> THE SOUTHERN SEAS
+pt OS MARES DO SUL
+es LOS MARES DEL SUR
+
+> EUROPE
+pt EUROPA
+es EUROPA
+
+> The Caribbean
+pt O Caribe
+es El Caribe
+
+> Brazil's interior
+pt O interior do Brasil
+es El interior de Brasil
+
+> Potosí
+pt Potosí
+es Potosí
+
+> Quebec
+pt Quebec
+es Quebec
+
+> New Spain
+pt Nova Espanha
+es Nueva España
+
+> The Kingdom of Kongo
+pt O Reino do Congo
+es El Reino del Congo
+
+> Luanda's hinterland
+pt O sertão de Luanda
+es El interior de Luanda
+
+> Mozambique
+pt Moçambique
+es Mozambique
+
+> The Cape
+pt O Cabo
+es El Cabo
+
+> Ethiopia
+pt Etiópia
+es Etiopía
+
+> Malacca
+pt Malaca
+es Malaca
+
+> Manila and the lake
+pt Manila e a lagoa
+es Manila y la laguna
+
+> The Moluccas
+pt As Molucas
+es Las Molucas
+
+> Nagasaki
+pt Nagasaki
+es Nagasaki
+
+> Sydney Cove
+pt A enseada de Sydney
+es La ensenada de Sídney
+
+> The gold fields
+pt Os campos de ouro
+es Los campos de oro
+
+> The northern shore
+pt A costa norte
+es La costa norte
+
+> The King of Kongo
+pt O Rei do Congo
+es El Rey del Congo
+
+> The Emperor of Ethiopia
+pt O Imperador da Etiópia
+es El Emperador de Etiopía
+
+> The Viceroy of Goa
+pt O Vice-Rei de Goa
+es El Virrey de Goa
+
+> Manila
+pt Manila
+es Manila
+
+> São Salvador, fallen
+pt São Salvador, caída
+es São Salvador, caída
+
+> The ruin, sealed
+pt A ruína, selada
+es La ruina, sellada
+
+> The ruin: its records opened
+pt A ruína: os seus registos abertos
+es La ruina: sus registros abiertos
+
+> Beyond the map
+pt Além do mapa
+es Más allá del mapa
+
+> The Cold Forge, broken
+pt A Forja Fria, quebrada
+es La Forja Fría, rota
+
+> Lisbon
+pt Lisboa
+es Lisboa
+
+> Lisbon, burning
+pt Lisboa em chamas
+es Lisboa en llamas
+
+> Goa, lost on the night
+pt Goa, perdida naquela noite
+es Goa, perdida aquella noche
+
+> The siege of Rome
+pt O cerco de Roma
+es El asedio de Roma
+
+> The fleet off the Tiber's mouth
+pt A frota diante da foz do Tibre
+es La flota ante la boca del Tíber
+
+> Brazil, the road to the coast
+pt Brasil, a estrada para a costa
+es Brasil, el camino a la costa
+
+> 2781
+pt 2781
+es 2781
+
+> 2782
+pt 2782
+es 2782
+
+> 2783
+pt 2783
+es 2783
+
+> 2784
+pt 2784
+es 2784
+
+> 2785
+pt 2785
+es 2785
+
+> 2786
+pt 2786
+es 2786
+
+> 2787
+pt 2787
+es 2787
+
+> 2788
+pt 2788
+es 2788
+
+> 2789
+pt 2789
+es 2789
+
+> 2795
+pt 2795
+es 2795
+
+> Brazil After the Fires
+pt O Brasil depois dos fogos
+es Brasil después de los fuegos
+
+> Potosí, the Andes
+pt Potosí, os Andes
+es Potosí, los Andes
+
+> The Silver Mountain
+pt A Montanha de Prata
+es La Montaña de Plata
+
+> Virginia
+pt Virgínia
+es Virginia
+
+> The Last Ride of the Governor
+pt A última cavalgada do Governador
+es La última cabalgada del Gobernador
+
+> São Salvador do Congo
+pt São Salvador do Congo
+es São Salvador del Congo
+
+> The Congo
+pt O Congo
+es El Congo
+
+> Up the Great River
+pt Rio Grande acima
+es Río Grande arriba
+
+> A station in the forest
+pt Uma estação na floresta
+es Una estación en el bosque
+
+> The Naturalist Taken
+pt O Naturalista preso
+es El Naturalista apresado
+
+> The Ethiopian highlands
+pt As terras altas da Etiópia
+es Las tierras altas de Etiopía
+
+> The Highland Wall
+pt A Muralha das Terras Altas
+es La Muralla de las Tierras Altas
+
+> Goa
+pt Goa
+es Goa
+
+> The Arsenal of Goa
+pt O Arsenal de Goa
+es El Arsenal de Goa
+
+> The Praying Clockmakers
+pt Os relojoeiros que rezam
+es Los relojeros que rezan
+
+> The Foundries of Manila
+pt As fundições de Manila
+es Las fundiciones de Manila
+
+> The Spice Islands
+pt As Ilhas das Especiarias
+es Las Islas de las Especias
+
+> The Exiles' Rising
+pt O levante dos exilados
+es El levantamiento de los exiliados
+
+> The Gold Fields
+pt Os Campos de Ouro
+es Los Campos de Oro
+
+> The Northern Shore
+pt A Costa Norte
+es La Costa Norte
+
+> The edge of Antarctica
+pt A orla da Antártida
+es El borde de la Antártida
+
+> The Cold Forge
+pt A Forja Fria
+es La Forja Fría
+
+> Pentecost eve 2790
+pt Véspera de Pentecostes de 2790
+es Víspera de Pentecostés de 2790
+
+> Lisbon (the night)
+pt Lisboa (a noite)
+es Lisboa (la noche)
+
+> Goa (the night)
+pt Goa (a noite)
+es Goa (la noche)
+
+> The Atlantic port
+pt O porto atlântico
+es El puerto atlántico
+
+> The Atlantic Port (the night)
+pt O Porto Atlântico (a noite)
+es El Puerto Atlántico (la noche)
+
+> The Tiber
+pt O Tibre
+es El Tíber
+
+> Rome
+pt Roma
+es Roma
+
+> 2781: the dangers left Brazil by the Crown's own sea roads. Four theatres burn; the year turns as you fight.
+pt 2781: os perigos saíram do Brasil pelas próprias rotas da Coroa. Quatro teatros ardem; o ano vira enquanto lutas.
+es 2781: los peligros salieron de Brasil por las propias rutas de la Corona. Cuatro teatros arden; el año gira mientras luchas.
+
+> The eggs that got away at Luanda hatched inland: Africa starts a year behind.
+pt Os ovos que escaparam em Luanda eclodiram no interior: a África começa um ano atrasada.
+es Los huevos que escaparon en Luanda eclosionaron tierra adentro: África empieza un año atrasada.
+
+> The machines shipped on from Goa woke in the east: the Indies start a year behind.
+pt As máquinas embarcadas em Goa acordaram no oriente: as Índias começam um ano atrasadas.
+es Las máquinas embarcadas en Goa despertaron en oriente: las Indias empiezan un año atrasadas.
+
+> Ruggieri brought the interior's colonists down to the coast.
+pt Ruggieri trouxe os colonos do interior até à costa.
+es Ruggieri bajó a los colonos del interior hasta la costa.
+
+> Most of the colonists came aboard the ships.
+pt A maioria dos colonos embarcou nos navios.
+es La mayoría de los colonos embarcó en los barcos.
+
+> Some of the colonists came aboard the ships.
+pt Alguns dos colonos embarcaram nos navios.
+es Algunos de los colonos embarcaron en los barcos.
+
+> Few of the colonists came aboard the ships.
+pt Poucos colonos embarcaram nos navios.
+es Pocos colonos embarcaron en los barcos.
+
+> The silver mountain was cleared of its machines.
+pt A montanha de prata foi limpa das suas máquinas.
+es La montaña de plata quedó limpia de sus máquinas.
+
+> The silver mountain is the machines' now.
+pt A montanha de prata é agora das máquinas.
+es La montaña de plata es ahora de las máquinas.
+
+> Virginia's people crossed the river to the north, to Quebec.
+pt O povo da Virgínia atravessou o rio para o norte, para Quebec.
+es La gente de Virginia cruzó el río hacia el norte, hacia Quebec.
+
+> Fairleigh rode out with the old troopers to buy the column its hour.
+pt Fairleigh saiu a cavalo com os velhos soldados para dar à coluna a sua hora.
+es Fairleigh salió a caballo con los viejos soldados para ganar a la columna su hora.
+
+> Fairleigh rode with his people to the river and over it.
+pt Fairleigh cavalgou com o seu povo até ao rio e para lá dele.
+es Fairleigh cabalgó con su gente hasta el río y más allá.
+
+> Most of Virginia came over the river.
+pt A maior parte da Virgínia atravessou o rio.
+es La mayor parte de Virginia cruzó el río.
+
+> Some of Virginia came over the river.
+pt Parte da Virgínia atravessou o rio.
+es Parte de Virginia cruzó el río.
+
+> Few of Virginia came over the river.
+pt Pouco da Virgínia atravessou o rio.
+es Poca gente de Virginia cruzó el río.
+
+> The King of Kongo stood in his city with the Crown.
+pt O Rei do Congo resistiu na sua cidade com a Coroa.
+es El Rey del Congo resistió en su ciudad con la Corona.
+
+> São Salvador fell; the King of Kongo went down the river with his people.
+pt São Salvador caiu; o Rei do Congo desceu o rio com o seu povo.
+es São Salvador cayó; el Rey del Congo bajó el río con su pueblo.
+
+> From the balloon Father Inácio found the swarm's nests on the river.
+pt Do balão o Padre Inácio encontrou os ninhos do enxame no rio.
+es Desde el globo el Padre Inácio encontró los nidos del enjambre en el río.
+
+> The column went up the river blind: the nests were found by their bite.
+pt A coluna subiu o rio às cegas: os ninhos foram achados pela sua mordida.
+es La columna subió el río a ciegas: los nidos se hallaron por su mordedura.
+
+> Lindqvist was taken at his new pen in the forest, and sent to the King.
+pt Lindqvist foi preso no seu novo cercado na floresta e enviado ao Rei.
+es Lindqvist fue apresado en su nuevo corral del bosque y enviado al Rey.
+
+> The old ruin of the labs was sealed, as the Church asked.
+pt A velha ruína dos laboratórios foi selada, como a Igreja pediu.
+es La vieja ruina de los laboratorios fue sellada, como pidió la Iglesia.
+
+> The ruin's records were opened: the Brood was made, not born. Lindqvist read it himself.
+pt Os registos da ruína foram abertos: a Ninhada foi feita, não nasceu. Lindqvist leu-o ele mesmo.
+es Los registros de la ruina se abrieron: la Nidada fue hecha, no nacida. Lindqvist lo leyó él mismo.
+
+> Ethiopia held its highland passes against the swarm.
+pt A Etiópia segurou os seus desfiladeiros contra o enxame.
+es Etiopía sostuvo sus pasos de montaña contra el enjambre.
+
+> The swarm came up into Ethiopia's valleys.
+pt O enxame subiu aos vales da Etiópia.
+es El enjambre subió a los valles de Etiopía.
+
+> The arsenal of Goa was burned with the Machine's seed in it.
+pt O arsenal de Goa foi queimado com a semente da Máquina lá dentro.
+es El arsenal de Goa ardió con la semilla de la Máquina dentro.
+
+> Matthias came out of the arsenal alive.
+pt Matthias saiu vivo do arsenal.
+es Matthias salió vivo del arsenal.
+
+> The stop-work was rung at Nagasaki: the city was saved, and its secret spent.
+pt O travão foi tocado em Nagasaki: a cidade salvou-se e o segredo gastou-se.
+es El paro se tocó en Nagasaki: la ciudad se salvó y su secreto se gastó.
+
+> The stop-work was kept secret for the night it is needed most. Nagasaki paid for it.
+pt O travão ficou em segredo para a noite em que mais for preciso. Nagasaki pagou por isso.
+es El paro se guardó en secreto para la noche en que más se necesite. Nagasaki lo pagó.
+
+> Most of Nagasaki's Christians came through.
+pt A maioria dos cristãos de Nagasaki sobreviveu.
+es La mayoría de los cristianos de Nagasaki sobrevivió.
+
+> Some of Nagasaki's Christians came through.
+pt Alguns dos cristãos de Nagasaki sobreviveram.
+es Algunos de los cristianos de Nagasaki sobrevivieron.
+
+> Few of Nagasaki's Christians came through.
+pt Poucos cristãos de Nagasaki sobreviveram.
+es Pocos cristianos de Nagasaki sobrevivieron.
+
+> Manila's militia took the lake's foundries back.
+pt A milícia de Manila retomou as fundições da lagoa.
+es La milicia de Manila recuperó las fundiciones de la laguna.
+
+> The lake's foundries cast for the machines.
+pt As fundições da lagoa fundem para as máquinas.
+es Las fundiciones de la laguna funden para las máquinas.
+
+> The spice islands were cleared of both dangers.
+pt As ilhas das especiarias foram limpas dos dois perigos.
+es Las islas de las especias quedaron limpias de ambos peligros.
+
+> The spice islands burn: machines on one, the swarm on the next.
+pt As ilhas das especiarias ardem: máquinas numa, o enxame na seguinte.
+es Las islas de las especias arden: máquinas en una, el enjambre en la siguiente.
+
+> The exiles' rising was ended with canister. Sydney is quiet and uneasy.
+pt O levante dos exilados acabou com metralha. Sydney está calma e inquieta.
+es El levantamiento de los exiliados terminó con metralla. Sídney está en calma e inquieta.
+
+> The exiles were pardoned in the King's name, and took up the Crown's muskets.
+pt Os exilados foram perdoados em nome do Rei e pegaram nos mosquetes da Coroa.
+es Los exiliados fueron perdonados en nombre del Rey y tomaron los mosquetes de la Corona.
+
+> The gold fields were cleared of the Manila ship's machines.
+pt Os campos de ouro foram limpos das máquinas do navio de Manila.
+es Los campos de oro quedaron limpios de las máquinas del barco de Manila.
+
+> The machines dig the gold fields still.
+pt As máquinas ainda escavam os campos de ouro.
+es Las máquinas aún excavan los campos de oro.
+
+> A drifting hulk came ashore in the north: the ship that left Luanda years ago.
+pt Um casco à deriva deu à costa no norte: o navio que saiu de Luanda há anos.
+es Un casco a la deriva encalló en el norte: el barco que salió de Luanda hace años.
+
+> The creatures took the mangroves of the northern shore.
+pt As criaturas tomaram os mangais da costa norte.
+es Las criaturas tomaron los manglares de la costa norte.
+
+> The rangers burned the nests on the northern shore.
+pt Os batedores queimaram os ninhos da costa norte.
+es Los exploradores quemaron los nidos de la costa norte.
+
+> The Cold Forge was broken in the ice.
+pt A Forja Fria foi quebrada no gelo.
+es La Forja Fría fue rota en el hielo.
+
+> The Cold Forge still works in the long night.
+pt A Forja Fria ainda trabalha na longa noite.
+es La Forja Fría aún trabaja en la larga noche.
+
+> 2790, the vigil of Pentecost: the night the world caught fire. The clock has stopped.
+pt 2790, a vigília de Pentecostes: a noite em que o mundo pegou fogo. O relógio parou.
+es 2790, la vigilia de Pentecostés: la noche en que el mundo ardió. El reloj se ha parado.
+
+> Lisbon held through the night; the fleet sailed for the Tiber.
+pt Lisboa aguentou a noite; a frota partiu para o Tibre.
+es Lisboa resistió la noche; la flota zarpó hacia el Tíber.
+
+> Lisbon burned through the night.
+pt Lisboa ardeu a noite inteira.
+es Lisboa ardió toda la noche.
+
+> Goa held through the night. Father Ferrer died there, beside the man he warned in 2767.
+pt Goa aguentou a noite. O Padre Ferrer morreu lá, ao lado do homem que avisou em 2767.
+es Goa resistió la noche. El Padre Ferrer murió allí, junto al hombre al que advirtió en 2767.
+
+> Goa was lost on the night. Father Ferrer died there, beside the man he warned in 2767.
+pt Goa perdeu-se naquela noite. O Padre Ferrer morreu lá, ao lado do homem que avisou em 2767.
+es Goa se perdió aquella noche. El Padre Ferrer murió allí, junto al hombre al que advirtió en 2767.
+
+> The Atlantic port held: its men are on the sea to Rome.
+pt O porto atlântico aguentou: os seus homens estão no mar a caminho de Roma.
+es El puerto atlántico resistió: sus hombres van por mar hacia Roma.
+
+> The Atlantic port was lost on the night.
+pt O porto atlântico perdeu-se naquela noite.
+es El puerto atlántico se perdió aquella noche.
+
+> 2795: the heir took his first command at the Tiber.
+pt 2795: o herdeiro assumiu o seu primeiro comando no Tibre.
+es 2795: el heredero asumió su primer mando en el Tíber.
+
+> The heir spared the deserters who asked to fight for Rome.
+pt O herdeiro poupou os desertores que pediram para lutar por Roma.
+es El heredero perdonó a los desertores que pidieron luchar por Roma.
+
+> The heir hanged the deserters at the bridge.
+pt O herdeiro enforcou os desertores na ponte.
+es El heredero ahorcó a los desertores en el puente.
+
+> Rome holds.
+pt Roma resiste.
+es Roma resiste.
+
+> Rome falls. The faith carries on, at sea.
+pt Roma cai. A fé continua, no mar.
+es Roma cae. La fe sigue, en el mar.
+
+> The night: three ports burn at once. The first you fight is the freshest; the last has grown.
+pt A noite: três portos ardem ao mesmo tempo. O primeiro que lutares é o mais fresco; o último terá crescido.
+es La noche: tres puertos arden a la vez. El primero que luches es el más fresco; el último habrá crecido.
+
+> Ruggieri brings the colonists of the burnt interior down to the coast, the grown danger at their backs.
+pt Ruggieri traz os colonos do interior queimado até à costa, com o perigo crescido às costas.
+es Ruggieri baja a los colonos del interior quemado hasta la costa, con el peligro crecido a sus espaldas.
+
+> Optional. Something works the deep galleries of the silver mountain at night: drive the machines out of the mine.
+pt Opcional. Algo trabalha de noite nas galerias fundas da montanha de prata: expulsa as máquinas da mina.
+es Opcional. Algo trabaja de noche en las galerías hondas de la montaña de plata: echa a las máquinas de la mina.
+
+> Old Fairleigh brings Virginia's people over the river to the north, the swarm at the farms. A choice: ride out, or ride with them.
+pt O velho Fairleigh leva o povo da Virgínia para lá do rio, a norte, com o enxame nas quintas. Uma escolha: sair a cavalo, ou cavalgar com eles.
+es El viejo Fairleigh lleva a la gente de Virginia al otro lado del río, al norte, con el enjambre en las granjas. Una elección: salir a caballo, o cabalgar con ellos.
+
+> Tomasz and the Catholic King of Kongo hold his city when the swarm comes out of the hinterland.
+pt Tomasz e o Rei católico do Congo defendem a sua cidade quando o enxame sai do interior.
+es Tomasz y el Rey católico del Congo defienden su ciudad cuando el enjambre sale del interior.
+
+> Father Inácio's balloon finds the nests; Valadares takes the river column up after them.
+pt O balão do Padre Inácio acha os ninhos; Valadares leva a coluna do rio atrás deles.
+es El globo del Padre Inácio halla los nidos; Valadares lleva la columna del río tras ellos.
+
+> Valadares finds Lindqvist at a new pen beside an old ruin of the labs. A choice: seal the ruin, or open its records.
+pt Valadares encontra Lindqvist num novo cercado junto a uma velha ruína dos laboratórios. Uma escolha: selar a ruína, ou abrir os seus registos.
+es Valadares encuentra a Lindqvist en un nuevo corral junto a una vieja ruina de los laboratorios. Una elección: sellar la ruina, o abrir sus registros.
+
+> Optional. Ethiopia's highlands hold the swarm at their foot, where the nights are cold: hold the passes with the Emperor's men.
+pt Opcional. As terras altas da Etiópia travam o enxame ao seu pé, onde as noites são frias: segura os desfiladeiros com os homens do Imperador.
+es Opcional. Las tierras altas de Etiopía frenan al enjambre a su pie, donde las noches son frías: sostén los pasos con los hombres del Emperador.
+
+> The guild's last hands and Father Ferrer burn the Machine's seed out of the Viceroy's arsenal in the monsoon.
+pt As últimas mãos da guilda e o Padre Ferrer queimam a semente da Máquina no arsenal do Vice-Rei, na monção.
+es Las últimas manos del gremio y el Padre Ferrer queman la semilla de la Máquina en el arsenal del Virrey, en el monzón.
+
+> The Christian clockmakers of Nagasaki teach Hollweg how to stop it. A choice: ring the stop-work now, or keep it.
+pt Os relojoeiros cristãos de Nagasaki ensinam Hollweg a pará-la. Uma escolha: tocar o travão agora, ou guardá-lo.
+es Los relojeros cristianos de Nagasaki enseñan a Hollweg a pararla. Una elección: tocar el paro ahora, o guardarlo.
+
+> Optional. The lake's foundries cast for the Machine: Tomasz and Manila's militia take them back.
+pt Opcional. As fundições da lagoa fundem para a Máquina: Tomasz e a milícia de Manila retomam-nas.
+es Opcional. Las fundiciones de la laguna funden para la Máquina: Tomasz y la milicia de Manila las recuperan.
+
+> The machines and the swarm meet on the spice islands for the first time outside Brazil, and the Crown between them.
+pt As máquinas e o enxame encontram-se nas ilhas das especiarias pela primeira vez fora do Brasil, e a Coroa entre eles.
+es Las máquinas y el enjambre se encuentran en las islas de las especias por primera vez fuera de Brasil, y la Corona entre ellos.
+
+> The Free Assembly's exiles rise at Sydney Cove. A choice: the swift answer, canister, or the King's pardon.
+pt Os exilados da Assembleia Livre levantam-se na enseada de Sydney. Uma escolha: a resposta rápida, a metralha, ou o perdão do Rei.
+es Los exiliados de la Asamblea Libre se alzan en la ensenada de Sídney. Una elección: la respuesta rápida, la metralla, o el perdón del Rey.
+
+> Machines came on a Manila ship to dig the gold fields: Hollweg and the guild's last hands hunt them in the hills.
+pt Máquinas vieram num navio de Manila escavar os campos de ouro: Hollweg e as últimas mãos da guilda caçam-nas nas colinas.
+es Máquinas llegaron en un barco de Manila para excavar los campos de oro: Hollweg y las últimas manos del gremio las cazan en las colinas.
+
+> Optional. A drifting hulk comes ashore in the mangroves: played as the creatures it carried, told from Valadares' chart.
+pt Opcional. Um casco à deriva dá à costa nos mangais: jogado como as criaturas que trazia, contado pela carta de Valadares.
+es Opcional. Un casco a la deriva encalla en los manglares: jugado como las criaturas que traía, contado desde la carta de Valadares.
+
+> Optional. Hollweg and Valadares go south of every map to the forge the Machine keeps in the ice.
+pt Opcional. Hollweg e Valadares vão para sul de todos os mapas, à forja que a Máquina guarda no gelo.
+es Opcional. Hollweg y Valadares van al sur de todos los mapas, a la forja que la Máquina guarda en el hielo.
+
+> The night the world caught fire: Tomasz, Captain Amaral and Father Inácio at Lisbon's port and old city.
+pt A noite em que o mundo pegou fogo: Tomasz, o Capitão Amaral e o Padre Inácio no porto e na cidade velha de Lisboa.
+es La noche en que el mundo ardió: Tomasz, el Capitán Amaral y el Padre Inácio en el puerto y la ciudad vieja de Lisboa.
+
+> The same night at Goa: Hollweg and Father Ferrer at the old city and the arsenal. Ferrer's last night.
+pt A mesma noite em Goa: Hollweg e o Padre Ferrer na cidade velha e no arsenal. A última noite de Ferrer.
+es La misma noche en Goa: Hollweg y el Padre Ferrer en la ciudad vieja y el arsenal. La última noche de Ferrer.
+
+> The same night on the Atlantic: Luanda, Veracruz or Salvador, as the ledger leaves them.
+pt A mesma noite no Atlântico: Luanda, Veracruz ou Salvador, conforme o registo os deixar.
+es La misma noche en el Atlántico: Luanda, Veracruz o Salvador, según los deje el registro.
+
+> The present. The heir takes his first command at the Milvian Bridge against the Machine's vanguard.
+pt O presente. O herdeiro assume o seu primeiro comando na Ponte Mílvia contra a vanguarda da Máquina.
+es El presente. El heredero asume su primer mando en el Puente Milvio contra la vanguardia de la Máquina.
+
+> The siege of Rome, the Machine from the north and the creatures from the marshes. The final choice.
+pt O cerco de Roma, a Máquina pelo norte e as criaturas pelos pântanos. A escolha final.
+es El asedio de Roma, la Máquina por el norte y las criaturas por las marismas. La elección final.
+
+> Act 3: 2781-2790
+pt Ato 3: 2781-2790
+es Acto 3: 2781-2790
+
+> The present: 2795
+pt O presente: 2795
+es El presente: 2795
+
+> Goa. The guild's last brass map, 2783.
+pt Goa. O último mapa de latão da guilda, 2783.
+es Goa. El último mapa de latón del gremio, 2783.
+
+> Nagasaki. Where it can be stopped.
+pt Nagasaki. Onde ela pode ser parada.
+es Nagasaki. Donde puede pararse.
+
+> The gold fields: machines off a Manila ship.
+pt Os campos de ouro: máquinas de um navio de Manila.
+es Los campos de oro: máquinas de un barco de Manila.
+
+> South of every map: the forge in the ice.
+pt A sul de todos os mapas: a forja no gelo.
+es Al sur de todos los mapas: la forja en el hielo.
+
+> Up the great river: the swarm's roads (V.).
+pt Rio grande acima: as estradas do enxame (V.).
+es Río grande arriba: los caminos del enjambre (V.).
+
+> Nests on every bend above the falls, marked from the balloon.
+pt Ninhos em cada curva acima das quedas, marcados do balão.
+es Nidos en cada recodo sobre las cataratas, marcados desde el globo.
+
+> L.: they were made. I was wrong about the one thing that mattered.
+pt L.: foram feitos. Enganei-me na única coisa que importava.
+es L.: fueron hechos. Me equivoqué en lo único que importaba.
+
+> L.: the heat hurries them; the cold nights stop them.
+pt L.: o calor apressa-os; as noites frias param-nos.
+es L.: el calor los apresura; las noches frías los detienen.
+
+> Eggs from the Barra, by a Brazilian ship (V.).
+pt Ovos da Barra, num navio brasileiro (V.).
+es Huevos de la Barra, en un barco brasileño (V.).
+
+> The Luanda hulk, ashore at last.
+pt O casco de Luanda, por fim em terra.
+es El casco de Luanda, por fin en tierra.
+
+> %s: %s fell to the creatures.
+pt %s: %s caiu para as criaturas.
+es %s: %s cayó ante las criaturas.
+
+> %s: %s fell to the machines.
+pt %s: %s caiu para as máquinas.
+es %s: %s cayó ante las máquinas.
+
+> %s: %s was taken back.
+pt %s: %s foi retomado.
+es %s: %s fue recuperado.
+
+> The year %s
+pt O ano de %s
+es El año %s
+
+> Colonies held: %s of %s
+pt Colónias mantidas: %s de %s
+es Colonias en pie: %s de %s
+
+> The night has come: the clock has stopped.
+pt A noite chegou: o relógio parou.
+es Ha llegado la noche: el reloj se ha parado.
+
+> Next to fall, in %s wins: %s (%s)
+pt A próxima a cair, em %s vitórias: %s (%s)
+es La próxima en caer, en %s victorias: %s (%s)
+
+> No colony is at risk at the next turn of the year.
+pt Nenhuma colónia corre perigo na próxima virada do ano.
+es Ninguna colonia corre peligro en el próximo cambio de año.
+
+> SETTLED
+pt ASSENTE
+es ASENTADO
+
+> Fought this year
+pt Combatido este ano
+es Combatido este año
+
+> Left alone %s years
+pt Deixado sozinho há %s anos
+es Dejado solo %s años
+
+> Left alone 1 year
+pt Deixado sozinho há 1 ano
+es Dejado solo 1 año
+
+> NEXT TO FALL
+pt O PRÓXIMO A CAIR
+es EL PRÓXIMO EN CAER
+
+> THE CLOCK
+pt O RELÓGIO
+es EL RELOJ
+
+> The year turns after every two wins; the theatre left alone longest then loses a colony.
+pt O ano vira a cada duas vitórias; o teatro deixado sozinho há mais tempo perde então uma colónia.
+es El año gira cada dos victorias; el teatro dejado solo más tiempo pierde entonces una colonia.
+
+> settled
+pt assente
+es asentado
+
+> next to fall
+pt o próximo a cair
+es el próximo en caer
+
+> fallen
+pt caída
+es caída
+
+> OPTIONAL: it holds its theatre, and turns half a year
+pt OPCIONAL: segura o seu teatro e vira meio ano
+es OPCIONAL: sostiene su teatro y gira medio año
+
+> Closed: the night came before it was fought.
+pt Fechado: a noite chegou antes de ser combatido.
+es Cerrado: la noche llegó antes de combatirse.
+
+> The clock took this colony: winning here takes it back.
+pt O relógio levou esta colónia: vencer aqui retoma-a.
+es El reloj se llevó esta colonia: vencer aquí la recupera.

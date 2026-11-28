@@ -327,8 +327,10 @@ func _run() -> void:
 	_data()
 	_states()
 	_act2()
+	_act3()
 	await _ui()
 	await _ui_act2()
+	await _ui_act3()
 	_finish()
 
 
@@ -570,3 +572,199 @@ func _ui_act2() -> void:
 	_press_back()
 	await process_frame
 	CampaignMenu.map_skin = "parchment"
+
+
+# ------------------------------------------------------------------ ACT 3 (act3-warmap, docs/war_map_act3.md)
+
+const ACT3_PINS := ["e01_brazil", "e02_potosi", "e03_virginia", "e04_kongo", "e05_river", "e06_taken", "e07_highlands",
+	"e08_arsenal", "e09_nagasaki", "e10_manila", "e11_spice", "e12_exiles", "e13_gold", "e14_shore", "e15_forge",
+	"e16_lisbon", "e17_goa", "e18_port", "e19_tiber", "e20_rome"]
+
+
+## Act 2 finished (both fronts won), then these Act 3 missions won in this order: [[mission, {flags}], ...].
+func _act3p(wins: Array, extra := {}) -> Dictionary:
+	var d := {"d09_crossroads": ["crown", {"first": "brood"}], "d10_jungle": ["crown", {}], "d11_siege": ["crown", {}]}
+	d.merge(extra, true)
+	var p := _act1(d)
+	var seq := 10
+	for w in wins:
+		seq += 1
+		p["done"][String(w[0])] = {"won_by": "crown", "seq": seq, "flags": w[1] if w.size() > 1 else {}}
+	return p
+
+
+func _act3() -> void:
+	var d := WarMapData.data()
+	# ---- the views and the acts
+	var v1: Array = WarMapData.views_for(1).map(func(v) -> String: return String(v["id"]))
+	var v3: Array = WarMapData.views_for(3).map(func(v) -> String: return String(v["id"]))
+	check("act 3: the views of Acts 1-2 stay as they were", v1.has("world") and v1.has("europe") and not v1.has("globe"), str(v1))
+	check("act 3: THE WORLD (the whole globe), the four theatres and EUROPE", v3 == ["globe", "americas", "africa", "indies", "seas", "europe3"], str(v3))
+	var b: Array = d["bounds"]
+	check("act 3: the map reaches Japan, Australia and the edge of the ice", float(b[2]) >= 160.0 and float(b[1]) <= -68.0, str(b))
+	var lb := Rect2()
+	var first := true
+	for flat in WarMapData.land()["land"]:
+		for q in WarMapData.ring(flat):
+			lb = Rect2(q, Vector2.ZERO) if first else lb.expand(q)
+			first = false
+	check("act 3: the land is drawn out to the new bounds", lb.end.x >= 160.0 and lb.end.y >= WarMapData.to_map(0, -66).y, str(lb))
+	var a2 := WarMapData.act(_act1({}))
+	var a3 := WarMapData.act(_act3p([]))
+	check("act 3: opens once both fronts are won, on THE WORLD", int(a3["act"]) == 3 and String(a3["view"]) == "globe" and int(a2["act"]) == 2, str(a3))
+	var a4 := WarMapData.act(_act3p([["e16_lisbon"], ["e17_goa"], ["e18_port"]]))
+	check("act 3: after the night, the present (EUROPE)", int(a4["act"]) == 4 and String(a4["view"]) == "europe3", str(a4))
+	# ---- the pins
+	var missing: Array = []
+	var bare: Array = []
+	var sea: Array = []
+	for mid in ACT3_PINS:
+		var pn := WarMapData.pin_of(mid)
+		if pn.is_empty():
+			missing.append(mid)
+			continue
+		if int(pn.get("act", 1)) != 3 or (Campaign.storyline_of(mid).is_empty() and (String(pn.get("title", "")) == "" or String(pn.get("about", "")) == "")):
+			bare.append(mid)
+		if not _on_land(pn["point"]):
+			sea.append(mid)
+	check("act 3: a pin for every mission e01-e20", missing.is_empty(), str(missing))
+	check("act 3: every planned pin has its title and its about line (SAY IT PLAINLY)", bare.is_empty(), str(bare))
+	check("act 3: every pin on land (the Cold Forge on the ice)", sea.is_empty(), str(sea))
+	var opt: Array = []
+	for pn in d["pins"]:
+		if bool(pn.get("optional", false)) and String(pn["mission"]).begins_with("e"):
+			opt.append(String(pn["mission"]))
+	check("act 3: the five optional pins", opt == ["e02_potosi", "e07_highlands", "e10_manila", "e14_shore", "e15_forge"], str(opt))
+	# ---- the clock's data
+	var ck: Dictionary = d["clock"]
+	var cols := 0
+	for t in ck["theatres"]:
+		cols += (t["colonies"] as Array).size()
+		for c in t["colonies"]:
+			check("act 3: the colony %s is a region with an outline" % c["region"], WarMapData.region_outline(WarMapData.region_of(String(c["region"]))).size() >= 3)
+	check("act 3: twelve colonies on the clock", cols == 12, str(cols))
+	# ---- the clock: off before the act, the start
+	check("act 3: no clock before Act 3", not bool(WarMapData.clock(_act1({}))["on"]))
+	var c0 := WarMapData.clock(_act3p([]))
+	check("act 3: the clock starts in 2781, every colony held", bool(c0["on"]) and int(c0["year"]) == 2781 and (c0["fallen"] as Array).is_empty())
+	check("act 3: Africa is next at risk (the eggs got away at Luanda: a year's head start; the swarm is quicker)", String(c0["risk"]) == "africa", String(c0["risk"]))
+	var st0 := WarMapData.state(_act3p([]))
+	var held := 0
+	for t in ck["theatres"]:
+		for c in t["colonies"]:
+			if String(st0["regions"][String(c["region"])]) == "crown":
+				held += 1
+	check("act 3: at the start every colony is the Crown's on the map", held == 12, str(held))
+	# ---- a scripted order: the Americas left alone
+	var order := [["e04_kongo"], ["e05_river"], ["e08_arsenal"], ["e09_nagasaki"], ["e12_exiles"], ["e13_gold"]]
+	var c1 := WarMapData.clock(_act3p(order))
+	var fr: Array = (c1["fallen"] as Array).map(func(f) -> String: return String(f["region"]))
+	check("act 3: six wins turn three years", int(c1["year"]) == 2784 and int(c1["turns"]) == 3, str(c1["year"]))
+	check("act 3: the theatres left alone lose: the Moluccas, then the Americas twice", fr == ["moluccas", "caribbean", "brazil_interior"], str(fr))
+	check("act 3: one colony a year at most", fr.size() <= int(c1["turns"]))
+	check("act 3: the Southern Seas settled after e12 and e13", (c1["settled"] as Array).has("seas"), str(c1["settled"]))
+	check("act 3: Brazil's interior falls to the danger left to grow (d09 first: the swarm, so the machines)",
+		(c1["fallen"] as Array).any(func(f) -> bool: return String(f["region"]) == "brazil_interior" and String(f["to"]) == "machine"))
+	var s1 := WarMapData.state(_act3p(order))
+	check("act 3: the fallen colonies change hands on the map", String(s1["regions"]["moluccas"]) == "machine" and String(s1["regions"]["caribbean"]) == "brood")
+	var fl: Array = (s1["ledger"] as Array).filter(func(e) -> bool: return bool(e.get("clock", false)))
+	check("act 3: a ledger line for every fallen colony", fl.size() == 3 and WarMapData.ledger_text(fl[0]).contains("2782"), WarMapData.ledger_text(fl[0]) if not fl.is_empty() else "")
+	# ---- taken back
+	var c2 := WarMapData.clock(_act3p(order + [["e11_spice", {"spice": "cleared"}]]))
+	check("act 3: the spice islands cleared take the Moluccas back", (c2["reclaimed"] as Array).any(func(r) -> bool: return String(r["region"]) == "moluccas")
+		and not (c2["fallen"] as Array).any(func(f) -> bool: return String(f["region"]) == "moluccas"))
+	var c2b := WarMapData.clock(_act3p(order + [["e11_spice", {"spice": "burning"}]]))
+	check("act 3: the spice islands burning do not", (c2b["reclaimed"] as Array).is_empty())
+	# ---- the sparks of Act 2 stopped: no head start
+	var c3 := WarMapData.clock(_act3p([], {"d12_luanda": ["crown", {"luanda": "clean"}], "d13_goa": ["crown", {"goa_seed": "smashed"}]}))
+	check("act 3: with d12 and d13 stopped no theatre is at risk at the first turn", String(c3["risk"]) == "", String(c3["risk"]))
+	# ---- a careful order loses nothing; the night stops the clock
+	var careful := [["e04_kongo"], ["e08_arsenal"], ["e01_brazil"], ["e12_exiles"], ["e05_river"], ["e09_nagasaki"],
+		["e03_virginia"], ["e13_gold"], ["e06_taken"], ["e11_spice"]]
+	var c4 := WarMapData.clock(_act3p(careful))
+	check("act 3: a careful order keeps every colony", (c4["fallen"] as Array).is_empty() and (c4["settled"] as Array).size() == 4, str(c4["fallen"]))
+	var pn5 := _act3p(careful + [["e16_lisbon"], ["e07_highlands"]])
+	var c5 := WarMapData.clock(pn5)
+	check("act 3: the night stops the clock (an optional one after it turns nothing)", bool(c5["stopped"]) and int(c5["year"]) == int(c4["year"]))
+	var s5 := WarMapData.state(pn5)
+	check("act 3: the night closes the optional pins not played", bool(s5["pins"]["e02_potosi"].get("closed", false)) and not bool(s5["pins"]["e07_highlands"].get("closed", false)))
+	check("act 3: the night's three pins wear the night's clock", String(WarMapData.state(_act3p(careful))["pins"]["e17_goa"]["clock"]) != "")
+	# ---- every skin, every Act 3 flag pair: a sound state
+	var flags := {"e01_brazil": {"colonists": ["few", "many"]}, "e03_virginia": {"fairleigh": ["rode_out", "rode_with"]},
+		"e04_kongo": {"kongo": ["stood", "fell"]}, "e06_taken": {"ruin": ["sealed", "opened"]}, "e09_nagasaki": {"stopwork": ["rung", "kept"]},
+		"e12_exiles": {"exiles": ["canister", "pardon"]}, "e17_goa": {"goa_night": ["held", "lost"]}, "e20_rome": {"ending": ["holds", "falls"]}}
+	var bad := 0
+	var n := 0
+	for sk in WarMapData.SKINS:
+		for k in 2:
+			var ws: Array = []
+			for mid in flags:
+				var f := {}
+				for fk in flags[mid]:
+					f[fk] = flags[mid][fk][k]
+				ws.append([mid, f])
+			var s := WarMapData.state(_act3p(ws), sk)
+			n += 1
+			for rk in s["regions"]:
+				if not WarMapData.HOLDERS.has(String(s["regions"][rk])):
+					bad += 1
+	check("act 3: every skin and both ends of every choice draw a sound state (%d)" % n, bad == 0)
+	var sk_ruin := WarMapData.state(_act3p([["e06_taken", {"ruin": "opened"}]]), "chart")
+	check("act 3: the chart after e06: Lindqvist's notes in red ink", (sk_ruin["notes"] as Array).any(func(nn) -> bool: return bool(nn.get("red", false))))
+	check("act 3: the ruin opened shows the open book", bool(sk_ruin["marks"]["ruin_open"]) and not bool(sk_ruin["marks"]["ruin_sealed"]))
+	check("act 3: still no Brood skin", not WarMapData.SKINS.has("brood") and not WarMap.SKINS.has("brood"))
+	# ---- Campaign.record keeps the order and writes the colonies (the ledger's last mark)
+	var keep := FileAccess.get_file_as_string(Campaign.PROGRESS) if FileAccess.file_exists(Campaign.PROGRESS) else ""
+	Campaign.save_progress(_act3p([]))
+	Campaign.record("e04_kongo", "solo", "crown", "crown", {"kongo": "stood"})
+	Campaign.record("e05_river", "solo", "crown", "crown", {"nests": "found"})
+	Campaign.record("e08_arsenal", "solo", "crown", "crown", {})
+	var pr := Campaign.progress()
+	check("act 3: Campaign.record numbers the wins (seq) for the clock", int(pr["done"]["e05_river"].get("seq", 0)) == int(pr["done"]["e04_kongo"].get("seq", 0)) + 1)
+	check("act 3: Campaign.record writes the clock's colonies", (pr.get("colonies", {}) as Dictionary).size() == 12 and Campaign.colonies_share() > 0.5, str(pr.get("colonies", {})))
+	if keep != "":
+		var f := FileAccess.open(Campaign.PROGRESS, FileAccess.WRITE)
+		f.store_string(keep)
+		f.close()
+	else:
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(Campaign.PROGRESS))
+
+
+func _ui_act3() -> void:
+	var order := [["e04_kongo"], ["e05_river"], ["e08_arsenal"], ["e09_nagasaki"], ["e12_exiles"], ["e13_gold"], ["e01_brazil"]]
+	for sk in ["parchment", "brass", "chart"]:
+		Campaign.save_progress(_act3p(order))
+		CampaignMenu.line = "prologue"
+		CampaignMenu.map_skin = sk
+		CampaignMenu.map_open = false
+		CampaignMenu.map_cam = {}
+		CampaignMenu.map_pick = "e02_potosi"
+		CampaignMenu.war_map(main)
+		await process_frame
+		await process_frame
+		var wm := _wm()
+		check("act 3 (%s): opens on THE WORLD, drawn (no painting yet)" % sk, wm != null and wm.painted == "" and String(wm.act.get("view", "")) == "globe")
+		check("act 3 (%s): the act's views, not Act 1's" % sk, _find("View_globe") != null and _find("View_seas") != null and _find("View_world") == null)
+		check("act 3 (%s): the clock in the map's state" % sk, wm != null and bool(wm.st.get("clock", {}).get("on", false)))
+		check("act 3 (%s): an optional pin's card names its theatre and says OPTIONAL" % sk, _find("CardTheatre") != null and _find("CardAbout") != null)
+		check("act 3 (%s): the ledger shows THE CLOCK" % sk, _find("LedgerClock") != null)
+		for vid in ["globe", "americas", "africa", "indies", "seas", "europe3"]:
+			wm.show_view(vid, false)
+			wm.queue_redraw()
+			await process_frame
+		check("act 3 (%s): every Act 3 view draws" % sk, true)
+		_press_back()
+		await process_frame
+	# the night closes an optional pin: its card says so
+	Campaign.save_progress(_act3p([["e04_kongo"], ["e08_arsenal"], ["e01_brazil"], ["e12_exiles"], ["e05_river"], ["e09_nagasaki"],
+		["e03_virginia"], ["e13_gold"], ["e06_taken"], ["e11_spice"], ["e16_lisbon"]]))
+	CampaignMenu.map_skin = "parchment"
+	CampaignMenu.map_open = false
+	CampaignMenu.map_pick = "e10_manila"
+	CampaignMenu.war_map(main)
+	await process_frame
+	await process_frame
+	check("act 3: an optional pin the night closed says so on its card", _find("CardClosed") != null)
+	_press_back()
+	await process_frame
+	CampaignMenu.map_pick = ""
